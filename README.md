@@ -1,10 +1,9 @@
 # sistFstPjr
 sist First Project
 
-UI 설계도
-
-ERD 설계도 sistFstPjr
-sist First Project
+쌍용학원
+1조 첫번째 프로젝트
+주제 : 교육 Course 프로그램
 
 UI 설계도
 
