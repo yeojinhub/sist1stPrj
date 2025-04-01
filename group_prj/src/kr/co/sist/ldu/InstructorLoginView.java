@@ -20,6 +20,7 @@ public class InstructorLoginView {
 	 */
 	public InstructorLoginView() {
 		initialize();
+		System.out.println("1");
 	}
 
 	/**
