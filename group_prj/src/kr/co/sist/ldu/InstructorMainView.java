@@ -24,7 +24,6 @@ public class InstructorMainView {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		System.out.println("1");
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
