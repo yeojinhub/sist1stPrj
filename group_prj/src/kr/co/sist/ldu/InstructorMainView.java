@@ -41,6 +41,7 @@ public class InstructorMainView {
 	 */
 	public InstructorMainView() {
 		initialize();
+		System.out.println("1");
 	}
 
 	/**
