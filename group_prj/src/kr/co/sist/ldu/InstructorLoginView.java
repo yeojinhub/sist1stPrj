@@ -1,50 +1,24 @@
 package kr.co.sist.ldu;
 
-import java.awt.EventQueue;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-import javax.swing.JFrame;
-import javax.swing.JToolBar;
-import java.awt.BorderLayout;
-import javax.swing.JScrollPane;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JPanel;
-import javax.swing.ImageIcon;
-import java.awt.Color;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import java.awt.Window.Type;
-import java.awt.Toolkit;
 
-public class StudLoginView {
+
+
+public class InstructorLoginView {
 
 	private JFrame frmBestCampus;
 	private JTextField textField;
 	private JPasswordField passwordField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					StudLoginView window = new StudLoginView();
-					window.frmBestCampus.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the application.
 	 */
-	public StudLoginView() {
+	public InstructorLoginView() {
 		initialize();
 	}
 
@@ -71,18 +45,18 @@ public class StudLoginView {
 		frmBestCampus.getContentPane().add(lblNewLabel_2);
 		
 		textField = new JTextField();
-		textField.setForeground(new Color(192, 192, 192));
+		textField.setForeground(new Color(0, 0, 0));
 		textField.setBounds(96, 196, 209, 21);
 		frmBestCampus.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setHorizontalAlignment(SwingConstants.TRAILING);
 		passwordField.setToolTipText("");
 		passwordField.setBounds(96, 227, 209, 21);
 		frmBestCampus.getContentPane().add(passwordField);
 		
 		JButton btnNewButton = new JButton("Login");
+		
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
 		btnNewButton.setBounds(317, 196, 97, 53);
 		frmBestCampus.getContentPane().add(btnNewButton);
@@ -93,5 +67,23 @@ public class StudLoginView {
 		frmBestCampus.getContentPane().add(lblNewLabel);
 		
 		frmBestCampus.setBounds(100,100,450,300);
+		frmBestCampus.setVisible(true);
 	}
+
+	public JTextField getTextField() {
+		return textField;
+	}
+
+	public void setTextField(JTextField textField) {
+		this.textField = textField;
+	}
+
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
+
+	public void setPasswordField(JPasswordField passwordField) {
+		this.passwordField = passwordField;
+	}
+	
 }
