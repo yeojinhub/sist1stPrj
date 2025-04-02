@@ -1,5 +1,5 @@
-//package MainLoginForm;
 package kr.co.sist.kmg;
+//package kr.co.sist.kmg;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

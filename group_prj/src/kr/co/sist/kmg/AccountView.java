@@ -8,17 +8,27 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
 public class AccountView extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	
+	private JLabel jlblPersonal;
+	private JLabel jlblUserName;
+	private JTextArea jtaAdressText;
+	
+	private JButton jbtnPassChange;
+	private JButton jbtnModification;
+	private JButton jbtnAccountClose;
+	private JTextField JtfTelText;
 	
 	public AccountView() {
 		super("도도도님 개인정보");
@@ -28,92 +38,179 @@ public class AccountView extends JFrame {
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-	    // Set the content pane
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        // Add the logo label
         JLabel jlbLogoTitle = new JLabel("Best Campus");
         jlbLogoTitle.setFont(new Font("Consolas", Font.PLAIN, 30));
-        jlbLogoTitle.setBounds(310, 801, 187, 50); // Adjusted position
+        jlbLogoTitle.setBounds(300, 803, 200, 50); // Adjusted position
         contentPane.add(jlbLogoTitle);
         
-        JLabel lblNewLabel = new JLabel("개 인 정 보");
-        lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 30));
-        lblNewLabel.setBounds(322, 57, 149, 55);
+        jlblPersonal = new JLabel("개 인 정 보");
+        jlblPersonal.setFont(new Font("Dialog", Font.BOLD, 30));
+        jlblPersonal.setBounds(322, 57, 149, 55);
+        contentPane.add(jlblPersonal);
+        
+        jlblUserName = new JLabel("도도도");
+        jlblUserName.setFont(new Font("굴림", Font.BOLD, 20));
+        jlblUserName.setBounds(652, 21, 62, 40);
+        contentPane.add(jlblUserName);
+        
+        JLabel jlblNim = new JLabel("님");
+        jlblNim.setFont(new Font("Dialog", Font.PLAIN, 15));
+        jlblNim.setBounds(726, 34, 26, 15);
+        contentPane.add(jlblNim);
+//		라벨        
+        JLabel jlblID = new JLabel("ID");
+        jlblID.setFont(new Font("Dialog", Font.BOLD, 25));
+        jlblID.setBounds(93, 139, 130, 30);
+        contentPane.add(jlblID);
+        
+        JLabel jlblPassword = new JLabel("비밀번호");
+        jlblPassword.setFont(new Font("Dialog", Font.BOLD, 25));
+        jlblPassword.setBounds(93, 194, 130, 30);
+        contentPane.add(jlblPassword);
+        
+        JLabel jlblUserName = new JLabel("학생명");
+        jlblUserName.setFont(new Font("Dialog", Font.BOLD, 25));
+        jlblUserName.setBounds(93, 249, 130, 30);
+        contentPane.add(jlblUserName);
+        
+        JLabel lblBirth = new JLabel("생년월일");
+        lblBirth.setFont(new Font("Dialog", Font.BOLD, 25));
+        lblBirth.setBounds(93, 304, 130, 30);
+        contentPane.add(lblBirth);
+        
+        JLabel jlblTel = new JLabel("전화번호");
+        jlblTel.setFont(new Font("Dialog", Font.BOLD, 25));
+        jlblTel.setBounds(93, 359, 130, 30);
+        contentPane.add(jlblTel);
+        
+        JLabel jlbladdress = new JLabel("주소");
+        jlbladdress.setFont(new Font("Dialog", Font.BOLD, 25));
+        jlbladdress.setBounds(93, 414, 130, 30);
+        contentPane.add(jlbladdress);
+        
+        JLabel jlblCourse = new JLabel("과정명");
+        jlblCourse.setFont(new Font("Dialog", Font.BOLD, 25));
+        jlblCourse.setBounds(93, 514, 130, 30);
+        contentPane.add(jlblCourse);
+        
+        JLabel jlblInstructor = new JLabel("담당강사");
+        jlblInstructor.setFont(new Font("Dialog", Font.BOLD, 25));
+        jlblInstructor.setBounds(93, 569, 130, 30);
+        contentPane.add(jlblInstructor);
+        
+        JLabel jlblPeriod = new JLabel("교육기간");
+        jlblPeriod.setFont(new Font("Dialog", Font.BOLD, 25));
+        jlblPeriod.setBounds(93, 624, 130, 30);
+        contentPane.add(jlblPeriod);
+        
+//		작성하는 곳        
+        jtaAdressText = new JTextArea();
+        jtaAdressText.setFont(new Font("Dialog", Font.PLAIN, 30));
+        jtaAdressText.setBackground(new Color(255, 255, 255));
+        jtaAdressText.setBounds(294, 416, 420, 70);
+        jtaAdressText.setBorder(new LineBorder(Color.GRAY));
+        contentPane.add(jtaAdressText);
+        
+        JLabel jlbIDText = new JLabel("2025_0001");
+        jlbIDText.setFont(new Font("Dialog", Font.PLAIN, 30));
+        jlbIDText.setBounds(294, 139, 420, 35);
+        contentPane.add(jlbIDText);
+        
+        JLabel jlbIStudentText = new JLabel("도도도");
+        jlbIStudentText.setFont(new Font("Dialog", Font.PLAIN, 30));
+        jlbIStudentText.setBounds(294, 249, 420, 35);
+        contentPane.add(jlbIStudentText);
+        
+        JLabel jlblBirthText = new JLabel("2000-09-01");
+        jlblBirthText.setFont(new Font("Dialog", Font.PLAIN, 30));
+        jlblBirthText.setBounds(294, 304, 420, 35);
+        contentPane.add(jlblBirthText);
+        
+        JComboBox comboBox = new JComboBox();
+        comboBox.setBounds(294, 514, 420, 35);
+        contentPane.add(comboBox);
+        
+        JLabel jlblInstructorText=new JLabel("오감자");
+        jlblInstructorText.setFont(new Font("Dialog", Font.PLAIN, 30));
+        jlblInstructorText.setBounds(294, 569, 420, 35);
+        contentPane.add(jlblInstructorText);
+        
+        JLabel jlblStartText = new JLabel("2025_0001");
+        jlblStartText.setFont(new Font("Dialog", Font.PLAIN, 30));
+        jlblStartText.setBounds(294, 624, 185, 35);
+        contentPane.add(jlblStartText);
+        
+        jbtnPassChange = new JButton("비밀번호변경");
+        jbtnPassChange.setBackground(new Color(135, 172, 241));
+        jbtnPassChange.setFont(new Font("Dialog", Font.PLAIN, 25));
+        jbtnPassChange.setBounds(284, 199, 420, 35);
+        contentPane.add(jbtnPassChange);
+        
+        JLabel jlblEndText = new JLabel("2025_0001");
+        jlblEndText.setForeground(new Color(0, 0, 0));
+        jlblEndText.setFont(new Font("Dialog", Font.PLAIN, 30));
+        jlblEndText.setBounds(514, 624, 185, 35);
+        contentPane.add(jlblEndText);
+        
+        JLabel lblNewLabel = new JLabel("~");
+        lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 30));
+        lblNewLabel.setBounds(480, 624, 20, 35);
         contentPane.add(lblNewLabel);
         
-        JLabel lblNewLabel_1 = new JLabel("도도도");
-        lblNewLabel_1.setFont(new Font("굴림", Font.BOLD, 20));
-        lblNewLabel_1.setBounds(652, 21, 62, 40);
-        contentPane.add(lblNewLabel_1);
+        jbtnModification = new JButton("수정");
+        jbtnModification.setFont(new Font("Dialog", Font.BOLD, 30));
+        jbtnModification.setBounds(166, 731, 200, 50);
+        jbtnModification.setBackground(new Color(255, 165, 0));
+        contentPane.add(jbtnModification);
         
-        JLabel lblNewLabel_2 = new JLabel("님");
-        lblNewLabel_2.setFont(new Font("Dialog", Font.PLAIN, 15));
-        lblNewLabel_2.setBounds(726, 34, 26, 15);
-        contentPane.add(lblNewLabel_2);
+        jbtnAccountClose = new JButton("닫기");
+        jbtnAccountClose.setFont(new Font("Dialog", Font.BOLD, 30));
+        jbtnAccountClose.setBounds(407, 731, 200, 50);
+        jbtnAccountClose.setBackground(new Color(211, 211, 211));
+        contentPane.add(jbtnAccountClose);
         
-        JLabel lblNewLabel_3 = new JLabel("ID");
-        lblNewLabel_3.setFont(new Font("Dialog", Font.BOLD, 25));
-        lblNewLabel_3.setBounds(83, 164, 130, 30);
-        contentPane.add(lblNewLabel_3);
+        JtfTelText = new JTextField();
+        JtfTelText.setBounds(294, 364, 420, 35);
+        JtfTelText.setFont(new Font("Dialog", Font.PLAIN, 30));
+        contentPane.add(JtfTelText);
+        JtfTelText.setColumns(10);
         
-        JLabel lblNewLabel_3_1 = new JLabel("비밀번호");
-        lblNewLabel_3_1.setFont(new Font("Dialog", Font.BOLD, 25));
-        lblNewLabel_3_1.setBounds(83, 203, 130, 30);
-        contentPane.add(lblNewLabel_3_1);
+//		이벤트 등록
+        AccountViewEvt ave = new AccountViewEvt(this);
+        jbtnAccountClose.addActionListener(ave);
+        jbtnModification.addActionListener(ave);
+        jbtnPassChange.addActionListener(ave);
         
-        JLabel lblNewLabel_3_1_1 = new JLabel("학생명");
-        lblNewLabel_3_1_1.setFont(new Font("Dialog", Font.BOLD, 25));
-        lblNewLabel_3_1_1.setBounds(83, 242, 130, 30);
-        contentPane.add(lblNewLabel_3_1_1);
-        
-        JLabel lblNewLabel_3_1_1_1 = new JLabel("생년월일");
-        lblNewLabel_3_1_1_1.setFont(new Font("Dialog", Font.BOLD, 25));
-        lblNewLabel_3_1_1_1.setBounds(83, 282, 130, 30);
-        contentPane.add(lblNewLabel_3_1_1_1);
-        
-        JLabel lblNewLabel_3_1_1_2 = new JLabel("전화번호");
-        lblNewLabel_3_1_1_2.setFont(new Font("Dialog", Font.BOLD, 25));
-        lblNewLabel_3_1_1_2.setBounds(83, 322, 130, 30);
-        contentPane.add(lblNewLabel_3_1_1_2);
-        
-        JLabel lblNewLabel_3_1_1_3 = new JLabel("주소");
-        lblNewLabel_3_1_1_3.setFont(new Font("Dialog", Font.BOLD, 25));
-        lblNewLabel_3_1_1_3.setBounds(83, 362, 130, 30);
-        contentPane.add(lblNewLabel_3_1_1_3);
-        
-        JLabel lblNewLabel_3_1_1_5 = new JLabel("과정명");
-        lblNewLabel_3_1_1_5.setFont(new Font("Dialog", Font.BOLD, 25));
-        lblNewLabel_3_1_1_5.setBounds(83, 442, 130, 30);
-        contentPane.add(lblNewLabel_3_1_1_5);
-        
-        JLabel lblNewLabel_3_1_1_7 = new JLabel("담당강사");
-        lblNewLabel_3_1_1_7.setFont(new Font("Dialog", Font.BOLD, 25));
-        lblNewLabel_3_1_1_7.setBounds(83, 522, 130, 30);
-        contentPane.add(lblNewLabel_3_1_1_7);
-        
-        JLabel lblNewLabel_3_1_1_7_1 = new JLabel("교육기간");
-        lblNewLabel_3_1_1_7_1.setFont(new Font("Dialog", Font.BOLD, 25));
-        lblNewLabel_3_1_1_7_1.setBounds(83, 562, 130, 30);
-        contentPane.add(lblNewLabel_3_1_1_7_1);
-        
-        textField = new JTextField();
-        textField.setBounds(291, 334, 420, 30);
-        contentPane.add(textField);
-        textField.setColumns(10);
-        
-        JTextArea textArea = new JTextArea();
-        textArea.setForeground(new Color(192, 192, 192));
-        textArea.setFont(new Font("Dialog", Font.PLAIN, 20));
-        textArea.setBackground(new Color(192, 192, 192));
-        textArea.setText("");
-        textArea.setBounds(291, 372, 420, 70);
-        contentPane.add(textArea);
-
-        // Window settings
-        setBounds(100, 100, 800, 900); // Set window size
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Close operation
-        setVisible(true);  // Make the window visible
+        setBounds(100, 100, 800, 900); 
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+        setVisible(true);  
     }
-}
+
+	public JTextArea getJtaAdressText() {
+		return jtaAdressText;
+	}
+
+	public JButton getJbtnPassChange() {
+		return jbtnPassChange;
+	}
+
+	public JButton getJbtnModification() {
+		return jbtnModification;
+	}
+
+	public JButton getJbtnAccountClose() {
+		return jbtnAccountClose;
+	}
+
+	public JTextField getJtfTelText() {
+		return JtfTelText;
+	}
+	
+//	getter
+
+	
+}//class
+ 

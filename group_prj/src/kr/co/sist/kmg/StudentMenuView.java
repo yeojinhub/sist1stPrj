@@ -1,5 +1,5 @@
-//package MainLoginForm;
 package kr.co.sist.kmg;
+//package kr.co.sist.kmg;
 
 import java.awt.EventQueue;
 
@@ -29,7 +29,6 @@ public class StudentMenuView extends JFrame {
 		
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -49,10 +48,8 @@ public class StudentMenuView extends JFrame {
 		jbtnAccount = new JButton("개인정보");
 		jbtnAccount.setBounds(68, 546, 206, 89);
 		jbtnAccount.setFont(menuFont);
-		jbtnAccount.setBackground(new Color(192, 192, 192));
+		jbtnAccount.setBackground(new Color(255, 165, 0));
 		contentPane.add(jbtnAccount);
-		
-
 		
 		jbtnTest = new JButton("시험");
 		jbtnTest.setFont(menuFont);
@@ -71,9 +68,8 @@ public class StudentMenuView extends JFrame {
 		jbtnTest.addActionListener(mve);
 		jbtnBoarder.addActionListener(mve);
 		
-		
 		JLabel jlbLogoTitle = new JLabel("Best Campus");
-		jlbLogoTitle.setFont(new Font("Consolas", Font.BOLD, 50));
+		jlbLogoTitle.setFont(new Font("Consolas", Font.BOLD, 45));
 		jlbLogoTitle.setBounds(getX()+250, getY()+760, 300, 50);
 		getContentPane().add(jlbLogoTitle);
 		
@@ -104,8 +100,5 @@ public class StudentMenuView extends JFrame {
 		return jbtnBoarder;
 	}
 	
-	public static void main(String[] args) {
-		new StudentMenuView();
-	}	
 	
 }//class

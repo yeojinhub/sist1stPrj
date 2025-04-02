@@ -1,5 +1,5 @@
-//package MainLoginForm;
 package kr.co.sist.kmg;
+//package kr.co.sist.kmg;
 
 import java.awt.Color;
 import javax.swing.JFrame;
@@ -97,7 +97,7 @@ public class StudentLoginForm extends JFrame {
 
 //	 	login버튼		
 		jbtnLogin = new JButton("login");
-		jbtnLogin.setBackground(new Color(223, 223, 223));
+		jbtnLogin.setBackground(new Color(255, 165, 0));
 		jbtnLogin.setFont(new Font("Lucida Console", Font.PLAIN, 30));
 		jbtnLogin.setBounds(getX() + 102, getY() + 478, 300, 60);
 		getContentPane().add(jbtnLogin);
