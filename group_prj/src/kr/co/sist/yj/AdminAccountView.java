@@ -2,20 +2,31 @@
 package kr.co.sist.yj;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+//import kr.co.sist.evt.AdminAccountEvt;
+
 @SuppressWarnings("serial")
-public class AdminAccountView extends JDialog{
+public class AdminAccountView extends JFrame{
 	
 	private JButton jbtnAdminAccountViewStudentAccount;
 	private JButton jbtnAdminAccountViewInstructorAccount;
 	private JButton jbtnAdminAccountViewAdminAccount;
 	
+	private JPanel jpAdminAccountCardPanel;
+	private CardLayout clAdminAccountCard;
+	
 	public AdminAccountView() {
+		
+		JPanel contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5,5,5,5));
+		setContentPane(contentPane);
+		contentPane.setLayout( new BorderLayout() );
 		
 		JPanel jpAdminAccountViewNorth = new JPanel();
 		
@@ -26,15 +37,44 @@ public class AdminAccountView extends JDialog{
 		jpAdminAccountViewNorth.add(jbtnAdminAccountViewStudentAccount);
 		jpAdminAccountViewNorth.add(jbtnAdminAccountViewInstructorAccount);
 		jpAdminAccountViewNorth.add(jbtnAdminAccountViewAdminAccount);
+		contentPane.add(jpAdminAccountViewNorth, BorderLayout.NORTH);
 		
-		AdminAccountStudentAccountEvt aastac = new AdminAccountStudentAccountEvt();
-		jbtnAdminAccountViewStudentAccount.addActionListener(aastac);
+		jpAdminAccountCardPanel = new JPanel();
+		clAdminAccountCard = new CardLayout();
+		jpAdminAccountCardPanel.setLayout(clAdminAccountCard);
 		
-		//Layout 크기 설정
-		jpAdminAccountViewNorth.setBorder(new EmptyBorder(20, 0, 10, 0));
+		jpAdminAccountCardPanel.add( "StudentAccountView", new AdminAccountStudentAccountView() );
+		clAdminAccountCard.show(jpAdminAccountCardPanel, "StudentAccountView" );
+		jpAdminAccountCardPanel.add( "InstructorAccountView", new AdminAccountInstructorAccountView() );
+		jpAdminAccountCardPanel.add( "AdminAccountView", new AdminAccountAdminAccountView() );
 		
-		add(jpAdminAccountViewNorth, BorderLayout.NORTH );
+		AdminAccountEvt aae = new AdminAccountEvt(this);
+		jbtnAdminAccountViewStudentAccount.addActionListener( aae );
+		jbtnAdminAccountViewInstructorAccount.addActionListener( aae );
+		jbtnAdminAccountViewAdminAccount.addActionListener( aae );
+		
+		contentPane.add(jpAdminAccountCardPanel, BorderLayout.CENTER);
 		
 	} //AdminAccountView
+	
+	public JButton getJbtnAdminAccountViewStudentAccount() {
+		return jbtnAdminAccountViewStudentAccount;
+	}
 
+	public JButton getJbtnAdminAccountViewInstructorAccount() {
+		return jbtnAdminAccountViewInstructorAccount;
+	}
+
+	public JButton getJbtnAdminAccountViewAdminAccount() {
+		return jbtnAdminAccountViewAdminAccount;
+	}
+
+	public JPanel getJpAdminAccountCardPanel() {
+		return jpAdminAccountCardPanel;
+	}
+
+	public CardLayout getClAdminAccountCard() {
+		return clAdminAccountCard;
+	}
+	
 } //class

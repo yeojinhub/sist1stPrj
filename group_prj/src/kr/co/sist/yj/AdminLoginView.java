@@ -58,6 +58,7 @@ public class AdminLoginView extends JFrame{
 		add(jpAdminLoginViewNorth, BorderLayout.NORTH);
 		add(jpAdminLoginViewSouth, BorderLayout.SOUTH );
 		
+		//Button 이벤트 생성
 		AdminLoginEvt ale=new AdminLoginEvt(this);
 		jbtnAdminLogin.addActionListener(ale);
 		
