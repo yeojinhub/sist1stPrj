@@ -19,11 +19,11 @@ import javax.swing.SwingConstants;
 @SuppressWarnings("serial")
 public class InstructorMainView extends JFrame {
 
-	private JTable table;
-	private JTable table_1;
-	private JTable table_2;
-	private JTable table_3;
-	private JTable table_4;
+	private JTable jtaCourse;
+	private JTable jtaStud;
+	private JTable jtaExam;
+	private JTable jtaScore;
+	private JTable jtaBoard;
 
 
 	public InstructorMainView(InstructorLoginView ilv) {
@@ -33,38 +33,38 @@ public class InstructorMainView extends JFrame {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\user\\Pictures\\Screenshots\\스크린샷 2025-04-01 161817.png"));
-		lblNewLabel.setBounds(12, 10, 326, 39);
-		getContentPane().add(lblNewLabel);
+		JLabel jlblLogo = new JLabel("New label");
+		jlblLogo.setIcon(new ImageIcon("C:\\Users\\user\\Pictures\\Screenshots\\스크린샷 2025-04-01 161817.png"));
+		jlblLogo.setBounds(12, 10, 326, 39);
+		getContentPane().add(jlblLogo);
 		
-		JLabel lblNewLabel_1 = new JLabel("아무개 강사님");
-		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(397, 16, 92, 27);
-		getContentPane().add(lblNewLabel_1);
+		JLabel jlblInstName = new JLabel("아무개 강사님");
+		jlblInstName.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		jlblInstName.setBounds(397, 16, 92, 27);
+		getContentPane().add(jlblInstName);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBackground(new Color(255, 255, 255));
-		tabbedPane.setBounds(12, 59, 514, 517);
-		getContentPane().add(tabbedPane);
+		JTabbedPane jtpMenu = new JTabbedPane(JTabbedPane.TOP);
+		jtpMenu.setBackground(new Color(255, 255, 255));
+		jtpMenu.setBounds(12, 59, 514, 517);
+		getContentPane().add(jtpMenu);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 255));
-		tabbedPane.addTab("과정 조회", null, panel, null);
-		panel.setLayout(null);
+		JPanel jpCourse = new JPanel();
+		jpCourse.setBackground(new Color(255, 255, 255));
+		jtpMenu.addTab("과정 조회", null, jpCourse, null);
+		jpCourse.setLayout(null);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"전체", "강의중", "강의종료", "강의예정"}));
-		comboBox.setBounds(404, 10, 93, 23);
-		panel.add(comboBox);
+		JComboBox jcbSelectStatement = new JComboBox();
+		jcbSelectStatement.setModel(new DefaultComboBoxModel(new String[] {"전체", "강의중", "강의종료", "강의예정"}));
+		jcbSelectStatement.setBounds(404, 10, 93, 23);
+		jpCourse.add(jcbSelectStatement);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 43, 487, 435);
-		panel.add(scrollPane);
+		JScrollPane jspCourse = new JScrollPane();
+		jspCourse.setBounds(10, 43, 487, 435);
+		jpCourse.add(jspCourse);
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(
+		jtaCourse = new JTable();
+		jspCourse.setViewportView(jtaCourse);
+		jtaCourse.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
 				{null, null},
@@ -100,23 +100,23 @@ public class InstructorMainView extends JFrame {
 			}
 		));
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 255, 255));
-		tabbedPane.addTab("학생 관리", null, panel_1, null);
-		panel_1.setLayout(null);
+		JPanel jpStud = new JPanel();
+		jpStud.setBackground(new Color(255, 255, 255));
+		jtpMenu.addTab("학생 관리", null, jpStud, null);
+		jpStud.setLayout(null);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"전체", "25-1", "25-2"}));
-		comboBox_1.setBounds(404, 10, 93, 23);
-		panel_1.add(comboBox_1);
+		JComboBox jcbSelectStudCourse = new JComboBox();
+		jcbSelectStudCourse.setModel(new DefaultComboBoxModel(new String[] {"전체", "25-1", "25-2"}));
+		jcbSelectStudCourse.setBounds(404, 10, 93, 23);
+		jpStud.add(jcbSelectStudCourse);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(12, 43, 485, 435);
-		scrollPane_1.setBackground(new Color(255,255,255));
-		panel_1.add(scrollPane_1);
+		JScrollPane jspStud = new JScrollPane();
+		jspStud.setBounds(12, 43, 485, 435);
+		jspStud.setBackground(new Color(255,255,255));
+		jpStud.add(jspStud);
 		
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(
+		jtaStud = new JTable();
+		jtaStud.setModel(new DefaultTableModel(
 			new Object[][] {
 				{1, 2, 3, 4},
 				
@@ -125,22 +125,22 @@ public class InstructorMainView extends JFrame {
 				"\uAE30\uC218", "\uD559\uC0DD \uC774\uB984", "\uACFC\uC815\uBA85", "\uC9C4\uD589 \uC0C1\uD0DC"
 			}
 		));
-		scrollPane_1.setViewportView(table_1);
+		jspStud.setViewportView(jtaStud);
 		
 		InstructorMainViewEvent sive = new InstructorMainViewEvent(this);
-		table_1.addMouseListener(sive);
+		jtaStud.addMouseListener(sive);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(255, 255, 255));
-		tabbedPane.addTab("시험 관리", null, panel_2, null);
-		panel_2.setLayout(null);
+		JPanel jpExam = new JPanel();
+		jpExam.setBackground(new Color(255, 255, 255));
+		jtpMenu.addTab("시험 관리", null, jpExam, null);
+		jpExam.setLayout(null);
 		
-		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(12, 43, 485, 423);
-		panel_2.add(scrollPane_2);
+		JScrollPane jspExam = new JScrollPane();
+		jspExam.setBounds(12, 43, 485, 423);
+		jpExam.add(jspExam);
 		
-		table_2 = new JTable();
-		table_2.setModel(new DefaultTableModel(
+		jtaExam = new JTable();
+		jtaExam.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
 				{null, null, null},
@@ -173,38 +173,38 @@ public class InstructorMainView extends JFrame {
 				"\uC2DC\uD5D8\uBA85", "\uB0A0\uC9DC", "\uC0C1\uD0DC"
 			}
 		));
-		scrollPane_2.setViewportView(table_2);
+		jspExam.setViewportView(jtaExam);
 		
-		JComboBox comboBox_1_1 = new JComboBox();
-		comboBox_1_1.setModel(new DefaultComboBoxModel(new String[] {"전체", "25-1", "25-2"}));
-		comboBox_1_1.setBounds(404, 10, 93, 23);
-		panel_2.add(comboBox_1_1);
+		JComboBox jcbSelectExamCourse = new JComboBox();
+		jcbSelectExamCourse.setModel(new DefaultComboBoxModel(new String[] {"전체", "25-1", "25-2"}));
+		jcbSelectExamCourse.setBounds(404, 10, 93, 23);
+		jpExam.add(jcbSelectExamCourse);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(255, 255, 255));
-		tabbedPane.addTab("성적 조회", null, panel_3, null);
-		panel_3.setLayout(null);
+		JPanel jpScore = new JPanel();
+		jpScore.setBackground(new Color(255, 255, 255));
+		jtpMenu.addTab("성적 조회", null, jpScore, null);
+		jpScore.setLayout(null);
 		
-		JComboBox comboBox_1_2 = new JComboBox();
-		comboBox_1_2.setModel(new DefaultComboBoxModel(new String[] {"시험 과목명 선택", "Java", "Oracle"}));
-		comboBox_1_2.setBounds(295, 10, 93, 23);
-		panel_3.add(comboBox_1_2);
+		JComboBox jcbSelectScoreExam = new JComboBox();
+		jcbSelectScoreExam.setModel(new DefaultComboBoxModel(new String[] {"시험 과목명 선택", "Java", "Oracle"}));
+		jcbSelectScoreExam.setBounds(295, 10, 93, 23);
+		jpScore.add(jcbSelectScoreExam);
 		
-		JComboBox comboBox_1_3 = new JComboBox();
-		comboBox_1_3.setModel(new DefaultComboBoxModel(new String[] {"기수 선택", "25-1", "25-2"}));
-		comboBox_1_3.setBounds(186, 10, 93, 23);
-		panel_3.add(comboBox_1_3);
+		JComboBox jcbSelectScoreCourse = new JComboBox();
+		jcbSelectScoreCourse.setModel(new DefaultComboBoxModel(new String[] {"기수 선택", "25-1", "25-2"}));
+		jcbSelectScoreCourse.setBounds(186, 10, 93, 23);
+		jpScore.add(jcbSelectScoreCourse);
 		
-		JButton btnNewButton = new JButton("조회");
-		btnNewButton.setBounds(400, 10, 97, 23);
-		panel_3.add(btnNewButton);
+		JButton jbtnSearch = new JButton("조회");
+		jbtnSearch.setBounds(400, 10, 97, 23);
+		jpScore.add(jbtnSearch);
 		
-		JScrollPane scrollPane_3 = new JScrollPane();
-		scrollPane_3.setBounds(12, 44, 485, 434);
-		panel_3.add(scrollPane_3);
+		JScrollPane jcpScore = new JScrollPane();
+		jcpScore.setBounds(12, 44, 485, 434);
+		jpScore.add(jcpScore);
 		
-		table_3 = new JTable();
-		table_3.setModel(new DefaultTableModel(
+		jtaScore = new JTable();
+		jtaScore.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null},
 				{null, null, null, null, null},
@@ -238,19 +238,19 @@ public class InstructorMainView extends JFrame {
 				"\uAE30\uC218", "\uACFC\uC815\uBA85", "\uACFC\uBAA9\uBA85", "\uD559\uC0DD\uC774\uB984", "\uC131\uC801"
 			}
 		));
-		scrollPane_3.setViewportView(table_3);
+		jcpScore.setViewportView(jtaScore);
 		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(new Color(255, 255, 255));
-		tabbedPane.addTab("1:1 문의", null, panel_4, null);
-		panel_4.setLayout(null);
+		JPanel jpBoard = new JPanel();
+		jpBoard.setBackground(new Color(255, 255, 255));
+		jtpMenu.addTab("1:1 문의", null, jpBoard, null);
+		jpBoard.setLayout(null);
 		
-		JScrollPane scrollPane_4 = new JScrollPane();
-		scrollPane_4.setBounds(12, 58, 485, 420);
-		panel_4.add(scrollPane_4);
+		JScrollPane jspBoard = new JScrollPane();
+		jspBoard.setBounds(12, 58, 485, 420);
+		jpBoard.add(jspBoard);
 		
-		table_4 = new JTable();
-		table_4.setModel(new DefaultTableModel(
+		jtaBoard = new JTable();
+		jtaBoard.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null},
 				{null, null, null, null, null},
@@ -284,14 +284,14 @@ public class InstructorMainView extends JFrame {
 				"\uBC88\uD638", "\uC81C\uBAA9", "\uC791\uC131\uC790", "\uC791\uC131\uC77C", "\uC0C1\uD0DC"
 			}
 		));
-		scrollPane_4.setViewportView(table_4);
+		jspBoard.setViewportView(jtaBoard);
 		
-		JLabel lblNewLabel_2 = new JLabel("1:1 문의 게시판");
-		lblNewLabel_2.setBackground(new Color(255, 255, 255));
-		lblNewLabel_2.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(12, 10, 485, 39);
-		panel_4.add(lblNewLabel_2);
+		JLabel jlblBoardTitle = new JLabel("1:1 문의 게시판");
+		jlblBoardTitle.setBackground(new Color(255, 255, 255));
+		jlblBoardTitle.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		jlblBoardTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		jlblBoardTitle.setBounds(12, 10, 485, 39);
+		jpBoard.add(jlblBoardTitle);
 		
 		setVisible(true);
 		
@@ -302,70 +302,70 @@ public class InstructorMainView extends JFrame {
 
 
 	public JTable getTable() {
-		return table;
+		return jtaCourse;
 	}
 
 
 
 
 	public void setTable(JTable table) {
-		this.table = table;
+		this.jtaCourse = table;
 	}
 
 
 
 
 	public JTable getTable_1() {
-		return table_1;
+		return jtaStud;
 	}
 
 
 
 
 	public void setTable_1(JTable table_1) {
-		this.table_1 = table_1;
+		this.jtaStud = table_1;
 	}
 
 
 
 
 	public JTable getTable_2() {
-		return table_2;
+		return jtaExam;
 	}
 
 
 
 
 	public void setTable_2(JTable table_2) {
-		this.table_2 = table_2;
+		this.jtaExam = table_2;
 	}
 
 
 
 
 	public JTable getTable_3() {
-		return table_3;
+		return jtaScore;
 	}
 
 
 
 
 	public void setTable_3(JTable table_3) {
-		this.table_3 = table_3;
+		this.jtaScore = table_3;
 	}
 
 
 
 
 	public JTable getTable_4() {
-		return table_4;
+		return jtaBoard;
 	}
 
 
 
 
 	public void setTable_4(JTable table_4) {
-		this.table_4 = table_4;
+		this.jtaBoard = table_4;
 	}
 	
 }

@@ -12,8 +12,8 @@ import java.awt.event.ActionEvent;
 public class InstructorLoginView extends JFrame {
 
 
-	private JTextField textField;
-	private JPasswordField passwordField;
+	private JTextField jtId;
+	private JPasswordField jpfPass;
 	private JButton jbtnLogin;
 
 	
@@ -26,26 +26,26 @@ public class InstructorLoginView extends JFrame {
 		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("ID");
-		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 12));
-		lblNewLabel_1.setBounds(30, 196, 48, 21);
-		getContentPane().add(lblNewLabel_1);
+		JLabel jlblId = new JLabel("ID");
+		jlblId.setFont(new Font("Arial", Font.BOLD, 12));
+		jlblId.setBounds(30, 196, 48, 21);
+		getContentPane().add(jlblId);
 		
-		JLabel lblNewLabel_2 = new JLabel("Password");
-		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 12));
-		lblNewLabel_2.setBounds(30, 227, 58, 21);
-		getContentPane().add(lblNewLabel_2);
+		JLabel jlblPassword = new JLabel("Password");
+		jlblPassword.setFont(new Font("Arial", Font.BOLD, 12));
+		jlblPassword.setBounds(30, 227, 58, 21);
+		getContentPane().add(jlblPassword);
 		
-		textField = new JTextField();
-		textField.setForeground(new Color(0, 0, 0));
-		textField.setBounds(96, 196, 209, 21);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		jtId = new JTextField();
+		jtId.setForeground(new Color(0, 0, 0));
+		jtId.setBounds(96, 196, 209, 21);
+		getContentPane().add(jtId);
+		jtId.setColumns(10);
 		
-		passwordField = new JPasswordField();
-		passwordField.setToolTipText("");
-		passwordField.setBounds(96, 227, 209, 21);
-		getContentPane().add(passwordField);
+		jpfPass = new JPasswordField();
+		jpfPass.setToolTipText("");
+		jpfPass.setBounds(96, 227, 209, 21);
+		getContentPane().add(jpfPass);
 		
 		jbtnLogin = new JButton("Login");
 		
@@ -56,10 +56,10 @@ public class InstructorLoginView extends JFrame {
 		InstructorLoginEvent ile = new InstructorLoginEvent(this);
 		jbtnLogin.addActionListener(ile);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\user\\Pictures\\Screenshots\\스크린샷 2025-04-01 161817.png"));
-		lblNewLabel.setBounds(57, 74, 326, 39);
-		getContentPane().add(lblNewLabel);
+		JLabel jlblLogo = new JLabel("New label");
+		jlblLogo.setIcon(new ImageIcon("C:\\Users\\user\\Pictures\\Screenshots\\스크린샷 2025-04-01 161817.png"));
+		jlblLogo.setBounds(57, 74, 326, 39);
+		getContentPane().add(jlblLogo);
 		
 		setBounds(100,100,450,300);
 		setVisible(true);
@@ -67,19 +67,19 @@ public class InstructorLoginView extends JFrame {
 	}
 
 	public JTextField getTextField() {
-		return textField;
+		return jtId;
 	}
 
 	public void setTextField(JTextField textField) {
-		this.textField = textField;
+		this.jtId = textField;
 	}
 
 	public JPasswordField getPasswordField() {
-		return passwordField;
+		return jpfPass;
 	}
 
 	public void setPasswordField(JPasswordField passwordField) {
-		this.passwordField = passwordField;
+		this.jpfPass = passwordField;
 	}
 
 	public JButton getJbtnLogin() {

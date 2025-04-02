@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class ShowStudScoretoInstructorView extends JDialog{
 	
-	private JTable table;
+	private JTable jtaStudScore;
 	private JButton jbtnClose;
 
 	
@@ -28,39 +28,39 @@ public class ShowStudScoretoInstructorView extends JDialog{
 		setBounds(100, 100, 489, 381);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(12, 10, 325, 37);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\user\\Pictures\\Screenshots\\스크린샷 2025-04-01 161817.png"));
-		getContentPane().add(lblNewLabel);
+		JLabel jlblLogo = new JLabel("New label");
+		jlblLogo.setBounds(12, 10, 325, 37);
+		jlblLogo.setIcon(new ImageIcon("C:\\Users\\user\\Pictures\\Screenshots\\스크린샷 2025-04-01 161817.png"));
+		getContentPane().add(jlblLogo);
 		
-		JLabel lblNewLabel_1 = new JLabel("아무개 강사님");
-		lblNewLabel_1.setBounds(361, 21, 100, 15);
-		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		getContentPane().add(lblNewLabel_1);
+		JLabel jlblInstName = new JLabel("아무개 강사님");
+		jlblInstName.setBounds(361, 21, 100, 15);
+		jlblInstName.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		getContentPane().add(jlblInstName);
 		
-		JLabel lblNewLabel_2 = new JLabel("학생");
-		lblNewLabel_2.setBounds(12, 67, 57, 15);
-		getContentPane().add(lblNewLabel_2);
+		JLabel jlblStud = new JLabel("학생");
+		jlblStud.setBounds(12, 67, 57, 15);
+		getContentPane().add(jlblStud);
 		
-		JLabel lblNewLabel_3 = new JLabel("홍길동");
-		lblNewLabel_3.setBounds(81, 67, 57, 15);
-		getContentPane().add(lblNewLabel_3);
+		JLabel jlblStudName = new JLabel("홍길동");
+		jlblStudName.setBounds(81, 67, 57, 15);
+		getContentPane().add(jlblStudName);
 		
-		JLabel lblNewLabel_4 = new JLabel("전화번호");
-		lblNewLabel_4.setBounds(223, 67, 57, 15);
-		getContentPane().add(lblNewLabel_4);
+		JLabel jlblTel = new JLabel("전화번호");
+		jlblTel.setBounds(223, 67, 57, 15);
+		getContentPane().add(jlblTel);
 		
-		JLabel lblNewLabel_5 = new JLabel("010-1234-5678");
-		lblNewLabel_5.setBounds(316, 67, 134, 15);
-		getContentPane().add(lblNewLabel_5);
+		JLabel jlblStudTel = new JLabel("010-1234-5678");
+		jlblStudTel.setBounds(316, 67, 134, 15);
+		getContentPane().add(jlblStudTel);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 92, 449, 207);
-		scrollPane.setBackground(new Color(255, 255, 255));
-		getContentPane().add(scrollPane);
+		JScrollPane jspStudScore = new JScrollPane();
+		jspStudScore.setBounds(12, 92, 449, 207);
+		jspStudScore.setBackground(new Color(255, 255, 255));
+		getContentPane().add(jspStudScore);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		jtaStudScore = new JTable();
+		jtaStudScore.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null},
 				{null, null},
@@ -69,7 +69,7 @@ public class ShowStudScoretoInstructorView extends JDialog{
 				"과목명", "성적"
 			}
 		));
-		scrollPane.setViewportView(table);
+		jspStudScore.setViewportView(jtaStudScore);
 		
 		jbtnClose = new JButton("닫기");
 		jbtnClose.setBounds(183, 309, 97, 23);
@@ -83,12 +83,12 @@ public class ShowStudScoretoInstructorView extends JDialog{
 
 
 	public JTable getTable() {
-		return table;
+		return jtaStudScore;
 	}
 
 
 	public void setTable(JTable table) {
-		this.table = table;
+		this.jtaStudScore = table;
 	}
 
 
