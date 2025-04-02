@@ -1,6 +1,5 @@
 package kr.co.sist.ldu;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,67 +14,39 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
-import javax.swing.JSplitPane;
 import javax.swing.SwingConstants;
 
-public class InstructorMainView {
+@SuppressWarnings("serial")
+public class InstructorMainView extends JFrame {
 
-	private JFrame frame;
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
 	private JTable table_3;
 	private JTable table_4;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InstructorMainView window = new InstructorMainView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
-	public InstructorMainView() {
-		initialize();
-		System.out.println("1");
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBackground(new Color(255, 255, 255));
-		frame.getContentPane().setBackground(new Color(255, 255, 255));
-		frame.setBounds(100, 100, 554, 625);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	public InstructorMainView(InstructorLoginView ilv) {
+		setBackground(new Color(255, 255, 255));
+		getContentPane().setBackground(new Color(255, 255, 255));
+		setBounds(100, 100, 554, 625);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\user\\Pictures\\Screenshots\\스크린샷 2025-04-01 161817.png"));
 		lblNewLabel.setBounds(12, 10, 326, 39);
-		frame.getContentPane().add(lblNewLabel);
+		getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("아무개 강사님");
 		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		lblNewLabel_1.setBounds(397, 16, 92, 27);
-		frame.getContentPane().add(lblNewLabel_1);
+		getContentPane().add(lblNewLabel_1);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBackground(new Color(255, 255, 255));
 		tabbedPane.setBounds(12, 59, 514, 517);
-		frame.getContentPane().add(tabbedPane);
+		getContentPane().add(tabbedPane);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
@@ -147,42 +118,17 @@ public class InstructorMainView {
 		table_1 = new JTable();
 		table_1.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
+				{1, 2, 3, 4},
+				
 			},
 			new String[] {
 				"\uAE30\uC218", "\uD559\uC0DD \uC774\uB984", "\uACFC\uC815\uBA85", "\uC9C4\uD589 \uC0C1\uD0DC"
 			}
 		));
 		scrollPane_1.setViewportView(table_1);
+		
+		InstructorMainViewEvent sive = new InstructorMainViewEvent(this);
+		table_1.addMouseListener(sive);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(255, 255, 255));
@@ -346,5 +292,80 @@ public class InstructorMainView {
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(12, 10, 485, 39);
 		panel_4.add(lblNewLabel_2);
+		
+		setVisible(true);
+		
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
+
+
+
+
+	public JTable getTable() {
+		return table;
+	}
+
+
+
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
+
+
+
+	public JTable getTable_1() {
+		return table_1;
+	}
+
+
+
+
+	public void setTable_1(JTable table_1) {
+		this.table_1 = table_1;
+	}
+
+
+
+
+	public JTable getTable_2() {
+		return table_2;
+	}
+
+
+
+
+	public void setTable_2(JTable table_2) {
+		this.table_2 = table_2;
+	}
+
+
+
+
+	public JTable getTable_3() {
+		return table_3;
+	}
+
+
+
+
+	public void setTable_3(JTable table_3) {
+		this.table_3 = table_3;
+	}
+
+
+
+
+	public JTable getTable_4() {
+		return table_4;
+	}
+
+
+
+
+	public void setTable_4(JTable table_4) {
+		this.table_4 = table_4;
+	}
+	
 }
