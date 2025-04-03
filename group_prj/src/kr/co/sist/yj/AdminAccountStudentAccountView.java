@@ -2,17 +2,14 @@
 package kr.co.sist.yj;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -22,39 +19,22 @@ import javax.swing.table.TableColumnModel;
 @SuppressWarnings("serial")
 public class AdminAccountStudentAccountView extends JPanel {
 	
+	private JButton jbtnAdminAccountStudentAccountMenu;
 	private JButton jbtnAdminAccountStudentAccountCreate;
     private JButton jbtnAdminAccountStudentAccountModify;
     private JButton jbtnAdminAccountStudentAccountDelete;
 	
     public AdminAccountStudentAccountView() {
-        // ---------- 왼쪽 입력 패널 ----------
-        JPanel jpAdminAccountStudentAccountViewInfoPanel = new JPanel(new GridBagLayout());
-        jpAdminAccountStudentAccountViewInfoPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
-        jpAdminAccountStudentAccountViewInfoPanel.setMinimumSize(new Dimension(350, 400));
-        jpAdminAccountStudentAccountViewInfoPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
-
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(8, 4, 8, 4);
-        gbc.anchor = GridBagConstraints.WEST;
 
         //Component 생성 
-        //Button 생성
-        JPanel jpAdminAccountStudentAccountViewButtonPanel = new JPanel();
-        jpAdminAccountStudentAccountViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        jbtnAdminAccountStudentAccountCreate = new JButton("생성");
-        jbtnAdminAccountStudentAccountModify = new JButton("수정");
-        jbtnAdminAccountStudentAccountDelete = new JButton("삭제");
+    	//메뉴 Button 생성
+    	JPanel jpAdminAccountStudentAccountViewMenuPanel = new JPanel();
+    	jpAdminAccountStudentAccountViewMenuPanel.setBackground(new Color(255, 255, 255));
+    	jpAdminAccountStudentAccountViewMenuPanel.setLayout(null);
+    	jbtnAdminAccountStudentAccountMenu = new JButton("메뉴 열기");
+    	jpAdminAccountStudentAccountViewMenuPanel.add(jbtnAdminAccountStudentAccountMenu);
+    	
         
-        jpAdminAccountStudentAccountViewButtonPanel.add(jbtnAdminAccountStudentAccountCreate);
-        jpAdminAccountStudentAccountViewButtonPanel.add(jbtnAdminAccountStudentAccountModify);
-        jpAdminAccountStudentAccountViewButtonPanel.add(jbtnAdminAccountStudentAccountDelete);
-        
-        //Component 배치     
-        //버튼 Component 배치
-        gbc.gridx = 0; gbc.gridy = 1;
-        gbc.gridwidth = 2;  // 두 열을 합쳐서 버튼들을 가운데로 배치
-        jpAdminAccountStudentAccountViewInfoPanel.add(jpAdminAccountStudentAccountViewButtonPanel, gbc);
-
         //Table 타이틀 생성
         String[] strAdminAccountStudentAccountTableTitle = {
             "학번", "이름", "전화번호", "기수", "교육과정", "교육기간", "진행상태"
@@ -96,11 +76,22 @@ public class AdminAccountStudentAccountView extends JPanel {
         spAdminAccountStudentAccountViewScroll.setPreferredSize(new Dimension(773,500));
         JPanel jpAdminAccountStudentAccountViewTablePanel = new JPanel(new BorderLayout());
         jpAdminAccountStudentAccountViewTablePanel.add(spAdminAccountStudentAccountViewScroll, BorderLayout.CENTER);
-
+        
+        //Button 생성
+        JPanel jpAdminAccountStudentAccountViewButtonPanel = new JPanel();
+        jpAdminAccountStudentAccountViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        jbtnAdminAccountStudentAccountCreate = new JButton("생성");
+        jbtnAdminAccountStudentAccountModify = new JButton("수정");
+        jbtnAdminAccountStudentAccountDelete = new JButton("삭제");
+        
+        jpAdminAccountStudentAccountViewButtonPanel.add(jbtnAdminAccountStudentAccountCreate);
+        jpAdminAccountStudentAccountViewButtonPanel.add(jbtnAdminAccountStudentAccountModify);
+        jpAdminAccountStudentAccountViewButtonPanel.add(jbtnAdminAccountStudentAccountDelete);
+        
         //Panel 배치
         setLayout(new BorderLayout());
-        add(jpAdminAccountStudentAccountViewInfoPanel, BorderLayout.WEST);
         add(jpAdminAccountStudentAccountViewTablePanel, BorderLayout.CENTER);
+        add(jpAdminAccountStudentAccountViewButtonPanel, BorderLayout.SOUTH);
         
         //Button 이벤트 생성
         AdminAccountStudentAccountEvt aasae = new AdminAccountStudentAccountEvt(this); 
@@ -111,6 +102,11 @@ public class AdminAccountStudentAccountView extends JPanel {
     } //AdminAccountStudentAccountView
 
     //getter method
+    
+    public JButton getJbtnAdminAccountStudentAccountMenu() {
+		return jbtnAdminAccountStudentAccountMenu;
+	} //getJbtnAdminAccountStudentAccountMenu
+    
 	public JButton getJbtnAdminAccountStudentAccountCreate() {
 		return jbtnAdminAccountStudentAccountCreate;
 	} //getJbtnAdminAccountStudentAccountCreate

@@ -10,6 +10,7 @@ import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -218,15 +219,15 @@ public class AdminAccountStudentAccountInfoView extends JPanel{
 		return jbtnAdminAccountStudentAccountDelete;
 	} //getJbtnAdminAccountStudentAccountDelete
 	
-//	public static void main(String[] args) {
-//		JFrame frame = new JFrame("Admin Account View");
-//        AdminAccountStudentAccountInfoView panel = new AdminAccountStudentAccountInfoView();
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setLayout(new BorderLayout());  // 레이아웃 설정
-//        frame.add(panel, BorderLayout.CENTER);  // 패널을 중앙에 추가
-//        frame.pack();  // 패널 크기 맞춰서 JFrame 크기 조정
-//        frame.setSize(600, 650);  // 크기 조정
-//        frame.setVisible(true);  // 화면에 표시
-//	}
+	public static void main(String[] args) {
+		JFrame frame = new JFrame("Admin Account View");
+        AdminAccountStudentAccountInfoView panel = new AdminAccountStudentAccountInfoView();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());  // 레이아웃 설정
+        frame.add(panel, BorderLayout.CENTER);  // 패널을 중앙에 추가
+        frame.pack();  // 패널 크기 맞춰서 JFrame 크기 조정
+        frame.setSize(600, 650);  // 크기 조정
+        frame.setVisible(true);  // 화면에 표시
+	}
 
 } //class
