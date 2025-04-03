@@ -5,8 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 
-public class AdminAccountStudentAccountEvt implements ActionListener{
+//import kr.co.sist.view.AdminAccountStudentAccountView;
+
+@SuppressWarnings("serial")
+public class AdminAccountStudentAccountEvt extends JDialog implements ActionListener{
 
 	@SuppressWarnings("unused")
 	private AdminAccountStudentAccountView aasav;
@@ -15,8 +19,8 @@ public class AdminAccountStudentAccountEvt implements ActionListener{
     private JButton jbtnAdminAccountStudentAccountModify;
     private JButton jbtnAdminAccountStudentAccountDelete;
     
-	public AdminAccountStudentAccountEvt(AdminAccountStudentAccountView aasav) {
-		this.aasav=aasav;
+    public AdminAccountStudentAccountEvt(AdminAccountStudentAccountView aasav) {
+        this.aasav = aasav;
 		this.jbtnAdminAccountStudentAccountCreate=aasav.getJbtnAdminAccountStudentAccountCreate();
 		this.jbtnAdminAccountStudentAccountModify=aasav.getJbtnAdminAccountStudentAccountModify();
 		this.jbtnAdminAccountStudentAccountDelete=aasav.getJbtnAdminAccountStudentAccountDelete();

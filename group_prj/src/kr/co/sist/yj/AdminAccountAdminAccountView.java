@@ -139,8 +139,8 @@ public class AdminAccountAdminAccountView extends JPanel {
 		};
 		
 		//Table Component 생성
-		DefaultTableModel model= new DefaultTableModel(strAdminAccountAdminAccountData, strAdminAccountAdminAccountTitle);
-		JTable jtAdminAccountAdminAccountTable = new JTable(model);
+		DefaultTableModel dftmAdminTableModel= new DefaultTableModel(strAdminAccountAdminAccountData, strAdminAccountAdminAccountTitle);
+		JTable jtAdminAccountAdminAccountTable = new JTable(dftmAdminTableModel);
 		
 		//Table 수정 불가능
 		jtAdminAccountAdminAccountTable.setDefaultEditor(Object.class, null);
