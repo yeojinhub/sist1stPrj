@@ -124,7 +124,7 @@ public class AdminAccountInstructorAccountView extends JPanel{
         jpAdminAccountInstructorAccountViewInfoPanel.add(jtfAdminAccountInstructorAccountAddressText, gbc);
         
         //버튼 Component 배치
-        gbc.gridx = 0; gbc.gridy = 11;
+        gbc.gridx = 0; gbc.gridy = 6;
         gbc.gridwidth = 2;  // 두 열을 합쳐서 버튼들을 가운데로 배치
         jpAdminAccountInstructorAccountViewInfoPanel.add(jpAdminAccountInstructorAccountViewButtonPanel, gbc);
         
@@ -139,8 +139,8 @@ public class AdminAccountInstructorAccountView extends JPanel{
 		};
 		
 		//Table Component 생성
-		DefaultTableModel model = new DefaultTableModel(strAdminAccountInstructorAccountData, strAdminAccountInstructorAccountTitle);
-		JTable jtAdminAccountInstructorAccountTable = new JTable(model);
+		DefaultTableModel dftmInstructorTableModel = new DefaultTableModel(strAdminAccountInstructorAccountData, strAdminAccountInstructorAccountTitle);
+		JTable jtAdminAccountInstructorAccountTable = new JTable(dftmInstructorTableModel);
 		
 		//Table 수정 불가능
 		jtAdminAccountInstructorAccountTable.setDefaultEditor(Object.class, null);

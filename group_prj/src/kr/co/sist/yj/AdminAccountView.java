@@ -45,6 +45,7 @@ public class AdminAccountView extends JFrame{
 		
 		jpAdminAccountCardPanel.add( "StudentAccountView", new AdminAccountStudentAccountView() );
 		clAdminAccountCard.show(jpAdminAccountCardPanel, "StudentAccountView" );
+		jpAdminAccountCardPanel.add( "StudentAccountInfoView", new AdminAccountStudentAccountInfoView() );
 		jpAdminAccountCardPanel.add( "InstructorAccountView", new AdminAccountInstructorAccountView() );
 		jpAdminAccountCardPanel.add( "AdminAccountView", new AdminAccountAdminAccountView() );
 		
