@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JTextField;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class ShowStudScoretoInstructorView extends JDialog{
@@ -23,6 +24,7 @@ public class ShowStudScoretoInstructorView extends JDialog{
 	
 	public ShowStudScoretoInstructorView(InstructorMainView imv) {
 		super(imv,"학생 성적",true);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ShowStudScoretoInstructorView.class.getResource("/kr/co/sist/ldu/images/logo.png")));
 		getContentPane().setBackground(new Color(255, 255, 255));
 		setBackground(new Color(255, 255, 255));
 		setBounds(100, 100, 489, 381);
@@ -30,7 +32,7 @@ public class ShowStudScoretoInstructorView extends JDialog{
 		
 		JLabel jlblLogo = new JLabel("New label");
 		jlblLogo.setBounds(12, 10, 325, 37);
-		jlblLogo.setIcon(new ImageIcon("C:\\Users\\user\\Pictures\\Screenshots\\스크린샷 2025-04-01 161817.png"));
+		jlblLogo.setIcon(new ImageIcon(ShowStudScoretoInstructorView.class.getResource("/kr/co/sist/ldu/images/icon.png")));
 		getContentPane().add(jlblLogo);
 		
 		JLabel jlblInstName = new JLabel("아무개 강사님");

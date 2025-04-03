@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class InstructorMainView extends JFrame {
@@ -27,6 +28,7 @@ public class InstructorMainView extends JFrame {
 
 
 	public InstructorMainView(InstructorLoginView ilv) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InstructorMainView.class.getResource("/kr/co/sist/ldu/images/logo.png")));
 		setBackground(new Color(255, 255, 255));
 		getContentPane().setBackground(new Color(255, 255, 255));
 		setBounds(100, 100, 554, 625);
@@ -34,7 +36,7 @@ public class InstructorMainView extends JFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel jlblLogo = new JLabel("New label");
-		jlblLogo.setIcon(new ImageIcon("C:\\Users\\user\\Pictures\\Screenshots\\스크린샷 2025-04-01 161817.png"));
+		jlblLogo.setIcon(new ImageIcon(InstructorMainView.class.getResource("/kr/co/sist/ldu/images/icon.png")));
 		jlblLogo.setBounds(12, 10, 326, 39);
 		getContentPane().add(jlblLogo);
 		
