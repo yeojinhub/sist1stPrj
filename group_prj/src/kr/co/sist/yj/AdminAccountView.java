@@ -3,6 +3,7 @@ package kr.co.sist.yj;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,12 +24,17 @@ public class AdminAccountView extends JFrame{
 	
 	public AdminAccountView() {
 		
+		//Color 색깔 설정
+		Color white = new Color(255, 255, 255);
+		
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5,5,5,5));
 		setContentPane(contentPane);
 		contentPane.setLayout( new BorderLayout() );
 		
 		JPanel jpAdminAccountViewNorth = new JPanel();
+		jpAdminAccountViewNorth.setBounds(12, 10, 535, 45);
+		jpAdminAccountViewNorth.setBackground(white);
 		
 		jbtnAdminAccountViewStudentAccount= new JButton("수강생\r\n계정관리");
 		jbtnAdminAccountViewInstructorAccount= new JButton("강사\r\n계정관리");
@@ -45,7 +51,7 @@ public class AdminAccountView extends JFrame{
 		
 		jpAdminAccountCardPanel.add( "StudentAccountView", new AdminAccountStudentAccountView() );
 		clAdminAccountCard.show(jpAdminAccountCardPanel, "StudentAccountView" );
-		jpAdminAccountCardPanel.add( "StudentAccountInfoView", new AdminAccountStudentAccountInfoView() );
+		jpAdminAccountCardPanel.add( "StudentAccountInfoView", new AdminAccountStudentAccountCreateView() );
 		jpAdminAccountCardPanel.add( "InstructorAccountView", new AdminAccountInstructorAccountView() );
 		jpAdminAccountCardPanel.add( "AdminAccountView", new AdminAccountAdminAccountView() );
 		

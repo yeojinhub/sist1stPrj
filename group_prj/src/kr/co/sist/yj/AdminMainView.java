@@ -26,19 +26,33 @@ public class AdminMainView extends JFrame{
 		//JPanel 생성
 		JPanel jpAdminAccountViewWindow = new JPanel();
 		AdminAccountView aav = new AdminAccountView();
+		jpAdminAccountViewWindow.add(aav.getContentPane());
 		
 		JPanel jpAdminCourseViewWindow = new JPanel();
 		AdminCourseView acv = new AdminCourseView();
-		
-		jpAdminAccountViewWindow.add(aav.getContentPane());
 		jpAdminCourseViewWindow.add(acv.getContentPane());
+		
+		JPanel jpAdminExamViewWindow = new JPanel();
+		AdminExamView aev = new AdminExamView();
+		jpAdminExamViewWindow.add(aev.getContentPane());
+		
+		JPanel jpAdminGradeViewWindow = new JPanel();
+		AdminGradeView agv = new AdminGradeView();
+		jpAdminGradeViewWindow.add(agv.getContentPane());
+		
+		JPanel jpAdminBoardViewWindow = new JPanel();
+		AdminBoardView abv = new AdminBoardView();
+		jpAdminBoardViewWindow.add(abv.getContentPane());
 		
 		jtpAdminMainViewTab.addTab("계정 관리", jpAdminAccountViewWindow);
 		jtpAdminMainViewTab.addTab("과정 조회", jpAdminCourseViewWindow);
+		jtpAdminMainViewTab.addTab("시험지 관리", jpAdminExamViewWindow);
+		jtpAdminMainViewTab.addTab("성적 조회", jpAdminGradeViewWindow);
+		jtpAdminMainViewTab.addTab("1:1 문의", jpAdminBoardViewWindow);
 		
 		//Window 크기 설정
 		getContentPane().add(jtpAdminMainViewTab, BorderLayout.CENTER);
-		setSize(1150,650);
+		setSize(800,680);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
