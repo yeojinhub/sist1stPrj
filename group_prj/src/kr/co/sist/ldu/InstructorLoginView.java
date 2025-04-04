@@ -19,7 +19,7 @@ public class InstructorLoginView extends JFrame {
 	
 	public InstructorLoginView() {
 		new JFrame();
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\user\\Pictures\\Screenshots\\스크린샷 2025-04-01 164802.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(InstructorLoginView.class.getResource("/kr/co/sist/ldu/images/logo.png")));
 		setFont(new Font("Arial", Font.BOLD, 12));
 		setForeground(new Color(0, 0, 0));
 		setTitle("Best Campus");
@@ -57,7 +57,7 @@ public class InstructorLoginView extends JFrame {
 		jbtnLogin.addActionListener(ile);
 		
 		JLabel jlblLogo = new JLabel("New label");
-		jlblLogo.setIcon(new ImageIcon("C:\\Users\\user\\Pictures\\Screenshots\\스크린샷 2025-04-01 161817.png"));
+		jlblLogo.setIcon(new ImageIcon(InstructorLoginView.class.getResource("/kr/co/sist/ldu/images/icon.png")));
 		jlblLogo.setBounds(57, 74, 326, 39);
 		getContentPane().add(jlblLogo);
 		
