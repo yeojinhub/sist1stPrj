@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -80,16 +81,28 @@ public class AdminAccountAdminAccountView extends JPanel {
 		JScrollPane spAdminAccountAdminAccountViewScroll = new JScrollPane(jtAdminAccountAdminAccountTable);
 		spAdminAccountAdminAccountViewScroll.getViewport().setBackground(white);
 		spAdminAccountAdminAccountViewScroll.setPreferredSize(scrollSize);
-		JPanel jpAdminAccountAdminAccountViewTablePanel = new JPanel();
+		JPanel jpAdminAccountAdminAccountViewTablePanel = new JPanel(new BorderLayout());
 		jpAdminAccountAdminAccountViewTablePanel.add(spAdminAccountAdminAccountViewScroll, BorderLayout.CENTER);
 		
 		//Component 생성
 		//Button 생성
         JPanel jpAdminAccountAdminAccountViewButtonPanel = new JPanel();
         jpAdminAccountAdminAccountViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        jpAdminAccountAdminAccountViewButtonPanel.setBackground(white);
+        jpAdminAccountAdminAccountViewButtonPanel.setBorder(new TitledBorder(""));
+        jpAdminAccountAdminAccountViewButtonPanel.setPreferredSize(panelSize);
         jbtnAdminAccountAdminAccountCreate = new JButton("생성");
+        jbtnAdminAccountAdminAccountCreate.setBackground(lightblue);
+        jbtnAdminAccountAdminAccountCreate.setSize(buttonSize);
+        jbtnAdminAccountAdminAccountCreate.setFont(buttonFont);
         jbtnAdminAccountAdminAccountModify = new JButton("수정");
+        jbtnAdminAccountAdminAccountModify.setBackground(lightblue);
+        jbtnAdminAccountAdminAccountModify.setSize(buttonSize);
+        jbtnAdminAccountAdminAccountModify.setFont(buttonFont);
         jbtnAdminAccountAdmintAccountDelete = new JButton("삭제");
+        jbtnAdminAccountAdmintAccountDelete.setBackground(lightblue);
+        jbtnAdminAccountAdmintAccountDelete.setSize(buttonSize);
+        jbtnAdminAccountAdmintAccountDelete.setFont(buttonFont);
         
         //Component 배치
         jpAdminAccountAdminAccountViewButtonPanel.add(jbtnAdminAccountAdminAccountCreate);
