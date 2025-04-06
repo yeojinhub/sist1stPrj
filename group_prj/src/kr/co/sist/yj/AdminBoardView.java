@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -23,21 +24,27 @@ public class AdminBoardView extends JFrame {
 	
 	public AdminBoardView() {
 		
-		//Color 색깔 설정
+		//디자인(색깔,글씨) 설정
 		Color white = new Color(255, 255, 255);
+		Font titleFont = new Font("맑은 고딕", Font.BOLD, 28);
+		Font tableFont = new Font("맑은 고딕", Font.PLAIN, 14);
+		
+		//Dimension 사이즈 설정
+		Dimension panelSize = new Dimension(700, 45);
+		Dimension scrollSize = new Dimension(703, 500);
 		
 		//Component 생성
-		//제목 Title 생성
+		//제목 Panel 생성
 		JPanel jpAdminBoardViewTitlePanel = new JPanel();
 		jpAdminBoardViewTitlePanel.setBackground(white);
-		jpAdminBoardViewTitlePanel.setBounds(12, 10, 535, 45);
+		jpAdminBoardViewTitlePanel.setPreferredSize(panelSize);
 		jpAdminBoardViewTitlePanel.setBorder(new TitledBorder(""));
 		jpAdminBoardViewTitlePanel.setLayout(new BorderLayout(0, 0));
-		add(jpAdminBoardViewTitlePanel);
 
+		//제목 타이틀 생성
 		JLabel jlblAdminBoardTitle = new JLabel("1:1 문의 게시판");
 		jlblAdminBoardTitle.setBackground(white);
-		jlblAdminBoardTitle.setFont(new Font("맑은 고딕", Font.BOLD, 28));
+		jlblAdminBoardTitle.setFont(titleFont);
 		jlblAdminBoardTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		jpAdminBoardViewTitlePanel.add(jlblAdminBoardTitle, BorderLayout.CENTER);
 		
@@ -56,25 +63,36 @@ public class AdminBoardView extends JFrame {
         dftmAdminBoardTableModel = new DefaultTableModel(strAdminBoardTableData, strAdminBoardTableTitle);
         jtAdminBoardTable = new JTable(dftmAdminBoardTableModel);
         
-        //Table 수정 불가능
-        jtAdminBoardTable.setDefaultEditor(Object.class, null);
-
+        //Table 열 정렬 설정
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        
         //Table 열 너비 설정
         TableColumnModel columnModel = jtAdminBoardTable.getColumnModel();
         for (int i = 0; i < columnModel.getColumnCount(); i++) {
         	switch(i) {
+        	case 0:
+        		columnModel.getColumn(i).setPreferredWidth(55);
+        		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
         	case 1:
-        		columnModel.getColumn(i).setPreferredWidth(370); break;
+        		columnModel.getColumn(i).setPreferredWidth(315);
+        		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
         	default:
-        		columnModel.getColumn(i).setPreferredWidth(80); break;
+        		columnModel.getColumn(i).setPreferredWidth(110);
+        		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
         	} //end switch
         } //end for
+        
+        //Table 디자인, 수정 불가능 설정
+        jtAdminBoardTable.setDefaultEditor(Object.class, null);
         jtAdminBoardTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jtAdminBoardTable.setRowHeight(25);
+        jtAdminBoardTable.setFont(tableFont);
 
         //Table Component 배치
         JScrollPane spAdminBoardViewScroll = new JScrollPane(jtAdminBoardTable);
-        spAdminBoardViewScroll.setPreferredSize(new Dimension(770,500));
+        spAdminBoardViewScroll.getViewport().setBackground(white);
+        spAdminBoardViewScroll.setPreferredSize(scrollSize);
         JPanel jpAdminBoardViewTablePanel = new JPanel(new BorderLayout());
         jpAdminBoardViewTablePanel.add(spAdminBoardViewScroll, BorderLayout.CENTER);
         

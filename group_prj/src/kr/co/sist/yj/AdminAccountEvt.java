@@ -15,34 +15,34 @@ public class AdminAccountEvt implements ActionListener {
 	@SuppressWarnings("unused")
 	private AdminAccountView aav;
 	
-	private JPanel jpAdminAccountCardPanel;
+	private JPanel jpAdminAccountViewCardPanel;
 	private CardLayout clAdminAccountCard;
 	
-	private JButton jbtnAdminAccountViewStudentAccount;
-	private JButton jbtnAdminAccountViewInstructorAccount;
-	private JButton jbtnAdminAccountViewAdminAccount;
+	private JButton jbtnAdminAccountStudentAccount;
+	private JButton jbtnAdminAccountInstructorAccount;
+	private JButton jbtnAdminAccountAdminAccount;
 	
 	public AdminAccountEvt(AdminAccountView aav) {
 		this.aav=aav;
-		this.jpAdminAccountCardPanel=aav.getJpAdminAccountCardPanel();
-		this.clAdminAccountCard=aav.getClAdminAccountCard();
-		this.jbtnAdminAccountViewStudentAccount=aav.getJbtnAdminAccountViewStudentAccount();
-		this.jbtnAdminAccountViewInstructorAccount=aav.getJbtnAdminAccountViewInstructorAccount();
-		this.jbtnAdminAccountViewAdminAccount=aav.getJbtnAdminAccountViewAdminAccount();
+		this.jpAdminAccountViewCardPanel=aav.getJpAdminAccountViewCardPanel();
+		this.clAdminAccountCard=aav.getClAdminAccountViewCard();
+		this.jbtnAdminAccountStudentAccount=aav.getJbtnAdminAccountStudentAccount();
+		this.jbtnAdminAccountInstructorAccount=aav.getJbtnAdminAccountInstructorAccount();
+		this.jbtnAdminAccountAdminAccount=aav.getJbtnAdminAccountAdminAccount();
 	} //AdminAccountEvt
 	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		if( ae.getSource() == jbtnAdminAccountViewStudentAccount ) {
-			clAdminAccountCard.show(jpAdminAccountCardPanel, "StudentAccountView" );
+		if( ae.getSource() == jbtnAdminAccountStudentAccount ) {
+			clAdminAccountCard.show(jpAdminAccountViewCardPanel, "StudentAccountView" );
 			System.out.println("수강생계정관리 버튼 실행");
 		} //end if
-		if( ae.getSource() == jbtnAdminAccountViewInstructorAccount ) {
-			clAdminAccountCard.show(jpAdminAccountCardPanel, "InstructorAccountView" );
+		if( ae.getSource() == jbtnAdminAccountInstructorAccount ) {
+			clAdminAccountCard.show(jpAdminAccountViewCardPanel, "InstructorAccountView" );
 			System.out.println("강사계정관리 버튼 실행");
 		} //end if
-		if( ae.getSource() == jbtnAdminAccountViewAdminAccount ) {
-			clAdminAccountCard.show(jpAdminAccountCardPanel, "AdminAccountView" );
+		if( ae.getSource() == jbtnAdminAccountAdminAccount ) {
+			clAdminAccountCard.show(jpAdminAccountViewCardPanel, "AdminAccountView" );
 			System.out.println("관리자계정관리 버튼 실행");
 		} //end if
 	} //actionPerformed

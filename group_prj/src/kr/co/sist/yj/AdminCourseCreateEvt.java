@@ -1,13 +1,15 @@
 package kr.co.sist.yj;
 
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.SwingUtilities;
 
 public class AdminCourseCreateEvt implements ActionListener {
 	
-	@SuppressWarnings("unused")
 	private AdminCourseCreateView accv;
 	
 	private JButton jbtnAdminCourseCreate;
@@ -28,6 +30,10 @@ public class AdminCourseCreateEvt implements ActionListener {
 		} //end if
 		if( source == jbtnAdminCourseClose ) {
 			System.out.println("닫기 버튼 실행");
+			Window adminCourseCreateWindow = SwingUtilities.getWindowAncestor(accv);
+            if(adminCourseCreateWindow instanceof JDialog) {
+                ((JDialog) adminCourseCreateWindow).dispose();
+            } //end if
 		} //end if
 		
 	} //actionPerformed

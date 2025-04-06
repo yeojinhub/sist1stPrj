@@ -1,13 +1,15 @@
 package kr.co.sist.yj;
 
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.SwingUtilities;
 
 public class AdminAccountStudentAccountModifyEvt implements ActionListener {
 
-	@SuppressWarnings("unused")
 	private AdminAccountStudentAccountModifyView aasamv;
 	
     private JButton jbtnAdminAccountStudentAccountModify;
@@ -28,6 +30,10 @@ public class AdminAccountStudentAccountModifyEvt implements ActionListener {
 		} //end if
 		if( source == jbtnAdminAccountStudentAccountClose ) {
 			System.out.println("닫기 버튼 실행");
+			Window adminAccountStudentAccountModifyWindow = SwingUtilities.getWindowAncestor(aasamv);
+            if(adminAccountStudentAccountModifyWindow instanceof JDialog) {
+                ((JDialog) adminAccountStudentAccountModifyWindow).dispose();
+            } //end if
 		} //end if
 	} //actionPerformed
 	

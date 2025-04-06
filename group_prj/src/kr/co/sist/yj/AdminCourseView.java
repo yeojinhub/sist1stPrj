@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -23,26 +24,40 @@ import javax.swing.table.TableColumnModel;
 @SuppressWarnings("serial")
 public class AdminCourseView extends JFrame{
 
+	@SuppressWarnings("unused")
+	private AdminMainView amv;
+	
 	private JButton jbtnAdminCourseCreate;
 	private JButton jbtnAdminCourseModify;
 	private JButton jbtnAdminCourseDelete;
 	
-	public AdminCourseView() {
+	public AdminCourseView(AdminMainView amv) {
+		this.amv=amv;
 		
-		//Color 색깔 설정
+		//디자인(색깔,글씨) 설정
 		Color white = new Color(255, 255, 255);
+		Color lightblue = new Color(235, 235, 255);
+		Font titleFont = new Font("맑은 고딕", Font.BOLD, 28);
+		Font tableFont = new Font("맑은 고딕", Font.PLAIN, 14);
+		Font buttonFont = new Font("맑은 고딕", Font.BOLD, 18);
+		
+		//Dimension 사이즈 설정
+		Dimension panelSize = new Dimension(700, 45);
+		Dimension scrollSize = new Dimension(703, 455);
+		Dimension buttonSize = new Dimension(120, 40);
 		
 		//Component 생성
-		//제목 Title 생성
+		//제목 Panel 생성
 		JPanel jpAdminCourseViewTitlePanel = new JPanel();
 		jpAdminCourseViewTitlePanel.setBackground(white);
-		jpAdminCourseViewTitlePanel.setBounds(12, 10, 535, 45);
+		jpAdminCourseViewTitlePanel.setPreferredSize(panelSize);
 		jpAdminCourseViewTitlePanel.setBorder(new TitledBorder(""));
 		jpAdminCourseViewTitlePanel.setLayout(new BorderLayout(0, 0));
 		
-		JLabel jlblAdminCourseTitle = new JLabel("과정 조회");
+		//제목 타이틀 생성
+		JLabel jlblAdminCourseTitle = new JLabel("과정 관리");
 		jlblAdminCourseTitle.setBackground(white);
-		jlblAdminCourseTitle.setFont(new Font("맑은 고딕", Font.BOLD, 28));
+		jlblAdminCourseTitle.setFont(titleFont);
 		jlblAdminCourseTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		jpAdminCourseViewTitlePanel.add(jlblAdminCourseTitle, BorderLayout.CENTER);
         
@@ -63,35 +78,63 @@ public class AdminCourseView extends JFrame{
         DefaultTableModel dftmAdminCourseTableModel = new DefaultTableModel(strAdminCourseTableData, strAdminCourseTableTitle);
         JTable jtAdminCourseTable = new JTable(dftmAdminCourseTableModel);
         
-        //Table 수정 불가능
-        jtAdminCourseTable.setDefaultEditor(Object.class, null);
+        //Table 열 정렬 설정
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 
         //Table 열 너비 설정
         TableColumnModel columnModel = jtAdminCourseTable.getColumnModel();
         for (int i = 0; i < columnModel.getColumnCount(); i++) {
         	switch(i) {
+        	case 0:
+        		columnModel.getColumn(i).setPreferredWidth(45);
+        		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
         	case 1:
-        		columnModel.getColumn(i).setPreferredWidth(370); break;
+        		columnModel.getColumn(i).setPreferredWidth(295);
+        		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
+        	case 2:
+        	case 3:
+        		columnModel.getColumn(i).setPreferredWidth(80);
+        		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
         	default:
-        		columnModel.getColumn(i).setPreferredWidth(80); break;
+        		columnModel.getColumn(i).setPreferredWidth(100);
+        		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
         	} //end switch
         } //end for
+        
+        //Table 디자인, 수정 불가능 설정
+        jtAdminCourseTable.setDefaultEditor(Object.class, null);
         jtAdminCourseTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jtAdminCourseTable.setRowHeight(25);
+        jtAdminCourseTable.setFont(tableFont);
 
         //Table Component 배치
         JScrollPane spAdminCourseViewScroll = new JScrollPane(jtAdminCourseTable);
-        spAdminCourseViewScroll.setPreferredSize(new Dimension(770,500));
+        spAdminCourseViewScroll.getViewport().setBackground(white);
+        spAdminCourseViewScroll.setPreferredSize(scrollSize);
         JPanel jpAdminCourseViewTablePanel = new JPanel(new BorderLayout());
         jpAdminCourseViewTablePanel.add(spAdminCourseViewScroll, BorderLayout.CENTER);
-
+        
         //Button 생성
         JPanel jpAdminCourseViewButtonPanel = new JPanel();
         jpAdminCourseViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        jpAdminCourseViewButtonPanel.setBackground(white);
+        jpAdminCourseViewButtonPanel.setBorder(new TitledBorder(""));
+        jpAdminCourseViewButtonPanel.setPreferredSize(panelSize);
         jbtnAdminCourseCreate = new JButton("등록");
+        jbtnAdminCourseCreate.setBackground(lightblue);
+        jbtnAdminCourseCreate.setSize(buttonSize);
+        jbtnAdminCourseCreate.setFont(buttonFont);
         jbtnAdminCourseModify = new JButton("수정");
+        jbtnAdminCourseModify.setBackground(lightblue);
+        jbtnAdminCourseModify.setSize(buttonSize);
+        jbtnAdminCourseModify.setFont(buttonFont);
         jbtnAdminCourseDelete = new JButton("삭제");
+        jbtnAdminCourseDelete.setBackground(lightblue);
+        jbtnAdminCourseDelete.setSize(buttonSize);
+        jbtnAdminCourseDelete.setFont(buttonFont);
         
+        //Button 배치
         jpAdminCourseViewButtonPanel.add(jbtnAdminCourseCreate);
         jpAdminCourseViewButtonPanel.add(jbtnAdminCourseModify);
         jpAdminCourseViewButtonPanel.add(jbtnAdminCourseDelete);
@@ -103,10 +146,10 @@ public class AdminCourseView extends JFrame{
         add(jpAdminCourseViewButtonPanel, BorderLayout.SOUTH);
         
         //Button 이벤트 생성
-        AdminCourseEvt ace = new AdminCourseEvt(this);
-        jbtnAdminCourseCreate.addActionListener(ace);;
-        jbtnAdminCourseModify.addActionListener(ace);;
-        jbtnAdminCourseDelete.addActionListener(ace);;
+        AdminCourseEvt ace = new AdminCourseEvt(amv, this);
+        jbtnAdminCourseCreate.addActionListener(ace);
+        jbtnAdminCourseModify.addActionListener(ace);
+        jbtnAdminCourseDelete.addActionListener(ace);
 		
 	} //AdminCourseView
 
@@ -122,6 +165,5 @@ public class AdminCourseView extends JFrame{
 	public JButton getJbtnAdminCourseDelete() {
 		return jbtnAdminCourseDelete;
 	} //getJbtnAdminCourseDelete
-	
 	
 } //class

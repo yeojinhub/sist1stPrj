@@ -5,12 +5,16 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel; 
@@ -27,47 +31,72 @@ public class AdminAccountStudentAccountView extends JPanel {
 	
     public AdminAccountStudentAccountView() {
 
+    	//디자인(색깔,글씨) 설정
+    	Color white = new Color(255, 255, 255);
+    	Color lightblue = new Color(235, 235, 255);
+    	Font titleFont = new Font("맑은 고딕", Font.BOLD, 28);
+    	Font tableFont = new Font("맑은 고딕", Font.PLAIN, 14);
+    	Font buttonFont = new Font("맑은 고딕", Font.BOLD, 18);
+    	
+    	//Dimension 사이즈 설정
+    	Dimension panelSize = new Dimension(700, 45);
+    	Dimension scrollSize = new Dimension(703, 365);
+    	Dimension buttonSize = new Dimension(120, 40);
+    	
         //Table 타이틀 생성
         String[] strAdminAccountStudentAccountTableTitle = {
-            "학번", "이름", "전화번호", "기수", "교육과정", "교육기간", "진행상태"
+            "학번", "이름", "전화번호", "기수", "교육과정", "진행상태"
         };
 
         //Table 가데이터 생성
         String[][] strAdminAccountStudentAccountTableData = {
-            { "20250001", "강태일", "010-1234-5678", "25-3", "AWS와 Docker & Kubernetes 과정", "2025-01-13~2025-07-25", "진행중" },
-            { "20250002", "김민경", "010-1111-1111", "25-3", "AWS와 Docker & Kubernetes 과정", "2025-01-13~2025-07-25", "진행중" },
-            { "20250003", "이여진", "010-8241-8701", "25-3", "AWS와 Docker & Kubernetes 과정", "2025-01-13~2025-07-25", "진행중" },
-            { "20250004", "이재준", "010-0000-0000", "25-3", "AWS와 Docker & Kubernetes 과정", "2025-01-13~2025-07-25", "중도하차" },
-            { "20250005", "장태규", "010-9999-9999", "25-3", "AWS와 Docker & Kubernetes 과정", "2025-01-13~2025-07-25", "진행중" },
+            { "20250001", "강태일", "010-1234-5678", "25-3", "AWS와 Docker & Kubernetes 과정", "진행중" },
+            { "20250002", "김민경", "010-1111-1111", "25-3", "AWS와 Docker & Kubernetes 과정", "진행중" },
+            { "20250003", "이여진", "010-8241-8701", "25-3", "AWS와 Docker & Kubernetes 과정", "진행중" },
+            { "20250004", "이재준", "010-0000-0000", "25-3", "AWS와 Docker & Kubernetes 과정", "중도하차" },
+            { "20250005", "장태규", "010-9999-9999", "25-3", "AWS와 Docker & Kubernetes 과정", "진행중" },
         };
 
         //Table Component 생성
         DefaultTableModel dftmStudentTableModel = new DefaultTableModel(strAdminAccountStudentAccountTableData, strAdminAccountStudentAccountTableTitle);
         JTable jtAdminAccountStudentAccountTable = new JTable(dftmStudentTableModel);
-        
-        //Table 수정 불가능
-        jtAdminAccountStudentAccountTable.setDefaultEditor(Object.class, null);
 
+        //Table 열 정렬 설정
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        
         //Table 열 너비 설정
         TableColumnModel columnModel = jtAdminAccountStudentAccountTable.getColumnModel();
         for (int i = 0; i < columnModel.getColumnCount(); i++) {
         	switch(i) {
         	case 2:
-        		columnModel.getColumn(i).setPreferredWidth(100); break;
+        		columnModel.getColumn(i).setPreferredWidth(110);
+        		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
+        	case 3:
+        		columnModel.getColumn(i).setPreferredWidth(45);
+        		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
         	case 4:
-        		columnModel.getColumn(i).setPreferredWidth(200); break;
-        	case 5:
-        		columnModel.getColumn(i).setPreferredWidth(150); break;
+        		columnModel.getColumn(i).setPreferredWidth(335);
+        		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
+//        	case 5:
+//        		columnModel.getColumn(i).setPreferredWidth(150);
+//        		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
         	default:
-        		columnModel.getColumn(i).setPreferredWidth(80); break;
+        		columnModel.getColumn(i).setPreferredWidth(70);
+        		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
         	} //end switch
         } //end for
-        jtAdminAccountStudentAccountTable.setIntercellSpacing(new Dimension(0,0));
+        
+        //Table 디자인, 수정 불가능 설정
+        jtAdminAccountStudentAccountTable.setDefaultEditor(Object.class, null);
+        jtAdminAccountStudentAccountTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jtAdminAccountStudentAccountTable.setRowHeight(25);
+        jtAdminAccountStudentAccountTable.setFont(tableFont);
 
         //Table Component 배치
         JScrollPane spAdminAccountStudentAccountViewScroll = new JScrollPane(jtAdminAccountStudentAccountTable);
-        spAdminAccountStudentAccountViewScroll.setPreferredSize(new Dimension(770,500));
+        spAdminAccountStudentAccountViewScroll.getViewport().setBackground(white);
+        spAdminAccountStudentAccountViewScroll.setPreferredSize(scrollSize);
         JPanel jpAdminAccountStudentAccountViewTablePanel = new JPanel(new BorderLayout());
         jpAdminAccountStudentAccountViewTablePanel.add(spAdminAccountStudentAccountViewScroll, BorderLayout.CENTER);
         jpAdminAccountStudentAccountViewTablePanel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
@@ -76,9 +105,21 @@ public class AdminAccountStudentAccountView extends JPanel {
         //Button 생성
         JPanel jpAdminAccountStudentAccountViewButtonPanel = new JPanel();
         jpAdminAccountStudentAccountViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        jpAdminAccountStudentAccountViewButtonPanel.setBackground(white);
+        jpAdminAccountStudentAccountViewButtonPanel.setBorder(new TitledBorder(""));
+        jpAdminAccountStudentAccountViewButtonPanel.setPreferredSize(panelSize);
         jbtnAdminAccountStudentAccountCreate = new JButton("생성");
+        jbtnAdminAccountStudentAccountCreate.setBackground(lightblue);
+        jbtnAdminAccountStudentAccountCreate.setSize(buttonSize);
+        jbtnAdminAccountStudentAccountCreate.setFont(buttonFont);
         jbtnAdminAccountStudentAccountModify = new JButton("수정");
+        jbtnAdminAccountStudentAccountModify.setBackground(lightblue);
+        jbtnAdminAccountStudentAccountModify.setSize(buttonSize);
+        jbtnAdminAccountStudentAccountModify.setFont(buttonFont);
         jbtnAdminAccountStudentAccountDelete = new JButton("삭제");
+        jbtnAdminAccountStudentAccountDelete.setBackground(lightblue);
+        jbtnAdminAccountStudentAccountDelete.setSize(buttonSize);
+        jbtnAdminAccountStudentAccountDelete.setFont(buttonFont);
         
         //Component 배치
         jpAdminAccountStudentAccountViewButtonPanel.add(jbtnAdminAccountStudentAccountCreate);

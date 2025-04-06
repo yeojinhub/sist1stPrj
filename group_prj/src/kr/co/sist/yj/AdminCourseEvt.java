@@ -12,13 +12,16 @@ import javax.swing.JFrame;
 
 public class AdminCourseEvt implements ActionListener{
 	
+	private AdminMainView amv;
+	@SuppressWarnings("unused")
 	private AdminCourseView acv;
 	
 	private JButton jbtnAdminCourseCreate;
 	private JButton jbtnAdminCourseModify;
 	private JButton jbtnAdminCourseDelete;
 	
-	public AdminCourseEvt(AdminCourseView acv) {
+	public AdminCourseEvt(AdminMainView amv, AdminCourseView acv) {
+		this.amv=amv;
 		this.acv=acv;
 		this.jbtnAdminCourseCreate=acv.getJbtnAdminCourseCreate();
 		this.jbtnAdminCourseModify=acv.getJbtnAdminCourseModify();
@@ -29,18 +32,18 @@ public class AdminCourseEvt implements ActionListener{
 	public void actionPerformed(ActionEvent ae) {
 		if( ae.getSource() == jbtnAdminCourseCreate ) {
 			System.out.println("등록 버튼 실행");
-			JDialog jdCourseCreateDialog = new JDialog((JFrame) null, "과정 등록", true);
+			JDialog jdCourseCreateDialog = new JDialog((JFrame)null, "과정 등록", true);
 			jdCourseCreateDialog.getContentPane().add(new AdminCourseCreateView());
 			jdCourseCreateDialog.pack();
-			jdCourseCreateDialog.setLocationRelativeTo(acv);
+			jdCourseCreateDialog.setLocationRelativeTo(amv);
 			jdCourseCreateDialog.setVisible(true);
 		} //end if
 		if( ae.getSource() == jbtnAdminCourseModify ) {
 			System.out.println("수정 버튼 실행");
-			JDialog jdCourseModifyDialog = new JDialog((JFrame) null, "과정 수정", true);
+			JDialog jdCourseModifyDialog = new JDialog((JFrame)null, "과정 수정", true);
 			jdCourseModifyDialog.getContentPane().add(new AdminCourseModifyView());
 			jdCourseModifyDialog.pack();
-			jdCourseModifyDialog.setLocationRelativeTo(acv);
+			jdCourseModifyDialog.setLocationRelativeTo(amv);
 			jdCourseModifyDialog.setVisible(true);
 		} //end if
 		if( ae.getSource() == jbtnAdminCourseDelete ) {

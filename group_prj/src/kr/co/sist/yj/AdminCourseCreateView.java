@@ -21,6 +21,7 @@ public class AdminCourseCreateView extends JPanel{
 	private JButton jbtnAdminCourseClose;
 	
 	public AdminCourseCreateView(){
+		
 		setLayout(new BorderLayout());
 		
 		// ---------- 왼쪽 입력 패널 ----------
