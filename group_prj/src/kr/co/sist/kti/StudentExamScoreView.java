@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Point;
+
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
@@ -21,7 +23,7 @@ public class StudentExamScoreView extends JDialog {
 	private JComboBox jcbSubjectSet;
 	private JButton jbtnExit;
 
-	public StudentExamScoreView() {
+	public StudentExamScoreView(StudentExamPanel sep) {
 		setTitle("Best Campus - 성적표");
 		
 		// #. 백그라운드 색상 설정 및 수동배치 설정
@@ -136,6 +138,7 @@ public class StudentExamScoreView extends JDialog {
 		jbtnExit = new JButton("닫기");
 		jbtnExit.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jbtnExit.setBackground(new Color(235, 235, 255));
+		jbtnExit.setFocusPainted(false);
 		jbtnExit.setBounds(165, 456, 100, 45);
 		getContentPane().add(jbtnExit);
 
@@ -147,10 +150,13 @@ public class StudentExamScoreView extends JDialog {
 		setModal(true);
 
 		// #. 위치 및 사이즈 설
-		setBounds(100, 100, 450, 550);
+		setBounds(new Point(sep.getLocationOnScreen()).x+55, new Point(sep.getLocationOnScreen()).y-100, 450, 550);
 
 		// #. 가시화
 		setVisible(true);
+		
+		// #. 사이즈 조정 불가
+		setResizable(false);
 
 		// #. 종료 설정
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);

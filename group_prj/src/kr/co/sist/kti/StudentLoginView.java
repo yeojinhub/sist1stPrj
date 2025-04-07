@@ -21,6 +21,7 @@ public class StudentLoginView extends JFrame {
 	private JTextField jtfIDSet;
 	private JPasswordField jpfPassSet;
 	private JButton jbtnLogin;
+	private JLabel jlblInfoNow;
 
 	public StudentLoginView() {
 		super("Best Campus - 학생용");
@@ -38,7 +39,7 @@ public class StudentLoginView extends JFrame {
 		getContentPane().add(jlblPassword);
 
 		JLabel jlblTitleImage = new JLabel("");
-		jlblTitleImage.setIcon(new ImageIcon("C:\\\\Users\\\\user\\\\Desktop\\\\image\\\\logo.png"));
+		jlblTitleImage.setIcon(new ImageIcon("C:/Users/user/git/sistFstPjr/group_prj/src/kr/co/sist/kti/logo.png"));
 		jlblTitleImage.setBounds(90, 20, 70, 70);
 		getContentPane().add(jlblTitleImage);
 
@@ -64,11 +65,18 @@ public class StudentLoginView extends JFrame {
 		jpfPassSet.setBounds(150, 165, 140, 25);
 		getContentPane().add(jpfPassSet);
 
+
 		jbtnLogin = new JButton("로그인");
 		jbtnLogin.setBackground(new Color(235, 235, 255));
 		jbtnLogin.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		jbtnLogin.setFocusPainted(false);
 		jbtnLogin.setBounds(310, 125, 100, 65);
 		getContentPane().add(jbtnLogin);
+		
+		jlblInfoNow = new JLabel("");
+		jlblInfoNow.setFont(new Font("맑은 고딕", Font.BOLD, 10));
+		jlblInfoNow.setBounds(150,195,200,25);
+		getContentPane().add(jlblInfoNow);
 
 		// #. 이벤트 추가
 		// #-1. 이벤트 객체 생성
@@ -83,7 +91,10 @@ public class StudentLoginView extends JFrame {
 		getContentPane().setLayout(null);
 
 		// #. 크기 및 사이즈 설정
-		setBounds(100, 100, 450, 270);
+		setBounds(680, 200, 450, 270);
+		
+		// #. 사이즈 조정 불가
+		setResizable(false);
 
 		// #. 가시화
 		setVisible(true);
@@ -106,4 +117,8 @@ public class StudentLoginView extends JFrame {
 		return jbtnLogin;
 	}
 
+	public JLabel getJlblInfoNow() {
+		return jlblInfoNow;
+	}
+	
 }// class

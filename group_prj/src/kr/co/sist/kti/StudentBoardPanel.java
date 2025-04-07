@@ -1,18 +1,27 @@
 package kr.co.sist.kti;
 
 import java.awt.*;
+import java.util.List;
+
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.table.*;
+
+import kr.co.sist.kti.StudentAccountVO;
+import kr.co.sist.kti.StudentBoardVO;
 
 public class StudentBoardPanel extends JPanel {
 
 	private JTable jtBoard;
 	private DefaultTableModel dtm;
 	private JButton jbtnWrite;
+	
+	private List<StudentBoardVO> boardList;
+	
+	private StudentAccountVO saVO;
 
-	public StudentBoardPanel() {
-
+	public StudentBoardPanel(StudentAccountVO saVO) {
+		this.saVO = saVO;
 		// #. 컴포넌트 생성 및 설정
 		JPanel jpTitle = new JPanel();
 		jpTitle.setBackground(new Color(255, 255, 255));
@@ -30,6 +39,7 @@ public class StudentBoardPanel extends JPanel {
 		jbtnWrite = new JButton("작성");
 		jbtnWrite.setFont(new Font("맑은 고딕", Font.BOLD, 18));
 		jbtnWrite.setBackground(new Color(235, 235, 255));
+		jbtnWrite.setFocusPainted(false);
 		jbtnWrite.setBounds(220, 495, 120, 40);
 		add(jbtnWrite);
 
@@ -38,13 +48,12 @@ public class StudentBoardPanel extends JPanel {
 		dtm = new DefaultTableModel();
 
 		// #-2. 가데이터 추가
+		dtm.addColumn("BOARD_NUM");
 		dtm.addColumn("번호");
 		dtm.addColumn("제목");
 		dtm.addColumn("작성자");
 		dtm.addColumn("작성일");
 		dtm.addColumn("상태");
-		dtm.addRow(new Object[] { "1", "시험 관련 문의", "강태일", "2025-04-01", "진행 중" });
-		dtm.addRow(new Object[] { "2", "수당 관련 문의", "강태일", "2025-02-25", "답변 완료" });
 
 		// #-3. 값 가운데 정렬
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -63,15 +72,18 @@ public class StudentBoardPanel extends JPanel {
 		} // 데이터 가운데 정렬
 
 		// #-2. 컬럼 사이즈 조정
-		jtBoard.getColumnModel().getColumn(0).setMinWidth(40); // 최소 너비
-		jtBoard.getColumnModel().getColumn(0).setMaxWidth(40); // 최대 너비
-		jtBoard.getColumnModel().getColumn(0).setPreferredWidth(40); // 기본 너비
-		jtBoard.getColumnModel().getColumn(1).setMinWidth(250); // 최소 너비
-		jtBoard.getColumnModel().getColumn(1).setMaxWidth(250); // 최대 너비
-		jtBoard.getColumnModel().getColumn(1).setPreferredWidth(250); // 기본 너비
-		jtBoard.getColumnModel().getColumn(2).setMinWidth(60); // 최소 너비
-		jtBoard.getColumnModel().getColumn(2).setMaxWidth(60); // 최대 너비
-		jtBoard.getColumnModel().getColumn(2).setPreferredWidth(60); // 기본 너비
+		jtBoard.getColumnModel().getColumn(0).setMinWidth(0); // 최소 너비
+		jtBoard.getColumnModel().getColumn(0).setMaxWidth(0); // 최대 너비
+		jtBoard.getColumnModel().getColumn(0).setWidth(0); // 최대 너비
+		jtBoard.getColumnModel().getColumn(1).setMinWidth(40); // 최소 너비
+		jtBoard.getColumnModel().getColumn(1).setMaxWidth(40); // 최대 너비
+		jtBoard.getColumnModel().getColumn(1).setPreferredWidth(40); // 기본 너비
+		jtBoard.getColumnModel().getColumn(2).setMinWidth(250); // 최소 너비
+		jtBoard.getColumnModel().getColumn(2).setMaxWidth(250); // 최대 너비
+		jtBoard.getColumnModel().getColumn(2).setPreferredWidth(250); // 기본 너비
+		jtBoard.getColumnModel().getColumn(3).setMinWidth(60); // 최소 너비
+		jtBoard.getColumnModel().getColumn(3).setMaxWidth(60); // 최대 너비
+		jtBoard.getColumnModel().getColumn(3).setPreferredWidth(60); // 기본 너비
 
 		// #-3. 데이터 사이즈 조절
 		jtBoard.setRowHeight(25);
@@ -102,6 +114,18 @@ public class StudentBoardPanel extends JPanel {
 	// Getter Method
 	public JTable getJtBoard() {
 		return jtBoard;
+	}
+
+	public StudentAccountVO getSaVO() {
+		return saVO;
+	}
+
+	public List<StudentBoardVO> getBoardList() {
+		return boardList;
+	}
+
+	public void setBoardList(List<StudentBoardVO> boardList) {
+		this.boardList = boardList;
 	}
 
 	public DefaultTableModel getDtm() {

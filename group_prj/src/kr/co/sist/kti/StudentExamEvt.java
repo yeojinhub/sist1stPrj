@@ -13,11 +13,11 @@ public class StudentExamEvt implements ActionListener {
 	}// StudentExamEvt
 	
 	public void showExamScore() {
-		new StudentExamScoreView();
+		new StudentExamScoreView(sep);
 	}// showExamScore
 	
 	public void startExam() {
-		new StudentExamTestView();
+		new StudentExamTestView(sep, (String) sep.getJcbSubjectSet().getSelectedItem());
 	}// startExam
 
 	@Override

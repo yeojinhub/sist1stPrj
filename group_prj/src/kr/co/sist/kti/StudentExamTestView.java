@@ -12,6 +12,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.border.TitledBorder;
+
+import kr.co.sist.kti.StudentAccountVO;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Point;
@@ -31,10 +34,17 @@ public class StudentExamTestView extends JDialog {
 			jtaNo4TitleSet, jtaNo4OptionSet, jtaNo5TitleSet, jtaNo5OptionSet;
 	private JComboBox jcbNo1AnswerSet, jcbNo2AnswerSet, jcbNo3AnswerSet, jcbNo4AnswerSet, jcbNo5AnswerSet;
 	private JButton jbtnSubmit, jbtnExit;
+	private JScrollPane jspExam;
 
-	public StudentExamTestView() {
+	private String selectedExamName;
+
+	private StudentAccountVO saVO;
+
+	public StudentExamTestView(StudentExamPanel sep, String selectedExamName) {
+		this.saVO = sep.getSaVO();
+		this.selectedExamName = selectedExamName;
 		setTitle("Best Campus - 시험 진행중");
-		
+
 		// #. 백그라운드 색상 설정 및 수동배치 설정
 		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setLayout(null);
@@ -66,13 +76,13 @@ public class StudentExamTestView extends JDialog {
 		jlblName.setBounds(310, 55, 50, 20);
 		jpTitle.add(jlblName);
 
-		jlblSubjectNameSet = new JLabel("Java");
+		jlblSubjectNameSet = new JLabel("");
 		jlblSubjectNameSet.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblSubjectNameSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jlblSubjectNameSet.setBounds(150, 55, 80, 20);
 		jpTitle.add(jlblSubjectNameSet);
 
-		jlblNameSet = new JLabel("강태일");
+		jlblNameSet = new JLabel("");
 		jlblNameSet.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblNameSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jlblNameSet.setBounds(370, 55, 70, 20);
@@ -84,7 +94,7 @@ public class StudentExamTestView extends JDialog {
 		jpExamBoard.setLayout(null);
 		jpExamBoard.setPreferredSize(new Dimension(300, 1460));
 
-		JScrollPane jspExam = new JScrollPane(jpExamBoard, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+		jspExam = new JScrollPane(jpExamBoard, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		jspExam.setBounds(10, 100, 525, 540);
 		getContentPane().add(jspExam);
@@ -112,7 +122,7 @@ public class StudentExamTestView extends JDialog {
 
 		jtaNo1TitleSet = new JTextArea();
 		jtaNo1TitleSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		jtaNo1TitleSet.setText("Java 변수타입 중에 정수형이 아닌 것은 무엇이라고 생각하십니까? long일까요? int일까요?");
+		jtaNo1TitleSet.setText("");
 		jtaNo1TitleSet.setLineWrap(true);
 		jtaNo1TitleSet.setBackground(new Color(255, 255, 255));
 		jtaNo1TitleSet.setBounds(45, 5, 343, 50);
@@ -120,7 +130,7 @@ public class StudentExamTestView extends JDialog {
 		jtaNo1TitleSet.setHighlighter(null);
 		jpNo1Exam.add(jtaNo1TitleSet);
 
-		jtaNo1OptionSet = new JTextArea("\n\n1.long\t\t2.int\n\n\n3.byte\t\t4.float");
+		jtaNo1OptionSet = new JTextArea("");
 		jtaNo1OptionSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jtaNo1OptionSet.setBounds(10, 65, 460, 200);
 		jpNo1Exam.add(jtaNo1OptionSet);
@@ -165,7 +175,7 @@ public class StudentExamTestView extends JDialog {
 		jpNo2NumberTitle.add(jlblNo2NumberTitle, BorderLayout.CENTER);
 
 		jtaNo2TitleSet = new JTextArea();
-		jtaNo2TitleSet.setText("Java 변수타입 중에 정수형이 아닌 것은 무엇이라고 생각하십니까? long일까요? int일까요?");
+		jtaNo2TitleSet.setText("");
 		jtaNo2TitleSet.setLineWrap(true);
 		jtaNo2TitleSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jtaNo2TitleSet.setEditable(false);
@@ -173,7 +183,7 @@ public class StudentExamTestView extends JDialog {
 		jtaNo2TitleSet.setBounds(45, 5, 343, 50);
 		jpNo2Exam.add(jtaNo2TitleSet);
 
-		jtaNo2OptionSet = new JTextArea("\n\n1.long\t\t2.int\n\n\n3.byte\t\t4.float");
+		jtaNo2OptionSet = new JTextArea("");
 		jtaNo2OptionSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jtaNo2OptionSet.setBounds(10, 65, 460, 200);
 		jpNo2Exam.add(jtaNo2OptionSet);
@@ -194,6 +204,7 @@ public class StudentExamTestView extends JDialog {
 		jcbNo2AnswerSet = new JComboBox();
 		jcbNo2AnswerSet.setBounds(6, 30, 70, 20);
 		jpNo2AnswerPanel.add(jcbNo2AnswerSet);
+		jcbNo2AnswerSet.setModel(new DefaultComboBoxModel(new String[] { "", "1", "2", "3", "4" }));
 
 		// #-3. 3번문제 컴포넌트들
 		JPanel jpNo3Exam = new JPanel();
@@ -217,7 +228,7 @@ public class StudentExamTestView extends JDialog {
 		jpNo3NumberTitle.add(jlblNo3NumberTitle, BorderLayout.CENTER);
 
 		jtaNo3TitleSet = new JTextArea();
-		jtaNo3TitleSet.setText("Java 변수타입 중에 정수형이 아닌 것은 무엇이라고 생각하십니까? long일까요? int일까요?");
+		jtaNo3TitleSet.setText("");
 		jtaNo3TitleSet.setLineWrap(true);
 		jtaNo3TitleSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jtaNo3TitleSet.setEditable(false);
@@ -225,7 +236,7 @@ public class StudentExamTestView extends JDialog {
 		jtaNo3TitleSet.setBounds(45, 5, 343, 50);
 		jpNo3Exam.add(jtaNo3TitleSet);
 
-		jtaNo3OptionSet = new JTextArea("\n\n1.long\t\t2.int\n\n\n3.byte\t\t4.float");
+		jtaNo3OptionSet = new JTextArea("");
 		jtaNo3OptionSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jtaNo3OptionSet.setBounds(10, 65, 460, 200);
 		jpNo3Exam.add(jtaNo3OptionSet);
@@ -246,6 +257,7 @@ public class StudentExamTestView extends JDialog {
 		jcbNo3AnswerSet = new JComboBox();
 		jcbNo3AnswerSet.setBounds(6, 30, 70, 20);
 		jpNo3AnswerPanel.add(jcbNo3AnswerSet);
+		jcbNo3AnswerSet.setModel(new DefaultComboBoxModel(new String[] { "", "1", "2", "3", "4" }));
 
 		// #-4. 4번문제 컴포넌트들
 		JPanel jpNo4Exam = new JPanel();
@@ -269,7 +281,7 @@ public class StudentExamTestView extends JDialog {
 		jpNo4NumberTitle.add(jlblNo4NumberTitle, BorderLayout.CENTER);
 
 		jtaNo4TitleSet = new JTextArea();
-		jtaNo4TitleSet.setText("Java 변수타입 중에 정수형이 아닌 것은 무엇이라고 생각하십니까? long일까요? int일까요?");
+		jtaNo4TitleSet.setText("");
 		jtaNo4TitleSet.setLineWrap(true);
 		jtaNo4TitleSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jtaNo4TitleSet.setEditable(false);
@@ -277,7 +289,7 @@ public class StudentExamTestView extends JDialog {
 		jtaNo4TitleSet.setBounds(45, 5, 343, 50);
 		jpNo4Exam.add(jtaNo4TitleSet);
 
-		jtaNo4OptionSet = new JTextArea("\n\n1.long\t\t2.int\n\n\n3.byte\t\t4.float");
+		jtaNo4OptionSet = new JTextArea("");
 		jtaNo4OptionSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jtaNo4OptionSet.setBounds(10, 65, 460, 200);
 		jpNo4Exam.add(jtaNo4OptionSet);
@@ -298,6 +310,7 @@ public class StudentExamTestView extends JDialog {
 		jcbNo4AnswerSet = new JComboBox();
 		jcbNo4AnswerSet.setBounds(6, 30, 70, 20);
 		jpNo4AnswerPanel.add(jcbNo4AnswerSet);
+		jcbNo4AnswerSet.setModel(new DefaultComboBoxModel(new String[] { "", "1", "2", "3", "4" }));
 
 		JPanel jpNo5Exam = new JPanel();
 		jpNo5Exam.setLayout(null);
@@ -320,7 +333,7 @@ public class StudentExamTestView extends JDialog {
 		jpNo5NumberTitle.add(jlblNo5NumberTitle, BorderLayout.CENTER);
 
 		jtaNo5TitleSet = new JTextArea();
-		jtaNo5TitleSet.setText("Java 변수타입 중에 정수형이 아닌 것은 무엇이라고 생각하십니까? long일까요? int일까요?");
+		jtaNo5TitleSet.setText("");
 		jtaNo5TitleSet.setLineWrap(true);
 		jtaNo5TitleSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jtaNo5TitleSet.setEditable(false);
@@ -328,7 +341,7 @@ public class StudentExamTestView extends JDialog {
 		jtaNo5TitleSet.setBounds(45, 5, 343, 50);
 		jpNo5Exam.add(jtaNo5TitleSet);
 
-		jtaNo5OptionSet = new JTextArea("\n\n1.long\t\t2.int\n\n\n3.byte\t\t4.float");
+		jtaNo5OptionSet = new JTextArea("");
 		jtaNo5OptionSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jtaNo5OptionSet.setBounds(10, 65, 460, 200);
 		jpNo5Exam.add(jtaNo5OptionSet);
@@ -349,23 +362,21 @@ public class StudentExamTestView extends JDialog {
 		jcbNo5AnswerSet = new JComboBox();
 		jcbNo5AnswerSet.setBounds(6, 30, 70, 20);
 		jpNo5AnswerPanel.add(jcbNo5AnswerSet);
+		jcbNo5AnswerSet.setModel(new DefaultComboBoxModel(new String[] { "", "1", "2", "3", "4" }));
 
 		jbtnSubmit = new JButton("제출");
 		jbtnSubmit.setBackground(new Color(235, 235, 255));
 		jbtnSubmit.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		jbtnSubmit.setFocusPainted(false);
 		jbtnSubmit.setBounds(135, 650, 100, 30);
 		getContentPane().add(jbtnSubmit);
 
 		jbtnExit = new JButton("닫기");
 		jbtnExit.setBackground(new Color(235, 235, 255));
 		jbtnExit.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		jbtnExit.setFocusPainted(false);
 		jbtnExit.setBounds(285, 652, 100, 30);
 		getContentPane().add(jbtnExit);
-
-		// #. 스크롤 맨위에서 시작하게 만들기 (ChatGPT 도움)
-		SwingUtilities.invokeLater(() -> {
-			jspExam.getViewport().setViewPosition(new Point(0, 0));
-		});
 
 		// #. 이벤트 추가
 		// #-1. 이벤트 객체 생성
@@ -373,15 +384,20 @@ public class StudentExamTestView extends JDialog {
 		// #-2. 컴포넌트에 이벤트 추가
 		jbtnSubmit.addActionListener(sete);
 		jbtnExit.addActionListener(sete);
+		// #-3. 윈도우리스너로 다이어로그창 켜지면 JLabel 셋팅
+		addWindowListener(sete);
 
 		// #. 모달 설정
 		setModal(true);
 
 		// #. 위치 설정 및 사이즈 설정
-		setBounds(100, 100, 560, 730);
+		setBounds(new Point(sep.getLocationOnScreen()).x + 10, new Point(sep.getLocationOnScreen()).y - 180, 560, 730);
 
 		// #. 가시화
 		setVisible(true);
+
+		// #. 사이즈 조정 불가
+		setResizable(false);
 
 		// #. 종료 처리
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -390,6 +406,10 @@ public class StudentExamTestView extends JDialog {
 	// Getter Method
 	public JLabel getJlblSubjectNameSet() {
 		return jlblSubjectNameSet;
+	}
+
+	public String getSelectedExamName() {
+		return selectedExamName;
 	}
 
 	public JButton getJbtnSubmit() {
@@ -462,6 +482,14 @@ public class StudentExamTestView extends JDialog {
 
 	public JComboBox getJcbNo5AnswerSet() {
 		return jcbNo5AnswerSet;
+	}
+
+	public StudentAccountVO getSaVO() {
+		return saVO;
+	}
+
+	public JScrollPane getJspExam() {
+		return jspExam;
 	}
 
 }// class

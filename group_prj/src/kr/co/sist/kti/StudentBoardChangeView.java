@@ -15,21 +15,18 @@ import java.awt.Point;
 
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-
-import kr.co.sist.kti.StudentAccountVO;
-
 import javax.swing.JTextArea;
 
-public class StudentBoardWriteView extends JDialog {
+public class StudentBoardChangeView extends JDialog {
 
 	private JTextField jtfTitleSet;
 	private JTextArea jtaBoardSet;
-	private JButton jbtnWrite, jbtnExit;
+	private JButton jbtnChange, jbtnExit;
 	
-	private StudentAccountVO saVO;
+	private int selectedBoardNum;
 
-	public StudentBoardWriteView(StudentBoardPanel sbp) {
-		this.saVO = sbp.getSaVO();
+	public StudentBoardChangeView(StudentBoardPanel sbp, int selectedBoardNum) {
+		this.selectedBoardNum = selectedBoardNum;
 		setTitle("Best Campus - 1:1 문의 작성");
 		
 		// #. 백그라운드 색상 설정 및 수동배치 설정
@@ -64,12 +61,12 @@ public class StudentBoardWriteView extends JDialog {
 		jtaBoardSet.setBounds(6, 55, 674, 405);
 		getContentPane().add(jtaBoardSet);
 
-		jbtnWrite = new JButton("작성");
-		jbtnWrite.setBackground(new Color(235, 235, 255));
-		jbtnWrite.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		jbtnWrite.setFocusPainted(false);
-		jbtnWrite.setBounds(200, 470, 100, 35);
-		getContentPane().add(jbtnWrite);
+		jbtnChange = new JButton("수정");
+		jbtnChange.setBackground(new Color(235, 235, 255));
+		jbtnChange.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		jbtnChange.setFocusPainted(false);
+		jbtnChange.setBounds(200, 470, 100, 35);
+		getContentPane().add(jbtnChange);
 
 		jbtnExit = new JButton("닫기");
 		jbtnExit.setBackground(new Color(235, 235, 255));
@@ -80,10 +77,10 @@ public class StudentBoardWriteView extends JDialog {
 
 		// #. 이벤트 추가
 		// #-1. 이벤트 객체 생성
-		StudentBoardWriteEvt sbwe = new StudentBoardWriteEvt(this, sbp);
+		StudentBoardChangeEvt sbwe = new StudentBoardChangeEvt(this, sbp);
 		// #-2. 컴포넌트에 이벤트 추가
 		jbtnExit.addActionListener(sbwe);
-		jbtnWrite.addActionListener(sbwe);
+		jbtnChange.addActionListener(sbwe);
 
 		// #. 모달 설정
 		setModal(true);
@@ -103,16 +100,16 @@ public class StudentBoardWriteView extends JDialog {
 		return jtfTitleSet;
 	}
 
-	public StudentAccountVO getSaVO() {
-		return saVO;
+	public int getSelectedBoardNum() {
+		return selectedBoardNum;
 	}
 
 	public JTextArea getJtaBoardSet() {
 		return jtaBoardSet;
 	}
 
-	public JButton getJbtnWrite() {
-		return jbtnWrite;
+	public JButton getJbtnChange() {
+		return jbtnChange;
 	}
 
 	public JButton getJbtnExit() {

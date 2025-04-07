@@ -3,6 +3,8 @@ package kr.co.sist.kti;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
+import kr.co.sist.kti.StudentAccountVO;
+
 import java.awt.*;
 
 public class StudentExamPanel extends JPanel {
@@ -10,9 +12,25 @@ public class StudentExamPanel extends JPanel {
 	private JLabel jlblEndCourseSet, jlblTeacherNameSet, jlblNameSet;
 	private JButton jbtnExamScore, jbtnStartExam;
 	private JComboBox jcbSubjectSet;
+	
+	private StudentAccountVO saVO;
 
-	public StudentExamPanel() {
+	public StudentExamPanel(StudentAccountVO saVO) {
+		this.saVO = saVO;
 		// #. 컴포넌트 추가 및 설정
+		JPanel jpTitle = new JPanel();
+		jpTitle.setBackground(new Color(255, 255, 255));
+		jpTitle.setBounds(12, 10, 535, 45);
+		jpTitle.setBorder(new TitledBorder(""));
+		jpTitle.setLayout(new BorderLayout(0, 0));
+		add(jpTitle);
+		
+		JLabel jlblTitle = new JLabel("시험");
+		jlblTitle.setBackground(new Color(255, 255, 255));
+		jlblTitle.setFont(new Font("맑은 고딕", Font.BOLD, 28));
+		jlblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		jpTitle.add(jlblTitle, BorderLayout.CENTER);
+		
 		JLabel jlblName = new JLabel("학생명");
 		jlblName.setFont(new Font("맑은 고딕", Font.BOLD, 24));
 		jlblName.setHorizontalAlignment(SwingConstants.CENTER);
@@ -37,19 +55,19 @@ public class StudentExamPanel extends JPanel {
 		jlblEndCourse.setBounds(100, 280, 100, 25);
 		add(jlblEndCourse);
 
-		jlblNameSet = new JLabel("강태일");
+		jlblNameSet = new JLabel("");
 		jlblNameSet.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblNameSet.setFont(new Font("맑은 고딕", Font.BOLD, 24));
 		jlblNameSet.setBounds(330, 100, 100, 25);
 		add(jlblNameSet);
 
-		jlblTeacherNameSet = new JLabel("곽우신");
+		jlblTeacherNameSet = new JLabel("");
 		jlblTeacherNameSet.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblTeacherNameSet.setFont(new Font("맑은 고딕", Font.BOLD, 24));
 		jlblTeacherNameSet.setBounds(330, 220, 100, 25);
 		add(jlblTeacherNameSet);
 
-		jlblEndCourseSet = new JLabel("2025-07-25");
+		jlblEndCourseSet = new JLabel("");
 		jlblEndCourseSet.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblEndCourseSet.setFont(new Font("맑은 고딕", Font.BOLD, 24));
 		jlblEndCourseSet.setBounds(310, 280, 140, 25);
@@ -58,19 +76,21 @@ public class StudentExamPanel extends JPanel {
 		jcbSubjectSet = new JComboBox();
 		jcbSubjectSet.setFont(new Font("맑은 고딕", Font.BOLD, 24));
 		jcbSubjectSet.setBackground(new Color(255, 255, 255));
-		jcbSubjectSet.setModel(new DefaultComboBoxModel(new String[] { "", "Java", "Oracle", "HTML" }));
+//		jcbSubjectSet.setModel(new DefaultComboBoxModel(new String[] { "", "Java", "Oracle", "HTML" }));
 		jcbSubjectSet.setBounds(310, 160, 140, 30);
 		add(jcbSubjectSet);
 
 		jbtnStartExam = new JButton("시험응시");
 		jbtnStartExam.setBackground(new Color(235, 235, 255));
 		jbtnStartExam.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		jbtnStartExam.setFocusPainted(false);
 		jbtnStartExam.setBounds(50, 360, 200, 70);
 		add(jbtnStartExam);
 
 		jbtnExamScore = new JButton("성적표");
 		jbtnExamScore.setBackground(new Color(235, 235, 255));
 		jbtnExamScore.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		jbtnExamScore.setFocusPainted(false);
 		jbtnExamScore.setBounds(310, 360, 200, 70);
 		add(jbtnExamScore);
 
@@ -101,6 +121,10 @@ public class StudentExamPanel extends JPanel {
 	// Getter Method
 	public JLabel getJlblEndCourseSet() {
 		return jlblEndCourseSet;
+	}
+
+	public StudentAccountVO getSaVO() {
+		return saVO;
 	}
 
 	public JLabel getJlblTeacherNameSet() {

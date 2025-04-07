@@ -2,17 +2,24 @@ package kr.co.sist.kti;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.ParseException;
+
 import javax.swing.border.*;
 import javax.swing.text.*;
+
+import kr.co.sist.kti.StudentAccountVO;
 
 public class StudentInfoPanel extends JPanel {
 
 	private JLabel jlblIDSet, jlblNameSet, jlblBirthSet, jlblTeacherNameSet, jlblCourseEndDateSet;
 	private JButton jbtnChangePass, jbtnChangeInfo;
 	private JTextArea jtaAddress, jtaCourseNameSet;
-	private JTextField jtfTel;
+	private JFormattedTextField jftfTel;
+	
+	private StudentAccountVO saVO;
 
-	public StudentInfoPanel() {
+	public StudentInfoPanel(StudentAccountVO saVO) {
+		this.saVO = saVO;
 		// #. 컴포넌트 추가 및 설정
 		JLabel jlblID = new JLabel("ID (학번)");
 		jlblID.setHorizontalAlignment(SwingConstants.CENTER);
@@ -77,43 +84,54 @@ public class StudentInfoPanel extends JPanel {
 		jlblCourseEndDate.setBounds(40, 450, 100, 25);
 		add(jlblCourseEndDate);
 
-		jlblIDSet = new JLabel("2025_0001");
+		jlblIDSet = new JLabel("");
 		jlblIDSet.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblIDSet.setFont(new Font("맑은 고딕", Font.BOLD, 18));
 		jlblIDSet.setBackground(Color.WHITE);
 		jlblIDSet.setBounds(350, 20, 100, 25);
 		add(jlblIDSet);
 
-		jlblNameSet = new JLabel("강태일");
+		jlblNameSet = new JLabel("");
 		jlblNameSet.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblNameSet.setFont(new Font("맑은 고딕", Font.BOLD, 18));
 		jlblNameSet.setBackground(Color.WHITE);
 		jlblNameSet.setBounds(350, 100, 100, 25);
 		add(jlblNameSet);
 
-		jlblBirthSet = new JLabel("1996-04-02");
+		jlblBirthSet = new JLabel("");
 		jlblBirthSet.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblBirthSet.setFont(new Font("맑은 고딕", Font.BOLD, 18));
 		jlblBirthSet.setBackground(Color.WHITE);
 		jlblBirthSet.setBounds(350, 140, 100, 25);
 		add(jlblBirthSet);
-
-		jtfTel = new JTextField();
-		jtfTel.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		jtfTel.setHorizontalAlignment(SwingConstants.CENTER);
-		jtfTel.setText("010-5745-1853");
-		jtfTel.setBounds(300, 180, 200, 25);
-		add(jtfTel);
-		jtfTel.setColumns(10);
+		
+		MaskFormatter telFormat = null;
+		// #. ChatGPT 도움, 포맷으로 예외처리 (숫자3-숫자4-숫자4) 고정
+		try {
+			telFormat = new MaskFormatter("###-####-####");
+			telFormat.setPlaceholderCharacter(' ');
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		jftfTel = new JFormattedTextField(telFormat);
+		jftfTel.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		jftfTel.setHorizontalAlignment(SwingConstants.CENTER);
+		jftfTel.setText("");
+		jftfTel.setBounds(300, 180, 200, 25);
+		add(jftfTel);
+		jftfTel.setColumns(12);
+		
 
 		jbtnChangePass = new JButton("비밀번호 변경");
 		jbtnChangePass.setBackground(new Color(235, 235, 255));
 		jbtnChangePass.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		jbtnChangePass.setFocusPainted(false);
 		jbtnChangePass.setBounds(320, 60, 170, 25);
 		add(jbtnChangePass);
 
 		jtaAddress = new JTextArea();
-		jtaAddress.setText("제주특별자치도 애월읍 하소로 18 킹스톤 A동");
+		jtaAddress.setText("");
 		jtaAddress.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jtaAddress.setBounds(300, 220, 200, 75);
 		jtaAddress.setBorder(new LineBorder(Color.BLACK));
@@ -121,7 +139,7 @@ public class StudentInfoPanel extends JPanel {
 		add(jtaAddress);
 
 		jtaCourseNameSet = new JTextArea();
-		jtaCourseNameSet.setText("AWS와 Docker&Kuberneter활용한 Java Full-Stack 개발자 양성과정");
+		jtaCourseNameSet.setText("");
 		jtaCourseNameSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jtaCourseNameSet.setBounds(300, 320, 200, 60);
 		jtaCourseNameSet.setLineWrap(true);
@@ -129,14 +147,14 @@ public class StudentInfoPanel extends JPanel {
 		jtaCourseNameSet.setHighlighter(null);
 		add(jtaCourseNameSet);
 
-		jlblTeacherNameSet = new JLabel("곽우신");
+		jlblTeacherNameSet = new JLabel("");
 		jlblTeacherNameSet.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblTeacherNameSet.setFont(new Font("맑은 고딕", Font.BOLD, 18));
 		jlblTeacherNameSet.setBackground(Color.WHITE);
 		jlblTeacherNameSet.setBounds(350, 410, 100, 25);
 		add(jlblTeacherNameSet);
 
-		jlblCourseEndDateSet = new JLabel("2025-07-25");
+		jlblCourseEndDateSet = new JLabel("");
 		jlblCourseEndDateSet.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblCourseEndDateSet.setFont(new Font("맑은 고딕", Font.BOLD, 18));
 		jlblCourseEndDateSet.setBackground(Color.WHITE);
@@ -147,6 +165,7 @@ public class StudentInfoPanel extends JPanel {
 		jbtnChangeInfo.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jbtnChangeInfo.setBackground(new Color(235, 235, 255));
 		jbtnChangeInfo.setBounds(225, 500, 100, 35);
+		jbtnChangeInfo.setFocusPainted(false);
 		add(jbtnChangeInfo);
 
 		// #. 이벤트 추가
@@ -170,6 +189,10 @@ public class StudentInfoPanel extends JPanel {
 
 	public JLabel getJlblIDSet() {
 		return jlblIDSet;
+	}
+
+	public JFormattedTextField getJftfTel() {
+		return jftfTel;
 	}
 
 	public JLabel getJlblNameSet() {
@@ -204,8 +227,8 @@ public class StudentInfoPanel extends JPanel {
 		return jtaCourseNameSet;
 	}
 
-	public JTextField getJtfTel() {
-		return jtfTel;
+	public StudentAccountVO getSaVO() {
+		return saVO;
 	}
 
 }// class
