@@ -18,7 +18,7 @@ public class InstructorLoginView extends JFrame {
 
 	
 	public InstructorLoginView() {
-		new JFrame();
+		super("Best Campus-강사용");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(InstructorLoginView.class.getResource("/kr/co/sist/ldu/images/logo.png")));
 		setFont(new Font("Arial", Font.BOLD, 12));
 		setForeground(new Color(0, 0, 0));
@@ -53,7 +53,7 @@ public class InstructorLoginView extends JFrame {
 		jbtnLogin.setBounds(317, 196, 97, 53);
 		getContentPane().add(jbtnLogin);
 		
-		InstructorLoginEvent ile = new InstructorLoginEvent(this);
+		InstructorLoginEvt ile = new InstructorLoginEvt(this);
 		jbtnLogin.addActionListener(ile);
 		
 		JLabel jlblLogo = new JLabel("New label");
@@ -66,19 +66,19 @@ public class InstructorLoginView extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
-	public JTextField getTextField() {
+	public JTextField getJtId() {
 		return jtId;
 	}
 
-	public void setTextField(JTextField textField) {
+	public void setJtId(JTextField textField) {
 		this.jtId = textField;
 	}
 
-	public JPasswordField getPasswordField() {
+	public JPasswordField getJpfPass() {
 		return jpfPass;
 	}
 
-	public void setPasswordField(JPasswordField passwordField) {
+	public void setJpfPass(JPasswordField passwordField) {
 		this.jpfPass = passwordField;
 	}
 
