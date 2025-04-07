@@ -79,7 +79,7 @@ public class StudentMainView extends JFrame {
 		contentPane.add(jlblTeacherName);
 
 		JLabel jlblTitleImage = new JLabel("");
-		jlblTitleImage.setIcon(new ImageIcon("file:///C:/Users/user/git/sistFstPjr/group_prj/src/kr/co/sist/kti/logo.png"));
+		jlblTitleImage.setIcon(new ImageIcon("C:\\Users\\user\\Desktop\\image\\logo.png"));
 		jlblTitleImage.setBounds(10, 10, 70, 70);
 		contentPane.add(jlblTitleImage);
 

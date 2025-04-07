@@ -11,21 +11,38 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
+import java.util.List;
 
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+
+import kr.co.sist.kti.StudentAccountVO;
+import kr.co.sist.kti.StudentGradeVO;
+import kr.co.sist.kti.StudentMainVO;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 public class StudentExamScoreView extends JDialog {
 
-	private JLabel jlblNameSet, jlblTeacherNameSet, jlblEndCourseSet, jlblScoreSet, jlblMyAnswerSet, jlblAnswerAvgSet;
+	private JLabel jlblNameSet, jlblTeacherNameSet, jlblEndCourseSet, jlblMyAnswerSet;
 	private JComboBox jcbSubjectSet;
 	private JButton jbtnExit;
 
-	public StudentExamScoreView(StudentExamPanel sep) {
+	private String selectedExamName;
+	private String teacherName;
+
+	private StudentAccountVO saVO;
+	private StudentMainVO smVO;
+	private StudentGradeVO sgVO;
+
+	public StudentExamScoreView(StudentExamPanel sep, String selectedExamName, String teacherName) {
+		this.saVO = sep.getSaVO();
+		this.smVO = sep.getSmVO();
+		this.selectedExamName = selectedExamName;
+		this.teacherName = teacherName;
 		setTitle("Best Campus - 성적표");
-		
+
 		// #. 백그라운드 색상 설정 및 수동배치 설정
 		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setLayout(null);
@@ -37,7 +54,7 @@ public class StudentExamScoreView extends JDialog {
 		jpMain.setBorder(new TitledBorder(""));
 		getContentPane().add(jpMain);
 		jpMain.setLayout(null);
-		
+
 		JPanel jpTitle = new JPanel();
 		jpTitle.setBackground(new Color(255, 255, 255));
 		jpTitle.setBounds(6, 7, 420, 60);
@@ -75,62 +92,37 @@ public class StudentExamScoreView extends JDialog {
 		jlblSubject.setBounds(50, 170, 100, 25);
 		jpMain.add(jlblSubject);
 
-		JLabel jlblScore = new JLabel("성적");
-		jlblScore.setHorizontalAlignment(SwingConstants.CENTER);
-		jlblScore.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		jlblScore.setBounds(50, 210, 100, 25);
-		jpMain.add(jlblScore);
-
 		JLabel jlblMyAnswer = new JLabel("정답수");
 		jlblMyAnswer.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblMyAnswer.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		jlblMyAnswer.setBounds(50, 250, 100, 25);
+		jlblMyAnswer.setBounds(50, 210, 100, 25);
 		jpMain.add(jlblMyAnswer);
 
-		JLabel jlblAnswerAvg = new JLabel("평균");
-		jlblAnswerAvg.setHorizontalAlignment(SwingConstants.CENTER);
-		jlblAnswerAvg.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		jlblAnswerAvg.setBounds(50, 290, 100, 25);
-		jpMain.add(jlblAnswerAvg);
-
-		jlblNameSet = new JLabel("강태일");
+		jlblNameSet = new JLabel("");
 		jlblNameSet.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblNameSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jlblNameSet.setBounds(260, 50, 100, 25);
 		jpMain.add(jlblNameSet);
 
-		jlblTeacherNameSet = new JLabel("곽우신");
+		jlblTeacherNameSet = new JLabel("");
 		jlblTeacherNameSet.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblTeacherNameSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jlblTeacherNameSet.setBounds(260, 90, 100, 25);
 		jpMain.add(jlblTeacherNameSet);
 
-		jlblEndCourseSet = new JLabel("2025-07-25");
+		jlblEndCourseSet = new JLabel("");
 		jlblEndCourseSet.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblEndCourseSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jlblEndCourseSet.setBounds(260, 130, 100, 25);
 		jpMain.add(jlblEndCourseSet);
 
-		jlblScoreSet = new JLabel("A");
-		jlblScoreSet.setHorizontalAlignment(SwingConstants.CENTER);
-		jlblScoreSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		jlblScoreSet.setBounds(260, 210, 100, 25);
-		jpMain.add(jlblScoreSet);
-
-		jlblMyAnswerSet = new JLabel("9/10");
+		jlblMyAnswerSet = new JLabel("");
 		jlblMyAnswerSet.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblMyAnswerSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		jlblMyAnswerSet.setBounds(260, 250, 100, 25);
+		jlblMyAnswerSet.setBounds(260, 210, 100, 25);
 		jpMain.add(jlblMyAnswerSet);
 
-		jlblAnswerAvgSet = new JLabel("7/10");
-		jlblAnswerAvgSet.setHorizontalAlignment(SwingConstants.CENTER);
-		jlblAnswerAvgSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		jlblAnswerAvgSet.setBounds(260, 290, 100, 25);
-		jpMain.add(jlblAnswerAvgSet);
-
 		jcbSubjectSet = new JComboBox();
-		jcbSubjectSet.setModel(new DefaultComboBoxModel(new String[] { "", "Java", "Oracle", "HTML" }));
 		jcbSubjectSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jcbSubjectSet.setBounds(270, 170, 80, 25);
 		jpMain.add(jcbSubjectSet);
@@ -143,18 +135,22 @@ public class StudentExamScoreView extends JDialog {
 		getContentPane().add(jbtnExit);
 
 		// #. 이벤트 설정
-		// #-1. 람다식으로 종료버튼 이벤트 처리
-		jbtnExit.addActionListener(e -> dispose());
-		
+		// #-1. 이벤트 객체 생성
+		StudentExamScoreEvt sese = new StudentExamScoreEvt(this);
+		// #-2. 컴포넌트에 이벤트 추가
+		jbtnExit.addActionListener(sese);
+		jcbSubjectSet.addActionListener(sese);
+		addWindowListener(sese);
+
 		// #. 모달 설정
 		setModal(true);
 
 		// #. 위치 및 사이즈 설
-		setBounds(new Point(sep.getLocationOnScreen()).x+55, new Point(sep.getLocationOnScreen()).y-100, 450, 550);
+		setBounds(new Point(sep.getLocationOnScreen()).x + 55, new Point(sep.getLocationOnScreen()).y - 100, 450, 550);
 
 		// #. 가시화
 		setVisible(true);
-		
+
 		// #. 사이즈 조정 불가
 		setResizable(false);
 
@@ -162,10 +158,14 @@ public class StudentExamScoreView extends JDialog {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 	}// StudentExamScoreView
-	
+
 	// Getter Method
 	public JLabel getJlblNameSet() {
 		return jlblNameSet;
+	}
+
+	public StudentAccountVO getSaVO() {
+		return saVO;
 	}
 
 	public JLabel getJlblTeacherNameSet() {
@@ -176,16 +176,8 @@ public class StudentExamScoreView extends JDialog {
 		return jlblEndCourseSet;
 	}
 
-	public JLabel getJlblScoreSet() {
-		return jlblScoreSet;
-	}
-
 	public JLabel getJlblMyAnswerSet() {
 		return jlblMyAnswerSet;
-	}
-
-	public JLabel getJlblAnswerAvgSet() {
-		return jlblAnswerAvgSet;
 	}
 
 	public JComboBox getJcbSubjectSet() {
@@ -195,5 +187,25 @@ public class StudentExamScoreView extends JDialog {
 	public JButton getJbtnExit() {
 		return jbtnExit;
 	}
-	
+
+	public String getSelectedExamName() {
+		return selectedExamName;
+	}
+
+	public String getTeacherName() {
+		return teacherName;
+	}
+
+	public StudentMainVO getSmVO() {
+		return smVO;
+	}
+
+	public StudentGradeVO getSgVO() {
+		return sgVO;
+	}
+
+	public void setSgVO(StudentGradeVO sgVO) {
+		this.sgVO = sgVO;
+	}
+
 }// class

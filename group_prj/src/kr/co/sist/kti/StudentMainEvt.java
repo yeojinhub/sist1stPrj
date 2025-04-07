@@ -50,6 +50,7 @@ public class StudentMainEvt extends WindowAdapter implements ActionListener {
 	}// infoPanelSetting
 	
 	public void examPanelSetting(StudentMainVO smvo) {
+		sep.setSmVO(smvo);
 		// 학생명 라벨 수정
 		sep.getJlblNameSet().setText(smv.getSaVO().getStuName());
 		// 과목 콤보박스 수정

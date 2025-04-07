@@ -39,7 +39,7 @@ public class StudentLoginView extends JFrame {
 		getContentPane().add(jlblPassword);
 
 		JLabel jlblTitleImage = new JLabel("");
-		jlblTitleImage.setIcon(new ImageIcon("C:/Users/user/git/sistFstPjr/group_prj/src/kr/co/sist/kti/logo.png"));
+		jlblTitleImage.setIcon(new ImageIcon("C:\\\\Users\\\\user\\\\Desktop\\\\image\\\\logo.png"));
 		jlblTitleImage.setBounds(90, 20, 70, 70);
 		getContentPane().add(jlblTitleImage);
 

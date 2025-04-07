@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 import kr.co.sist.kti.StudentAccountVO;
+import kr.co.sist.kti.StudentMainVO;
 
 import java.awt.*;
 
@@ -12,8 +13,10 @@ public class StudentExamPanel extends JPanel {
 	private JLabel jlblEndCourseSet, jlblTeacherNameSet, jlblNameSet;
 	private JButton jbtnExamScore, jbtnStartExam;
 	private JComboBox jcbSubjectSet;
-	
+
 	private StudentAccountVO saVO;
+
+	private StudentMainVO smVO;
 
 	public StudentExamPanel(StudentAccountVO saVO) {
 		this.saVO = saVO;
@@ -24,13 +27,13 @@ public class StudentExamPanel extends JPanel {
 		jpTitle.setBorder(new TitledBorder(""));
 		jpTitle.setLayout(new BorderLayout(0, 0));
 		add(jpTitle);
-		
+
 		JLabel jlblTitle = new JLabel("시험");
 		jlblTitle.setBackground(new Color(255, 255, 255));
 		jlblTitle.setFont(new Font("맑은 고딕", Font.BOLD, 28));
 		jlblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		jpTitle.add(jlblTitle, BorderLayout.CENTER);
-		
+
 		JLabel jlblName = new JLabel("학생명");
 		jlblName.setFont(new Font("맑은 고딕", Font.BOLD, 24));
 		jlblName.setHorizontalAlignment(SwingConstants.CENTER);
@@ -106,7 +109,7 @@ public class StudentExamPanel extends JPanel {
 		// #-2. 컴포넌트에 이벤트 추가
 		jbtnExamScore.addActionListener(see);
 		jbtnStartExam.addActionListener(see);
-		
+
 		// #. 컴포넌트 수동배치 설정
 		setLayout(null);
 
@@ -146,6 +149,13 @@ public class StudentExamPanel extends JPanel {
 	public JComboBox getJcbSubjectSet() {
 		return jcbSubjectSet;
 	}
-	
-	
+
+	public StudentMainVO getSmVO() {
+		return smVO;
+	}
+
+	public void setSmVO(StudentMainVO smVO) {
+		this.smVO = smVO;
+	}
+
 }// class

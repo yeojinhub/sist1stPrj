@@ -48,7 +48,15 @@ public class StudentExamTestEvt extends WindowAdapter implements ActionListener 
 			score++;
 		}
 		
-		System.out.println("내 점수는 몇점~? : " + score + "점!" );
+		// Grade 테이블에 데이터 추가를 위한 Service 객체 생성
+		StudentExamService ses = new StudentExamService();
+		
+		// 테이블에 데이터 추가
+		ses.addExamGrade(setv.getSaVO().getStuNum(), list.get(0).getExamNum(), score);
+		
+		String msg = setv.getSaVO().getStuName()+"학생, '"+setv.getSelectedExamName()+"'시험\n"+score+"개 맞추셨습니다.";
+		JOptionPane.showMessageDialog(setv, msg);
+		setv.dispose();
 		
 	}// submitExat
 	
