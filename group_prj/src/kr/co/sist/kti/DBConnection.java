@@ -25,7 +25,7 @@ public class DBConnection {
 		Connection con = null;
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "sistprj", "tiger");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.10.91:1521:orcl", "sistprj", "tiger");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
