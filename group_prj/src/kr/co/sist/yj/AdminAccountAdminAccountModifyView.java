@@ -1,8 +1,10 @@
 package kr.co.sist.yj;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -18,9 +20,19 @@ import javax.swing.border.EmptyBorder;
 public class AdminAccountAdminAccountModifyView extends JPanel{
 	
 	private JButton jbtnAdminAccountAdminAccountModify;
+    private JButton jbtnAdminAccountAdmintAccountDelete;
 	private JButton jbtnAdminAccountAdmintAccountClose;
 	
 	public AdminAccountAdminAccountModifyView() {
+		
+    	//디자인(색깔,글씨) 설정
+    	Color white = new Color(255, 255, 255);
+    	Color lightblue = new Color(235, 235, 255);
+    	Font buttonFont = new Font("맑은 고딕", Font.BOLD, 18);
+    	
+    	//Dimension 사이즈 설정
+    	Dimension buttonSize = new Dimension(120, 40);
+		
 		setLayout(new BorderLayout());
 		
 		// ---------- 왼쪽 입력 패널 ----------
@@ -80,10 +92,22 @@ public class AdminAccountAdminAccountModifyView extends JPanel{
 		//Button 생성
 		JPanel jpAdminAccountAdminAccountModifyViewButtonPanel = new JPanel();
 		jpAdminAccountAdminAccountModifyViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		jpAdminAccountAdminAccountModifyViewButtonPanel.setBackground(white);
 		jbtnAdminAccountAdminAccountModify = new JButton("수정");
+		jbtnAdminAccountAdminAccountModify.setBackground(lightblue);
+		jbtnAdminAccountAdminAccountModify.setSize(buttonSize);
+		jbtnAdminAccountAdminAccountModify.setFont(buttonFont);
+        jbtnAdminAccountAdmintAccountDelete = new JButton("삭제");
+        jbtnAdminAccountAdmintAccountDelete.setBackground(lightblue);
+        jbtnAdminAccountAdmintAccountDelete.setSize(buttonSize);
+        jbtnAdminAccountAdmintAccountDelete.setFont(buttonFont);
 		jbtnAdminAccountAdmintAccountClose = new JButton("닫기");
+		jbtnAdminAccountAdmintAccountClose.setBackground(lightblue);
+		jbtnAdminAccountAdmintAccountClose.setSize(buttonSize);
+		jbtnAdminAccountAdmintAccountClose.setFont(buttonFont);
 		
 		jpAdminAccountAdminAccountModifyViewButtonPanel.add(jbtnAdminAccountAdminAccountModify);
+		jpAdminAccountAdminAccountModifyViewButtonPanel.add(jbtnAdminAccountAdmintAccountDelete);
 		jpAdminAccountAdminAccountModifyViewButtonPanel.add(jbtnAdminAccountAdmintAccountClose);
 		
 		//Component 배치
@@ -132,9 +156,10 @@ public class AdminAccountAdminAccountModifyView extends JPanel{
 		add(jpAdminAccountAdminAccountModifyViewPanel);
 	
 		//Button 이벤트 생성
-		AdminAccountAdminAccountModifyEvt aaaame = new AdminAccountAdminAccountModifyEvt(this);
-		jbtnAdminAccountAdminAccountModify.addActionListener(aaaame);
-		jbtnAdminAccountAdmintAccountClose.addActionListener(aaaame);
+		AdminAccountAdminAccountModifyEvt aaaamEvt = new AdminAccountAdminAccountModifyEvt(this);
+		jbtnAdminAccountAdminAccountModify.addActionListener(aaaamEvt);
+		jbtnAdminAccountAdmintAccountDelete.addActionListener(aaaamEvt);
+		jbtnAdminAccountAdmintAccountClose.addActionListener(aaaamEvt);
 
 	} //AdminAccountAdminAccountModifyView
 
@@ -142,6 +167,10 @@ public class AdminAccountAdminAccountModifyView extends JPanel{
 	public JButton getJbtnAdminAccountAdminAccountModify() {
 		return jbtnAdminAccountAdminAccountModify;
 	} //getJbtnAdminAccountAdminAccountModify
+	
+	public JButton getJbtnAdminAccountAdmintAccountDelete() {
+		return jbtnAdminAccountAdmintAccountDelete;
+	}
 
 	public JButton getJbtnAdminAccountAdmintAccountClose() {
 		return jbtnAdminAccountAdmintAccountClose;

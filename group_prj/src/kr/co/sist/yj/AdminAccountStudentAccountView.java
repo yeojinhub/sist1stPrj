@@ -25,9 +25,11 @@ import javax.swing.table.TableModel;
 @SuppressWarnings({ "serial", "unused" })
 public class AdminAccountStudentAccountView extends JPanel {
 	
+	private DefaultTableModel dftmStudentTableModel;
+	private JTable jtAdminAccountStudentAccountTable;
+	
 	private JButton jbtnAdminAccountStudentAccountCreate;
     private JButton jbtnAdminAccountStudentAccountModify;
-    private JButton jbtnAdminAccountStudentAccountDelete;
 	
     public AdminAccountStudentAccountView() {
 
@@ -58,8 +60,8 @@ public class AdminAccountStudentAccountView extends JPanel {
         };
 
         //Table Component 생성
-        DefaultTableModel dftmStudentTableModel = new DefaultTableModel(strAdminAccountStudentAccountTableData, strAdminAccountStudentAccountTableTitle);
-        JTable jtAdminAccountStudentAccountTable = new JTable(dftmStudentTableModel);
+        dftmStudentTableModel = new DefaultTableModel(strAdminAccountStudentAccountTableData, strAdminAccountStudentAccountTableTitle);
+        jtAdminAccountStudentAccountTable = new JTable(dftmStudentTableModel);
 
         //Table 열 정렬 설정
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -116,15 +118,10 @@ public class AdminAccountStudentAccountView extends JPanel {
         jbtnAdminAccountStudentAccountModify.setBackground(lightblue);
         jbtnAdminAccountStudentAccountModify.setSize(buttonSize);
         jbtnAdminAccountStudentAccountModify.setFont(buttonFont);
-        jbtnAdminAccountStudentAccountDelete = new JButton("삭제");
-        jbtnAdminAccountStudentAccountDelete.setBackground(lightblue);
-        jbtnAdminAccountStudentAccountDelete.setSize(buttonSize);
-        jbtnAdminAccountStudentAccountDelete.setFont(buttonFont);
         
         //Component 배치
         jpAdminAccountStudentAccountViewButtonPanel.add(jbtnAdminAccountStudentAccountCreate);
         jpAdminAccountStudentAccountViewButtonPanel.add(jbtnAdminAccountStudentAccountModify);
-        jpAdminAccountStudentAccountViewButtonPanel.add(jbtnAdminAccountStudentAccountDelete);
         
         //Panel 배치
         setLayout(new BorderLayout());
@@ -132,14 +129,24 @@ public class AdminAccountStudentAccountView extends JPanel {
         add(jpAdminAccountStudentAccountViewButtonPanel, BorderLayout.SOUTH);
         
         //Button 이벤트 생성
-        AdminAccountStudentAccountEvt aasae = new AdminAccountStudentAccountEvt(this); 
-        jbtnAdminAccountStudentAccountCreate.addActionListener(aasae);
-        jbtnAdminAccountStudentAccountModify.addActionListener(aasae);
-        jbtnAdminAccountStudentAccountDelete.addActionListener(aasae);
+        AdminAccountStudentAccountEvt aasaEvt = new AdminAccountStudentAccountEvt(this); 
+        jbtnAdminAccountStudentAccountCreate.addActionListener(aasaEvt);
+        jbtnAdminAccountStudentAccountModify.addActionListener(aasaEvt);
+        
+        //Mouse 이벤트 생성
+        jtAdminAccountStudentAccountTable.addMouseListener(aasaEvt);
         
     } //AdminAccountStudentAccountView
 
     //getter method
+	public DefaultTableModel getDftmStudentTableModel() {
+		return dftmStudentTableModel;
+	}
+
+	public JTable getJtAdminAccountStudentAccountTable() {
+		return jtAdminAccountStudentAccountTable;
+	}
+	
 	public JButton getJbtnAdminAccountStudentAccountCreate() {
 		return jbtnAdminAccountStudentAccountCreate;
 	} //getJbtnAdminAccountStudentAccountCreate
@@ -147,9 +154,5 @@ public class AdminAccountStudentAccountView extends JPanel {
 	public JButton getJbtnAdminAccountStudentAccountModify() {
 		return jbtnAdminAccountStudentAccountModify;
 	} //getJbtnAdminAccountStudentAccountModify
-
-	public JButton getJbtnAdminAccountStudentAccountDelete() {
-		return jbtnAdminAccountStudentAccountDelete;
-	} //getJbtnAdminAccountStudentAccountDelete
 
 } //class

@@ -34,8 +34,41 @@ public class AdminLoginDAO {
 		ResultSet rs=null;
 		
 		DbConnection dbCon = DbConnection.getInstance();
+		try {
+			con = dbCon.getConn();
+			StringBuilder strselectAdminLogin = new StringBuilder();
+			strselectAdminLogin
+			.append("	select adm_num,adm_pass,adm_name,adm_birth,adm_tel,adm_add	")
+			.append("	from	admin	")
+			.append("	where	adm_num=?	")
+			;
+			//3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
+			pstmt=con.prepareStatement( strselectAdminLogin.toString() );
+			
+			//4. bind 변수에 값 할당
+			pstmt.setInt(1, adm_num);
+			
+			//5. 쿼리문 수행 후 결과 얻기
+			rs=pstmt.executeQuery();
+			
+			if( rs.next() ) {
+				alVO = new AdminLoginVO();
+				
+				alVO.setAdm_num( rs.getInt("adm_num") );
+				alVO.setAdm_pass( rs.getString("adm_pass") );
+				alVO.setAdm_name( rs.getString("adm_name") );
+				alVO.setAdm_birth( rs.getString("adm_birth") );
+				alVO.setAdm_name( rs.getString("adm_name") );
+				alVO.setAdm_tel( rs.getString("adm_tel") );
+				alVO.setAdm_add( rs.getString("adm_add") );
+				
+			} //end if
+		} finally {
+			//6. 연결 끊기
+			dbCon.closeDB(rs, pstmt, con);
+		} //end try finally
 		
 		return alVO;
-	}
+	} //selectAdminLogin
 
 }

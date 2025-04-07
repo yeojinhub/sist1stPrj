@@ -22,7 +22,6 @@ public class AdminAccountAdminAccountView extends JPanel {
 
 	private JButton jbtnAdminAccountAdminAccountCreate;
     private JButton jbtnAdminAccountAdminAccountModify;
-    private JButton jbtnAdminAccountAdmintAccountDelete;
 	
     public AdminAccountAdminAccountView() {
     	
@@ -99,15 +98,10 @@ public class AdminAccountAdminAccountView extends JPanel {
         jbtnAdminAccountAdminAccountModify.setBackground(lightblue);
         jbtnAdminAccountAdminAccountModify.setSize(buttonSize);
         jbtnAdminAccountAdminAccountModify.setFont(buttonFont);
-        jbtnAdminAccountAdmintAccountDelete = new JButton("삭제");
-        jbtnAdminAccountAdmintAccountDelete.setBackground(lightblue);
-        jbtnAdminAccountAdmintAccountDelete.setSize(buttonSize);
-        jbtnAdminAccountAdmintAccountDelete.setFont(buttonFont);
         
         //Component 배치
         jpAdminAccountAdminAccountViewButtonPanel.add(jbtnAdminAccountAdminAccountCreate);
         jpAdminAccountAdminAccountViewButtonPanel.add(jbtnAdminAccountAdminAccountModify);
-        jpAdminAccountAdminAccountViewButtonPanel.add(jbtnAdminAccountAdmintAccountDelete);
 		
 		//Panel 배치
 		setLayout(new BorderLayout());
@@ -118,7 +112,6 @@ public class AdminAccountAdminAccountView extends JPanel {
 		AdminAccountAdminAccountEvt aaaae = new AdminAccountAdminAccountEvt(this);
 		jbtnAdminAccountAdminAccountCreate.addActionListener(aaaae);
 		jbtnAdminAccountAdminAccountModify.addActionListener(aaaae);
-		jbtnAdminAccountAdmintAccountDelete.addActionListener(aaaae);
 	} //AdminAccountAdminAccountView
 
     //getter method
@@ -130,8 +123,4 @@ public class AdminAccountAdminAccountView extends JPanel {
 		return jbtnAdminAccountAdminAccountModify;
 	} //getJbtnAdminAccountAdminAccountModify
 
-	public JButton getJbtnAdminAccountAdmintAccountDelete() {
-		return jbtnAdminAccountAdmintAccountDelete;
-	} //getJbtnAdminAccountAdmintAccountDelete
-	
 } //class

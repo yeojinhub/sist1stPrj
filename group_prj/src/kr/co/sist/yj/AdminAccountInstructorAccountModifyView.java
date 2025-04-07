@@ -1,8 +1,10 @@
 package kr.co.sist.yj;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -18,9 +20,19 @@ import javax.swing.border.EmptyBorder;
 public class AdminAccountInstructorAccountModifyView extends JPanel{
 	
 	private JButton jbtnAdminAccountInstructorAccountModify;
+    private JButton jbtnAdminAccountInstructorAccountDelete;
 	private JButton jbtnAdminAccountInstructorAccountClose;
 	
 	public AdminAccountInstructorAccountModifyView() {
+		
+		//디자인(색깔,글씨) 설정
+    	Color white = new Color(255, 255, 255);
+    	Color lightblue = new Color(235, 235, 255);
+    	Font buttonFont = new Font("맑은 고딕", Font.BOLD, 18);
+    	
+    	//Dimension 사이즈 설정
+    	Dimension buttonSize = new Dimension(120, 40);
+		
 		setLayout(new BorderLayout());
 		
 		// ---------- 왼쪽 입력 패널 ----------
@@ -80,10 +92,22 @@ public class AdminAccountInstructorAccountModifyView extends JPanel{
 		//Button 생성
 		JPanel jpAdminAccountInstructorAccountModifyViewButtonPanel = new JPanel();
 		jpAdminAccountInstructorAccountModifyViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		jpAdminAccountInstructorAccountModifyViewButtonPanel.setBackground(white);
 		jbtnAdminAccountInstructorAccountModify = new JButton("수정");
+		jbtnAdminAccountInstructorAccountModify.setBackground(lightblue);
+		jbtnAdminAccountInstructorAccountModify.setSize(buttonSize);
+		jbtnAdminAccountInstructorAccountModify.setFont(buttonFont);
+		jbtnAdminAccountInstructorAccountDelete = new JButton("삭제");
+		jbtnAdminAccountInstructorAccountDelete.setBackground(lightblue);
+		jbtnAdminAccountInstructorAccountDelete.setSize(buttonSize);
+		jbtnAdminAccountInstructorAccountDelete.setFont(buttonFont);
 		jbtnAdminAccountInstructorAccountClose = new JButton("닫기");
+		jbtnAdminAccountInstructorAccountClose.setBackground(lightblue);
+		jbtnAdminAccountInstructorAccountClose.setSize(buttonSize);
+		jbtnAdminAccountInstructorAccountClose.setFont(buttonFont);
 		
 		jpAdminAccountInstructorAccountModifyViewButtonPanel.add(jbtnAdminAccountInstructorAccountModify);
+		jpAdminAccountInstructorAccountModifyViewButtonPanel.add(jbtnAdminAccountInstructorAccountDelete);
 		jpAdminAccountInstructorAccountModifyViewButtonPanel.add(jbtnAdminAccountInstructorAccountClose);
 		
 		//Component 배치
@@ -134,6 +158,7 @@ public class AdminAccountInstructorAccountModifyView extends JPanel{
 		//Button 이벤트 생성
 		AdminAccountInstructorAccountModifyEvt aaiame = new AdminAccountInstructorAccountModifyEvt(this);
 		jbtnAdminAccountInstructorAccountModify.addActionListener(aaiame);
+		jbtnAdminAccountInstructorAccountDelete.addActionListener(aaiame);
 		jbtnAdminAccountInstructorAccountClose.addActionListener(aaiame);
 		
 	} //AdminAccountInstructorAccountModifyView
@@ -142,6 +167,10 @@ public class AdminAccountInstructorAccountModifyView extends JPanel{
 	public JButton getJbtnAdminAccountInstructorAccountModify() {
 		return jbtnAdminAccountInstructorAccountModify;
 	} //getJbtnAdminAccountInstructorAccountModify
+
+	public JButton getJbtnAdminAccountInstructorAccountDelete() {
+		return jbtnAdminAccountInstructorAccountDelete;
+	}
 
 	public JButton getJbtnAdminAccountInstructorAccountClose() {
 		return jbtnAdminAccountInstructorAccountClose;

@@ -10,15 +10,17 @@ import javax.swing.SwingUtilities;
 
 public class AdminAccountInstructorAccountModifyEvt implements ActionListener {
 
-	private AdminAccountInstructorAccountModifyView aaiamv;
+	private AdminAccountInstructorAccountModifyView aaiamView;
 	
 	private JButton jbtnAdminAccountInstructorAccountModify;
+	private JButton jbtnAdminAccountInstructorAccountDelete;
 	private JButton jbtnAdminAccountInstructorAccountClose;
 	
-	public AdminAccountInstructorAccountModifyEvt(AdminAccountInstructorAccountModifyView aaiamv){
-		this.aaiamv=aaiamv;
-		this.jbtnAdminAccountInstructorAccountModify=aaiamv.getJbtnAdminAccountInstructorAccountModify();
-		this.jbtnAdminAccountInstructorAccountClose=aaiamv.getJbtnAdminAccountInstructorAccountClose();
+	public AdminAccountInstructorAccountModifyEvt(AdminAccountInstructorAccountModifyView aaiamView){
+		this.aaiamView=aaiamView;
+		this.jbtnAdminAccountInstructorAccountModify=aaiamView.getJbtnAdminAccountInstructorAccountModify();
+		this.jbtnAdminAccountInstructorAccountDelete=aaiamView.getJbtnAdminAccountInstructorAccountDelete();
+		this.jbtnAdminAccountInstructorAccountClose=aaiamView.getJbtnAdminAccountInstructorAccountClose();
 	} //AdminAccountInstructorAccountModifyEvt
 	
 	@Override
@@ -28,13 +30,19 @@ public class AdminAccountInstructorAccountModifyEvt implements ActionListener {
 		if( source == jbtnAdminAccountInstructorAccountModify ) {
 			System.out.println("수정 버튼 실행");
 		} //end if
+		
+		if( source == jbtnAdminAccountInstructorAccountDelete ) {
+			System.out.println("삭제 버튼 실행");
+		} //end if
+		
 		if( source == jbtnAdminAccountInstructorAccountClose ) {
 			System.out.println("닫기 버튼 실행");
-			Window adminAccountInstructorAccountModifyWindow = SwingUtilities.getWindowAncestor(aaiamv);
+			Window adminAccountInstructorAccountModifyWindow = SwingUtilities.getWindowAncestor(aaiamView);
             if(adminAccountInstructorAccountModifyWindow instanceof JDialog) {
                 ((JDialog) adminAccountInstructorAccountModifyWindow).dispose();
             } //end if
 		} //end if
+		
 	} //actionPerformed
 
 } //class

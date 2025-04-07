@@ -25,14 +25,13 @@ import javax.swing.table.TableColumnModel;
 public class AdminCourseView extends JFrame{
 
 	@SuppressWarnings("unused")
-	private AdminMainView amv;
+	private AdminMainView amView;
 	
 	private JButton jbtnAdminCourseCreate;
 	private JButton jbtnAdminCourseModify;
-	private JButton jbtnAdminCourseDelete;
 	
-	public AdminCourseView(AdminMainView amv) {
-		this.amv=amv;
+	public AdminCourseView(AdminMainView amView) {
+		this.amView=amView;
 		
 		//디자인(색깔,글씨) 설정
 		Color white = new Color(255, 255, 255);
@@ -129,15 +128,10 @@ public class AdminCourseView extends JFrame{
         jbtnAdminCourseModify.setBackground(lightblue);
         jbtnAdminCourseModify.setSize(buttonSize);
         jbtnAdminCourseModify.setFont(buttonFont);
-        jbtnAdminCourseDelete = new JButton("삭제");
-        jbtnAdminCourseDelete.setBackground(lightblue);
-        jbtnAdminCourseDelete.setSize(buttonSize);
-        jbtnAdminCourseDelete.setFont(buttonFont);
         
         //Button 배치
         jpAdminCourseViewButtonPanel.add(jbtnAdminCourseCreate);
         jpAdminCourseViewButtonPanel.add(jbtnAdminCourseModify);
-        jpAdminCourseViewButtonPanel.add(jbtnAdminCourseDelete);
         
         //Panel 배치
         setLayout(new BorderLayout());
@@ -146,10 +140,9 @@ public class AdminCourseView extends JFrame{
         add(jpAdminCourseViewButtonPanel, BorderLayout.SOUTH);
         
         //Button 이벤트 생성
-        AdminCourseEvt ace = new AdminCourseEvt(amv, this);
-        jbtnAdminCourseCreate.addActionListener(ace);
-        jbtnAdminCourseModify.addActionListener(ace);
-        jbtnAdminCourseDelete.addActionListener(ace);
+        AdminCourseEvt acEvt = new AdminCourseEvt(amView, this);
+        jbtnAdminCourseCreate.addActionListener(acEvt);
+        jbtnAdminCourseModify.addActionListener(acEvt);
 		
 	} //AdminCourseView
 
@@ -162,8 +155,4 @@ public class AdminCourseView extends JFrame{
 		return jbtnAdminCourseModify;
 	} //getJbtnAdminCourseModify
 
-	public JButton getJbtnAdminCourseDelete() {
-		return jbtnAdminCourseDelete;
-	} //getJbtnAdminCourseDelete
-	
 } //class

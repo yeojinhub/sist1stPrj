@@ -26,22 +26,23 @@ public class DbConnection {
 	} //DbConnection getInstatnce
 	
 	public Connection getConn() throws SQLException {
-//		properties 파일 사용(소스코드에 계정정보를 하드코딩하지 않는다.)
+		//properties 파일 사용(소스코드에 계정정보를 하드코딩하지 않는다.)
 		String currentDir=System.getProperty("user.dir");
-		File file=new File(currentDir+"/src/day0325/properties/database.properties");
+		File file=new File(currentDir+"/src/kr/co/sist/yj/properties/database.properties");
 		if( !file.exists() ) {
 			throw new SQLException("database.properties가 지정된 경로에 존재하지 않습니다.");
 		} //end if
 		
-//		properties 생성
+		//properties 생성
 		Properties prop=new Properties();
-//		properties File 로딩
+		
 		@SuppressWarnings("unused")
 		String driver="";
 		String url="";
 		String id="";
 		String pass="";
 		
+		//properties File 로딩
 		try {
 			prop.load(new FileInputStream(file));
 			driver=prop.getProperty("driverClass");
@@ -53,30 +54,18 @@ public class DbConnection {
 		} //end try catch
 		
 		Connection con=null;
-//		1. Driver 로딩
+		//1. Driver 로딩
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 		} catch (ClassNotFoundException cnfe) {
 			cnfe.printStackTrace();
 		} //end try catch
 		
-//		2. Connection 얻기
-//		String url="";
-//		String id="";
-//		String pass="";
-		
+		//2. Connection 얻기
 		con=DriverManager.getConnection(url, id, pass);
 		
 		return con;
 	} //getConn
-	
-//	public static void main(String[] args) {
-//		try {
-//			System.out.println(new DbConnection().getConn());
-//		} catch (SQLException se) {
-//			se.printStackTrace();
-//		} //end try catch
-//	} //main
 	
 	public void closeDB(ResultSet rs, Statement stmt, Connection con) throws SQLException {
 		try {

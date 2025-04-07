@@ -12,43 +12,42 @@ import javax.swing.JFrame;
 
 public class AdminCourseEvt implements ActionListener{
 	
-	private AdminMainView amv;
+	private AdminMainView amView;
 	@SuppressWarnings("unused")
-	private AdminCourseView acv;
+	private AdminCourseView acView;
 	
 	private JButton jbtnAdminCourseCreate;
 	private JButton jbtnAdminCourseModify;
-	private JButton jbtnAdminCourseDelete;
 	
-	public AdminCourseEvt(AdminMainView amv, AdminCourseView acv) {
-		this.amv=amv;
-		this.acv=acv;
-		this.jbtnAdminCourseCreate=acv.getJbtnAdminCourseCreate();
-		this.jbtnAdminCourseModify=acv.getJbtnAdminCourseModify();
-		this.jbtnAdminCourseDelete=acv.getJbtnAdminCourseDelete();
+	public AdminCourseEvt(AdminMainView amView, AdminCourseView acView) {
+		this.amView=amView;
+		this.acView=acView;
+		this.jbtnAdminCourseCreate=acView.getJbtnAdminCourseCreate();
+		this.jbtnAdminCourseModify=acView.getJbtnAdminCourseModify();
 	} //AdminCourseEvt
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-		if( ae.getSource() == jbtnAdminCourseCreate ) {
+		Object source = ae.getSource();
+		
+		if( source == jbtnAdminCourseCreate ) {
 			System.out.println("등록 버튼 실행");
 			JDialog jdCourseCreateDialog = new JDialog((JFrame)null, "과정 등록", true);
 			jdCourseCreateDialog.getContentPane().add(new AdminCourseCreateView());
 			jdCourseCreateDialog.pack();
-			jdCourseCreateDialog.setLocationRelativeTo(amv);
+			jdCourseCreateDialog.setLocationRelativeTo(amView);
 			jdCourseCreateDialog.setVisible(true);
 		} //end if
-		if( ae.getSource() == jbtnAdminCourseModify ) {
+		
+		if( source == jbtnAdminCourseModify ) {
 			System.out.println("수정 버튼 실행");
 			JDialog jdCourseModifyDialog = new JDialog((JFrame)null, "과정 수정", true);
 			jdCourseModifyDialog.getContentPane().add(new AdminCourseModifyView());
 			jdCourseModifyDialog.pack();
-			jdCourseModifyDialog.setLocationRelativeTo(amv);
+			jdCourseModifyDialog.setLocationRelativeTo(amView);
 			jdCourseModifyDialog.setVisible(true);
 		} //end if
-		if( ae.getSource() == jbtnAdminCourseDelete ) {
-			System.out.println("삭제 버튼 실행");
-		} //end if
+		
 	} //actionPerformed
 
 } //class

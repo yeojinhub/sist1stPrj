@@ -19,6 +19,13 @@ import javax.swing.border.EmptyBorder;
 @SuppressWarnings("serial")
 public class AdminAccountStudentAccountCreateView extends JPanel{
 	
+	private JTextField jtfAdminAccountStudentAccountNameSet;
+	private JPasswordField jpfAdminAccountStudentAccountPassSet;
+	private JTextField jtfAdminAccountStudentAccountBirthSet;
+	private JTextField jtfAdminAccountStudentAccountTelSet;
+	private JTextField jtfAdminAccountStudentAccountAddressSet;
+	private JTextField jtfAdminAccountStudentAccountStatusSet;
+	
 	private JButton jbtnAdminAccountStudentAccountCreate;
     private JButton jbtnAdminAccountStudentAccountClose;
 	
@@ -42,33 +49,33 @@ public class AdminAccountStudentAccountCreateView extends JPanel{
         //Component 생성
         //이름 Component 생성
         JLabel jlblAdminAccountStudentAccountNameTitle = new JLabel("이름");
-        JTextField jtfAdminAccountStudentAccountNameText = new JTextField();
+        jtfAdminAccountStudentAccountNameSet = new JTextField();
         jlblAdminAccountStudentAccountNameTitle.setPreferredSize(labelSize);
-        jtfAdminAccountStudentAccountNameText.setPreferredSize(fieldSize);
+        jtfAdminAccountStudentAccountNameSet.setPreferredSize(fieldSize);
         
         //비밀번호 Component 생성
         JLabel jlblAdminAccountStudentAccountPassTitle = new JLabel("비밀번호");
-        JPasswordField jpfAdminAccountStudentAccountPassText = new JPasswordField();
+        jpfAdminAccountStudentAccountPassSet = new JPasswordField();
         jlblAdminAccountStudentAccountPassTitle.setPreferredSize(labelSize);
-        jpfAdminAccountStudentAccountPassText.setPreferredSize(fieldSize);
+        jpfAdminAccountStudentAccountPassSet.setPreferredSize(fieldSize);
 
         //생년월일 Component 생성
         JLabel jlblAdminAccountStudentAccountBirthTitle = new JLabel("생년월일");
-        JTextField jtfAdminAccountStudentAccountBirthText = new JTextField();
+        jtfAdminAccountStudentAccountBirthSet = new JTextField();
         jlblAdminAccountStudentAccountBirthTitle.setPreferredSize(labelSize);
-        jtfAdminAccountStudentAccountBirthText.setPreferredSize(fieldSize);
+        jtfAdminAccountStudentAccountBirthSet.setPreferredSize(fieldSize);
         
         //전화번호 Component 생성
         JLabel jlblAdminAccountStudentAccountTelTitle = new JLabel("전화번호");
-        JTextField jtfAdminAccountStudentAccountTelText = new JTextField();
+        jtfAdminAccountStudentAccountTelSet = new JTextField();
         jlblAdminAccountStudentAccountTelTitle.setPreferredSize(labelSize);
-        jtfAdminAccountStudentAccountTelText.setPreferredSize(fieldSize);
+        jtfAdminAccountStudentAccountTelSet.setPreferredSize(fieldSize);
 
         //주소 Component 생성
         JLabel jlblAdminAccountStudentAccountAddressTitle = new JLabel("주소");
-        JTextField jtfAdminAccountStudentAccountAddressText = new JTextField();
+        jtfAdminAccountStudentAccountAddressSet = new JTextField();
         jlblAdminAccountStudentAccountAddressTitle.setPreferredSize(labelSize);
-        jtfAdminAccountStudentAccountAddressText.setPreferredSize(fieldSize);
+        jtfAdminAccountStudentAccountAddressSet.setPreferredSize(fieldSize);
         
         //과정명 Component 생성
         JLabel jlblAdminAccountStudentAccountCourseNameTitle = new JLabel("과정명");
@@ -85,9 +92,9 @@ public class AdminAccountStudentAccountCreateView extends JPanel{
         
         //상태 Component 생성
         JLabel jlblAdminAccountStudentAccountStatusTitle = new JLabel("상태");
-        JTextField jtfAdminAccountStudentAccountStatusText = new JTextField();
+        jtfAdminAccountStudentAccountStatusSet = new JTextField();
         jlblAdminAccountStudentAccountStatusTitle.setPreferredSize(labelSize);
-        jtfAdminAccountStudentAccountStatusText.setPreferredSize(fieldSize);
+        jtfAdminAccountStudentAccountStatusSet.setPreferredSize(fieldSize);
         
         //교육기간 Component 생성
         JLabel jlblAdminAccountStudentAccountCourseDateTitle = new JLabel("교육 기간");
@@ -115,31 +122,31 @@ public class AdminAccountStudentAccountCreateView extends JPanel{
         gbc.gridx = 0; gbc.gridy = 0;
         jpAdminAccountStudentAccountCreateViewPanel.add(jlblAdminAccountStudentAccountNameTitle, gbc);
         gbc.gridx = 1;
-        jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountNameText, gbc);
+        jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountNameSet, gbc);
         
         //비밀번호 Component 배치
         gbc.gridx = 0; gbc.gridy = 1;
         jpAdminAccountStudentAccountCreateViewPanel.add(jlblAdminAccountStudentAccountPassTitle, gbc);
         gbc.gridx = 1;
-        jpAdminAccountStudentAccountCreateViewPanel.add(jpfAdminAccountStudentAccountPassText, gbc);
+        jpAdminAccountStudentAccountCreateViewPanel.add(jpfAdminAccountStudentAccountPassSet, gbc);
 
         //생년월일 Component 배치
         gbc.gridx = 0; gbc.gridy = 2;
         jpAdminAccountStudentAccountCreateViewPanel.add(jlblAdminAccountStudentAccountBirthTitle, gbc);
         gbc.gridx = 1;
-        jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountBirthText, gbc);
+        jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountBirthSet, gbc);
         
         //전화번호 Component 배치
         gbc.gridx = 0; gbc.gridy = 3;
         jpAdminAccountStudentAccountCreateViewPanel.add(jlblAdminAccountStudentAccountTelTitle, gbc);
         gbc.gridx = 1;
-        jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountTelText, gbc);
+        jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountTelSet, gbc);
 
         //주소 Component 배치
         gbc.gridx = 0; gbc.gridy = 4;
         jpAdminAccountStudentAccountCreateViewPanel.add(jlblAdminAccountStudentAccountAddressTitle, gbc);
         gbc.gridx = 1;
-        jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountAddressText, gbc);
+        jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountAddressSet, gbc);
         
         //과정명 Component 배치
         gbc.gridx = 0; gbc.gridy = 5;
@@ -163,7 +170,7 @@ public class AdminAccountStudentAccountCreateView extends JPanel{
         gbc.gridx = 0; gbc.gridy = 8;
         jpAdminAccountStudentAccountCreateViewPanel.add(jlblAdminAccountStudentAccountStatusTitle, gbc);
         gbc.gridx = 1;
-        jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountStatusText, gbc);
+        jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountStatusSet, gbc);
         
         //기수 Component 배치
         gbc.gridx = 0; gbc.gridy = 9;
@@ -187,10 +194,34 @@ public class AdminAccountStudentAccountCreateView extends JPanel{
     } //AdminAccountStudentAccountView
 
     //getter method
+	public JTextField getJtfAdminAccountStudentAccountNameSet() {
+		return jtfAdminAccountStudentAccountNameSet;
+	}
+
+	public JPasswordField getJpfAdminAccountStudentAccountPassSet() {
+		return jpfAdminAccountStudentAccountPassSet;
+	}
+
+	public JTextField getJtfAdminAccountStudentAccountBirthSet() {
+		return jtfAdminAccountStudentAccountBirthSet;
+	}
+
+	public JTextField getJtfAdminAccountStudentAccountTelSet() {
+		return jtfAdminAccountStudentAccountTelSet;
+	}
+
+	public JTextField getJtfAdminAccountStudentAccountAddressSet() {
+		return jtfAdminAccountStudentAccountAddressSet;
+	}
+
+	public JTextField getJtfAdminAccountStudentAccountStatusSet() {
+		return jtfAdminAccountStudentAccountStatusSet;
+	}
+
 	public JButton getJbtnAdminAccountStudentAccountCreate() {
 		return jbtnAdminAccountStudentAccountCreate;
 	} //getJbtnAdminAccountStudentAccountCreate
-
+	
 	public JButton getJbtnAdminAccountStudentAccountClose() {
 		return jbtnAdminAccountStudentAccountClose;
 	} //getJbtnAdminAccountStudentAccountClose

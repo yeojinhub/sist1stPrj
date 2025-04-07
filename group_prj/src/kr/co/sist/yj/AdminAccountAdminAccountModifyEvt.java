@@ -10,15 +10,17 @@ import javax.swing.SwingUtilities;
 
 public class AdminAccountAdminAccountModifyEvt implements ActionListener {
 	
-	private AdminAccountAdminAccountModifyView aaaamv;
+	private AdminAccountAdminAccountModifyView aaaamView;
 	
 	private JButton jbtnAdminAccountAdminAccountModify;
+    private JButton jbtnAdminAccountAdmintAccountDelete;
 	private JButton jbtnAdminAccountAdmintAccountClose;
 
-	public AdminAccountAdminAccountModifyEvt(AdminAccountAdminAccountModifyView aaaamv){
-		this.aaaamv=aaaamv;
-		this.jbtnAdminAccountAdminAccountModify=aaaamv.getJbtnAdminAccountAdminAccountModify();
-		this.jbtnAdminAccountAdmintAccountClose=aaaamv.getJbtnAdminAccountAdmintAccountClose();
+	public AdminAccountAdminAccountModifyEvt(AdminAccountAdminAccountModifyView aaaamView){
+		this.aaaamView=aaaamView;
+		this.jbtnAdminAccountAdminAccountModify=aaaamView.getJbtnAdminAccountAdminAccountModify();
+		this.jbtnAdminAccountAdmintAccountDelete=aaaamView.getJbtnAdminAccountAdmintAccountDelete();
+		this.jbtnAdminAccountAdmintAccountClose=aaaamView.getJbtnAdminAccountAdmintAccountClose();
 	} //AdminAccountAdminAccountModifyEvt
 	
 	@Override
@@ -28,13 +30,19 @@ public class AdminAccountAdminAccountModifyEvt implements ActionListener {
 		if( source == jbtnAdminAccountAdminAccountModify ) {
 			System.out.println("수정 버튼 실행");
 		} //end if
+		
+		if( source == jbtnAdminAccountAdmintAccountDelete ) {
+			System.out.println("삭제 버튼 실행");
+		} //end if
+		
 		if( source == jbtnAdminAccountAdmintAccountClose ) {
 			System.out.println("닫기 버튼 실행");
-			Window adminAccountAdminAccountModifyWindow = SwingUtilities.getWindowAncestor(aaaamv);
+			Window adminAccountAdminAccountModifyWindow = SwingUtilities.getWindowAncestor(aaaamView);
             if(adminAccountAdminAccountModifyWindow instanceof JDialog) {
                 ((JDialog) adminAccountAdminAccountModifyWindow).dispose();
             } //end if
 		} //end if
+		
 	} //actionPerformed
 
 } //class

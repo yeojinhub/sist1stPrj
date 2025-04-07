@@ -1,8 +1,10 @@
 package kr.co.sist.yj;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -18,9 +20,19 @@ import javax.swing.border.EmptyBorder;
 public class AdminCourseModifyView extends JPanel{
 	
 	private JButton jbtnAdminCourseModify;
+	private JButton jbtnAdminCourseDelete;
 	private JButton jbtnAdminCourseClose;
 	
 	public AdminCourseModifyView() {
+		
+		//디자인(색깔,글씨) 설정
+		Color white = new Color(255, 255, 255);
+		Color lightblue = new Color(235, 235, 255);
+		Font buttonFont = new Font("맑은 고딕", Font.BOLD, 18);
+		
+		//Dimension 사이즈 설정
+		Dimension buttonSize = new Dimension(120, 40);
+		
 		setLayout(new BorderLayout());
 		
 		// ---------- 왼쪽 입력 패널 ----------
@@ -80,10 +92,22 @@ public class AdminCourseModifyView extends JPanel{
         //Button 생성
         JPanel jpAdminCourseModifyViewButtonPanel = new JPanel();
         jpAdminCourseModifyViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        jpAdminCourseModifyViewButtonPanel.setBackground(white);
         jbtnAdminCourseModify = new JButton("수정");
+        jbtnAdminCourseModify.setBackground(lightblue);
+        jbtnAdminCourseModify.setSize(buttonSize);
+        jbtnAdminCourseModify.setFont(buttonFont);
+        jbtnAdminCourseDelete = new JButton("삭제");
+        jbtnAdminCourseDelete.setBackground(lightblue);
+        jbtnAdminCourseDelete.setSize(buttonSize);
+        jbtnAdminCourseDelete.setFont(buttonFont);
         jbtnAdminCourseClose = new JButton("닫기");
+        jbtnAdminCourseClose.setBackground(lightblue);
+        jbtnAdminCourseClose.setSize(buttonSize);
+        jbtnAdminCourseClose.setFont(buttonFont);
         
         jpAdminCourseModifyViewButtonPanel.add(jbtnAdminCourseModify);
+        jpAdminCourseModifyViewButtonPanel.add(jbtnAdminCourseDelete);
         jpAdminCourseModifyViewButtonPanel.add(jbtnAdminCourseClose);
         
         //Component 배치
@@ -133,9 +157,10 @@ public class AdminCourseModifyView extends JPanel{
         add(jpAdminCourseModifyViewPanel, BorderLayout.WEST);
         
         //Button 이벤트 생성
-        AdminCourseModifyEvt acme = new AdminCourseModifyEvt(this);
-        jbtnAdminCourseModify.addActionListener(acme);
-        jbtnAdminCourseClose.addActionListener(acme);
+        AdminCourseModifyEvt acmEvt = new AdminCourseModifyEvt(this);
+        jbtnAdminCourseModify.addActionListener(acmEvt);
+        jbtnAdminCourseDelete.addActionListener(acmEvt);
+        jbtnAdminCourseClose.addActionListener(acmEvt);
 		
 	} //AdminCourseModifyView
 
@@ -143,6 +168,10 @@ public class AdminCourseModifyView extends JPanel{
 	public JButton getJbtnAdminCourseModify() {
 		return jbtnAdminCourseModify;
 	} //getJbtnAdminCourseModify
+	
+	public JButton getJbtnAdminCourseDelete() {
+		return jbtnAdminCourseDelete;
+	}
 
 	public JButton getJbtnAdminCourseClose() {
 		return jbtnAdminCourseClose;

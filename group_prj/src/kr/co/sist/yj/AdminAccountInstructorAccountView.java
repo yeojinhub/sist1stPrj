@@ -23,7 +23,6 @@ public class AdminAccountInstructorAccountView extends JPanel{
 
 	private JButton jbtnAdminAccountInstructorAccountCreate;
     private JButton jbtnAdminAccountInstructorAccountModify;
-    private JButton jbtnAdminAccountInstructorAccountDelete;
     
 	public AdminAccountInstructorAccountView() {
         
@@ -101,15 +100,10 @@ public class AdminAccountInstructorAccountView extends JPanel{
         jbtnAdminAccountInstructorAccountModify.setBackground(lightblue);
         jbtnAdminAccountInstructorAccountModify.setSize(buttonSize);
         jbtnAdminAccountInstructorAccountModify.setFont(buttonFont);
-        jbtnAdminAccountInstructorAccountDelete = new JButton("삭제");
-        jbtnAdminAccountInstructorAccountDelete.setBackground(lightblue);
-        jbtnAdminAccountInstructorAccountDelete.setSize(buttonSize);
-        jbtnAdminAccountInstructorAccountDelete.setFont(buttonFont);
         
         //Component 배치
         jpAdminAccountInstructorAccountViewButtonPanel.add(jbtnAdminAccountInstructorAccountCreate);
         jpAdminAccountInstructorAccountViewButtonPanel.add(jbtnAdminAccountInstructorAccountModify);
-        jpAdminAccountInstructorAccountViewButtonPanel.add(jbtnAdminAccountInstructorAccountDelete);
 
 		//Panel 배치
 		setLayout(new BorderLayout());
@@ -120,7 +114,6 @@ public class AdminAccountInstructorAccountView extends JPanel{
 		AdminAccountInstructorAccountEvt aaiae = new AdminAccountInstructorAccountEvt(this);
 		jbtnAdminAccountInstructorAccountCreate.addActionListener(aaiae);
 		jbtnAdminAccountInstructorAccountModify.addActionListener(aaiae);
-		jbtnAdminAccountInstructorAccountDelete.addActionListener(aaiae);
 		
 	} //AdminAccountInstructorAccountView
 
@@ -132,9 +125,5 @@ public class AdminAccountInstructorAccountView extends JPanel{
 	public JButton getJbtnAdminAccountInstructorAccountModify() {
 		return jbtnAdminAccountInstructorAccountModify;
 	} //getJbtnAdminAccountInstructorAccountModify
-
-	public JButton getJbtnAdminAccountInstructorAccountDelete() {
-		return jbtnAdminAccountInstructorAccountDelete;
-	} //getJbtnAdminAccountInstructorAccountDelete
 	
 } //class
