@@ -17,6 +17,12 @@ import javax.swing.border.EmptyBorder;
 @SuppressWarnings("serial")
 public class AdminCourseCreateView extends JPanel{
 
+	private JTextField jtfAdminCourseCardinalSet;
+	private JTextField jtfAdminCourseNameSet;
+	private JTextField jtfAdminCourseStatusSet;
+	private JTextField jtfAdminCourseStartdateSet;
+	private JTextField jtfAdminCourseEnddateSet;
+	
 	private JButton jbtnAdminCourseCreate;
 	private JButton jbtnAdminCourseClose;
 	
@@ -41,21 +47,21 @@ public class AdminCourseCreateView extends JPanel{
         //Component 생성
         //기수 Component 생성
         JLabel jlblAdminCourseCardinalTitle = new JLabel("기수");
-        JTextField jtfAdminCourseCardinalText = new JTextField();
         jlblAdminCourseCardinalTitle.setPreferredSize(labelSize);
-        jtfAdminCourseCardinalText.setPreferredSize(fieldSize);
+        jtfAdminCourseCardinalSet = new JTextField();
+        jtfAdminCourseCardinalSet.setPreferredSize(fieldSize);
         
         //과정명 Component 생성
         JLabel jlblAdminCourseNameTitle = new JLabel("과정명");
-        JTextField jtfAdminCourseNameText = new JTextField();
         jlblAdminCourseNameTitle.setPreferredSize(labelSize);
-        jtfAdminCourseNameText.setPreferredSize(fieldSize);
+        jtfAdminCourseNameSet = new JTextField();
+        jtfAdminCourseNameSet.setPreferredSize(fieldSize);
         
         //진행상태 Component 생성
         JLabel jlblAdminCourseStatusTitle = new JLabel("진행상태");
-        JTextField jtfAdminCourseStatusText = new JTextField();
         jlblAdminCourseStatusTitle.setPreferredSize(labelSize);
-        jtfAdminCourseStatusText.setPreferredSize(fieldSize);
+        jtfAdminCourseStatusSet = new JTextField();
+        jtfAdminCourseStatusSet.setPreferredSize(fieldSize);
         
         //담당강사 Component 생성
         JLabel jlblAdminCourseInstructorNameTitle = new JLabel("담당강사");
@@ -68,15 +74,15 @@ public class AdminCourseCreateView extends JPanel{
         
         //시작일 Component 생성
         JLabel jlblAdminCourseStartdateTitle = new JLabel("시작일");
-        JTextField jtfAdminCourseStartdateText = new JTextField();
         jlblAdminCourseStartdateTitle.setPreferredSize(labelSize);
-        jtfAdminCourseStartdateText.setPreferredSize(fieldSize);
+        jtfAdminCourseStartdateSet = new JTextField();
+        jtfAdminCourseStartdateSet.setPreferredSize(fieldSize);
         
         //종료일 Component 생성
         JLabel jlblAdminCourseEnddateTitle = new JLabel("종료일");
-        JTextField jtfAdminCourseEnddateText = new JTextField();
         jlblAdminCourseEnddateTitle.setPreferredSize(labelSize);
-        jtfAdminCourseEnddateText.setPreferredSize(fieldSize);
+        jtfAdminCourseEnddateSet = new JTextField();
+        jtfAdminCourseEnddateSet.setPreferredSize(fieldSize);
         
         //Button 생성
         JPanel jpAdminCourseCreateViewButtonPanel = new JPanel();
@@ -92,19 +98,19 @@ public class AdminCourseCreateView extends JPanel{
         gbc.gridx = 0; gbc.gridy = 0;
         jpAdminCourseCreateViewPanel.add(jlblAdminCourseNameTitle, gbc);
         gbc.gridx = 1;
-        jpAdminCourseCreateViewPanel.add(jtfAdminCourseNameText, gbc);
+        jpAdminCourseCreateViewPanel.add(jtfAdminCourseNameSet, gbc);
         
         //기수 Component 배치
         gbc.gridx = 0; gbc.gridy = 1;
         jpAdminCourseCreateViewPanel.add(jlblAdminCourseCardinalTitle, gbc);
         gbc.gridx = 1;
-        jpAdminCourseCreateViewPanel.add(jtfAdminCourseCardinalText, gbc);
+        jpAdminCourseCreateViewPanel.add(jtfAdminCourseCardinalSet, gbc);
         
         //진행상태 Component 배치
         gbc.gridx = 0; gbc.gridy = 2;
         jpAdminCourseCreateViewPanel.add(jlblAdminCourseStatusTitle, gbc);
         gbc.gridx = 1;
-        jpAdminCourseCreateViewPanel.add(jtfAdminCourseStatusText, gbc);
+        jpAdminCourseCreateViewPanel.add(jtfAdminCourseStatusSet, gbc);
         
         //담당강사 Component 배치
         gbc.gridx = 0; gbc.gridy = 3;
@@ -116,13 +122,13 @@ public class AdminCourseCreateView extends JPanel{
         gbc.gridx = 0; gbc.gridy = 4;
         jpAdminCourseCreateViewPanel.add(jlblAdminCourseStartdateTitle, gbc);
         gbc.gridx = 1;
-        jpAdminCourseCreateViewPanel.add(jtfAdminCourseStartdateText, gbc);
+        jpAdminCourseCreateViewPanel.add(jtfAdminCourseStartdateSet, gbc);
         
         //종료일 Component 배치
         gbc.gridx = 0; gbc.gridy = 5;
         jpAdminCourseCreateViewPanel.add(jlblAdminCourseEnddateTitle, gbc);
         gbc.gridx = 1;
-        jpAdminCourseCreateViewPanel.add(jtfAdminCourseEnddateText, gbc);
+        jpAdminCourseCreateViewPanel.add(jtfAdminCourseEnddateSet, gbc);
         
         //버튼 Component 배치
         gbc.gridx = 0; gbc.gridy = 6;
@@ -141,6 +147,26 @@ public class AdminCourseCreateView extends JPanel{
 	} //AdminCourseCreateView
 
 	//getter method
+	public JTextField getJtfAdminCourseCardinalSet() {
+		return jtfAdminCourseCardinalSet;
+	}
+
+	public JTextField getJtfAdminCourseNameSet() {
+		return jtfAdminCourseNameSet;
+	}
+
+	public JTextField getJtfAdminCourseStatusSet() {
+		return jtfAdminCourseStatusSet;
+	}
+
+	public JTextField getJtfAdminCourseStartdateSet() {
+		return jtfAdminCourseStartdateSet;
+	}
+
+	public JTextField getJtfAdminCourseEnddateSet() {
+		return jtfAdminCourseEnddateSet;
+	}
+	
 	public JButton getJbtnAdminCourseCreate() {
 		return jbtnAdminCourseCreate;
 	} //getJbtnAdminCourseCreate

@@ -3,6 +3,9 @@ package kr.co.sist.yj;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -10,7 +13,7 @@ import javax.swing.JFrame;
 
 //import kr.co.sist.view.AdminCourseView;
 
-public class AdminCourseEvt implements ActionListener{
+public class AdminCourseEvt implements ActionListener, MouseListener {
 	
 	private AdminMainView amView;
 	@SuppressWarnings("unused")
@@ -18,6 +21,8 @@ public class AdminCourseEvt implements ActionListener{
 	
 	private JButton jbtnAdminCourseCreate;
 	private JButton jbtnAdminCourseModify;
+	
+	private List<AdminCourseVO> courseList;
 	
 	public AdminCourseEvt(AdminMainView amView, AdminCourseView acView) {
 		this.amView=amView;
@@ -49,5 +54,26 @@ public class AdminCourseEvt implements ActionListener{
 		} //end if
 		
 	} //actionPerformed
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+	}
 
 } //class

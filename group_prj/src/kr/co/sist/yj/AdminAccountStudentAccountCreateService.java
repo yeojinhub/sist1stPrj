@@ -10,7 +10,7 @@ public class AdminAccountStudentAccountCreateService {
 		AdminAccountStudentAccountCreateDAO aasacDAO = AdminAccountStudentAccountCreateDAO.getInstance();
 		
 		try {
-			aasacDAO.insertAdminAccountStudentAccountCreate(aasacVO);
+			aasacDAO.insertStudentAccountMember(aasacVO);
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (IOException ie) {

@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,6 +24,11 @@ import javax.swing.table.TableColumnModel;
 
 @SuppressWarnings("serial")
 public class AdminCourseView extends JFrame{
+	
+	private DefaultTableModel dftmAdminCourseTableModel ;
+	private JTable jtAdminCourseTable;
+	
+	private List<AdminCourseVO> courseList;
 
 	@SuppressWarnings("unused")
 	private AdminMainView amView;
@@ -74,8 +80,8 @@ public class AdminCourseView extends JFrame{
         };
 
         //Table Component 생성
-        DefaultTableModel dftmAdminCourseTableModel = new DefaultTableModel(strAdminCourseTableData, strAdminCourseTableTitle);
-        JTable jtAdminCourseTable = new JTable(dftmAdminCourseTableModel);
+        dftmAdminCourseTableModel = new DefaultTableModel(strAdminCourseTableData, strAdminCourseTableTitle);
+        jtAdminCourseTable = new JTable(dftmAdminCourseTableModel);
         
         //Table 열 정렬 설정
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -144,9 +150,28 @@ public class AdminCourseView extends JFrame{
         jbtnAdminCourseCreate.addActionListener(acEvt);
         jbtnAdminCourseModify.addActionListener(acEvt);
 		
+        //Mouse 이벤트 생성
+        jtAdminCourseTable.addMouseListener(acEvt);
+        
 	} //AdminCourseView
 
 	//getter method
+	public DefaultTableModel getDftmAdminCourseTableModel() {
+		return dftmAdminCourseTableModel;
+	}
+
+	public JTable getJtAdminCourseTable() {
+		return jtAdminCourseTable;
+	}
+	
+	public List<AdminCourseVO> getCourseList() {
+		return courseList;
+	}
+
+	public void setCourseList(List<AdminCourseVO> courseList) {
+		this.courseList = courseList;
+	}
+	
 	public JButton getJbtnAdminCourseCreate() {
 		return jbtnAdminCourseCreate;
 	} //getJbtnAdminCourseCreate

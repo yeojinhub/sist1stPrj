@@ -23,7 +23,7 @@ public class AdminAccountStudentAccountCreateDAO {
 		return aasacVO;
 	} //getInstance
 	
-	public void insertAdminAccountStudentAccountCreate(AdminAccountStudentAccountCreateVO aasacVO) throws SQLException, IOException {
+	public void insertStudentAccountMember(AdminAccountStudentAccountCreateVO aasacVO) throws SQLException, IOException {
 		
 		//1. Driver 로딩
 		//2. Connection 연결
@@ -58,11 +58,12 @@ public class AdminAccountStudentAccountCreateDAO {
 			
 			//5. 쿼리문 수행 후 결과 얻기
 			pstmt.executeUpdate();
+			
 		} finally {
 			//6. 연결 끊기
 			dbConn.closeDB(null, pstmt, con);
 		} //end try finally
 		
-	} //insertAdminAccountStudentAccountCreate
+	} //insertStudentAccountMember
 	
 } //class

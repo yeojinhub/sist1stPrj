@@ -14,15 +14,15 @@ import javax.swing.SwingUtilities;
 
 public class AdminAccountStudentAccountCreateEvt implements ActionListener {
 	
-	private AdminAccountStudentAccountCreateView aasacv;
+	private AdminAccountStudentAccountCreateView aasacView;
 	
 	private JButton jbtnAdminAccountStudentAccountCreate;
     private JButton jbtnAdminAccountStudentAccountClose;
     
-    public AdminAccountStudentAccountCreateEvt(AdminAccountStudentAccountCreateView aasacv) {
-    	this.aasacv=aasacv;
-    	this.jbtnAdminAccountStudentAccountCreate=aasacv.getJbtnAdminAccountStudentAccountCreate();
-    	this.jbtnAdminAccountStudentAccountClose=aasacv.getJbtnAdminAccountStudentAccountClose();
+    public AdminAccountStudentAccountCreateEvt(AdminAccountStudentAccountCreateView aasacView) {
+    	this.aasacView=aasacView;
+    	this.jbtnAdminAccountStudentAccountCreate=aasacView.getJbtnAdminAccountStudentAccountCreate();
+    	this.jbtnAdminAccountStudentAccountClose=aasacView.getJbtnAdminAccountStudentAccountClose();
     } //AdminAccountStudentAccountCreateEvt
 
 	@Override
@@ -33,9 +33,10 @@ public class AdminAccountStudentAccountCreateEvt implements ActionListener {
 			System.out.println("생성 버튼 실행");
 			addMember();
 		} //end if
+		
 		if( source == jbtnAdminAccountStudentAccountClose ) {
 			System.out.println("닫기 버튼 실행");
-			Window adminAccountStudentAccountCreateWindow = SwingUtilities.getWindowAncestor(aasacv);
+			Window adminAccountStudentAccountCreateWindow = SwingUtilities.getWindowAncestor(aasacView);
             if(adminAccountStudentAccountCreateWindow instanceof JDialog) {
                 ((JDialog) adminAccountStudentAccountCreateWindow).dispose();
             } //end if
@@ -43,15 +44,29 @@ public class AdminAccountStudentAccountCreateEvt implements ActionListener {
 		
 	} //actionPerformed
 	
+	private void inputFieldReset() {
+		
+		//입력 field 초기화
+		aasacView.getJtfAdminAccountStudentAccountNameSet().setText("");
+		aasacView.getJpfAdminAccountStudentAccountPassSet().setText("");
+		aasacView.getJtfAdminAccountStudentAccountBirthSet().setText("");
+		aasacView.getJtfAdminAccountStudentAccountTelSet().setText("");
+		aasacView.getJtfAdminAccountStudentAccountStatusSet().setText("");
+		
+		//field focus
+		aasacView.getJtfAdminAccountStudentAccountNameSet().requestFocus();
+		
+	} //inputFieldReset
+	
 	public void addMember() {
 		
 		//VO에 입력 값 저장
 		AdminAccountStudentAccountCreateVO aasacVO = new AdminAccountStudentAccountCreateVO();
-		aasacVO.setStu_name( aasacv.getJtfAdminAccountStudentAccountNameSet().getText().trim() );
-		char[] studentPasswordArray = aasacv.getJpfAdminAccountStudentAccountPassSet().getPassword();
+		aasacVO.setStu_name( aasacView.getJtfAdminAccountStudentAccountNameSet().getText().trim() );
+		char[] studentPasswordArray = aasacView.getJpfAdminAccountStudentAccountPassSet().getPassword();
 		String strStudentPassword = new String(studentPasswordArray).trim();
 		aasacVO.setStu_pass( strStudentPassword );
-		String strStudentBirth = new String( aasacv.getJtfAdminAccountStudentAccountBirthSet().getText().trim() );
+		String strStudentBirth = new String( aasacView.getJtfAdminAccountStudentAccountBirthSet().getText().trim() );
 
 		if( !strStudentBirth.isEmpty() ) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -66,9 +81,9 @@ public class AdminAccountStudentAccountCreateEvt implements ActionListener {
 		} else {
 			aasacVO.setStu_birth( null );
 		} //end if else
-		aasacVO.setStu_tel( aasacv.getJtfAdminAccountStudentAccountTelSet().getText().trim() );
-		aasacVO.setStu_add( aasacv.getJtfAdminAccountStudentAccountAddressSet().getText().trim() );
-		aasacVO.setStu_status( aasacv.getJtfAdminAccountStudentAccountStatusSet().getText().trim() );
+		aasacVO.setStu_tel( aasacView.getJtfAdminAccountStudentAccountTelSet().getText().trim() );
+		aasacVO.setStu_add( aasacView.getJtfAdminAccountStudentAccountAddressSet().getText().trim() );
+		aasacVO.setStu_status( aasacView.getJtfAdminAccountStudentAccountStatusSet().getText().trim() );
 		
 		//메세지 생성
 		AdminAccountStudentAccountCreateService aasacService = new AdminAccountStudentAccountCreateService();
@@ -78,14 +93,10 @@ public class AdminAccountStudentAccountCreateEvt implements ActionListener {
 		} //end if
 		
 		//입력 field 초기화
-		aasacv.getJtfAdminAccountStudentAccountNameSet().setText("");
-		aasacv.getJpfAdminAccountStudentAccountPassSet().setText("");
-		aasacv.getJtfAdminAccountStudentAccountBirthSet().setText("");
-		aasacv.getJtfAdminAccountStudentAccountTelSet().setText("");
-		aasacv.getJtfAdminAccountStudentAccountStatusSet().setText("");
+		inputFieldReset();
 		
 		//메세지 출력
-		JOptionPane.showMessageDialog(aasacv, out_msg);
+		JOptionPane.showMessageDialog(aasacView, out_msg);
 		
 	} //addMember
 
