@@ -105,7 +105,7 @@ public class AdminMainView extends JFrame{
 		//Window 크기 설정
 		setSize(750,710);
 		setVisible(true);
-//		setResizable(false);
+		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 	} //AdminMainView
