@@ -77,7 +77,7 @@ public class AdminMainView extends JFrame{
 		jpAdminCourseViewWindow.setBackground(white);
 		
 		JPanel jpAdminExamViewWindow = new JPanel();
-		AdminExamView aev = new AdminExamView();
+		AdminExamView aev = new AdminExamView(this);
 		jpAdminExamViewWindow.add(aev.getContentPane());
 		jpAdminExamViewWindow.setBackground(white);
 		

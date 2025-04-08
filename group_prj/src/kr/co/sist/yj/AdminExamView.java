@@ -25,8 +25,13 @@ public class AdminExamView extends JFrame {
 	private JButton jbtnAdminExamModify;
 	private JButton jbtnAdminExamDelete;
 	
-	public AdminExamView() {
+	@SuppressWarnings("unused")
+	private AdminMainView amv;
+	
+	public AdminExamView(AdminMainView amv) {
+		this.amv=amv;
 		
+		setLocationRelativeTo(this);
 		//디자인(색깔,글씨) 설정
 		Color white = new Color(255, 255, 255);
 		Color lightblue = new Color(235, 235, 255);
@@ -134,7 +139,7 @@ public class AdminExamView extends JFrame {
         add(jpAdminExamViewButtonPanel, BorderLayout.SOUTH);
         
         //Button 이벤트 생성
-        AdminExamEvt aee = new AdminExamEvt(this);
+        AdminExamEvt aee = new AdminExamEvt(amv,this);
         jbtnAdminExamCreate.addActionListener(aee);
         jbtnAdminExamModify.addActionListener(aee);
         jbtnAdminExamDelete.addActionListener(aee);

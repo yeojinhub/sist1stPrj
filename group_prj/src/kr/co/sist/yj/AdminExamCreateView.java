@@ -21,9 +21,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("serial")
-public class AdminExamModifyView extends JPanel {
+public class AdminExamCreateView extends JPanel {
 
-    private JButton jbtnAdminExamModify;
+    private JButton jbtnAdminExamCreate;
     private JButton jbtnAdminExamClose;
 
     private JLabel jlblSubjectNameSet, jlblNameSet;
@@ -35,7 +35,7 @@ public class AdminExamModifyView extends JPanel {
     
     
 
-    public AdminExamModifyView() {
+    public AdminExamCreateView() {
     	setPreferredSize(new Dimension(550, 710));
         // Set background and layout for the panel
         setBackground(new Color(255, 255, 255));
@@ -360,12 +360,12 @@ public class AdminExamModifyView extends JPanel {
         jcbNo5AnswerSet.setModel(new DefaultComboBoxModel(new String[] { "", "1", "2", "3", "4" }));
 
         // Buttons Panel (or add directly)
-        jbtnAdminExamModify = new JButton("수정");
-        jbtnAdminExamModify.setBackground(new Color(235, 235, 255));
-        jbtnAdminExamModify.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-        jbtnAdminExamModify.setFocusPainted(false);
-        jbtnAdminExamModify.setBounds(135, 650, 100, 30);
-        add(jbtnAdminExamModify);
+        jbtnAdminExamCreate = new JButton("등록");
+        jbtnAdminExamCreate.setBackground(new Color(235, 235, 255));
+        jbtnAdminExamCreate.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+        jbtnAdminExamCreate.setFocusPainted(false);
+        jbtnAdminExamCreate.setBounds(135, 650, 100, 30);
+        add(jbtnAdminExamCreate);
 
         jbtnAdminExamClose = new JButton("닫기");
         jbtnAdminExamClose.setBackground(new Color(235, 235, 255));
@@ -375,19 +375,18 @@ public class AdminExamModifyView extends JPanel {
         add(jbtnAdminExamClose);
 
         // Event setup remains similar, but note that JPanel does not support window events.
-        AdminExamModifyEvt aeme = new AdminExamModifyEvt(this);
-        jbtnAdminExamModify.addActionListener(aeme);
-        jbtnAdminExamClose.addActionListener(aeme);
+        AdminExamCreateEvt aece = new AdminExamCreateEvt(this);
+        jbtnAdminExamCreate.addActionListener(aece);
+        jbtnAdminExamClose.addActionListener(aece);
         // Remove window listener as JPanel is not a window.
     }
 
     // Getter methods
-    public JButton getJbtnAdminExamModify() {
-        return jbtnAdminExamModify;
+    public JButton getJbtnAdminExamCreate() {
+        return jbtnAdminExamCreate;
     }
 
     public JButton getJbtnAdminExamClose() {
         return jbtnAdminExamClose;
     }
 }
-
