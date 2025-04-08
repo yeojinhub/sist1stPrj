@@ -1,4 +1,4 @@
-package kr.co.sist.ldu;
+package kr.cos.sist.ldu;
 
 public class RunInstructor {
 

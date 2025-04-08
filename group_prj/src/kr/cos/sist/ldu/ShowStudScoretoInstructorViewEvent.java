@@ -1,4 +1,4 @@
-package kr.co.sist.ldu;
+package kr.cos.sist.ldu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

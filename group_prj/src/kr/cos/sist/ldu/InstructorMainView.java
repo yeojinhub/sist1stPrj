@@ -1,4 +1,4 @@
-package kr.co.sist.ldu;
+package kr.cos.sist.ldu;
 
 
 import javax.swing.JFrame;
@@ -25,9 +25,11 @@ public class InstructorMainView extends JFrame {
 	private JTable jtaExam;
 	private JTable jtaScore;
 	private JTable jtaBoard;
+	private InstructorAccountVO iaVO;
 
-
-	public InstructorMainView(InstructorLoginView ilv) {
+	public InstructorMainView(InstructorAccountVO iaVO) {
+		super("Best Campus - 강사용");
+		this.iaVO = iaVO;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(InstructorMainView.class.getResource("/kr/co/sist/ldu/images/logo.png")));
 		setBackground(new Color(255, 255, 255));
 		getContentPane().setBackground(new Color(255, 255, 255));
@@ -40,7 +42,7 @@ public class InstructorMainView extends JFrame {
 		jlblLogo.setBounds(12, 10, 326, 39);
 		getContentPane().add(jlblLogo);
 		
-		JLabel jlblInstName = new JLabel("아무개 강사님");
+		JLabel jlblInstName = new JLabel(iaVO.getInstName() + " 강사님");
 		jlblInstName.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jlblInstName.setBounds(397, 16, 92, 27);
 		getContentPane().add(jlblInstName);
@@ -56,7 +58,7 @@ public class InstructorMainView extends JFrame {
 		jpCourse.setLayout(null);
 		
 		JComboBox jcbSelectStatement = new JComboBox();
-		jcbSelectStatement.setModel(new DefaultComboBoxModel(new String[] {"전체", "강의중", "강의종료", "강의예정"}));
+		jcbSelectStatement.setModel(new DefaultComboBoxModel(new String[] {"전체", "강의중", "강의종료", "모집중"}));
 		jcbSelectStatement.setBounds(404, 10, 93, 23);
 		jpCourse.add(jcbSelectStatement);
 		
@@ -68,39 +70,14 @@ public class InstructorMainView extends JFrame {
 		jspCourse.setViewportView(jtaCourse);
 		jtaCourse.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
+				
 			},
 			new String[] {
 				"\uACFC\uC815\uBA85", "\uAE30\uAC04"
 			}
 		));
+		InstructorMainViewEvent sive = new InstructorMainViewEvent(jtaCourse, jcbSelectStatement, iaVO);
+		jcbSelectStatement.addActionListener(sive);
 		
 		JPanel jpStud = new JPanel();
 		jpStud.setBackground(new Color(255, 255, 255));
@@ -129,8 +106,6 @@ public class InstructorMainView extends JFrame {
 		));
 		jspStud.setViewportView(jtaStud);
 		
-		InstructorMainViewEvent sive = new InstructorMainViewEvent(this);
-		jtaStud.addMouseListener(sive);
 		
 		JPanel jpExam = new JPanel();
 		jpExam.setBackground(new Color(255, 255, 255));
@@ -144,32 +119,7 @@ public class InstructorMainView extends JFrame {
 		jtaExam = new JTable();
 		jtaExam.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
+				
 			},
 			new String[] {
 				"\uC2DC\uD5D8\uBA85", "\uB0A0\uC9DC", "\uC0C1\uD0DC"
@@ -181,6 +131,17 @@ public class InstructorMainView extends JFrame {
 		jcbSelectExamCourse.setModel(new DefaultComboBoxModel(new String[] {"전체", "25-1", "25-2"}));
 		jcbSelectExamCourse.setBounds(404, 10, 93, 23);
 		jpExam.add(jcbSelectExamCourse);
+		
+		InstructorMainViewEvent imve = new InstructorMainViewEvent(
+			jtaCourse,
+			jcbSelectStatement,
+			jtaExam,
+			jcbSelectExamCourse,
+			iaVO
+		);
+		jcbSelectStatement.addActionListener(imve);
+		jcbSelectExamCourse.addActionListener(imve);
+		
 		
 		JPanel jpScore = new JPanel();
 		jpScore.setBackground(new Color(255, 255, 255));
@@ -208,33 +169,7 @@ public class InstructorMainView extends JFrame {
 		jtaScore = new JTable();
 		jtaScore.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
+				
 			},
 			new String[] {
 				"\uAE30\uC218", "\uACFC\uC815\uBA85", "\uACFC\uBAA9\uBA85", "\uD559\uC0DD\uC774\uB984", "\uC131\uC801"
@@ -254,33 +189,7 @@ public class InstructorMainView extends JFrame {
 		jtaBoard = new JTable();
 		jtaBoard.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
+				
 			},
 			new String[] {
 				"\uBC88\uD638", "\uC81C\uBAA9", "\uC791\uC131\uC790", "\uC791\uC131\uC77C", "\uC0C1\uD0DC"
@@ -369,5 +278,20 @@ public class InstructorMainView extends JFrame {
 	public void setTable_4(JTable table_4) {
 		this.jtaBoard = table_4;
 	}
+
+
+
+
+	public InstructorAccountVO getIaVO() {
+		return iaVO;
+	}
+
+
+
+
+	public void setIaVO(InstructorAccountVO iaVO) {
+		this.iaVO = iaVO;
+	}
+	
 	
 }
