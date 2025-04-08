@@ -15,26 +15,26 @@ import javax.swing.JOptionPane;
 //import kr.co.sist.view.AdminAccountStudentAccountModifyView;
 //import kr.co.sist.view.AdminAccountStudentAccountView;
 
-public class AdminAccountStudentAccountEvt implements MouseListener, ActionListener{
+public class AdminAccountStudentAccountEvt implements MouseListener, ActionListener {
 
 	private AdminAccountStudentAccountView aasaView;
-	
+
 	private JButton jbtnAdminAccountStudentAccountCreate;
-    private JButton jbtnAdminAccountStudentAccountModify;
-    
-    private int selectedNum;
-    
-    public AdminAccountStudentAccountEvt(AdminAccountStudentAccountView aasaView) {
-    	selectedNum=-1;
-    	
-    	this.aasaView = aasaView;
-		this.jbtnAdminAccountStudentAccountCreate=aasaView.getJbtnAdminAccountStudentAccountCreate();
-		this.jbtnAdminAccountStudentAccountModify=aasaView.getJbtnAdminAccountStudentAccountModify();
-	} //AdminAccountStudentAccountEvt
-	
+	private JButton jbtnAdminAccountStudentAccountModify;
+
+	private int selectedNum;
+
+	public AdminAccountStudentAccountEvt(AdminAccountStudentAccountView aasaView) {
+		selectedNum = -1;
+
+		this.aasaView = aasaView;
+		this.jbtnAdminAccountStudentAccountCreate = aasaView.getJbtnAdminAccountStudentAccountCreate();
+		this.jbtnAdminAccountStudentAccountModify = aasaView.getJbtnAdminAccountStudentAccountModify();
+	} // AdminAccountStudentAccountEvt
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		boolean flag=false;
+		boolean flag = false;
 //		selectedNum=Integer.parseInt( aasaView.getJtAdminAccountStudentAccountTable().getSelectedColumn().split(",")[0] );
 		System.out.println();
 	}
@@ -58,24 +58,24 @@ public class AdminAccountStudentAccountEvt implements MouseListener, ActionListe
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		Object source = ae.getSource();
-		
-		if( source == jbtnAdminAccountStudentAccountCreate ) {
+
+		if (source == jbtnAdminAccountStudentAccountCreate) {
 			System.out.println("생성 버튼 실행");
 			JDialog jdStudentAccountCreateDialog = new JDialog((JFrame) null, "학생 계정 생성", true);
 			jdStudentAccountCreateDialog.getContentPane().add(new AdminAccountStudentAccountCreateView());
 			jdStudentAccountCreateDialog.pack();
 			jdStudentAccountCreateDialog.setLocationRelativeTo(aasaView);
 			jdStudentAccountCreateDialog.setVisible(true);
-		} //end if
-		if( source == jbtnAdminAccountStudentAccountModify ) {
+		} // end if
+		if (source == jbtnAdminAccountStudentAccountModify) {
 			System.out.println("수정 버튼 실행");
 			JDialog jdStudentAccountModifyDialog = new JDialog((JFrame) null, "학생 계정 수정", true);
 			jdStudentAccountModifyDialog.getContentPane().add(new AdminAccountStudentAccountModifyView());
 			jdStudentAccountModifyDialog.pack();
 			jdStudentAccountModifyDialog.setLocationRelativeTo(aasaView);
 			jdStudentAccountModifyDialog.setVisible(true);
-		} //end if
-		
-	} //actionPerformed
+		} // end if
 
-} //class
+	} // actionPerformed
+
+} // class

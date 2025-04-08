@@ -8,10 +8,10 @@ public class AdminLoginVO {
 	private String adm_birth;
 	private String adm_tel;
 	private String adm_add;
-	
+
 	public AdminLoginVO() {
 		super();
-	} //AdminLoginVO
+	} // AdminLoginVO
 
 	public AdminLoginVO(int adm_num, String adm_pass, String adm_name, String adm_birth, String adm_tel,
 			String adm_add) {
@@ -76,6 +76,6 @@ public class AdminLoginVO {
 	public String toString() {
 		return "AdminLoginVO [adm_num=" + adm_num + ", adm_pass=" + adm_pass + ", adm_name=" + adm_name + ", adm_birth="
 				+ adm_birth + ", adm_tel=" + adm_tel + ", adm_add=" + adm_add + "]";
-	} //toString
-	
-} //clss
+	} // toString
+
+} // clss

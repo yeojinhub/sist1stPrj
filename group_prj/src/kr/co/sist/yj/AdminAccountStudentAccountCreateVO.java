@@ -15,11 +15,11 @@ public class AdminAccountStudentAccountCreateVO {
 //	private Date cour_enddate;
 	private String stu_status;
 //	private String cour_cardinal;
-	
+
 	public AdminAccountStudentAccountCreateVO() {
 		super();
-	} //AdminAccountStudentAccountCreateVO
-	
+	} // AdminAccountStudentAccountCreateVO
+
 	public AdminAccountStudentAccountCreateVO(String stu_name, String stu_pass, Date stu_birth, String stu_tel,
 			String stu_add, String stu_status) {
 		super();
@@ -30,23 +30,23 @@ public class AdminAccountStudentAccountCreateVO {
 		this.stu_add = stu_add;
 		this.stu_status = stu_status;
 	}
-	
+
 	public String getStu_name() {
 		return stu_name;
 	}
-	
+
 	public void setStu_name(String stu_name) {
 		this.stu_name = stu_name;
 	}
-	
+
 	public String getStu_pass() {
 		return stu_pass;
 	}
-	
+
 	public void setStu_pass(String stu_pass) {
 		this.stu_pass = stu_pass;
 	}
-	
+
 	public Date getStu_birth() {
 		return stu_birth;
 	}
@@ -58,31 +58,31 @@ public class AdminAccountStudentAccountCreateVO {
 	public String getStu_tel() {
 		return stu_tel;
 	}
-	
+
 	public void setStu_tel(String stu_tel) {
 		this.stu_tel = stu_tel;
 	}
-	
+
 	public String getStu_add() {
 		return stu_add;
 	}
-	
+
 	public void setStu_add(String stu_add) {
 		this.stu_add = stu_add;
 	}
-	
+
 	public String getStu_status() {
 		return stu_status;
 	}
-	
+
 	public void setStu_status(String stu_status) {
 		this.stu_status = stu_status;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "AdminAccountStudentAccountCreateVO [stu_name=" + stu_name + ", stu_pass=" + stu_pass + ", stu_birth="
 				+ stu_birth + ", stu_tel=" + stu_tel + ", stu_add=" + stu_add + ", stu_status=" + stu_status + "]";
-	} //toString
-	
-} //class
+	} // toString
+
+} // class
