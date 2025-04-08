@@ -44,5 +44,29 @@ public class InstructorMainService {
 
 		return totalExamList;
 	}
+	
+	// 모든 게시글 조회
+    public List<InstructorBoardVO> getAllBoardList() {
+        List<InstructorBoardVO> list = new ArrayList<>();
+        try {
+            list = dao.selectAllBoardList();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    // 게시글 번호로 게시글 상세 조회
+    public InstructorBoardVO getBoardByNum(int boardNum) {
+        InstructorBoardVO vo = null;
+        try {
+            vo = dao.selectBoardByNum(boardNum);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return vo;
+    }
+	
+	
 
 }

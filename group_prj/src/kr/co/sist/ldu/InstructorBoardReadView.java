@@ -1,42 +1,38 @@
-package kr.co.sist.kti;
+package kr.co.sist.ldu;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.Point;
-
-import javax.swing.SwingConstants;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
 
-public class StudentBoardReadView extends JDialog {
+public class InstructorBoardReadView extends JDialog {
 
 	private JLabel jlblTitleSet, jlblAuthorNameSet, jlblRespondentSet, jlblCommDateSet, jlblWriteDateSet;
 	private JTextArea jtaBoardSet;
-	private JButton jbtnExit, jbtnChangePost, jbtnDeletePost;
+	private JButton jbtnExit;
 	private JTextArea jtaCourseNameSet;
 	private JLabel jlblCommWriterTypeSet;
 	private JPanel jpCommWriterType;
 
 	private int selectedBoardNum;
+	private InstructorBoardVO vo;
 
-	public StudentBoardReadView(StudentBoardPanel sbp, int selectedBoardNum) {
-		this.selectedBoardNum = selectedBoardNum;
+	public InstructorBoardReadView(InstructorBoardVO vo) {
+		this.vo = vo;
+		this.selectedBoardNum = vo.getBoardNum();
 		setTitle("Best Campus - 1:1 문의");
-
-		// #. 백그라운드 색상 설정 및 수동배치 설정
 		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setLayout(null);
 
-		// #. 컴포넌트 배치 및 수정
 		JPanel jpTitle = new JPanel();
 		jpTitle.setBackground(new Color(255, 255, 255));
 		jpTitle.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -44,13 +40,13 @@ public class StudentBoardReadView extends JDialog {
 		getContentPane().add(jpTitle);
 		jpTitle.setLayout(new BorderLayout(0, 0));
 
-		jlblTitleSet = new JLabel("");
+		jlblTitleSet = new JLabel(vo.getBoardTitle());
 		jpTitle.add(jlblTitleSet);
 		jlblTitleSet.setHorizontalAlignment(SwingConstants.LEFT);
 		jlblTitleSet.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		jlblTitleSet.setBackground(new Color(255, 255, 255));
 
-		jlblWriteDateSet = new JLabel("");
+		jlblWriteDateSet = new JLabel(vo.getBoardDate().toString());
 		jlblWriteDateSet.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
 		jlblWriteDateSet.setHorizontalAlignment(SwingConstants.LEFT);
 		jpTitle.add(jlblWriteDateSet, BorderLayout.EAST);
@@ -62,25 +58,11 @@ public class StudentBoardReadView extends JDialog {
 		getContentPane().add(jpAuthor);
 		jpAuthor.setLayout(null);
 
-		jlblAuthorNameSet = new JLabel("");
+		jlblAuthorNameSet = new JLabel(vo.getStuName());
 		jlblAuthorNameSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jlblAuthorNameSet.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblAuthorNameSet.setBounds(5, 7, 70, 15);
 		jpAuthor.add(jlblAuthorNameSet);
-
-		jbtnChangePost = new JButton("수정");
-		jbtnChangePost.setBackground(new Color(235, 235, 255));
-		jbtnChangePost.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
-		jbtnChangePost.setFocusPainted(false);
-		jbtnChangePost.setBounds(520, 5, 60, 20);
-		jpAuthor.add(jbtnChangePost);
-
-		jbtnDeletePost = new JButton("삭제");
-		jbtnDeletePost.setBackground(new Color(235, 235, 255));
-		jbtnDeletePost.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
-		jbtnDeletePost.setFocusPainted(false);
-		jbtnDeletePost.setBounds(590, 5, 60, 20);
-		jpAuthor.add(jbtnDeletePost);
 
 		JPanel jpNorth = new JPanel();
 		jpNorth.setBorder(new TitledBorder(""));
@@ -89,9 +71,8 @@ public class StudentBoardReadView extends JDialog {
 		getContentPane().add(jpNorth);
 		jpNorth.setLayout(null);
 
-		jtaBoardSet = new JTextArea();
+		jtaBoardSet = new JTextArea(vo.getBoardContent());
 		jtaBoardSet.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
-		jtaBoardSet.setText("");
 		jtaBoardSet.setLineWrap(true);
 		jtaBoardSet.setEditable(false);
 		jtaBoardSet.setHighlighter(null);
@@ -105,14 +86,13 @@ public class StudentBoardReadView extends JDialog {
 		jpNorth.add(jpSouth);
 		jpSouth.setLayout(null);
 
-		jlblRespondentSet = new JLabel("");
+		jlblRespondentSet = new JLabel("강사".equals(vo.getBoardType()) ? vo.getInstName() : "관리자");
 		jlblRespondentSet.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblRespondentSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jlblRespondentSet.setBounds(40, 15, 70, 25);
 		jpSouth.add(jlblRespondentSet);
 
-		jtaCourseNameSet = new JTextArea();
-		jtaCourseNameSet.setText("");
+		jtaCourseNameSet = new JTextArea(vo.getBoardCommContent());
 		jtaCourseNameSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		jtaCourseNameSet.setBounds(120, 5, 400, 45);
 		jtaCourseNameSet.setLineWrap(true);
@@ -120,7 +100,7 @@ public class StudentBoardReadView extends JDialog {
 		jtaCourseNameSet.setHighlighter(null);
 		jpSouth.add(jtaCourseNameSet);
 
-		jlblCommDateSet = new JLabel("");
+		jlblCommDateSet = new JLabel(vo.getBoardCommDate() != null ? vo.getBoardCommDate().toString() : "");
 		jlblCommDateSet.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblCommDateSet.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
 		jlblCommDateSet.setBounds(530, 15, 100, 25);
@@ -132,7 +112,7 @@ public class StudentBoardReadView extends JDialog {
 		jpCommWriterType.setBorder(new TitledBorder(""));
 		jpCommWriterType.setLayout(null);
 
-		jlblCommWriterTypeSet = new JLabel("");
+		jlblCommWriterTypeSet = new JLabel(vo.getBoardType());
 		jlblCommWriterTypeSet.setBounds(0, 0, 35, 20);
 		jpCommWriterType.add(jlblCommWriterTypeSet);
 		jlblCommWriterTypeSet.setHorizontalAlignment(SwingConstants.CENTER);
@@ -145,28 +125,20 @@ public class StudentBoardReadView extends JDialog {
 		jbtnExit.setBounds(275, 461, 100, 25);
 		getContentPane().add(jbtnExit);
 
-		// #. 이벤트 추가
-		// #-1. 이벤트 객체 생성
-		StudentBoardReadEvt sbre = new StudentBoardReadEvt(this, sbp);
-		// #-2. 컴포넌트에 이벤트 추가
-		jbtnChangePost.addActionListener(sbre);
-		jbtnDeletePost.addActionListener(sbre);
-		jbtnExit.addActionListener(sbre);
-		// #-3. 데이터 셋팅을 위한 윈도우리스너
-		addWindowListener(sbre);
-
-		// #. 모달 설정
+		jbtnExit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+		
 		setModal(true);
-
-		// #. 위치 및 사이즈 조정
-		setBounds(new Point(sbp.getLocationOnScreen()).x - 70, new Point(sbp.getLocationOnScreen()).y - 100, 690, 540);
-
-		// #. 가시화 설정
-		setVisible(true);
-
-		// #. 종료 처리
+		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-	}// StudentBoardReadView
+		setBounds(100, 100, 690, 540);
+		setVisible(true);
+		
+	}
 
 	// Getter Methods
 	public JLabel getJlblTitleSet() {
@@ -209,16 +181,7 @@ public class StudentBoardReadView extends JDialog {
 		return jbtnExit;
 	}
 
-	public JButton getJbtnChangePost() {
-		return jbtnChangePost;
-	}
-
-	public JButton getJbtnDeletePost() {
-		return jbtnDeletePost;
-	}
-
 	public JLabel getJlblWriteDateSet() {
 		return jlblWriteDateSet;
 	}
-	
-}// class
+} // class

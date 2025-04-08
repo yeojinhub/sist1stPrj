@@ -63,7 +63,7 @@ public class InstructorMainView extends JFrame {
 		jpCourse.add(jcbSelectStatement);
 		
 		JScrollPane jspCourse = new JScrollPane();
-		jspCourse.setBounds(10, 43, 487, 435);
+		jspCourse.setBounds(12, 43, 487, 435);
 		jpCourse.add(jspCourse);
 		
 		jtaCourse = new JTable();
@@ -73,11 +73,11 @@ public class InstructorMainView extends JFrame {
 				
 			},
 			new String[] {
-				"\uACFC\uC815\uBA85", "\uAE30\uAC04"
+				"과정명", "기간"
 			}
 		));
-		InstructorMainViewEvent sive = new InstructorMainViewEvent(jtaCourse, jcbSelectStatement, iaVO);
-		jcbSelectStatement.addActionListener(sive);
+		InstructorMainViewEvt imve = new InstructorMainViewEvt(jtaCourse, jcbSelectStatement, iaVO);
+		jcbSelectStatement.addActionListener(imve);
 		
 		JPanel jpStud = new JPanel();
 		jpStud.setBackground(new Color(255, 255, 255));
@@ -101,7 +101,7 @@ public class InstructorMainView extends JFrame {
 				
 			},
 			new String[] {
-				"\uAE30\uC218", "\uD559\uC0DD \uC774\uB984", "\uACFC\uC815\uBA85", "\uC9C4\uD589 \uC0C1\uD0DC"
+				"기수", "학생이름", "과정명", "상태"
 			}
 		));
 		jspStud.setViewportView(jtaStud);
@@ -122,7 +122,7 @@ public class InstructorMainView extends JFrame {
 				
 			},
 			new String[] {
-				"\uC2DC\uD5D8\uBA85", "\uB0A0\uC9DC", "\uC0C1\uD0DC"
+				"시험명", "날짜", "상태"
 			}
 		));
 		jspExam.setViewportView(jtaExam);
@@ -132,7 +132,7 @@ public class InstructorMainView extends JFrame {
 		jcbSelectExamCourse.setBounds(404, 10, 93, 23);
 		jpExam.add(jcbSelectExamCourse);
 		
-		InstructorMainViewEvent imve = new InstructorMainViewEvent(
+		imve = new InstructorMainViewEvt(
 			jtaCourse,
 			jcbSelectStatement,
 			jtaExam,
@@ -172,7 +172,7 @@ public class InstructorMainView extends JFrame {
 				
 			},
 			new String[] {
-				"\uAE30\uC218", "\uACFC\uC815\uBA85", "\uACFC\uBAA9\uBA85", "\uD559\uC0DD\uC774\uB984", "\uC131\uC801"
+				"기수", "과정명", "과목명", "학생 이름", "성적"
 			}
 		));
 		jcpScore.setViewportView(jtaScore);
@@ -187,12 +187,13 @@ public class InstructorMainView extends JFrame {
 		jpBoard.add(jspBoard);
 		
 		jtaBoard = new JTable();
+		jtaBoard.setDefaultEditor(Object.class, null);
 		jtaBoard.setModel(new DefaultTableModel(
 			new Object[][] {
 				
 			},
 			new String[] {
-				"\uBC88\uD638", "\uC81C\uBAA9", "\uC791\uC131\uC790", "\uC791\uC131\uC77C", "\uC0C1\uD0DC"
+				"번호", "제목", "작성자", "작성일", "상태"
 			}
 		));
 		jspBoard.setViewportView(jtaBoard);
@@ -204,94 +205,67 @@ public class InstructorMainView extends JFrame {
 		jlblBoardTitle.setBounds(12, 10, 485, 39);
 		jpBoard.add(jlblBoardTitle);
 		
+		imve = new InstructorMainViewEvt(jtaBoard, iaVO, this);
+		
+		
+		
 		setVisible(true);
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
-
-
-
-	public JTable getTable() {
+	public JTable getJtaCourse() {
 		return jtaCourse;
 	}
 
-
-
-
-	public void setTable(JTable table) {
-		this.jtaCourse = table;
+	public void setJtaCourse(JTable jtaCourse) {
+		this.jtaCourse = jtaCourse;
 	}
 
-
-
-
-	public JTable getTable_1() {
+	public JTable getJtaStud() {
 		return jtaStud;
 	}
 
-
-
-
-	public void setTable_1(JTable table_1) {
-		this.jtaStud = table_1;
+	public void setJtaStud(JTable jtaStud) {
+		this.jtaStud = jtaStud;
 	}
 
-
-
-
-	public JTable getTable_2() {
+	public JTable getJtaExam() {
 		return jtaExam;
 	}
 
-
-
-
-	public void setTable_2(JTable table_2) {
-		this.jtaExam = table_2;
+	public void setJtaExam(JTable jtaExam) {
+		this.jtaExam = jtaExam;
 	}
 
-
-
-
-	public JTable getTable_3() {
+	public JTable getJtaScore() {
 		return jtaScore;
 	}
 
-
-
-
-	public void setTable_3(JTable table_3) {
-		this.jtaScore = table_3;
+	public void setJtaScore(JTable jtaScore) {
+		this.jtaScore = jtaScore;
 	}
 
-
-
-
-	public JTable getTable_4() {
+	public JTable getJtaBoard() {
 		return jtaBoard;
 	}
 
-
-
-
-	public void setTable_4(JTable table_4) {
-		this.jtaBoard = table_4;
+	public void setJtaBoard(JTable jtaBoard) {
+		this.jtaBoard = jtaBoard;
 	}
-
-
-
 
 	public InstructorAccountVO getIaVO() {
 		return iaVO;
 	}
 
-
-
-
 	public void setIaVO(InstructorAccountVO iaVO) {
 		this.iaVO = iaVO;
 	}
+
+
+
+
+	
 	
 	
 }
