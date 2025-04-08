@@ -34,7 +34,7 @@ public class AdminAccountStudentAccountModifyEvt implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		
 		//입력 field 값 변수에 저장
-		Integer num = Integer.parseInt(aasamView.getJtfAdminAccountStudentAccountIDSet().getText().trim());
+		int num = Integer.parseInt(aasamView.getJtfAdminAccountStudentAccountIDSet().getText().trim());
 		String strStudentName = aasamView.getJtfAdminAccountStudentAccountNameSet().getText().trim();
 		char[] studentPasswordArray = aasamView.getJpfAdminAccountStudentAccountPassSet().getPassword();
 		String strStudentPassword = new String(studentPasswordArray).trim();
