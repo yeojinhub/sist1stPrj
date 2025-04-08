@@ -14,6 +14,8 @@ import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.awt.event.ActionEvent;
 
 public class StudentLoginView extends JFrame {
@@ -39,9 +41,16 @@ public class StudentLoginView extends JFrame {
 		getContentPane().add(jlblPassword);
 
 		JLabel jlblTitleImage = new JLabel("");
-		jlblTitleImage.setIcon(new ImageIcon("C:\\\\Users\\\\user\\\\Desktop\\\\image\\\\logo.png"));
 		jlblTitleImage.setBounds(90, 20, 70, 70);
 		getContentPane().add(jlblTitleImage);
+		
+		// #. 로고이미지 URL로 가져다쓰기
+		try {
+			URL imageURL = new URL("https://raw.githubusercontent.com/yeojinhub/sistFstPjr/refs/heads/main/group_prj/src/kr/co/sist/kti/logo.png");
+			jlblTitleImage.setIcon(new ImageIcon(imageURL));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}// end try-catch
 
 		JLabel jlblTitle = new JLabel("Best Campus");
 		jlblTitle.setHorizontalAlignment(SwingConstants.CENTER);
