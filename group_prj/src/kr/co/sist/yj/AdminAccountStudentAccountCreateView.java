@@ -181,6 +181,7 @@ public class AdminAccountStudentAccountCreateView extends JPanel{
         //버튼 Component 배치
         gbc.gridx = 0; gbc.gridy = 10;
         gbc.gridwidth = 2;  // 두 열을 합쳐서 버튼들을 가운데로 배치
+        gbc.anchor = GridBagConstraints.CENTER;
         jpAdminAccountStudentAccountCreateViewPanel.add(jpAdminAccountStudentAccountCreateViewButtonPanel, gbc);
 
         //Panel 배치

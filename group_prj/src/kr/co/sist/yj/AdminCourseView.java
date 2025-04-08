@@ -25,13 +25,13 @@ import javax.swing.table.TableColumnModel;
 @SuppressWarnings("serial")
 public class AdminCourseView extends JFrame{
 	
+	@SuppressWarnings("unused")
+	private AdminMainView amView;
+
 	private DefaultTableModel dftmAdminCourseTableModel ;
 	private JTable jtAdminCourseTable;
 	
 	private List<AdminCourseVO> courseList;
-
-	@SuppressWarnings("unused")
-	private AdminMainView amView;
 	
 	private JButton jbtnAdminCourseCreate;
 	private JButton jbtnAdminCourseModify;

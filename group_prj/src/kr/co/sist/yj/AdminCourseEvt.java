@@ -22,8 +22,6 @@ public class AdminCourseEvt implements ActionListener, MouseListener {
 	private JButton jbtnAdminCourseCreate;
 	private JButton jbtnAdminCourseModify;
 	
-	private List<AdminCourseVO> courseList;
-	
 	public AdminCourseEvt(AdminMainView amView, AdminCourseView acView) {
 		this.amView=amView;
 		this.acView=acView;

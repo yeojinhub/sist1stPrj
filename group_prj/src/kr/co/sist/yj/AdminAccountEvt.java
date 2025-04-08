@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 public class AdminAccountEvt implements ActionListener {
 
 	@SuppressWarnings("unused")
-	private AdminAccountView aav;
+	private AdminAccountView aaView;
 	
 	private JPanel jpAdminAccountViewCardPanel;
 	private CardLayout clAdminAccountCard;
@@ -22,13 +22,13 @@ public class AdminAccountEvt implements ActionListener {
 	private JButton jbtnAdminAccountInstructorAccount;
 	private JButton jbtnAdminAccountAdminAccount;
 	
-	public AdminAccountEvt(AdminAccountView aav) {
-		this.aav=aav;
-		this.jpAdminAccountViewCardPanel=aav.getJpAdminAccountViewCardPanel();
-		this.clAdminAccountCard=aav.getClAdminAccountViewCard();
-		this.jbtnAdminAccountStudentAccount=aav.getJbtnAdminAccountStudentAccount();
-		this.jbtnAdminAccountInstructorAccount=aav.getJbtnAdminAccountInstructorAccount();
-		this.jbtnAdminAccountAdminAccount=aav.getJbtnAdminAccountAdminAccount();
+	public AdminAccountEvt(AdminAccountView aaView) {
+		this.aaView=aaView;
+		this.jpAdminAccountViewCardPanel=aaView.getJpAdminAccountViewCardPanel();
+		this.clAdminAccountCard=aaView.getClAdminAccountViewCard();
+		this.jbtnAdminAccountStudentAccount=aaView.getJbtnAdminAccountStudentAccount();
+		this.jbtnAdminAccountInstructorAccount=aaView.getJbtnAdminAccountInstructorAccount();
+		this.jbtnAdminAccountAdminAccount=aaView.getJbtnAdminAccountAdminAccount();
 	} //AdminAccountEvt
 	
 	@Override
