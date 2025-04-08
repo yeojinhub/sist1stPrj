@@ -1,4 +1,4 @@
-package kr.cos.sist.ldu;
+package kr.co.sist.ldu;
 
 import java.sql.Statement;
 import java.sql.Connection;
