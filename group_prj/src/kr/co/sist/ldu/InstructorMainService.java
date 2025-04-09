@@ -9,9 +9,8 @@ public class InstructorMainService {
 	
 	private InstructorMainDAO dao = new InstructorMainDAO();
 	
-	//과정 조회
+	//과정에 대한 정보 조회
 	public List<InstructorCourseVO> getInstructorCourses(String instNum) {
-		InstructorMainDAO dao = new InstructorMainDAO();
 		try {
 			return dao.selectCourseByInstructor(instNum);
 		} catch (SQLException e) {
@@ -20,10 +19,45 @@ public class InstructorMainService {
 		}
 	}
 	
+	//강사에 대한 과정 기수만 조희
+	public List<String> getCardinalsByInstructor(String instNum) {
+        try {
+            return dao.selectCardinalsByInstructor(instNum);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+	
+	// 전체 학생 목록 조회
+	public List<InstructorStudentVO> getAllStudentsByInstructor(String instNum) {
+	    List<InstructorStudentVO> list = null;
+	    InstructorMainDAO dao = new InstructorMainDAO();
 
-	/**
-	 * 강사번호를 기준으로, 해당 강사의 모든 시험 목록을 가져온다.
-	 */
+	    try {
+	        list = dao.selectStudentsByInstructor(instNum);
+	    } catch (SQLException e) {
+	        e.printStackTrace(); // 혹은 로깅
+	    }
+
+	    return list;
+	}
+
+	// 특정 기수 학생 목록 조회
+	public List<InstructorStudentVO> getStudentsByCardinal(String instNum, String cardinal) {
+	    List<InstructorStudentVO> list = null;
+	    InstructorMainDAO dao = new InstructorMainDAO();
+
+	    try {
+	        list = dao.selectStudentsByCardinal(instNum, cardinal);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return list;
+	}
+	
+	//강사번호를 기준으로, 해당 강사의 모든 시험 목록을 가져온다.
 	public List<InstructorExamVO> getExamsByInstructor(String instNum) {
 		List<InstructorExamVO> totalExamList = new ArrayList<>();
 
@@ -44,6 +78,26 @@ public class InstructorMainService {
 
 		return totalExamList;
 	}
+	
+	//해당 강사에 대한 시험 이름만을 가져오는 거야
+	public List<String> getExamNamesByCardinal(String courCardinal) {
+        try {
+            return dao.selectExamNamesByCardinal(courCardinal);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+	
+	//성적 조희
+	 public List<InstructorScoreVO> getScores(String instNum, String courCardinal, String examName) {
+	    try {
+	        return dao.selectScores(instNum, courCardinal, examName);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return new ArrayList<>();
+	    }
+	 }
 	
 	// 모든 게시글 조회
     public List<InstructorBoardVO> getAllBoardList() {

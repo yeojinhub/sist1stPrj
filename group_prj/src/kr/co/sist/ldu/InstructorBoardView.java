@@ -121,7 +121,6 @@ public class InstructorBoardView extends JDialog {
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 690, 540);
-		setVisible(true);
 	}
 
 	public int getSelectedBoardNum() {
