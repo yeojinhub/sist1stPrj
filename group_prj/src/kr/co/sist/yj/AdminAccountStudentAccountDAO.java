@@ -82,9 +82,11 @@ public class AdminAccountStudentAccountDAO {
 			//3. 쿼리문 객체 생성
 			StringBuilder strSelectAllStudentAccountMember = new StringBuilder();
 			strSelectAllStudentAccountMember
-			.append("	select stu_num,stu_name,stu_tel,cour_cardinal,cour_name,stu_status	")
-			.append("	from student stu, course cour	")
-			.append("	where stu.stu_num=cour.stu_num	")
+			.append("	select stu.stu_num,stu.stu_name,stu.stu_tel,cour.cour_cardinal,cour.cour_name,stu.stu_status	")
+			.append("	from student stu, apply_steps apply, course cour	")
+			.append("	where stu.stu_num=apply.stu_num	")
+			.append("	and (apply.cour_num=cour.cour_num)	")
+			.append("	order by stu.stu_num	")
 			;
 			pstmt=con.prepareStatement(strSelectAllStudentAccountMember.toString());
 			
@@ -97,7 +99,7 @@ public class AdminAccountStudentAccountDAO {
 			while( rs.next() ) {
 				aasaVO = new AdminAccountStudentAccountVO();
 				
-				aasaVO.setStu_num(rs.getInt("stu_num"));
+				aasaVO.setStu_num(rs.getString("stu_num"));
 				aasaVO.setStu_name(rs.getString("stu_name"));
 				aasaVO.setStu_tel(rs.getString("stu_tel"));
 				aasaVO.setCour_cardinal(rs.getString("cour_cardinal"));

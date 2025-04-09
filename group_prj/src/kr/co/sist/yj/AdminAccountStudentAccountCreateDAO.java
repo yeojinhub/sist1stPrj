@@ -40,14 +40,15 @@ public class AdminAccountStudentAccountCreateDAO {
 			StringBuilder strAddStudentAccountMember = new StringBuilder();
 			strAddStudentAccountMember.append("	insert into student	")
 					.append("	(stu_num,stu_pass,stu_name,stu_birth,stu_tel,stu_add,stu_status)	")
-					.append("	values	").append("	(seq_student.nextval,?,?,?,?,?,?)	");
+					.append("	values	")
+					.append("	(seq_student.nextval,?,?,?,?,?,?)	");
 			pstmt = con.prepareStatement(strAddStudentAccountMember.toString());
 
 			// 4. bind 변수에 값 할당
 			int bindInd = 0;
 
-			pstmt.setString(++bindInd, aasacVO.getStu_name());
 			pstmt.setString(++bindInd, aasacVO.getStu_pass());
+			pstmt.setString(++bindInd, aasacVO.getStu_name());
 			Date birthDate = aasacVO.getStu_birth();
 			pstmt.setDate(++bindInd, birthDate);
 			pstmt.setString(++bindInd, aasacVO.getStu_tel());

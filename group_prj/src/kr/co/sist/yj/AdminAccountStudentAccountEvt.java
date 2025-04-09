@@ -5,11 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 //import kr.co.sist.view.AdminAccountStudentAccountCreateView;
 //import kr.co.sist.view.AdminAccountStudentAccountModifyView;
@@ -34,9 +35,9 @@ public class AdminAccountStudentAccountEvt implements MouseListener, ActionListe
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		boolean flag = false;
+		System.out.println("테이블 클릭");
+//		boolean flag = false;
 //		selectedNum=Integer.parseInt( aasaView.getJtAdminAccountStudentAccountTable().getSelectedColumn().split(",")[0] );
-		System.out.println();
 	}
 
 	@Override
@@ -77,5 +78,26 @@ public class AdminAccountStudentAccountEvt implements MouseListener, ActionListe
 		} // end if
 
 	} // actionPerformed
+	
+	public void loadStudentInfo() {
+	    AdminAccountStudentAccountService aasaService = new AdminAccountStudentAccountService();
+	    List<AdminAccountStudentAccountVO> studentList = aasaService.searchAllStudentAccountMember();
+
+	    DefaultTableModel model = aasaView.getDftmStudentTableModel();
+	    model.setRowCount(0);
+
+	    // 조회한 학생 데이터들을 테이블 모델에 추가합니다.
+	    for (AdminAccountStudentAccountVO aasaVO : studentList) {
+	        model.addRow(new Object[]{
+	        		aasaVO.getStu_num(),
+	        		aasaVO.getStu_name(),
+	        		aasaVO.getStu_tel(),
+	        		aasaVO.getCour_cardinal(),
+	        		aasaVO.getCour_name(),
+	        		aasaVO.getStu_status()
+	        });
+	    } //end for
+	    
+	} //loadStudentInfo
 
 } // class

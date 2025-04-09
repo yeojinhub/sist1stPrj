@@ -24,6 +24,6 @@ public class AdminAccountStudentAccountCreateService {
 		} //end try catch
 		
 		return flag;
-	} //addMember
+	} //addStudentAccountMember
 	
 } //class

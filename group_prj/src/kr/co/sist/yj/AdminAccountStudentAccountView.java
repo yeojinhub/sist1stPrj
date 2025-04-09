@@ -60,7 +60,8 @@ public class AdminAccountStudentAccountView extends JPanel {
         };
 
         //Table Component 생성
-        dftmStudentTableModel = new DefaultTableModel(strAdminAccountStudentAccountTableData, strAdminAccountStudentAccountTableTitle);
+        dftmStudentTableModel = new DefaultTableModel(strAdminAccountStudentAccountTableTitle, 0);
+//        dftmStudentTableModel = new DefaultTableModel(strAdminAccountStudentAccountTableData, strAdminAccountStudentAccountTableTitle);
         jtAdminAccountStudentAccountTable = new JTable(dftmStudentTableModel);
 
         //Table 열 정렬 설정
@@ -80,9 +81,6 @@ public class AdminAccountStudentAccountView extends JPanel {
         	case 4:
         		columnModel.getColumn(i).setPreferredWidth(335);
         		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
-//        	case 5:
-//        		columnModel.getColumn(i).setPreferredWidth(150);
-//        		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
         	default:
         		columnModel.getColumn(i).setPreferredWidth(70);
         		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
@@ -134,6 +132,7 @@ public class AdminAccountStudentAccountView extends JPanel {
         jbtnAdminAccountStudentAccountModify.addActionListener(aasaEvt);
         
         //Mouse 이벤트 생성
+        aasaEvt.loadStudentInfo();
         jtAdminAccountStudentAccountTable.addMouseListener(aasaEvt);
         
     } //AdminAccountStudentAccountView

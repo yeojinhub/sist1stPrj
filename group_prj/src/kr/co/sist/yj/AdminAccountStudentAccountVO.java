@@ -2,7 +2,7 @@ package kr.co.sist.yj;
 
 public class AdminAccountStudentAccountVO {
 	
-	private Integer stu_num;
+	private String stu_num;
 	private String stu_name;
 	private String stu_tel;
 	private String cour_cardinal;
@@ -13,8 +13,7 @@ public class AdminAccountStudentAccountVO {
 		super();
 	}
 
-	
-	public AdminAccountStudentAccountVO(Integer stu_num, String stu_name, String stu_tel, String cour_cardinal,
+	public AdminAccountStudentAccountVO(String stu_num, String stu_name, String stu_tel, String cour_cardinal,
 			String cour_name, String stu_status) {
 		super();
 		this.stu_num = stu_num;
@@ -25,15 +24,16 @@ public class AdminAccountStudentAccountVO {
 		this.stu_status = stu_status;
 	}
 
-
-	public Integer getStu_num() {
+	public String getStu_num() {
 		return stu_num;
 	}
 
 
-	public void setStu_num(Integer stu_num) {
+
+	public void setStu_num(String stu_num) {
 		this.stu_num = stu_num;
 	}
+
 
 
 	public String getStu_name() {
@@ -85,12 +85,10 @@ public class AdminAccountStudentAccountVO {
 		this.stu_status = stu_status;
 	}
 
-
 	@Override
 	public String toString() {
 		return "AdminAccountStudentAccountVO [stu_num=" + stu_num + ", stu_name=" + stu_name + ", stu_tel=" + stu_tel
 				+ ", cour_cardinal=" + cour_cardinal + ", cour_name=" + cour_name + ", stu_status=" + stu_status + "]";
 	}
-	
-	
+
 } //class
