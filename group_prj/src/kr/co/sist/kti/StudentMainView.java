@@ -20,6 +20,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.awt.event.ActionEvent;
 
 public class StudentMainView extends JFrame {
@@ -78,10 +80,18 @@ public class StudentMainView extends JFrame {
 		jlblTeacherName.setBounds(320, 70, 100, 20);
 		contentPane.add(jlblTeacherName);
 
+		
 		JLabel jlblTitleImage = new JLabel("");
-		jlblTitleImage.setIcon(new ImageIcon("C:\\Users\\user\\Desktop\\image\\logo.png"));
 		jlblTitleImage.setBounds(10, 10, 70, 70);
 		contentPane.add(jlblTitleImage);
+
+		// #. 로고이미지 URL로 가져다쓰기
+		try {
+			URL imageURL = new URL("https://raw.githubusercontent.com/yeojinhub/sistFstPjr/refs/heads/main/group_prj/src/kr/co/sist/kti/logo.png");
+			jlblTitleImage.setIcon(new ImageIcon(imageURL));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}// end try-catch
 
 		jlblNameSet = new JLabel("");
 		jlblNameSet.setHorizontalAlignment(SwingConstants.CENTER);

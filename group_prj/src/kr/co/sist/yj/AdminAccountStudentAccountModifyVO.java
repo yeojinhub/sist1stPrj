@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class AdminAccountStudentAccountModifyVO {
 
-	private String stu_num;
+	private int stu_num;
 	private String stu_name;
 	private String stu_pass;
 	private Date stu_birth;
@@ -21,7 +21,7 @@ public class AdminAccountStudentAccountModifyVO {
 		super();
 	} //AdminAccountStudentAccountModifyVO
 
-	public AdminAccountStudentAccountModifyVO(String stu_num, String stu_name, String stu_pass, Date stu_birth,
+	public AdminAccountStudentAccountModifyVO(int stu_num, String stu_name, String stu_pass, Date stu_birth,
 			String stu_tel, String stu_add, String stu_status) {
 		super();
 		this.stu_num = stu_num;
@@ -33,11 +33,11 @@ public class AdminAccountStudentAccountModifyVO {
 		this.stu_status = stu_status;
 	}
 
-	public String getStu_num() {
+	public int getStu_num() {
 		return stu_num;
 	}
 
-	public void setStu_num(String stu_num) {
+	public void setStu_num(int stu_num) {
 		this.stu_num = stu_num;
 	}
 
@@ -94,6 +94,6 @@ public class AdminAccountStudentAccountModifyVO {
 		return "AdminAccountStudentAccountModifyVO [stu_num=" + stu_num + ", stu_name=" + stu_name + ", stu_pass="
 				+ stu_pass + ", stu_birth=" + stu_birth + ", stu_tel=" + stu_tel + ", stu_add=" + stu_add
 				+ ", stu_status=" + stu_status + "]";
-	} //toString
+	}
 	
 } //class

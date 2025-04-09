@@ -224,7 +224,8 @@ public class AdminAccountStudentAccountModifyView extends JPanel{
         
         //버튼 Component 배치
         gbc.gridx = 0; gbc.gridy = 11;
-        gbc.gridwidth = 3;  // 두 열을 합쳐서 버튼들을 가운데로 배치
+        gbc.gridwidth = 3;  // 세 열을 합쳐서 버튼들을 가운데로 배치
+        gbc.anchor = GridBagConstraints.CENTER;
         jpAdminAccountStudentAccountModifyViewPanel.add(jpAdminAccountStudentAccountModifyViewButtonPanel, gbc);
 
         //Panel 배치

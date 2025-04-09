@@ -3,14 +3,14 @@ package kr.co.sist.yj;
 import java.sql.Date;
 
 public class AdminAccountAdminAccountCreateVO {
-	
+
 	private int adm_num;
 	private String adm_pass;
 	private String adm_name;
 	private Date adm_birth;
 	private String adm_tel;
 	private String adm_add;
-	
+
 	public AdminAccountAdminAccountCreateVO() {
 		super();
 	}
@@ -78,6 +78,6 @@ public class AdminAccountAdminAccountCreateVO {
 	public String toString() {
 		return "AdminAccountAdminAccountCreateVO [adm_num=" + adm_num + ", adm_pass=" + adm_pass + ", adm_name="
 				+ adm_name + ", adm_birth=" + adm_birth + ", adm_tel=" + adm_tel + ", adm_add=" + adm_add + "]";
-	} //toString
+	} // toString
 
-} //class
+} // class

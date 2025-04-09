@@ -69,22 +69,27 @@ public class AdminMainView extends JFrame{
 		JPanel jpAdminAccountViewWindow = new JPanel();
 		AdminAccountView aav = new AdminAccountView();
 		jpAdminAccountViewWindow.add(aav.getContentPane());
+		jpAdminAccountViewWindow.setBackground(white);
 		
 		JPanel jpAdminCourseViewWindow = new JPanel();
 		AdminCourseView acv = new AdminCourseView(this);
 		jpAdminCourseViewWindow.add(acv.getContentPane());
+		jpAdminCourseViewWindow.setBackground(white);
 		
 		JPanel jpAdminExamViewWindow = new JPanel();
-		AdminExamView aev = new AdminExamView();
+		AdminExamView aev = new AdminExamView(this);
 		jpAdminExamViewWindow.add(aev.getContentPane());
+		jpAdminExamViewWindow.setBackground(white);
 		
 		JPanel jpAdminGradeViewWindow = new JPanel();
 		AdminGradeView agv = new AdminGradeView();
 		jpAdminGradeViewWindow.add(agv.getContentPane());
+		jpAdminGradeViewWindow.setBackground(white);
 		
 		JPanel jpAdminBoardViewWindow = new JPanel();
 		AdminBoardView abv = new AdminBoardView();
 		jpAdminBoardViewWindow.add(abv.getContentPane());
+		jpAdminBoardViewWindow.setBackground(white);
 		
 		//JTabbedPane 배치
 		jtpAdminMainViewTab.addTab("계정 관리", jpAdminAccountViewWindow);
@@ -100,7 +105,7 @@ public class AdminMainView extends JFrame{
 		//Window 크기 설정
 		setSize(750,710);
 		setVisible(true);
-//		setResizable(false);
+		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 	} //AdminMainView
