@@ -80,7 +80,7 @@ public class InstructorMainDAO {
 	    ResultSet rs = null;
 	    DBConnection dbCon = DBConnection.getInstance();
 
-	    String sql = "SELECT C.COUR_CARDINAL, S.STU_NAME, C.COUR_NAME, S.STU_STATUS " +
+	    String sql = "SELECT C.COUR_CARDINAL, S.STU_NAME, C.COUR_NAME, S.STU_STATUS, S.STU_NUM " +
 	                 "FROM STUDENT S " +
 	                 "JOIN APPLY_STEPS A ON S.STU_NUM = A.STU_NUM " +
 	                 "JOIN COURSE C ON A.COUR_NUM = C.COUR_NUM " +
@@ -97,7 +97,8 @@ public class InstructorMainDAO {
 	            vo.setCourCardinal(rs.getString("COUR_CARDINAL"));
 	            vo.setStudName(rs.getString("STU_NAME"));
 	            vo.setCourName(rs.getString("COUR_NAME"));
-	            vo.setCourStatus(rs.getString("STU_STATUS"));
+	            vo.setStuStatus(rs.getString("STU_STATUS"));
+	            vo.setStudNum(rs.getString("STU_NUM"));
 	            list.add(vo);
 	        }
 	    } finally {
@@ -115,7 +116,7 @@ public class InstructorMainDAO {
 	    ResultSet rs = null;
 	    DBConnection dbCon = DBConnection.getInstance();
 
-	    String sql = "SELECT C.COUR_CARDINAL, S.STU_NAME, C.COUR_NAME, S.STU_STATUS " +
+	    String sql = "SELECT C.COUR_CARDINAL, S.STU_NAME, C.COUR_NAME, S.STU_STATUS, S.STU_NUM " +
 	                 "FROM STUDENT S " +
 	                 "JOIN APPLY_STEPS A ON S.STU_NUM = A.STU_NUM " +
 	                 "JOIN COURSE C ON A.COUR_NUM = C.COUR_NUM " +
@@ -133,7 +134,8 @@ public class InstructorMainDAO {
 	            vo.setCourCardinal(rs.getString("COUR_CARDINAL"));
 	            vo.setStudName(rs.getString("STU_NAME"));
 	            vo.setCourName(rs.getString("COUR_NAME"));
-	            vo.setCourStatus(rs.getString("STU_STATUS"));
+	            vo.setStuStatus(rs.getString("STU_STATUS"));
+	            vo.setStudNum(rs.getString("STU_NUM"));
 	            list.add(vo);
 	        }
 	    } finally {
@@ -143,7 +145,43 @@ public class InstructorMainDAO {
 	    return list;
 	}
 
-	
+	//학생정보
+	public InstructorStudentVO selectStudentByNumAndCardinal(String stuNum, String courCardinal) throws SQLException {
+	    InstructorStudentVO vo = null;
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    DBConnection dbCon = DBConnection.getInstance();
+
+	    String sql = "SELECT S.STU_NAME, S.STU_TEL, C.COUR_CARDINAL, C.COUR_NAME, S.STU_STATUS, S.STU_NUM " +
+	                 "FROM STUDENT S " +
+	                 "JOIN APPLY_STEPS A ON S.STU_NUM = A.STU_NUM " +
+	                 "JOIN COURSE C ON A.COUR_NUM = C.COUR_NUM " +
+	                 "WHERE S.STU_NUM = ? AND C.COUR_CARDINAL = ?";
+
+	    try {
+	        con = dbCon.getConn();
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, stuNum);
+	        pstmt.setString(2, courCardinal);
+	        rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            vo = new InstructorStudentVO();
+	            vo.setStudName(rs.getString("STU_NAME"));
+	            vo.setStudTel(rs.getString("STU_TEL"));
+	            vo.setCourCardinal(rs.getString("COUR_CARDINAL"));
+	            vo.setCourName(rs.getString("COUR_NAME"));
+	            vo.setStuStatus(rs.getString("STU_STATUS"));
+	            vo.setStudNum(rs.getString("STU_NUM"));
+	        }
+	    } finally {
+	        dbCon.closeDB(con, pstmt, rs);
+	    }
+	    return vo;
+	}
+
+
 	
 	//과정 번호로 시험 조회
 	public List<InstructorExamVO> selectExamsByCourse(int courNum, String courCardinal) throws SQLException {

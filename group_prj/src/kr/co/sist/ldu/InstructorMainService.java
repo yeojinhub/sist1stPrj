@@ -57,6 +57,18 @@ public class InstructorMainService {
 	    return list;
 	}
 	
+	//학생 번호과 기수를 바탕으로 학생정보 조회
+	public InstructorStudentVO getStudentByNumAndCardinal(String stuNum, String courCardinal) {
+	    InstructorStudentVO vo = null;
+	    try {
+	        vo = new InstructorMainDAO().selectStudentByNumAndCardinal(stuNum, courCardinal);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return vo;
+	}
+
+	
 	//강사번호를 기준으로, 해당 강사의 모든 시험 목록을 가져온다.
 	public List<InstructorExamVO> getExamsByInstructor(String instNum) {
 		List<InstructorExamVO> totalExamList = new ArrayList<>();

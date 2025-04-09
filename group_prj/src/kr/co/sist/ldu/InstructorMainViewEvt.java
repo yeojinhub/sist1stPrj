@@ -66,6 +66,7 @@ public class InstructorMainViewEvt implements ActionListener, WindowListener {
 		addBoardClickEvent();
 		loadStudentCardinals();
 	    loadStudentTable("전체");
+	    addStudentClickEvent();
 	}
 
 	// 불필요한 WindowListener 메서드 구현
@@ -104,7 +105,7 @@ public class InstructorMainViewEvt implements ActionListener, WindowListener {
 	    }
 
 	    DefaultTableModel model = new DefaultTableModel(new String[] {
-	        "기수", "학생 이름", "과정명", "진행 상태"
+	        "기수", "학생 이름", "과정명", "진행 상태","학생 번호"
 	    }, 0);
 
 	    for (InstructorStudentVO vo : list) {
@@ -112,11 +113,16 @@ public class InstructorMainViewEvt implements ActionListener, WindowListener {
 	            vo.getCourCardinal(),
 	            vo.getStudName(),
 	            vo.getCourName(),
-	            vo.getCourStatus()
+	            vo.getStuStatus(),
+	            vo.getStudNum()
 	        });
 	    }
 
 	    imv.getJtaStud().setModel(model);
+	    
+	    imv.getJtaStud().getColumnModel().getColumn(4).setMinWidth(0);
+	    imv.getJtaStud().getColumnModel().getColumn(4).setMaxWidth(0);
+	    imv.getJtaStud().getColumnModel().getColumn(4).setWidth(0);
 	}
 
 
@@ -213,6 +219,7 @@ public class InstructorMainViewEvt implements ActionListener, WindowListener {
 		imv.getJtaBoard().setModel(model);
 	}
 
+	//게시글 클릭 이벤트
 	public void addBoardClickEvent() {
 	    if (boardClickEventAdded) return; // 이미 등록되어 있으면 중복 방지
 
@@ -245,6 +252,40 @@ public class InstructorMainViewEvt implements ActionListener, WindowListener {
 	    boardClickEventAdded = true; // 한 번 등록한 후 플래그 변경
 	}
 
+	//학생 클릭 이벤트
+	public void addStudentClickEvent() {
+		imv.getJtaStud().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					int row = imv.getJtaStud().getSelectedRow();
+					if (row == -1) return;
+
+					try {
+						String courCardinal = imv.getJtaStud().getValueAt(row, 0).toString(); // 기수
+						String stuNum = imv.getJtaStud().getValueAt(row, 4).toString(); // ✅ 학생 번호 (5번째 열)
+
+						InstructorStudentVO studentVO = service.getStudentByNumAndCardinal(stuNum, courCardinal);
+						if (studentVO == null) {
+							JOptionPane.showMessageDialog(imv, "학생 정보를 찾을 수 없습니다.");
+							return;
+						}
+
+						ShowStudScoretoInstructorView popup = new ShowStudScoretoInstructorView(iaVO, studentVO);
+						popup.setModal(true);
+						popup.setVisible(true);
+
+					} catch (Exception ex) {
+						ex.printStackTrace();
+						JOptionPane.showMessageDialog(imv, "학생 정보 조회 중 오류 발생");
+					}
+				}
+			}
+		});
+	}
+
+
+	
 }
 
 

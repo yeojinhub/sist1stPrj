@@ -5,16 +5,20 @@ public class InstructorStudentVO {
     private String studName;
     private String courName;
     private String stuStatus;
+    private String studTel;
+    private String studNum;
     
 	public InstructorStudentVO() {
 	}
 	
 	
-	public InstructorStudentVO(String courCardinal, String studName, String courName, String stuStatus) {
+	public InstructorStudentVO(String courCardinal, String studName, String courName, String stuStatus, String studTel, String studNum) {
 		this.courCardinal = courCardinal;
 		this.studName = studName;
 		this.courName = courName;
 		this.stuStatus = stuStatus;
+		this.studTel = studTel;
+		this.studNum = studNum;
 	}
 
 
@@ -27,9 +31,6 @@ public class InstructorStudentVO {
 	public String getCourName() {
 		return courName;
 	}
-	public String getCourStatus() {
-		return stuStatus;
-	}
 	public void setCourCardinal(String courCardinal) {
 		this.courCardinal = courCardinal;
 	}
@@ -39,8 +40,31 @@ public class InstructorStudentVO {
 	public void setCourName(String courName) {
 		this.courName = courName;
 	}
-	public void setCourStatus(String courStatus) {
-		this.stuStatus = courStatus;
+	public String getStudTel() {
+		return studTel;
+	}
+	public void setStudTel(String studTel) {
+		this.studTel = studTel;
+	}
+
+
+	public String getStuStatus() {
+		return stuStatus;
+	}
+
+
+	public void setStuStatus(String stuStatus) {
+		this.stuStatus = stuStatus;
+	}
+
+
+	public String getStudNum() {
+		return studNum;
+	}
+
+
+	public void setStudNum(String studNum) {
+		this.studNum = studNum;
 	}
 	
 }
