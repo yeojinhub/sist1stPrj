@@ -66,6 +66,7 @@ public class InstructorMainView extends JFrame {
 
 		jtaCourse = new JTable();
 		jtaCourse.setDefaultEditor(Object.class, null);
+		jtaCourse.setBackground(new Color(255,255,255));
 		jspCourse.setViewportView(jtaCourse);
 
 		// 학생 관리
@@ -124,6 +125,7 @@ public class InstructorMainView extends JFrame {
 		jpScore.add(jcpScore);
 
 		jtaScore = new JTable();
+		jtaScore.setDefaultEditor(Object.class, null);
 		jcpScore.setViewportView(jtaScore);
 
 		// 1:1 문의
@@ -152,7 +154,7 @@ public class InstructorMainView extends JFrame {
 		jbtnSearch.addActionListener(evt);
 		
 		setVisible(true);
-		
+		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 }

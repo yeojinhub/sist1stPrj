@@ -1,8 +1,6 @@
 package kr.co.sist.ldu;
 
-import java.awt.EventQueue;
 
-import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -12,7 +10,6 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JTextField;
 import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
@@ -65,6 +62,7 @@ public class ShowStudScoretoInstructorView extends JDialog{
 		getContentPane().add(jspStudScore);
 		
 		jtaStudScore = new JTable();
+		jtaStudScore.setDefaultEditor(Object.class, null);
 		jtaStudScore.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
@@ -81,7 +79,7 @@ public class ShowStudScoretoInstructorView extends JDialog{
 		ShowStudScoretoInstructorViewEvt ssive = new ShowStudScoretoInstructorViewEvt(this);
 		jbtnClose.addActionListener(ssive);
 		
-		
+		setResizable(false);
 	}
 
 
