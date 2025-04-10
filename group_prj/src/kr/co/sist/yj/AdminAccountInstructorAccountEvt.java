@@ -2,22 +2,24 @@ package kr.co.sist.yj;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 public class AdminAccountInstructorAccountEvt implements ActionListener {
 
-	private AdminAccountInstructorAccountView aaiav;
+	private AdminAccountInstructorAccountView aaiaView;
 
 	private JButton jbtnAdminAccountInstructorAccountCreate;
 	private JButton jbtnAdminAccountInstructorAccountModify;
 
-	public AdminAccountInstructorAccountEvt(AdminAccountInstructorAccountView aaiav) {
-		this.aaiav = aaiav;
-		this.jbtnAdminAccountInstructorAccountCreate = aaiav.getJbtnAdminAccountInstructorAccountCreate();
-		this.jbtnAdminAccountInstructorAccountModify = aaiav.getJbtnAdminAccountInstructorAccountModify();
+	public AdminAccountInstructorAccountEvt(AdminAccountInstructorAccountView aaiaView) {
+		this.aaiaView = aaiaView;
+		this.jbtnAdminAccountInstructorAccountCreate = aaiaView.getJbtnAdminAccountInstructorAccountCreate();
+		this.jbtnAdminAccountInstructorAccountModify = aaiaView.getJbtnAdminAccountInstructorAccountModify();
 	} // AdminAccountInstructorAccountEvt
 
 	@Override
@@ -29,7 +31,7 @@ public class AdminAccountInstructorAccountEvt implements ActionListener {
 			JDialog jdInstructorAccountCreateDialog = new JDialog((JFrame) null, "강사 계정 생성", true);
 			jdInstructorAccountCreateDialog.getContentPane().add(new AdminAccountInstructorAccountCreateView());
 			jdInstructorAccountCreateDialog.pack();
-			jdInstructorAccountCreateDialog.setLocationRelativeTo(aaiav);
+			jdInstructorAccountCreateDialog.setLocationRelativeTo(aaiaView);
 			jdInstructorAccountCreateDialog.setVisible(true);
 
 		} // end if
@@ -38,10 +40,30 @@ public class AdminAccountInstructorAccountEvt implements ActionListener {
 			JDialog jdInstructorAccountModifyDialog = new JDialog((JFrame) null, "강사 계정 수정", true);
 			jdInstructorAccountModifyDialog.getContentPane().add(new AdminAccountInstructorAccountModifyView());
 			jdInstructorAccountModifyDialog.pack();
-			jdInstructorAccountModifyDialog.setLocationRelativeTo(aaiav);
+			jdInstructorAccountModifyDialog.setLocationRelativeTo(aaiaView);
 			jdInstructorAccountModifyDialog.setVisible(true);
 		} // end if
 
 	} // actionPerformed
+	
+	public void loadInstructorInfoTableList() {
+		AdminAccountInstructorAccountInfoService aaiaiService = new AdminAccountInstructorAccountInfoService();
+		List<AdminAccountInstructorAccountInfoVO> instructorList = aaiaiService.searchAllInstructorAccountMember();
+		
+		DefaultTableModel model = aaiaView.getDftmInstructorTableModel();
+		model.setRowCount(0);
+		
+		//강사 VO 객체들을 테이블에 추가
+		for(AdminAccountInstructorAccountInfoVO aaiaiVO : instructorList) {
+			model.addRow(new Object[] {
+					aaiaiVO.getInstNum(),
+					aaiaiVO.getInstName(),
+					aaiaiVO.getInstBirth(),
+					aaiaiVO.getInstTel(),
+					aaiaiVO.getInstAdd()
+			});
+		} //end for
+		
+	} //loadInstructorInfoTableList
 
 } // class

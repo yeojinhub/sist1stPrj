@@ -3,80 +3,80 @@ package kr.co.sist.yj;
 import java.sql.Date;
 
 public class AdminAccountInstructorAccountInfoVO {
-	private String inst_num;
-	private String inst_pass;
-	private String inst_name;
-	private Date inst_birth;
-	private String inst_tel;
-	private String inst_add;
+	private String instNum;
+	private String instPass;
+	private String instName;
+	private Date instBirth;
+	private String instTel;
+	private String instAdd;
 	
 	public AdminAccountInstructorAccountInfoVO() {
 		super();
 	}
 
-	public AdminAccountInstructorAccountInfoVO(String inst_num, String inst_pass, String inst_name, Date inst_birth,
-			String inst_tel, String inst_add) {
+	public AdminAccountInstructorAccountInfoVO(String instNum, String instPass, String instName, Date instBirth,
+			String instTel, String instAdd) {
 		super();
-		this.inst_num = inst_num;
-		this.inst_pass = inst_pass;
-		this.inst_name = inst_name;
-		this.inst_birth = inst_birth;
-		this.inst_tel = inst_tel;
-		this.inst_add = inst_add;
+		this.instNum = instNum;
+		this.instPass = instPass;
+		this.instName = instName;
+		this.instBirth = instBirth;
+		this.instTel = instTel;
+		this.instAdd = instAdd;
 	}
 
-	public String getInst_num() {
-		return inst_num;
+	public String getInstNum() {
+		return instNum;
 	}
 
-	public void setInst_num(String inst_num) {
-		this.inst_num = inst_num;
+	public void setInstNum(String instNum) {
+		this.instNum = instNum;
 	}
 
-	public String getInst_pass() {
-		return inst_pass;
+	public String getInstPass() {
+		return instPass;
 	}
 
-	public void setInst_pass(String inst_pass) {
-		this.inst_pass = inst_pass;
+	public void setInstPass(String instPass) {
+		this.instPass = instPass;
 	}
 
-	public String getInst_name() {
-		return inst_name;
+	public String getInstName() {
+		return instName;
 	}
 
-	public void setInst_name(String inst_name) {
-		this.inst_name = inst_name;
+	public void setInstName(String instName) {
+		this.instName = instName;
 	}
 
-	public Date getInst_birth() {
-		return inst_birth;
+	public Date getInstBirth() {
+		return instBirth;
 	}
 
-	public void setInst_birth(Date inst_birth) {
-		this.inst_birth = inst_birth;
+	public void setInstBirth(Date instBirth) {
+		this.instBirth = instBirth;
 	}
 
-	public String getInst_tel() {
-		return inst_tel;
+	public String getInstTel() {
+		return instTel;
 	}
 
-	public void setInst_tel(String inst_tel) {
-		this.inst_tel = inst_tel;
+	public void setInstTel(String instTel) {
+		this.instTel = instTel;
 	}
 
-	public String getInst_add() {
-		return inst_add;
+	public String getInstAdd() {
+		return instAdd;
 	}
 
-	public void setInst_add(String inst_add) {
-		this.inst_add = inst_add;
+	public void setInstAdd(String instAdd) {
+		this.instAdd = instAdd;
 	}
 
 	@Override
 	public String toString() {
-		return "AdminAccountInstructorAccountInfoVO [inst_num=" + inst_num + ", inst_pass=" + inst_pass + ", inst_name="
-				+ inst_name + ", inst_birth=" + inst_birth + ", inst_tel=" + inst_tel + ", inst_add=" + inst_add + "]";
+		return "AdminAccountInstructorAccountInfoVO [instNum=" + instNum + ", instPass=" + instPass + ", instName="
+				+ instName + ", instBirth=" + instBirth + ", instTel=" + instTel + ", instAdd=" + instAdd + "]";
 	}
-	  
+
 } //class

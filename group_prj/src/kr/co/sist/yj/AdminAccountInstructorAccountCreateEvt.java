@@ -62,10 +62,10 @@ public class AdminAccountInstructorAccountCreateEvt implements ActionListener {
 		
 		//VO에 입력 값 저장
 		AdminAccountInstructorAccountInfoVO aaiaiVO = new AdminAccountInstructorAccountInfoVO();
-		aaiaiVO.setInst_name( aaiacView.getJtfAdminAccountInstructorAccountNameSet().getText().trim() );
+		aaiaiVO.setInstName( aaiacView.getJtfAdminAccountInstructorAccountNameSet().getText().trim() );
 		char[] instructorPasswordArray = aaiacView.getJpfAdminAccountInstructorAccountPassSet().getPassword();
 		String strStudentPassword = new String(instructorPasswordArray).trim();
-		aaiaiVO.setInst_pass( strStudentPassword );
+		aaiaiVO.setInstPass( strStudentPassword );
 		String strInstructorBirth = new String( aaiacView.getJtfAdminAccountInstructorAccountBirthSet().getText().trim() );
 
 		if( !strInstructorBirth.isEmpty() ) {
@@ -74,21 +74,21 @@ public class AdminAccountInstructorAccountCreateEvt implements ActionListener {
 			try {
 				parsedDate = sdf.parse(strInstructorBirth);
 				Date instructorBirthDate = new Date(parsedDate.getTime());
-				aaiaiVO.setInst_birth(instructorBirthDate);
+				aaiaiVO.setInstBirth(instructorBirthDate);
 			} catch (ParseException pe) {
 				pe.printStackTrace();
 			} //end try catch
 		} else {
-			aaiaiVO.setInst_birth( null );
+			aaiaiVO.setInstBirth( null );
 		} //end if else
-		aaiaiVO.setInst_tel( aaiacView.getJtfAdminAccountInstructorAccountTelSet().getText().trim() );
-		aaiaiVO.setInst_add( aaiacView.getJtfAdminAccountInstructorAccountAddressSet().getText().trim() );
+		aaiaiVO.setInstTel( aaiacView.getJtfAdminAccountInstructorAccountTelSet().getText().trim() );
+		aaiaiVO.setInstAdd( aaiacView.getJtfAdminAccountInstructorAccountAddressSet().getText().trim() );
 		
 		//메세지 생성
 		AdminAccountInstructorAccountInfoService aaiaiService = new AdminAccountInstructorAccountInfoService();
-		String out_msg="강사 계정이 생성되지 않았습니다.";
+		String outMsg="강사 계정이 생성되지 않았습니다.";
 		if( aaiaiService.addInstructorAccountMember(aaiaiVO) ) {
-			out_msg="강사 계정이 생성되었습니다.";
+			outMsg="강사 계정이 생성되었습니다.";
 			Window adminAccountInstructorAccountCreateWindow = SwingUtilities.getWindowAncestor(aaiacView);
             if(adminAccountInstructorAccountCreateWindow instanceof JDialog) {
                 ((JDialog) adminAccountInstructorAccountCreateWindow).dispose();
@@ -99,7 +99,7 @@ public class AdminAccountInstructorAccountCreateEvt implements ActionListener {
 		inputFieldReset();
 		
 		//메세지 출력
-		JOptionPane.showMessageDialog(aaiacView, out_msg);
+		JOptionPane.showMessageDialog(aaiacView, outMsg);
 		
 	} //addMember
 
