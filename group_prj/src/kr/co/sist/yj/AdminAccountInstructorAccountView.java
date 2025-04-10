@@ -122,6 +122,8 @@ public class AdminAccountInstructorAccountView extends JPanel {
 		// Table 이벤트 생성
 		aaiaEvt.loadInstructorInfoTableList();
 		
+		jtAdminAccountInstructorAccountTable.addMouseListener(aaiaEvt);
+		
 	} // AdminAccountInstructorAccountView
 
 	// getter method

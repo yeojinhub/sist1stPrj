@@ -50,7 +50,7 @@ public class AdminAccountInstructorAccountInfoDAO {
 			.append("	insert into instructor	")
 			.append("	(inst_num,inst_pass,inst_name,inst_birth,inst_tel,inst_add)	")
 			.append("	values	")
-			.append("	('2025_0102',?,?,?,?,?)	")
+			.append("	('seq_inst_num',?,?,?,?,?)	")
 			;
 			
 			pstmt=con.prepareStatement(strInstructorAccountMember.toString());
@@ -141,7 +141,7 @@ public class AdminAccountInstructorAccountInfoDAO {
 			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
 			StringBuilder strDeleteInstructorAccountMember = new StringBuilder();
 			strDeleteInstructorAccountMember
-			.append("	delete from	instuctor	")
+			.append("	delete from	instructor	")
 			.append("	where inst_num=?	")
 			;
 			pstmt = con.prepareStatement(strDeleteInstructorAccountMember.toString());
