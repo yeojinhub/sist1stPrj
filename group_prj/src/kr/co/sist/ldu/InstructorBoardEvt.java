@@ -44,7 +44,7 @@ public class InstructorBoardEvt implements ActionListener {
 
         if (success) {
         	 	JOptionPane.showMessageDialog(null, "댓글이 등록되었습니다.");
-        	    
+        	 	
         	    dialog.dispose();
         	    
         	    imv.getEvt().loadBoardList();
