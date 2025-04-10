@@ -81,7 +81,7 @@ public class ShowStudScoretoInstructorView extends JDialog{
 		ShowStudScoretoInstructorViewEvt ssive = new ShowStudScoretoInstructorViewEvt(this);
 		jbtnClose.addActionListener(ssive);
 		
-		
+		setResizable(false);
 	}
 
 

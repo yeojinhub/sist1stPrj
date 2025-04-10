@@ -6,6 +6,6 @@ public class AdminWindowRun {
 
 	public static void main(String[] args) {
 		new AdminLoginView();
-	} //main
+	} // main
 
-} //class
+} // class

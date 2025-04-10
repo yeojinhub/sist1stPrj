@@ -13,7 +13,6 @@ public class InstructorMainViewEvt implements ActionListener, WindowListener {
 	private InstructorMainService service;
 	private InstructorAccountVO iaVO;
 	private List<InstructorExamVO> allExamList;
-	private boolean boardClickEventAdded = false;
 
 	public InstructorMainViewEvt(InstructorMainView imv) {
 		this.imv = imv;
@@ -221,7 +220,6 @@ public class InstructorMainViewEvt implements ActionListener, WindowListener {
 
 	//게시글 클릭 이벤트
 	public void addBoardClickEvent() {
-	    if (boardClickEventAdded) return; // 이미 등록되어 있으면 중복 방지
 
 	    imv.getJtaBoard().addMouseListener(new MouseAdapter() {
 	        @Override
@@ -249,7 +247,6 @@ public class InstructorMainViewEvt implements ActionListener, WindowListener {
 	        }
 	    });
 
-	    boardClickEventAdded = true; // 한 번 등록한 후 플래그 변경
 	}
 
 	//학생 클릭 이벤트
