@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AdminAccountInstructorAccountInfoDAO {
  
-	private static AdminAccountInstructorAccountInfoDAO aaiaiVO;
+	private static AdminAccountInstructorAccountInfoDAO instVO;
 	
 	private AdminAccountInstructorAccountInfoDAO() {
 		
@@ -19,51 +19,51 @@ public class AdminAccountInstructorAccountInfoDAO {
 	
 	//SingleTon 생성
 	public static AdminAccountInstructorAccountInfoDAO getInstance() {
-		if( aaiaiVO == null ) {
-			aaiaiVO = new AdminAccountInstructorAccountInfoDAO();
+		if( instVO == null ) {
+			instVO = new AdminAccountInstructorAccountInfoDAO();
 		} //end if
 		
-		return aaiaiVO;
+		return instVO;
 	} //getInstance
 	
 	/**
 	 * 강사 계정 등록
-	 * @param aaiaiVO 등록할 강사 계정 정보가 담긴 VO
+	 * @param instVO 등록할 강사 계정 정보가 담긴 VO
 	 * @throws SQLException 예외처리
 	 * @throws IOException 예외처리
 	 */
-	public void insertInstructorAccountMember(AdminAccountInstructorAccountInfoVO aaiaiVO) throws SQLException, IOException {
+	public void insertInstructorAccountMember(AdminAccountInstructorAccountInfoVO instVO) throws SQLException, IOException {
 		
 		// 1. Driver 로딩
 		// 2. Connection 연결
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		
-		DbConnection dbConn = DbConnection.getInstance();
+		DBConnection dbConn = DBConnection.getInstance();
 		
 		try {
 			con = dbConn.getConn();
 			
 			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
-			StringBuilder strInstructorAccountMember = new StringBuilder();
-			strInstructorAccountMember
+			StringBuilder strInsertInstructorAccountQuery = new StringBuilder();
+			strInsertInstructorAccountQuery
 			.append("	insert into instructor	")
 			.append("	(inst_num,inst_pass,inst_name,inst_birth,inst_tel,inst_add)	")
 			.append("	values	")
 			.append("	('seq_inst_num',?,?,?,?,?)	")
 			;
 			
-			pstmt=con.prepareStatement(strInstructorAccountMember.toString());
+			pstmt=con.prepareStatement(strInsertInstructorAccountQuery.toString());
 			
 			// 4. bind 변수에 값 할당
 			int bindInd = 0;
 			
-			pstmt.setString(++bindInd, aaiaiVO.getInstPass());
-			pstmt.setString(++bindInd, aaiaiVO.getInstName());
-			Date birthDate = aaiaiVO.getInstBirth();
+			pstmt.setString(++bindInd, instVO.getInstPass());
+			pstmt.setString(++bindInd, instVO.getInstName());
+			Date birthDate = instVO.getInstBirth();
 			pstmt.setDate(++bindInd, birthDate );
-			pstmt.setString(++bindInd, aaiaiVO.getInstTel());
-			pstmt.setString(++bindInd, aaiaiVO.getInstAdd());
+			pstmt.setString(++bindInd, instVO.getInstTel());
+			pstmt.setString(++bindInd, instVO.getInstAdd());
 			
 			// 5. 쿼리문 수행 후 결과 얻기
 			pstmt.executeUpdate();
@@ -77,11 +77,11 @@ public class AdminAccountInstructorAccountInfoDAO {
 	
 	/**
 	 * 강사 계정 수정
-	 * @param aaiaiVO 수정할 강사 계정 정보가 담긴 VO
-	 * @return
+	 * @param instVO 수정할 강사 계정 정보가 담긴 VO
+	 * @return rowCnt
 	 * @throws SQLException 예외처리
 	 */
-	public int updateInstructorAccountMember(AdminAccountInstructorAccountInfoVO aaiaiVO) throws SQLException {
+	public int updateInstructorAccountMember(AdminAccountInstructorAccountInfoVO instVO) throws SQLException {
 		int rowCnt=0;
 		
 		// 1. Driver 로딩
@@ -89,24 +89,24 @@ public class AdminAccountInstructorAccountInfoDAO {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		
-		DbConnection dbConn=DbConnection.getInstance();
+		DBConnection dbConn=DBConnection.getInstance();
 		
 		try {
 			con = dbConn.getConn();
 			
 			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
-			StringBuilder strUpdateInstructorAccountMember = new StringBuilder();
-			strUpdateInstructorAccountMember
+			StringBuilder strUpdateInstructorAccountQuery = new StringBuilder();
+			strUpdateInstructorAccountQuery
 			.append("	update instructor	")
 			.append("	set	inst_tel=?,inst_add=?	")
 			.append("	where inst_num=?	")
 			;
-			pstmt=con.prepareStatement(strUpdateInstructorAccountMember.toString());
+			pstmt=con.prepareStatement(strUpdateInstructorAccountQuery.toString());
 			
 			// 4. bind 변수 값 설정
-			pstmt.setString(1, aaiaiVO.getInstTel());
-			pstmt.setString(2, aaiaiVO.getInstAdd());
-			pstmt.setString(3, aaiaiVO.getInstNum());
+			pstmt.setString(1, instVO.getInstTel());
+			pstmt.setString(2, instVO.getInstAdd());
+			pstmt.setString(3, instVO.getInstNum());
 			
 			// 5. 쿼리문 수행 후 결과 얻기
 			rowCnt=pstmt.executeUpdate();
@@ -121,48 +121,48 @@ public class AdminAccountInstructorAccountInfoDAO {
 	
 	/**
 	 * 강사 계정 삭제
-	 * @param num 삭제할 강사의 사번
-	 * @return 
+	 * @param instNum 삭제할 강사의 사번
+	 * @return rowCnt
 	 * @throws SQLException 예외처리
 	 */
-	public int deleteInstructorAccountMember(String num) throws SQLException {
-		int instNum=0;
+	public int deleteInstructorAccountMember(String instNum) throws SQLException {
+		int rowCnt=0;
 		
 		// 1. Driver 로딩
 		// 2. Connection 연결
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		
-		DbConnection dbConn = DbConnection.getInstance();
+		DBConnection dbConn = DBConnection.getInstance();
 		
 		try {
 			con = dbConn.getConn();
 			
 			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
-			StringBuilder strDeleteInstructorAccountMember = new StringBuilder();
-			strDeleteInstructorAccountMember
+			StringBuilder strDeleteInstructorAccountQuery = new StringBuilder();
+			strDeleteInstructorAccountQuery
 			.append("	delete from	instructor	")
 			.append("	where inst_num=?	")
 			;
-			pstmt = con.prepareStatement(strDeleteInstructorAccountMember.toString());
+			pstmt = con.prepareStatement(strDeleteInstructorAccountQuery.toString());
 			
 			// 4. bind 변수에 값 할당
-			pstmt.setString(1, num);
+			pstmt.setString(1, instNum);
 			
 			// 5. 쿼리문 수행 후 결과 얻기
-			instNum=pstmt.executeUpdate();
+			rowCnt=pstmt.executeUpdate();
 			
 		} finally {
 			// 6. 연결 끊기
 			dbConn.closeDB(null, pstmt, con);
 		} //end try finally
 		
-		return instNum;
+		return rowCnt;
 	} //deleteInstructorAccountMember
 	
 	/**
 	 * 전체 강사 계정 조회
-	 * @return
+	 * @return instructorList
 	 * @throws SQLException 예외처리
 	 */
 	public List<AdminAccountInstructorAccountInfoVO> selectAllInstructorAccountMember() throws SQLException {
@@ -174,36 +174,36 @@ public class AdminAccountInstructorAccountInfoDAO {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		DbConnection dbConn=DbConnection.getInstance();
+		DBConnection dbConn=DBConnection.getInstance();
 		
 		try {
 			con=dbConn.getConn();
 			
 			// 3. 쿼리문 객체 생성
-			StringBuilder strSelectAllInstructorAccountMember = new StringBuilder();
-			strSelectAllInstructorAccountMember
+			StringBuilder strSelectAllInstructorAccountQuery = new StringBuilder();
+			strSelectAllInstructorAccountQuery
 			.append("	select 	inst_num,inst_name,inst_birth,inst_tel,inst_add	")
 			.append("	from	instructor	")
 			.append("	order by	inst_num	")
 			;
-			pstmt=con.prepareStatement(strSelectAllInstructorAccountMember.toString());
+			pstmt=con.prepareStatement(strSelectAllInstructorAccountQuery.toString());
 			
 			// 4. bind 변수 값 할당
 			// 5. 쿼리문 수행 후 결과 얻기
 			rs=pstmt.executeQuery();
 			
-			AdminAccountInstructorAccountInfoVO aaiaiVO = null;
+			AdminAccountInstructorAccountInfoVO instVO = null;
 			// 레코드 존재여부 확인
 			while( rs.next() ) {
-				aaiaiVO = new AdminAccountInstructorAccountInfoVO();
+				instVO = new AdminAccountInstructorAccountInfoVO();
 				
-				aaiaiVO.setInstNum(rs.getString("inst_num"));
-				aaiaiVO.setInstName(rs.getString("inst_name"));
-				aaiaiVO.setInstBirth(rs.getDate("inst_birth"));
-				aaiaiVO.setInstTel(rs.getString("inst_tel"));
-				aaiaiVO.setInstAdd(rs.getString("inst_add"));
+				instVO.setInstNum(rs.getString("inst_num"));
+				instVO.setInstName(rs.getString("inst_name"));
+				instVO.setInstBirth(rs.getDate("inst_birth"));
+				instVO.setInstTel(rs.getString("inst_tel"));
+				instVO.setInstAdd(rs.getString("inst_add"));
 				
-				instructorList.add(aaiaiVO);
+				instructorList.add(instVO);
 			} //end while
 			
 		} finally {
@@ -214,13 +214,13 @@ public class AdminAccountInstructorAccountInfoDAO {
 	} //selectAllInstructorAccountMember
 	
 	/**
-	 * 한명의 강사 계정 조회
-	 * @param num 조회할 강사의 사번
-	 * @return
+	 * 단일 강사 계정 조회
+	 * @param instNum 조회할 강사의 사번
+	 * @return instVO
 	 * @throws SQLException 예외처리
 	 */
-	public AdminAccountInstructorAccountInfoVO selectOneInstructorAccountMember(String num) throws SQLException {
-		AdminAccountInstructorAccountInfoVO aaiaiVO = null;
+	public AdminAccountInstructorAccountInfoVO selectOneInstructorAccountMember(String instNum) throws SQLException {
+		AdminAccountInstructorAccountInfoVO instVO = null;
 		
 		// 1. Driver 로딩
 		// 2. Connection 연결
@@ -228,36 +228,36 @@ public class AdminAccountInstructorAccountInfoDAO {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		DbConnection dbConn=DbConnection.getInstance();
+		DBConnection dbConn=DBConnection.getInstance();
 		
 		try {
 			con=dbConn.getConn();
 			
 			// 3. 쿼리문 객체 생성
-			StringBuilder strSelectOneInstructorAccountMember = new StringBuilder();
-			strSelectOneInstructorAccountMember
+			StringBuilder strSelectOneInstructorAccountQuery = new StringBuilder();
+			strSelectOneInstructorAccountQuery
 			.append("	select inst_name,inst_num,inst_pass,inst_birth,inst_tel,inst_add	")
 			.append("	from instructor	")
 			.append("	where inst_num=?	")
 			;
 			
-			pstmt=con.prepareStatement(strSelectOneInstructorAccountMember.toString());
+			pstmt=con.prepareStatement(strSelectOneInstructorAccountQuery.toString());
 			
 			// 4. bind 변수 값 할당
-			pstmt.setString(1, num);
+			pstmt.setString(1, instNum);
 			
 			// 5. 쿼리문 수행 후 결과 얻기
 			rs=pstmt.executeQuery();
 			// 레코드 존재여부 확인
 			if( rs.next() ) {
-				aaiaiVO = new AdminAccountInstructorAccountInfoVO();
+				instVO = new AdminAccountInstructorAccountInfoVO();
 				// 값을 VO 객체에 저장
-				aaiaiVO.setInstName(rs.getString("inst_name"));
-				aaiaiVO.setInstNum(rs.getString("inst_num"));
-				aaiaiVO.setInstPass(rs.getString("inst_pass"));
-				aaiaiVO.setInstBirth(rs.getDate("inst_birth"));
-				aaiaiVO.setInstTel(rs.getString("inst_tel"));
-				aaiaiVO.setInstAdd(rs.getString("inst_add"));
+				instVO.setInstName(rs.getString("inst_name"));
+				instVO.setInstNum(rs.getString("inst_num"));
+				instVO.setInstPass(rs.getString("inst_pass"));
+				instVO.setInstBirth(rs.getDate("inst_birth"));
+				instVO.setInstTel(rs.getString("inst_tel"));
+				instVO.setInstAdd(rs.getString("inst_add"));
 			} //end if
 			
 		} finally {
@@ -265,8 +265,7 @@ public class AdminAccountInstructorAccountInfoDAO {
 			dbConn.closeDB(rs, pstmt, con);
 		} //end try finally
 		
-		return aaiaiVO;
-		
-	} //AdminAccountInstructorAccountInfoVO
+		return instVO;
+	} //selectOneInstructorAccountMember
 	
 } //class

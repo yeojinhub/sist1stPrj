@@ -9,7 +9,7 @@ public class AdminAccountStudentAccountInfoService {
 	/**
 	 * 학생 계정 등록
 	 * @param stuVO 등록할 학생 계정 정보가 담긴 VO
-	 * @return 등록 성공시 true, 실패시 false
+	 * @return flag 등록 성공시 true, 실패시 false
 	 */
 	public boolean addStudentAccountMember(AdminAccountStudentAccountInfoVO stuVO) {
 		boolean flag = false;
@@ -49,7 +49,7 @@ public class AdminAccountStudentAccountInfoService {
 	/**
 	 * 학생 계정 삭제
 	 * @param stuNum 삭제할 학생의 학번
-	 * @return flag 수정 성공시 true, 실패시 false
+	 * @return flag 삭제 성공시 true, 실패시 false
 	 */
 	public boolean removeStudentAccountMember(String stuNum) {
 		boolean flag = false;

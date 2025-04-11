@@ -24,7 +24,7 @@ public class AdminAccountAdminAccountEvt implements ActionListener{
 	
 	public void loadAdminInfoTableList() {
 		AdminAccountAdminAccountInfoService aaaaiService = new AdminAccountAdminAccountInfoService();
-		List<AdminAccountAdminAccountInfoVO> adminList = aaaaiService.searchAllAdminAccountAdminAccountMember();
+		List<AdminAccountAdminAccountInfoVO> adminList = aaaaiService.searchAllAdminAccountMember();
 		
 		DefaultTableModel model = aaaaView.getDftmAdminTableModel();
 		model.setRowCount(0);
