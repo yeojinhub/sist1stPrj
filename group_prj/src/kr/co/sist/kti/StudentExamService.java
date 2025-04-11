@@ -49,4 +49,19 @@ public class StudentExamService {
 		return sgVO;
 	}// searchStudentExamGrade
 
+	public StudentExamDateVO searchExamDate(String examName) {
+		StudentExamDateVO sedVO = new StudentExamDateVO();
+
+		// DAO 객체 생성
+		StudentExamDAO seDAO = new StudentExamDAO();
+
+		try {
+			sedVO = seDAO.selectExamDate(examName);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // end try-catch
+
+		return sedVO;
+	}
+
 }// class

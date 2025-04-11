@@ -2,6 +2,8 @@ package kr.co.sist.kti;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -30,8 +32,16 @@ public class StudentExamEvt implements ActionListener {
 		if (!(sgVO.getStuNum() == null)) {
 			JOptionPane.showMessageDialog(sep, "이미 치룬 시험입니다.");
 			return;
-		}
-
+		}// end if
+		
+		StudentExamDateVO sedVO = ses.searchExamDate((String) sep.getJcbSubjectSet().getSelectedItem());
+		Date today = new Date(System.currentTimeMillis());
+		
+		if(sedVO.getExamDate().before(today)) {
+			JOptionPane.showMessageDialog(sep, "일정이 지난 시험입니다.");
+			return;
+		}// end if
+		
 		new StudentExamTestView(sep, (String) sep.getJcbSubjectSet().getSelectedItem());
 	}// startExam
 

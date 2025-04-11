@@ -134,4 +134,43 @@ public class StudentExamDAO {
 		return sgVO;
 	}// selectStudentExamGrade
 
+	public StudentExamDateVO selectExamDate(String examName) throws SQLException {
+		StudentExamDateVO sedVO = new StudentExamDateVO();
+
+		// jdbc 객체 null 생성
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		// Singleton 객체 생성
+		DBConnection dbCon = DBConnection.getInstance();
+
+		// 학생 테이블을 전체 조회할 쿼리문 생성
+		String selectStudentExamGrade = "SELECT * FROM EXAM WHERE EXAM_NAME = ?";
+
+		try {
+			// 생성한 jdbc 객체 생성
+			con = dbCon.getConn();
+			pstmt = con.prepareStatement(selectStudentExamGrade);
+
+			// 바인드 변수 설정
+			pstmt.setString(1, examName);
+
+			// 쿼리 실행
+			rs = pstmt.executeQuery();
+
+			// 반복문으로 리스트에 VO 객체 넣기
+			if (rs.next()) {
+				sedVO.setExamNum(rs.getInt("EXAM_NUM"));
+				sedVO.setExamName(rs.getString("EXAM_NAME"));
+				sedVO.setExamDate(rs.getDate("EXAM_DATE"));
+			} // end if
+
+		} finally {
+			// 연결 끊기
+			dbCon.closeDB(con, pstmt, rs);
+		} // end try-finally
+
+		return sedVO;
+	}
 }
