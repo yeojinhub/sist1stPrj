@@ -50,7 +50,7 @@ public class AdminAccountInstructorAccountInfoDAO {
 			.append("	insert into instructor	")
 			.append("	(inst_num,inst_pass,inst_name,inst_birth,inst_tel,inst_add)	")
 			.append("	values	")
-			.append("	('seq_inst_num',?,?,?,?,?)	")
+			.append("	(to_char(sysdate,'yyyy_')||trim(to_char(seq_inst_num.nextval,'0000')),?,?,?,?,?)	")
 			;
 			
 			pstmt=con.prepareStatement(strInsertInstructorAccountQuery.toString());

@@ -29,20 +29,20 @@ public class AdminAccountInstructorAccountEvt extends MouseAdapter implements Ac
 	} // AdminAccountInstructorAccountEvt
 	
 	public void loadInstructorInfoTableList() {
-		AdminAccountInstructorAccountInfoService aaiaiService = new AdminAccountInstructorAccountInfoService();
-		List<AdminAccountInstructorAccountInfoVO> instructorList = aaiaiService.searchAllInstructorAccountMember();
+		AdminAccountInstructorAccountInfoService instService = new AdminAccountInstructorAccountInfoService();
+		List<AdminAccountInstructorAccountInfoVO> instructorList = instService.searchAllInstructorAccountMember();
 		
 		DefaultTableModel model = instView.getDftmInstructorTableModel();
 		model.setRowCount(0);
 		
 		//강사 VO 객체들을 테이블에 추가
-		for(AdminAccountInstructorAccountInfoVO aaiaiVO : instructorList) {
+		for(AdminAccountInstructorAccountInfoVO instVO : instructorList) {
 			model.addRow(new Object[] {
-					aaiaiVO.getInstNum(),
-					aaiaiVO.getInstName(),
-					aaiaiVO.getInstBirth(),
-					aaiaiVO.getInstTel(),
-					aaiaiVO.getInstAdd()
+					instVO.getInstNum(),
+					instVO.getInstName(),
+					instVO.getInstBirth(),
+					instVO.getInstTel(),
+					instVO.getInstAdd()
 			});
 		} //end for
 		
@@ -94,8 +94,6 @@ public class AdminAccountInstructorAccountEvt extends MouseAdapter implements Ac
 	    String strInstNum = instView.getJtAdminAccountInstructorAccountTable()
 	            .getValueAt(selectedRow, 0).toString();
 	    System.out.println("선택된 강사 사번: " + strInstNum);
-		
-		System.out.println(instView.getJtAdminAccountInstructorAccountTable().getValueAt(instView.getJtAdminAccountInstructorAccountTable().getSelectedRow(), 0));
 	}
 
 	public int getSelectedRow() {
