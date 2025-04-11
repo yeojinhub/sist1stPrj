@@ -2,10 +2,12 @@ package kr.co.sist.yj;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 public class AdminAccountAdminAccountEvt implements ActionListener{
 	
@@ -20,6 +22,26 @@ public class AdminAccountAdminAccountEvt implements ActionListener{
 		this.jbtnAdminAccountAdminAccountModify=aaaaView.getJbtnAdminAccountAdminAccountModify();
 	} //AdminAccountAdminAccountEvt
 	
+	public void loadAdminInfoTableList() {
+		AdminAccountAdminAccountInfoService aaaaiService = new AdminAccountAdminAccountInfoService();
+		List<AdminAccountAdminAccountInfoVO> adminList = aaaaiService.searchAllAdminAccountAdminAccountMember();
+		
+		DefaultTableModel model = aaaaView.getDftmAdminTableModel();
+		model.setRowCount(0);
+		
+		// 관리자 VO 객체들을 테이블에 추가
+		for( AdminAccountAdminAccountInfoVO aaaaiVO : adminList ) {
+			model.addRow(new Object[] {
+					aaaaiVO.getAdmNum(),
+					aaaaiVO.getAdmName(),
+					aaaaiVO.getAdmBirth(),
+					aaaaiVO.getAdmTel(),
+					aaaaiVO.getAdmAdd()
+			});
+		} //end for
+		
+	} //loadAdminInfoTableList
+	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		Object source = ae.getSource();
@@ -31,6 +53,8 @@ public class AdminAccountAdminAccountEvt implements ActionListener{
 			jdAdminAccountCreateDialog.pack();
 			jdAdminAccountCreateDialog.setLocationRelativeTo(aaaaView);
 			jdAdminAccountCreateDialog.setVisible(true);
+			
+			loadAdminInfoTableList();
 		} //end if
 		
 		if( source == jbtnAdminAccountAdminAccountModify ) {
@@ -40,6 +64,8 @@ public class AdminAccountAdminAccountEvt implements ActionListener{
 			jdAdminAccountModifyDialog.pack();
 			jdAdminAccountModifyDialog.setLocationRelativeTo(aaaaView);
 			jdAdminAccountModifyDialog.setVisible(true);
+			
+			loadAdminInfoTableList();
 		} //end if
 		
 	} //actionPerformed

@@ -25,25 +25,6 @@ public class AdminAccountInstructorAccountCreateEvt implements ActionListener {
 		this.jbtnAdminAccountInstructorAccountClose=aaiacView.getJbtnAdminAccountInstructorAccountClose();
 	} //AdminAccountInstructorAccountCreateEvt
 	
-	@Override
-	public void actionPerformed(ActionEvent ae) {
-		Object source = ae.getSource();
-		
-		if( source == jbtnAdminAccountInstructorAccountCreate ) {
-			System.out.println("생성 버튼 실행");
-			addMember();
-		} //end if
-		
-		if( source == jbtnAdminAccountInstructorAccountClose ) {
-			System.out.println("닫기 버튼 실행");
-			Window adminAccountInstructorAccountCreateWindow = SwingUtilities.getWindowAncestor(aaiacView);
-            if(adminAccountInstructorAccountCreateWindow instanceof JDialog) {
-                ((JDialog) adminAccountInstructorAccountCreateWindow).dispose();
-            } //end if
-		} //end if
-		
-	} //actionPerformed
-	
 	private void inputFieldReset() {
 		
 		//입력 field 초기화
@@ -89,10 +70,6 @@ public class AdminAccountInstructorAccountCreateEvt implements ActionListener {
 		String outMsg="강사 계정이 생성되지 않았습니다.";
 		if( aaiaiService.addInstructorAccountMember(aaiaiVO) ) {
 			outMsg="강사 계정이 생성되었습니다.";
-			Window adminAccountInstructorAccountCreateWindow = SwingUtilities.getWindowAncestor(aaiacView);
-            if(adminAccountInstructorAccountCreateWindow instanceof JDialog) {
-                ((JDialog) adminAccountInstructorAccountCreateWindow).dispose();
-            } //end if
 		} //end if
 		
 		//입력 field 초기화
@@ -102,5 +79,30 @@ public class AdminAccountInstructorAccountCreateEvt implements ActionListener {
 		JOptionPane.showMessageDialog(aaiacView, outMsg);
 		
 	} //addMember
+	
+	private void closeCreateJDialog() {
+		
+		Window adminAccountInstructorAccountCreateWindow = SwingUtilities.getWindowAncestor(aaiacView);
+		if(adminAccountInstructorAccountCreateWindow instanceof JDialog) {
+			((JDialog) adminAccountInstructorAccountCreateWindow).dispose();
+		} //end if
+		
+	} //closeModifyJDialog
+	
+	@Override
+	public void actionPerformed(ActionEvent ae) {
+		Object source = ae.getSource();
+		
+		if( source == jbtnAdminAccountInstructorAccountCreate ) {
+			System.out.println("생성 버튼 실행");
+			addMember();
+		} //end if
+		
+		if( source == jbtnAdminAccountInstructorAccountClose ) {
+			System.out.println("닫기 버튼 실행");
+			closeCreateJDialog();
+		} //end if
+		
+	} //actionPerformed
 
 } //class

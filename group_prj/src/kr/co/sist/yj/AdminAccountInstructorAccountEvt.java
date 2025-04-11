@@ -24,6 +24,26 @@ public class AdminAccountInstructorAccountEvt extends MouseAdapter implements Ac
 		this.jbtnAdminAccountInstructorAccountCreate = aaiaView.getJbtnAdminAccountInstructorAccountCreate();
 		this.jbtnAdminAccountInstructorAccountModify = aaiaView.getJbtnAdminAccountInstructorAccountModify();
 	} // AdminAccountInstructorAccountEvt
+	
+	public void loadInstructorInfoTableList() {
+		AdminAccountInstructorAccountInfoService aaiaiService = new AdminAccountInstructorAccountInfoService();
+		List<AdminAccountInstructorAccountInfoVO> instructorList = aaiaiService.searchAllInstructorAccountMember();
+		
+		DefaultTableModel model = aaiaView.getDftmInstructorTableModel();
+		model.setRowCount(0);
+		
+		//강사 VO 객체들을 테이블에 추가
+		for(AdminAccountInstructorAccountInfoVO aaiaiVO : instructorList) {
+			model.addRow(new Object[] {
+					aaiaiVO.getInstNum(),
+					aaiaiVO.getInstName(),
+					aaiaiVO.getInstBirth(),
+					aaiaiVO.getInstTel(),
+					aaiaiVO.getInstAdd()
+			});
+		} //end for
+		
+	} //loadInstructorInfoTableList
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
@@ -69,26 +89,6 @@ public class AdminAccountInstructorAccountEvt extends MouseAdapter implements Ac
 		} // end if
 
 	} // actionPerformed
-	
-	public void loadInstructorInfoTableList() {
-		AdminAccountInstructorAccountInfoService aaiaiService = new AdminAccountInstructorAccountInfoService();
-		List<AdminAccountInstructorAccountInfoVO> instructorList = aaiaiService.searchAllInstructorAccountMember();
-		
-		DefaultTableModel model = aaiaView.getDftmInstructorTableModel();
-		model.setRowCount(0);
-		
-		//강사 VO 객체들을 테이블에 추가
-		for(AdminAccountInstructorAccountInfoVO aaiaiVO : instructorList) {
-			model.addRow(new Object[] {
-					aaiaiVO.getInstNum(),
-					aaiaiVO.getInstName(),
-					aaiaiVO.getInstBirth(),
-					aaiaiVO.getInstTel(),
-					aaiaiVO.getInstAdd()
-			});
-		} //end for
-		
-	} //loadInstructorInfoTableList
 
 	@Override
 	public void mouseClicked(MouseEvent e) {

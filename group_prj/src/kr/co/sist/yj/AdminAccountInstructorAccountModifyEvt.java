@@ -56,6 +56,31 @@ public class AdminAccountInstructorAccountModifyEvt implements ActionListener {
 		
 	} //loadInstructorInfo
 	
+	public void removeMember() {
+		switch(JOptionPane.showConfirmDialog(aaiamView, "강사 계정을 삭제 하시겠습니까?", "삭제 확인", JOptionPane.YES_NO_OPTION)) {
+		case JOptionPane.OK_OPTION : {
+			AdminAccountInstructorAccountInfoService aaiaiService = new AdminAccountInstructorAccountInfoService();
+			boolean flag=aaiaiService.removeInstructorAccountMember(selectedInstNum);
+			if(flag) {
+				JOptionPane.showMessageDialog(aaiamView, "강사 계정이 삭제되었습니다.");
+				closeModifyJDialog();
+			} else {
+				JOptionPane.showMessageDialog(aaiamView, "강사 계정 삭제에 실패하였습니다.");
+			} //end if else
+			break;
+		} //end case
+		} //end switch
+	} //removeMember
+	
+	private void closeModifyJDialog() {
+		
+		Window adminAccountInstructorAccountModifyWindow = SwingUtilities.getWindowAncestor(aaiamView);
+		if(adminAccountInstructorAccountModifyWindow instanceof JDialog) {
+			((JDialog) adminAccountInstructorAccountModifyWindow).dispose();
+		} //end if
+		
+	} //closeModifyJDialog
+	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		Object source = ae.getSource();
@@ -101,19 +126,7 @@ public class AdminAccountInstructorAccountModifyEvt implements ActionListener {
 		
 		if( source == jbtnAdminAccountInstructorAccountDelete ) {
 			System.out.println("삭제 버튼 실행");
-			switch(JOptionPane.showConfirmDialog(aaiamView, "강사 계정을 삭제 하시겠습니까?", "삭제 확인", JOptionPane.YES_NO_OPTION)) {
-			case JOptionPane.OK_OPTION : {
-				AdminAccountInstructorAccountInfoService aaiaiService = new AdminAccountInstructorAccountInfoService();
-				flag=aaiaiService.removeInstructorAccountMember(selectedInstNum);
-				if(flag) {
-					JOptionPane.showMessageDialog(aaiamView, "강사 계정이 삭제되었습니다.");
-					closeModifyJDialog();
-				} else {
-					JOptionPane.showMessageDialog(aaiamView, "강사 계정 삭제에 실패하였습니다.");
-				} //end if else
-				break;
-			} //end case
-			} //end switch
+			removeMember();
 		} //end if
 		
 		if( source == jbtnAdminAccountInstructorAccountClose ) {
@@ -122,14 +135,5 @@ public class AdminAccountInstructorAccountModifyEvt implements ActionListener {
 		} //end if
 		
 	} //actionPerformed
-	
-	private void closeModifyJDialog() {
-		
-		Window adminAccountInstructorAccountModifyWindow = SwingUtilities.getWindowAncestor(aaiamView);
-        if(adminAccountInstructorAccountModifyWindow instanceof JDialog) {
-            ((JDialog) adminAccountInstructorAccountModifyWindow).dispose();
-        } //end if
-        
-	} //closeModifyJDialog
 
 } //class

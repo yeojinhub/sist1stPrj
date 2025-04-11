@@ -61,11 +61,11 @@ public class AdminAccountAdminAccountCreateEvt implements ActionListener {
 	public void addMember() {
 		
 		//VO에 입력 값 저장
-		AdminAccountAdminAccountCreateVO aaaacVO = new AdminAccountAdminAccountCreateVO();
-		aaaacVO.setAdm_name( aaaacView.getJtfAdminAccountAdminAccountNameSet().getText().trim() );
+		AdminAccountAdminAccountInfoVO aaaaiVO = new AdminAccountAdminAccountInfoVO();
+		aaaaiVO.setAdmName( aaaacView.getJtfAdminAccountAdminAccountNameSet().getText().trim() );
 		char[] adminPasswordArray = aaaacView.getJpfAdminAccountAdminAccountPassSet().getPassword();
 		String strAdminPassword = new String(adminPasswordArray).trim();
-		aaaacVO.setAdm_pass( strAdminPassword );
+		aaaaiVO.setAdmPass( strAdminPassword );
 		String strAdminBirth = new String( aaaacView.getJtfAdminAccountAdminAccountBirthSet().getText().trim() );
 		
 		if( !strAdminBirth.isEmpty() ) {
@@ -74,20 +74,20 @@ public class AdminAccountAdminAccountCreateEvt implements ActionListener {
 			try {
 				parsedDate = sdf.parse(strAdminBirth);
 				Date adminBirthDate = new Date(parsedDate.getTime());
-				aaaacVO.setAdm_birth( adminBirthDate );
+				aaaaiVO.setAdmBirth( adminBirthDate );
 			} catch (ParseException pe) {
 				pe.printStackTrace();
 			} //end try catch
 		} else {
-			aaaacVO.setAdm_birth( null );
+			aaaaiVO.setAdmBirth( null );
 		} //end if else
-		aaaacVO.setAdm_tel( aaaacView.getJtfAdminAccountAdminAccountTelSet().getText().trim() );
-		aaaacVO.setAdm_add( aaaacView.getJtfAdminAccountAdminAccountAddressSet().getText().trim() );
+		aaaaiVO.setAdmTel( aaaacView.getJtfAdminAccountAdminAccountTelSet().getText().trim() );
+		aaaaiVO.setAdmAdd( aaaacView.getJtfAdminAccountAdminAccountAddressSet().getText().trim() );
 		
 		//메세지 생성
-		AdminAccountAdminAccountCreateService aaaacService = new AdminAccountAdminAccountCreateService();
+		AdminAccountAdminAccountInfoService aaaaiService = new AdminAccountAdminAccountInfoService();
 		String out_msg="강사 계정이 생성되지 않았습니다.";
-		if( aaaacService.addAdminAccountMember(aaaacVO) ) {
+		if( aaaaiService.addAdminAccountAdminAccountMember(aaaaiVO) ) {
 			out_msg="강사 계정이 생성되었습니다.";
 		} //end if
 		

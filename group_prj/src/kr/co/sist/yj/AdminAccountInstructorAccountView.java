@@ -43,12 +43,8 @@ public class AdminAccountInstructorAccountView extends JPanel {
 		// Table 타이틀 생성
 		String strAdminAccountInstructorAccountTitle[] = { "사번", "이름", "생년월일", "전화번호", "주소" };
 
-		// Table 가데이터 생성
-		String strAdminAccountInstructorAccountData[][] = {
-				{ "20250001", "곽우신", "1980-01-01", "010-1234-5678", "서울특별시 강남구 역삼동" }, };
-
 		// Table Component 생성
-		dftmInstructorTableModel = new DefaultTableModel(strAdminAccountInstructorAccountData, strAdminAccountInstructorAccountTitle);
+		dftmInstructorTableModel = new DefaultTableModel(strAdminAccountInstructorAccountTitle, 0);
 		jtAdminAccountInstructorAccountTable = new JTable(dftmInstructorTableModel);
 
 		// Table 열 정렬 설정

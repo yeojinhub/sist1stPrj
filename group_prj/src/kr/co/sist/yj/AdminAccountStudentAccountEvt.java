@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class AdminAccountStudentAccountEvt implements MouseListener, ActionListener {
 
-	private AdminAccountStudentAccountView aasaView;
+	private AdminAccountStudentAccountView stuView;
 
 	private JButton jbtnAdminAccountStudentAccountCreate;
 	private JButton jbtnAdminAccountStudentAccountModify;
@@ -28,76 +28,79 @@ public class AdminAccountStudentAccountEvt implements MouseListener, ActionListe
 	public AdminAccountStudentAccountEvt(AdminAccountStudentAccountView aasaView) {
 		selectedNum = -1;
 
-		this.aasaView = aasaView;
+		this.stuView = aasaView;
 		this.jbtnAdminAccountStudentAccountCreate = aasaView.getJbtnAdminAccountStudentAccountCreate();
 		this.jbtnAdminAccountStudentAccountModify = aasaView.getJbtnAdminAccountStudentAccountModify();
 	} // AdminAccountStudentAccountEvt
+	
+	public void loadStudentInfo() {
+	    AdminAccountStudentAccountInfoService stuService = new AdminAccountStudentAccountInfoService();
+	    List<AdminAccountStudentAccountInfoVO> studentList = stuService.searchAllStudentAccountMember();
 
+	    DefaultTableModel model = stuView.getDftmStudentTableModel();
+	    model.setRowCount(0);
+
+	    // 조회한 학생 데이터들을 테이블 모델에 추가합니다.
+	    for (AdminAccountStudentAccountInfoVO stuVO : studentList) {
+	        model.addRow(new Object[]{
+	        		stuVO.getStuNum(),
+	        		stuVO.getStuName(),
+	        		stuVO.getStuTel(),
+	        		stuVO.getCourCardinal(),
+	        		stuVO.getCourName(),
+	        		stuVO.getStuStatus()
+	        });
+	    } //end for
+	    
+	} //loadStudentInfo
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		System.out.println("테이블 클릭");
 //		boolean flag = false;
 //		selectedNum=Integer.parseInt( aasaView.getJtAdminAccountStudentAccountTable().getSelectedColumn().split(",")[0] );
 	}
-
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 	}
-
+	
 	@Override
 	public void mouseReleased(MouseEvent e) {
 	}
-
+	
 	@Override
 	public void mouseEntered(MouseEvent e) {
 	}
-
+	
 	@Override
 	public void mouseExited(MouseEvent e) {
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		Object source = ae.getSource();
-
+		
 		if (source == jbtnAdminAccountStudentAccountCreate) {
 			System.out.println("생성 버튼 실행");
-			JDialog jdStudentAccountCreateDialog = new JDialog((JFrame) null, "학생 계정 생성", true);
-			jdStudentAccountCreateDialog.getContentPane().add(new AdminAccountStudentAccountCreateView());
-			jdStudentAccountCreateDialog.pack();
-			jdStudentAccountCreateDialog.setLocationRelativeTo(aasaView);
-			jdStudentAccountCreateDialog.setVisible(true);
+			JDialog stuCreateDialog = new JDialog((JFrame) null, "학생 계정 생성", true);
+			stuCreateDialog.getContentPane().add(new AdminAccountStudentAccountCreateView());
+			stuCreateDialog.pack();
+			stuCreateDialog.setLocationRelativeTo(stuView);
+			stuCreateDialog.setVisible(true);
+			stuCreateDialog.setResizable(false);
 		} // end if
+		
 		if (source == jbtnAdminAccountStudentAccountModify) {
 			System.out.println("수정 버튼 실행");
-			JDialog jdStudentAccountModifyDialog = new JDialog((JFrame) null, "학생 계정 수정", true);
-			jdStudentAccountModifyDialog.getContentPane().add(new AdminAccountStudentAccountModifyView());
-			jdStudentAccountModifyDialog.pack();
-			jdStudentAccountModifyDialog.setLocationRelativeTo(aasaView);
-			jdStudentAccountModifyDialog.setVisible(true);
+			JDialog stuModifyDialog = new JDialog((JFrame) null, "학생 계정 수정", true);
+			stuModifyDialog.getContentPane().add(new AdminAccountStudentAccountModifyView());
+			stuModifyDialog.pack();
+			stuModifyDialog.setLocationRelativeTo(stuView);
+			stuModifyDialog.setVisible(true);
+			stuModifyDialog.setResizable(false);
 		} // end if
-
+		
 	} // actionPerformed
-	
-	public void loadStudentInfo() {
-	    AdminAccountStudentAccountService aasaService = new AdminAccountStudentAccountService();
-	    List<AdminAccountStudentAccountVO> studentList = aasaService.searchAllStudentAccountMember();
-
-	    DefaultTableModel model = aasaView.getDftmStudentTableModel();
-	    model.setRowCount(0);
-
-	    // 조회한 학생 데이터들을 테이블 모델에 추가합니다.
-	    for (AdminAccountStudentAccountVO aasaVO : studentList) {
-	        model.addRow(new Object[]{
-	        		aasaVO.getStu_num(),
-	        		aasaVO.getStu_name(),
-	        		aasaVO.getStu_tel(),
-	        		aasaVO.getCour_cardinal(),
-	        		aasaVO.getCour_name(),
-	        		aasaVO.getStu_status()
-	        });
-	    } //end for
-	    
-	} //loadStudentInfo
 
 } // class

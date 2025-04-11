@@ -20,6 +20,9 @@ import javax.swing.table.TableColumnModel;
 @SuppressWarnings("serial")
 public class AdminAccountAdminAccountView extends JPanel {
 
+	private DefaultTableModel dftmAdminTableModel;
+	private JTable jtAdminAccountAdminAccountTable;
+	
 	private JButton jbtnAdminAccountAdminAccountCreate;
 	private JButton jbtnAdminAccountAdminAccountModify;
 
@@ -39,14 +42,9 @@ public class AdminAccountAdminAccountView extends JPanel {
 		// Table 타이틀 생성
 		String strAdminAccountAdminAccountTitle[] = { "사번", "이름", "생년월일", "전화번호", "주소" };
 
-		// Table 가데이터 생성
-		String strAdminAccountAdminAccountData[][] = {
-				{ "20250001", "정난영", "1996-01-01", "010-1234-5678", "서울특별시 강동구 천호동" }, };
-
 		// Table Component 생성
-		DefaultTableModel dftmAdminTableModel = new DefaultTableModel(strAdminAccountAdminAccountData,
-				strAdminAccountAdminAccountTitle);
-		JTable jtAdminAccountAdminAccountTable = new JTable(dftmAdminTableModel);
+		dftmAdminTableModel = new DefaultTableModel(strAdminAccountAdminAccountTitle, 0);
+		jtAdminAccountAdminAccountTable = new JTable(dftmAdminTableModel);
 
 		// Table 열 정렬 설정
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -110,12 +108,24 @@ public class AdminAccountAdminAccountView extends JPanel {
 		add(jpAdminAccountAdminAccountViewButtonPanel, BorderLayout.SOUTH);
 
 		// Button 이벤트 생성
-		AdminAccountAdminAccountEvt aaaae = new AdminAccountAdminAccountEvt(this);
-		jbtnAdminAccountAdminAccountCreate.addActionListener(aaaae);
-		jbtnAdminAccountAdminAccountModify.addActionListener(aaaae);
+		AdminAccountAdminAccountEvt aaaaEvt = new AdminAccountAdminAccountEvt(this);
+		jbtnAdminAccountAdminAccountCreate.addActionListener(aaaaEvt);
+		jbtnAdminAccountAdminAccountModify.addActionListener(aaaaEvt);
+
+		// Table 이벤트 생성
+		aaaaEvt.loadAdminInfoTableList();
+		
 	} // AdminAccountAdminAccountView
 
 	// getter method
+	public DefaultTableModel getDftmAdminTableModel() {
+		return dftmAdminTableModel;
+	}
+	
+	public JTable getJtAdminAccountAdminAccountTable() {
+		return jtAdminAccountAdminAccountTable;
+	}
+
 	public JButton getJbtnAdminAccountAdminAccountCreate() {
 		return jbtnAdminAccountAdminAccountCreate;
 	} // getJbtnAdminAccountAdminAccountCreate

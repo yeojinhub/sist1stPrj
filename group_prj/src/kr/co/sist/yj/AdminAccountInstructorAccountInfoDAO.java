@@ -71,7 +71,7 @@ public class AdminAccountInstructorAccountInfoDAO {
 		} finally {
 			// 6. 연결 끊기
 			dbConn.closeDB(null, pstmt, con);
-		}
+		} //end try finally
 		
 	} //insertInstructorAccountMember
 	
@@ -179,7 +179,7 @@ public class AdminAccountInstructorAccountInfoDAO {
 		try {
 			con=dbConn.getConn();
 			
-			//3. 쿼리문 객체 생성
+			// 3. 쿼리문 객체 생성
 			StringBuilder strSelectAllInstructorAccountMember = new StringBuilder();
 			strSelectAllInstructorAccountMember
 			.append("	select 	inst_num,inst_name,inst_birth,inst_tel,inst_add	")
@@ -188,17 +188,17 @@ public class AdminAccountInstructorAccountInfoDAO {
 			;
 			pstmt=con.prepareStatement(strSelectAllInstructorAccountMember.toString());
 			
-			//4. bind 변수 값 할당
-			//5. 쿼리문 수행 후 결과 얻기
+			// 4. bind 변수 값 할당
+			// 5. 쿼리문 수행 후 결과 얻기
 			rs=pstmt.executeQuery();
 			
 			AdminAccountInstructorAccountInfoVO aaiaiVO = null;
-			//레코드 존재여부 확인
+			// 레코드 존재여부 확인
 			while( rs.next() ) {
 				aaiaiVO = new AdminAccountInstructorAccountInfoVO();
 				
-				aaiaiVO.setInstName(rs.getString("inst_name"));
 				aaiaiVO.setInstNum(rs.getString("inst_num"));
+				aaiaiVO.setInstName(rs.getString("inst_name"));
 				aaiaiVO.setInstBirth(rs.getDate("inst_birth"));
 				aaiaiVO.setInstTel(rs.getString("inst_tel"));
 				aaiaiVO.setInstAdd(rs.getString("inst_add"));
