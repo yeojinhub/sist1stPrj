@@ -97,6 +97,7 @@ public class StudentExamTestView extends JDialog {
 		jspExam = new JScrollPane(jpExamBoard, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		jspExam.setBounds(10, 100, 525, 540);
+		jspExam.getVerticalScrollBar().setUnitIncrement(12);
 		getContentPane().add(jspExam);
 
 		// #-1. 1번문제 컴포넌트들
