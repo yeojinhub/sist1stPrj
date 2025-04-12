@@ -124,7 +124,7 @@ public class StudentExamScoreView extends JDialog {
 
 		jcbSubjectSet = new JComboBox();
 		jcbSubjectSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		jcbSubjectSet.setBounds(270, 170, 80, 25);
+		jcbSubjectSet.setBounds(270, 170, 110, 25);
 		jpMain.add(jcbSubjectSet);
 
 		jbtnExit = new JButton("닫기");

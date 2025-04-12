@@ -4,10 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -16,27 +12,31 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.JTextComponent;
 
 @SuppressWarnings("serial")
 public class AdminExamCreateView extends JPanel {
 
     private JButton jbtnAdminExamCreate;
     private JButton jbtnAdminExamClose;
+    
+    // 추가: exam_name 입력용 텍스트 필드와 과정명 선택용 콤보박스
+    private JTextField jtfExamName;       
+    private JComboBox<String> jcbCourseName; 
 
-    private JLabel jlblSubjectNameSet, jlblNameSet;
     private JTextArea jtaNo1TitleSet, jtaNo1OptionSet, jtaNo2TitleSet, jtaNo2OptionSet, 
                       jtaNo3TitleSet, jtaNo3OptionSet, jtaNo4TitleSet, jtaNo4OptionSet,
                       jtaNo5TitleSet, jtaNo5OptionSet;
+    private JTextArea jtaNo1TitleInput, jtaNo2TitleInput, jtaNo3TitleInput, jtaNo4TitleInput, jtaNo5TitleInput;
     private JComboBox jcbNo1AnswerSet, jcbNo2AnswerSet, jcbNo3AnswerSet, jcbNo4AnswerSet, jcbNo5AnswerSet;
     private JScrollPane jspExam;
     
-    
-
     public AdminExamCreateView() {
-    	setPreferredSize(new Dimension(550, 710));
+        setPreferredSize(new Dimension(550, 710));
         // Set background and layout for the panel
         setBackground(new Color(255, 255, 255));
         setLayout(null);
@@ -56,29 +56,40 @@ public class AdminExamCreateView extends JPanel {
         jlblTitle.setBackground(Color.WHITE);
         jpTitle.add(jlblTitle);
 
+        // "과목명 :" 라벨
         JLabel jlblSubjectName = new JLabel("과목명 : ");
         jlblSubjectName.setHorizontalAlignment(SwingConstants.CENTER);
         jlblSubjectName.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-        jlblSubjectName.setBounds(80, 55, 80, 20);
+        jlblSubjectName.setBounds(20, 55, 80, 20);
         jpTitle.add(jlblSubjectName);
 
-        JLabel jlblName = new JLabel("");
-        jlblName.setHorizontalAlignment(SwingConstants.CENTER);
-        jlblName.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-        jlblName.setBounds(310, 55, 50, 20);
-        jpTitle.add(jlblName);
+        // ====== 여기서부터 exam_name TextField & 과정명 선택 ComboBox 추가 ======
+        // exam_name 텍스트필드
+        jtfExamName = new JTextField();
+        jtfExamName.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
+        // 원하시는 위치/크기에 맞춰 조정하세요. (아래 예시는 예시 좌표)
+        jtfExamName.setBounds(100, 55, 85, 20);
+        jpTitle.add(jtfExamName);
+        
+        // "과정명 :" 라벨
+        JLabel jlblCourseName = new JLabel("과정명 : ");
+        jlblCourseName.setHorizontalAlignment(SwingConstants.CENTER);
+        jlblCourseName.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+        jlblCourseName.setBounds(190, 55, 80, 20);
+        jpTitle.add(jlblCourseName);
 
-        jlblSubjectNameSet = new JLabel("");
-        jlblSubjectNameSet.setHorizontalAlignment(SwingConstants.CENTER);
-        jlblSubjectNameSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-        jlblSubjectNameSet.setBounds(150, 55, 80, 20);
-        jpTitle.add(jlblSubjectNameSet);
+        // 과정명 선택 콤보박스
+     // 과정명 선택 콤보박스 
+        jcbCourseName = new JComboBox<>();
+        // 기존 고정값 대신 DAO를 통해 DB에서 과정명을 불러옴.
+        AdminExamCreateDAO dao = new AdminExamCreateDAO();
+        DefaultComboBoxModel<String> courseModel = dao.getCourseNames();
+        jcbCourseName.setModel(courseModel);
 
-        jlblNameSet = new JLabel("");
-        jlblNameSet.setHorizontalAlignment(SwingConstants.CENTER);
-        jlblNameSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-        jlblNameSet.setBounds(370, 55, 70, 20);
-        jpTitle.add(jlblNameSet);
+        jcbCourseName.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
+        jcbCourseName.setBounds(260, 55, 240, 20);
+        jpTitle.add(jcbCourseName);
+        // ====== exam_name TextField & 과정명 선택 ComboBox 추가 끝 ======
 
         // Exam Board
         JPanel jpExamBoard = new JPanel();
@@ -114,6 +125,13 @@ public class AdminExamCreateView extends JPanel {
         jlblNo1NumberTitle.setFont(new Font("맑은 고딕", Font.BOLD, 14));
         jlblNo1NumberTitle.setHorizontalAlignment(SwingConstants.CENTER);
 
+        jtaNo1TitleInput = new JTextArea();
+        jtaNo1TitleInput.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+        jtaNo1TitleInput.setLineWrap(true);
+        // 위치는 필요에 따라 조정하세요. 아래는 예시입니다.
+        jtaNo1TitleInput.setBounds(40, 10, 300, 20);
+        jpNo1Exam.add(jtaNo1TitleInput);
+        
         jtaNo1TitleSet = new JTextArea();
         jtaNo1TitleSet.setFont(new Font("맑은 고딕", Font.BOLD, 14));
         jtaNo1TitleSet.setText("");
@@ -142,6 +160,7 @@ public class AdminExamCreateView extends JPanel {
         jlblNo1AnswerTitle.setFont(new Font("맑은 고딕", Font.BOLD, 14));
         jlblNo1AnswerTitle.setHorizontalAlignment(SwingConstants.CENTER);
 
+        
         jcbNo1AnswerSet = new JComboBox();
         jcbNo1AnswerSet.setBounds(6, 30, 70, 20);
         jpNo1AnswerPanel.add(jcbNo1AnswerSet);
@@ -168,6 +187,13 @@ public class AdminExamCreateView extends JPanel {
         jlblNo2NumberTitle.setBackground(new Color(255, 255, 255));
         jpNo2NumberTitle.add(jlblNo2NumberTitle, BorderLayout.CENTER);
 
+        jtaNo2TitleInput = new JTextArea();
+        jtaNo2TitleInput.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+        jtaNo2TitleInput.setLineWrap(true);
+        // 위치는 필요에 따라 조정하세요. 아래는 예시입니다.
+        jtaNo2TitleInput.setBounds(40, 10, 300, 20);
+        jpNo2Exam.add(jtaNo2TitleInput);
+        
         jtaNo2TitleSet = new JTextArea();
         jtaNo2TitleSet.setText("");
         jtaNo2TitleSet.setLineWrap(true);
@@ -221,6 +247,13 @@ public class AdminExamCreateView extends JPanel {
         jlblNo3NumberTitle.setBackground(Color.WHITE);
         jpNo3NumberTitle.add(jlblNo3NumberTitle, BorderLayout.CENTER);
 
+        jtaNo3TitleInput = new JTextArea();
+        jtaNo3TitleInput.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+        jtaNo3TitleInput.setLineWrap(true);
+        // 위치는 필요에 따라 조정하세요. 아래는 예시입니다.
+        jtaNo3TitleInput.setBounds(40, 10, 300, 20);
+        jpNo3Exam.add(jtaNo3TitleInput);
+        
         jtaNo3TitleSet = new JTextArea();
         jtaNo3TitleSet.setText("");
         jtaNo3TitleSet.setLineWrap(true);
@@ -274,6 +307,13 @@ public class AdminExamCreateView extends JPanel {
         jlblNo4NumberTitle.setBackground(new Color(255, 255, 255));
         jpNo4NumberTitle.add(jlblNo4NumberTitle, BorderLayout.CENTER);
 
+        jtaNo4TitleInput = new JTextArea();
+        jtaNo4TitleInput.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+        jtaNo4TitleInput.setLineWrap(true);
+        // 위치는 필요에 따라 조정하세요. 아래는 예시입니다.
+        jtaNo4TitleInput.setBounds(40, 10, 300, 20);
+        jpNo4Exam.add(jtaNo4TitleInput);
+        
         jtaNo4TitleSet = new JTextArea();
         jtaNo4TitleSet.setText("");
         jtaNo4TitleSet.setLineWrap(true);
@@ -327,6 +367,13 @@ public class AdminExamCreateView extends JPanel {
         jlblNo5NumberTitle.setBackground(Color.WHITE);
         jpNo5NumberTitle.add(jlblNo5NumberTitle, BorderLayout.CENTER);
 
+        jtaNo5TitleInput = new JTextArea();
+        jtaNo5TitleInput.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+        jtaNo5TitleInput.setLineWrap(true);
+        // 위치는 필요에 따라 조정하세요. 아래는 예시입니다.
+        jtaNo5TitleInput.setBounds(40, 10, 300, 20);
+        jpNo5Exam.add(jtaNo5TitleInput);
+        
         jtaNo5TitleSet = new JTextArea();
         jtaNo5TitleSet.setText("");
         jtaNo5TitleSet.setLineWrap(true);
@@ -359,7 +406,7 @@ public class AdminExamCreateView extends JPanel {
         jpNo5AnswerPanel.add(jcbNo5AnswerSet);
         jcbNo5AnswerSet.setModel(new DefaultComboBoxModel(new String[] { "", "1", "2", "3", "4" }));
 
-        // Buttons Panel (or add directly)
+        // Buttons Panel
         jbtnAdminExamCreate = new JButton("등록");
         jbtnAdminExamCreate.setBackground(new Color(235, 235, 255));
         jbtnAdminExamCreate.setFont(new Font("맑은 고딕", Font.BOLD, 14));
@@ -374,13 +421,20 @@ public class AdminExamCreateView extends JPanel {
         jbtnAdminExamClose.setBounds(285, 652, 100, 30);
         add(jbtnAdminExamClose);
 
-        // Event setup remains similar, but note that JPanel does not support window events.
+        // 이벤트 리스너
         AdminExamCreateEvt aece = new AdminExamCreateEvt(this);
         jbtnAdminExamCreate.addActionListener(aece);
         jbtnAdminExamClose.addActionListener(aece);
-        // Remove window listener as JPanel is not a window.
     }
 
+    private void loadCourseNames() {
+        AdminExamCreateDAO dao = new AdminExamCreateDAO();
+        DefaultComboBoxModel<String> model = dao.getCourseNames();
+        System.out.println(model.getSize());
+        jcbCourseName.setModel(model);
+    }
+    
+    
     // Getter methods
     public JButton getJbtnAdminExamCreate() {
         return jbtnAdminExamCreate;
@@ -389,4 +443,81 @@ public class AdminExamCreateView extends JPanel {
     public JButton getJbtnAdminExamClose() {
         return jbtnAdminExamClose;
     }
+
+    // 기존 exam_name 및 과정명 관련 getter
+    public JTextField getJtfExamName() {
+        return jtfExamName;
+    }
+
+    public JComboBox<String> getJcbCourseName() {
+        return jcbCourseName;
+    }
+
+    // 이미 존재하는 문제 제목(set) 관련 getter (필요 시 사용)
+    public JTextArea getJtaNo1TitleSet() { return jtaNo1TitleSet; }
+    public JTextArea getJtaNo2TitleSet() { return jtaNo2TitleSet; }
+    public JTextArea getJtaNo3TitleSet() { return jtaNo3TitleSet; }
+    public JTextArea getJtaNo4TitleSet() { return jtaNo4TitleSet; }
+    public JTextArea getJtaNo5TitleSet() { return jtaNo5TitleSet; }
+
+    // **추가**: 입력용 JTextArea에 대한 getter (없어서 NPE 발생)
+    public JTextArea getJtaNo1TitleInput() {
+        return jtaNo1TitleInput;
+    }
+
+    public JTextArea getJtaNo2TitleInput() {
+        return jtaNo2TitleInput;
+    }
+
+    public JTextArea getJtaNo3TitleInput() {
+        return jtaNo3TitleInput;
+    }
+
+    public JTextArea getJtaNo4TitleInput() {
+        return jtaNo4TitleInput;
+    }
+
+    public JTextArea getJtaNo5TitleInput() {
+        return jtaNo5TitleInput;
+    }
+    public JTextArea getJtaNo1OptionSet() {
+        return jtaNo1OptionSet;
+    }
+
+    public JComboBox getJcbNo1AnswerSet() {
+        return jcbNo1AnswerSet;
+    }
+
+    public JTextArea getJtaNo2OptionSet() {
+        return jtaNo2OptionSet;
+    }
+
+    public JComboBox getJcbNo2AnswerSet() {
+        return jcbNo2AnswerSet;
+    }
+
+    public JTextArea getJtaNo3OptionSet() {
+        return jtaNo3OptionSet;
+    }
+
+    public JComboBox getJcbNo3AnswerSet() {
+        return jcbNo3AnswerSet;
+    }
+
+    public JTextArea getJtaNo4OptionSet() {
+        return jtaNo4OptionSet;
+    }
+
+    public JComboBox getJcbNo4AnswerSet() {
+        return jcbNo4AnswerSet;
+    }
+
+    public JTextArea getJtaNo5OptionSet() {
+        return jtaNo5OptionSet;
+    }
+
+    public JComboBox getJcbNo5AnswerSet() {
+        return jcbNo5AnswerSet;
+    }
+    
 }

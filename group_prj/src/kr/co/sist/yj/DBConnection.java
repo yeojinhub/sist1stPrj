@@ -10,16 +10,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-public class DbConnection {
-	private static DbConnection dbCon;
+public class DBConnection {
+	private static DBConnection dbCon;
 
-	private DbConnection() {
+	private DBConnection() {
 
 	} // DbConnection
 
-	public static DbConnection getInstance() {
+	public static DBConnection getInstance() {
 		if (dbCon == null) {
-			dbCon = new DbConnection();
+			dbCon = new DBConnection();
 		} // end if
 
 		return dbCon;

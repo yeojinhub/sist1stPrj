@@ -33,7 +33,7 @@ public class AdminLoginDAO {
 		
 		ResultSet rs=null;
 		
-		DbConnection dbCon = DbConnection.getInstance();
+		DBConnection dbCon = DBConnection.getInstance();
 		try {
 			con = dbCon.getConn();
 			StringBuilder strselectAdminLogin = new StringBuilder();

@@ -24,25 +24,6 @@ public class AdminAccountAdminAccountCreateEvt implements ActionListener {
 		this.jbtnAdminAccountAdminAccountCreate=aaaacView.getJbtnAdminAccountAdminAccountCreate();
 		this.jbtnAdminAccountAdminAccountClose=aaaacView.getJbtnAdminAccountAdminAccountClose();
 	} //AdminAccountAdminAccountCreateEvt
-
-	@Override
-	public void actionPerformed(ActionEvent ae) {
-		Object source = ae.getSource();
-		
-		if( source == jbtnAdminAccountAdminAccountCreate ) {
-			System.out.println("생성 버튼 실행");
-			addMember();
-		} //end if
-		
-		if( source == jbtnAdminAccountAdminAccountClose ) {
-			System.out.println("닫기 버튼 실행");
-			Window adminAccountAdminAccountCreateWindow = SwingUtilities.getWindowAncestor(aaaacView);
-            if(adminAccountAdminAccountCreateWindow instanceof JDialog) {
-                ((JDialog) adminAccountAdminAccountCreateWindow).dispose();
-            } //end if
-		} //end if
-		
-	} //actionPerformed
 	
 	private void inputFieldReset() {
 		
@@ -87,7 +68,7 @@ public class AdminAccountAdminAccountCreateEvt implements ActionListener {
 		//메세지 생성
 		AdminAccountAdminAccountInfoService aaaaiService = new AdminAccountAdminAccountInfoService();
 		String out_msg="강사 계정이 생성되지 않았습니다.";
-		if( aaaaiService.addAdminAccountAdminAccountMember(aaaaiVO) ) {
+		if( aaaaiService.addAdminAccountMember(aaaaiVO) ) {
 			out_msg="강사 계정이 생성되었습니다.";
 		} //end if
 		
@@ -98,5 +79,24 @@ public class AdminAccountAdminAccountCreateEvt implements ActionListener {
 		JOptionPane.showMessageDialog(aaaacView, out_msg);
 		
 	} //addMember
+	
+	@Override
+	public void actionPerformed(ActionEvent ae) {
+		Object source = ae.getSource();
+		
+		if( source == jbtnAdminAccountAdminAccountCreate ) {
+			System.out.println("생성 버튼 실행");
+			addMember();
+		} //end if
+		
+		if( source == jbtnAdminAccountAdminAccountClose ) {
+			System.out.println("닫기 버튼 실행");
+			Window adminAccountAdminAccountCreateWindow = SwingUtilities.getWindowAncestor(aaaacView);
+			if(adminAccountAdminAccountCreateWindow instanceof JDialog) {
+				((JDialog) adminAccountAdminAccountCreateWindow).dispose();
+			} //end if
+		} //end if
+		
+	} //actionPerformed
 	
 } //class

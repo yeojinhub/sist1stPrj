@@ -39,7 +39,7 @@ public class AdminAccountStudentAccountInfoDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
-		DbConnection dbConn = DbConnection.getInstance();
+		DBConnection dbConn = DBConnection.getInstance();
 		
 		try {
 			con = dbConn.getConn();
@@ -89,7 +89,7 @@ public class AdminAccountStudentAccountInfoDAO {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		
-		DbConnection dbConn=DbConnection.getInstance();
+		DBConnection dbConn=DBConnection.getInstance();
 		
 		try {
 			con = dbConn.getConn();
@@ -133,7 +133,7 @@ public class AdminAccountStudentAccountInfoDAO {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		
-		DbConnection dbConn=DbConnection.getInstance();
+		DBConnection dbConn=DBConnection.getInstance();
 		
 		try {
 			con = dbConn.getConn();
@@ -174,7 +174,7 @@ public class AdminAccountStudentAccountInfoDAO {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		DbConnection dbConn=DbConnection.getInstance();
+		DBConnection dbConn=DBConnection.getInstance();
 		
 		try {
 			con = dbConn.getConn();
@@ -232,7 +232,7 @@ public class AdminAccountStudentAccountInfoDAO {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		DbConnection dbConn=DbConnection.getInstance();
+		DBConnection dbConn=DBConnection.getInstance();
 		
 		try {
 			con=dbConn.getConn();
