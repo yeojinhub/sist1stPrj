@@ -47,45 +47,11 @@ public class AdminBoardView extends JFrame {
 		jlblAdminBoardTitle.setFont(titleFont);
 		jlblAdminBoardTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		jpAdminBoardViewTitlePanel.add(jlblAdminBoardTitle, BorderLayout.CENTER);
+        
+		jtAdminBoardTable = new JTable();
 		
-		//Table 타이틀 생성
-        String[] strAdminBoardTableTitle = {
-            "번호", "제목", "작성자", "작성일", "상태"
-        };
-
-        //Table 가데이터 생성
-        String[][] strAdminBoardTableData = {
-            { "1", "시험 관련 문의", "강태일", "2025-04-01", "진행중" },
-            { "2", "수당 관련 문의", "강태일", "2025-02-25", "답변 완료" },
-        };
-
-        //Table Component 생성
-        dftmAdminBoardTableModel = new DefaultTableModel(strAdminBoardTableData, strAdminBoardTableTitle);
-        jtAdminBoardTable = new JTable(dftmAdminBoardTableModel);
-        
-        //Table 열 정렬 설정
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        
-        //Table 열 너비 설정
-        TableColumnModel columnModel = jtAdminBoardTable.getColumnModel();
-        for (int i = 0; i < columnModel.getColumnCount(); i++) {
-        	switch(i) {
-        	case 0:
-        		columnModel.getColumn(i).setPreferredWidth(55);
-        		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
-        	case 1:
-        		columnModel.getColumn(i).setPreferredWidth(315);
-        		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
-        	default:
-        		columnModel.getColumn(i).setPreferredWidth(110);
-        		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
-        	} //end switch
-        } //end for
-        
         //Table 디자인, 수정 불가능 설정
         jtAdminBoardTable.setDefaultEditor(Object.class, null);
-        jtAdminBoardTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jtAdminBoardTable.setRowHeight(25);
         jtAdminBoardTable.setFont(tableFont);
 
@@ -102,9 +68,8 @@ public class AdminBoardView extends JFrame {
         add(jpAdminBoardViewTablePanel, BorderLayout.CENTER);
         
         //Mouse 이벤트 생성
-        AdminBoardEvt abe = new AdminBoardEvt(this);
-        jtAdminBoardTable.addMouseListener(abe);
-        
+        AdminBoardEvt abe = new AdminBoardEvt(jtAdminBoardTable, this);
+        abe.loadBoardList();
 	} //AdminBoardView
 
 	//getter method
