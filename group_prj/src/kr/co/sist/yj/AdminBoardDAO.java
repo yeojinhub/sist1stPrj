@@ -18,7 +18,7 @@ public class AdminBoardDAO {
 	                 "ORDER BY B.BOARD_NUM DESC"; // 👈 조건 없음
 
 	    try {
-	        con = DbConnection.getInstance().getConn();
+	        con = DBConnection.getInstance().getConn();
 	        pstmt = con.prepareStatement(sql);
 	        rs = pstmt.executeQuery();
 
@@ -32,7 +32,7 @@ public class AdminBoardDAO {
 	            list.add(vo);
 	        }
 	    } finally {
-	        DbConnection.getInstance().closeDB(rs, pstmt, con);
+	        DBConnection.getInstance().closeDB(rs, pstmt, con);
 	    }
 
 	    return list;
@@ -56,7 +56,7 @@ public class AdminBoardDAO {
 	    	    "WHERE B.BOARD_NUM = ?";
 	    
 	    try {
-	        con = DbConnection.getInstance().getConn();
+	        con = DBConnection.getInstance().getConn();
 	        pstmt = con.prepareStatement(sql);
 	        pstmt.setInt(1, boardNum);
 	        rs = pstmt.executeQuery();
@@ -76,7 +76,7 @@ public class AdminBoardDAO {
 	            vo.setAdmNum(rs.getInt("ADM_NUM"));
 	        }
 	    } finally {
-	        DbConnection.getInstance().closeDB(rs, pstmt, con);
+	        DBConnection.getInstance().closeDB(rs, pstmt, con);
 	    }
 
 	    return vo;
@@ -95,7 +95,7 @@ public class AdminBoardDAO {
 
 
         try {
-            con = DbConnection.getInstance().getConn();
+            con = DBConnection.getInstance().getConn();
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, commContent);
             pstmt.setDate(2, commDate);
@@ -106,7 +106,7 @@ public class AdminBoardDAO {
             int updated = pstmt.executeUpdate();
             result = updated == 1;
         } finally {
-            DbConnection.getInstance().closeDB(null, pstmt, con);
+            DBConnection.getInstance().closeDB(null, pstmt, con);
         }
 
         return result;
