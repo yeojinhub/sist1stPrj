@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -23,6 +24,12 @@ import javax.swing.table.TableColumnModel;
 public class AdminGradeView extends JFrame {
 
 	private JButton jbtnAdminGradeSearch;
+	private JComboBox<String> jcbAdminGradeCourseCardinalBox;
+	private JComboBox<String> jcbAdminGradeExamNameBox;
+
+	private DefaultTableModel dftmAdminGradeTableModel;
+
+	private List<AdminGradeVO> agVO;
 
 	public AdminGradeView() {
 
@@ -55,13 +62,13 @@ public class AdminGradeView extends JFrame {
 		jpAdminGradeViewTitlePanel.add(jlblAdminGradeTitle, BorderLayout.CENTER);
 
 		// 기수 ComboBox 생성
-		String[] strAdminGradeCourseCardinalTitle = { "기수 선택", "25-1", "25-2", "25-3", "25-4" };
-		JComboBox<String> jcbAdminGradeCourseCardinalBox = new JComboBox<String>(strAdminGradeCourseCardinalTitle);
+		jcbAdminGradeCourseCardinalBox = new JComboBox<String>();
+		jcbAdminGradeCourseCardinalBox.addItem("기수 선택");
 		jcbAdminGradeCourseCardinalBox.setPreferredSize(comboboxSize);
 
 		// 과목명 ComboBox 생성
-		String[] strAdminGradeExamNameTitle = { "과목 선택", "JAVA", "DBMS" };
-		JComboBox<String> jcbAdminGradeExamNameBox = new JComboBox<String>(strAdminGradeExamNameTitle);
+		jcbAdminGradeExamNameBox = new JComboBox<String>();
+		jcbAdminGradeExamNameBox.addItem("과목 선택");
 		jcbAdminGradeExamNameBox.setPreferredSize(comboboxSize);
 
 		// 조회 Button 생성
@@ -84,14 +91,8 @@ public class AdminGradeView extends JFrame {
 		// Table 타이틀 생성
 		String[] strAdminGradeTableTitle = { "기수", "시험과목명", "학생이름", "성적", "시험응시날짜" };
 
-		// Table 가데이터 생성
-		String[][] strAdminGradeTableData = { { "25-1", "JAVA", "강태일", "4", "2025-01-20" },
-				{ "25-2", "JAVA", "김민경", "5", "2025-02-17" }, { "25-3", "DBMS", "이여진", "2", "2025-03-24" },
-				{ "25-4", "DBMS", "장태규", "3", "2025-04-21" }, };
-
 		// Table Component 생성
-		DefaultTableModel dftmAdminGradeTableModel = new DefaultTableModel(strAdminGradeTableData,
-				strAdminGradeTableTitle);
+		dftmAdminGradeTableModel = new DefaultTableModel(null, strAdminGradeTableTitle);
 		JTable jtAdminGradeTable = new JTable(dftmAdminGradeTableModel);
 
 		// Table 열 정렬 설정
@@ -147,5 +148,27 @@ public class AdminGradeView extends JFrame {
 	public JButton getJbtnAdminGradeSearch() {
 		return jbtnAdminGradeSearch;
 	} // getJbtnAdminGradeSearch
+
+	public List<AdminGradeVO> getAgVO() {
+		return agVO;
+	}
+
+	public void setAgVO(List<AdminGradeVO> agVO) {
+		this.agVO = agVO;
+	}
+
+	public DefaultTableModel getDftmAdminGradeTableModel() {
+		return dftmAdminGradeTableModel;
+	}
+
+	public JComboBox<String> getJcbAdminGradeCourseCardinalBox() {
+		return jcbAdminGradeCourseCardinalBox;
+	}
+
+	public JComboBox<String> getJcbAdminGradeExamNameBox() {
+		return jcbAdminGradeExamNameBox;
+	}
+	
+	
 
 } // class
