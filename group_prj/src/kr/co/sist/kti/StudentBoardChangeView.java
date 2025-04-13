@@ -25,7 +25,7 @@ public class StudentBoardChangeView extends JDialog {
 	
 	private int selectedBoardNum;
 
-	public StudentBoardChangeView(StudentBoardPanel sbp, int selectedBoardNum) {
+	public StudentBoardChangeView(StudentBoardPanel sbp, int selectedBoardNum, StudentBoardReadView sbrv) {
 		this.selectedBoardNum = selectedBoardNum;
 		setTitle("Best Campus - 1:1 문의 작성");
 		
@@ -74,6 +74,10 @@ public class StudentBoardChangeView extends JDialog {
 		jbtnExit.setFocusPainted(false);
 		jbtnExit.setBounds(363, 470, 100, 35);
 		getContentPane().add(jbtnExit);
+		
+		// #. 수정시 기존에 글에 제목과 내용을 셋팅해주면 수정하는 느낌이 더 살꺼야.
+		jtfTitleSet.setText(sbrv.getJlblTitleSet().getText());
+		jtaBoardSet.setText(sbrv.getJtaBoardSet().getText());
 
 		// #. 이벤트 추가
 		// #-1. 이벤트 객체 생성

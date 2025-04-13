@@ -43,7 +43,7 @@ public class StudentInfoChangePassEvt implements ActionListener {
 		} // end if
 			// #-2. 현재 비밀번호칸에 입력한 비밀번호가 다를 경우.
 		if (!nowPass.equals(sicpv.getSaVO().getStuPass())) {
-			sicpv.getJlblInfo().setText("현재 비밀번호를 확인해주세요.");
+			sicpv.getJlblInfo().setText("현재 비밀번호를 다시 확인해주세요.");
 			sicpv.getJpfNowPass().requestFocus();
 			return;
 		} // end if

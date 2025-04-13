@@ -29,7 +29,7 @@ public class StudentBoardReadEvt extends WindowAdapter implements ActionListener
 		for (StudentBoardVO sbvo : sbp.getBoardList()) {
 			if (sbvo.getBoardNum() == sbrv.getSelectedBoardNum()
 					&& sbp.getSaVO().getStuNum().equals(sbvo.getStuNum())) {
-				new StudentBoardChangeView(sbp, sbrv.getSelectedBoardNum());
+				new StudentBoardChangeView(sbp, sbrv.getSelectedBoardNum(), sbrv);
 				sbrv.dispose();
 				return;
 			}
