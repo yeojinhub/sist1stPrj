@@ -48,7 +48,6 @@ public class AdminLoginEvt extends WindowAdapter implements ActionListener {
 			if(loginView.getLoginIDTextSet().getText().equals(loginVO.getAdmID()) && new String(loginView.getLoginPassTextSet().getPassword()).equals(loginVO.getAdmPass())) {
 				flag = true;
 				
-				// 메인화면에 VO 객체 보내버리기.
 				loginVOSet = loginVO;
 				loginView.dispose();
 				break;
@@ -56,7 +55,9 @@ public class AdminLoginEvt extends WindowAdapter implements ActionListener {
 		}// end for
 		
 		if(flag) {
+			JOptionPane.showMessageDialog(loginView, "로그인 되었습니다.");
 			new AdminMainView(loginVOSet);
+			//early return
 			return;
 		}// end if
 		JOptionPane.showMessageDialog(loginView, "아이디나 비밀번호가 일치하지 않습니다.");
