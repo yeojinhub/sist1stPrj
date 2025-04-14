@@ -13,12 +13,12 @@ public class InstructorBoardVO {
 	private Date boardCommDate;
 	private String stuNum;
 	private String instNum;
-	private int admNum;
+	private String admId;
 	private String stuName;
 	private String instName;
 
 	public InstructorBoardVO(int boardNum, String boardTitle, String boardContent, String boardStatus, Date boardDate,
-			String boardType, String boardCommContent, Date boardCommDate, String stuNum, String instNum, int admNum,
+			String boardType, String boardCommContent, Date boardCommDate, String stuNum, String instNum, String admId,
 			String stuName, String instName) {
 		super();
 		this.boardNum = boardNum;
@@ -31,7 +31,7 @@ public class InstructorBoardVO {
 		this.boardCommDate = boardCommDate;
 		this.stuNum = stuNum;
 		this.instNum = instNum;
-		this.admNum = admNum;
+		this.admId = admId;
 		this.stuName = stuName;
 		this.instName = instName;
 	}
@@ -136,12 +136,12 @@ public class InstructorBoardVO {
 		this.instNum = instNum;
 	}
 
-	public int getAdmNum() {
-		return admNum;
+	public String getAdmId() {
+		return admId;
 	}
 
-	public void setAdmNum(int admNum) {
-		this.admNum = admNum;
+	public void setAdmId(String admId) {
+		this.admId = admId;
 	}
 
 	@Override
@@ -149,7 +149,7 @@ public class InstructorBoardVO {
 		return "StudentBoardVO [boardNum=" + boardNum + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
 				+ ", boardStatus=" + boardStatus + ", boardDate=" + boardDate + ", boardType=" + boardType
 				+ ", boardCommContent=" + boardCommContent + ", boardCommDate=" + boardCommDate + ", stuNum=" + stuNum
-				+ ", instNum=" + instNum + ", admNum=" + admNum + ", stuName=" + stuName + ", instName=" + instName
+				+ ", instNum=" + instNum + ", admId=" + admId + ", stuName=" + stuName + ", instName=" + instName
 				+ "]";
 	}
 

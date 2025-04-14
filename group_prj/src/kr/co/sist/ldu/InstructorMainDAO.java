@@ -320,7 +320,7 @@ public class InstructorMainDAO {
 	        String sql = "SELECT B.BOARD_NUM, B.BOARD_TITLE, B.BOARD_CONTENT, "
 	                   + "B.BOARD_STATUS, B.BOARD_DATE, B.BOARD_TYPE, "
 	                   + "B.BOARD_COMM_CONTENT, B.BOARD_COMM_DATE, "
-	                   + "B.STU_NUM, B.INST_NUM, B.ADM_NUM, "
+	                   + "B.STU_NUM, B.INST_NUM, B.ADM_ID, "
 	                   + "S.STU_NAME, I.INST_NAME "
 	                   + "FROM BOARD B "
 	                   + "JOIN STUDENT S ON B.STU_NUM = S.STU_NUM "
@@ -346,7 +346,7 @@ public class InstructorMainDAO {
 	                vo.setBoardCommDate(rs.getDate("BOARD_COMM_DATE"));
 	                vo.setStuNum(rs.getString("STU_NUM"));
 	                vo.setInstNum(rs.getString("INST_NUM"));
-	                vo.setAdmNum(rs.getInt("ADM_NUM"));
+	                vo.setAdmId(rs.getString("ADM_ID"));
 	                vo.setStuName(rs.getString("STU_NAME"));
 	                vo.setInstName(rs.getString("INST_NAME"));
 	                list.add(vo);
@@ -369,7 +369,7 @@ public class InstructorMainDAO {
 		 String sql = "SELECT B.BOARD_NUM, B.BOARD_TITLE, B.BOARD_CONTENT, "
 		               + "B.BOARD_STATUS, B.BOARD_DATE, B.BOARD_TYPE, "
 		               + "B.BOARD_COMM_CONTENT, B.BOARD_COMM_DATE, "
-		               + "B.STU_NUM, B.INST_NUM, B.ADM_NUM, "
+		               + "B.STU_NUM, B.INST_NUM, B.ADM_ID, "
 		               + "S.STU_NAME, I.INST_NAME "
 		               + "FROM BOARD B "
 		               + "JOIN STUDENT S ON B.STU_NUM = S.STU_NUM "
@@ -396,7 +396,7 @@ public class InstructorMainDAO {
 		            vo.setBoardCommDate(rs.getDate("BOARD_COMM_DATE"));
 		            vo.setStuNum(rs.getString("STU_NUM"));
 		            vo.setInstNum(rs.getString("INST_NUM"));
-		            vo.setAdmNum(rs.getInt("ADM_NUM"));
+		            vo.setAdmId(rs.getString("ADM_ID"));
 		            vo.setStuName(rs.getString("STU_NAME"));
 		            vo.setInstName(rs.getString("INST_NAME"));
 		        }
