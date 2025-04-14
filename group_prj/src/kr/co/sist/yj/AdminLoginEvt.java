@@ -25,6 +25,7 @@ public class AdminLoginEvt extends WindowAdapter implements ActionListener {
 	public void lookUpAdminAccountForLogin() {
 		// Service 객체 생성
 		AdminLoginService loginService = new AdminLoginService();
+		AdminLoginVO loginVOSet = null;
 		
 		// ID와 비밀번호 입력창 확인. 
 		if(loginView.getLoginIDTextSet().getText().isEmpty()) {
@@ -48,13 +49,14 @@ public class AdminLoginEvt extends WindowAdapter implements ActionListener {
 				flag = true;
 				
 				// 메인화면에 VO 객체 보내버리기.
+				loginVOSet = loginVO;
 				loginView.dispose();
 				break;
 			}// end if
 		}// end for
 		
 		if(flag) {
-			new AdminMainView();
+			new AdminMainView(loginVOSet);
 			return;
 		}// end if
 		JOptionPane.showMessageDialog(loginView, "아이디나 비밀번호가 일치하지 않습니다.");
