@@ -39,11 +39,11 @@ public class AdminBoardService {
     }
 
     // 댓글 등록 (답변)
-    public boolean registerReply(int boardNum, String comment, Date commDate, String admId) {
+    public boolean registerReply(int boardNum, String comment, Date commDate, String admID) {
         boolean result = false;
 
         try {
-            result = dao.insertComment(boardNum, comment, commDate, admId);
+            result = dao.insertComment(boardNum, comment, commDate, admID);
         } catch (SQLException e) {
             e.printStackTrace();
         }

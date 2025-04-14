@@ -21,8 +21,10 @@ public class AdminBoardView extends JFrame {
 
 	private DefaultTableModel dftmAdminBoardTableModel;
 	private JTable jtAdminBoardTable;
+	private AdminMainView amv;
 	
-	public AdminBoardView() {
+	public AdminBoardView(AdminMainView amv) {
+		this.amv = amv;
 		
 		//디자인(색깔,글씨) 설정
 		Color white = new Color(255, 255, 255);
@@ -80,5 +82,10 @@ public class AdminBoardView extends JFrame {
 	public JTable getJtAdminBoardTable() {
 		return jtAdminBoardTable;
 	} //getJtAdminBoardTable
+
+	public AdminMainView getAmv() {
+		return amv;
+	}
+	
 	
 } //class

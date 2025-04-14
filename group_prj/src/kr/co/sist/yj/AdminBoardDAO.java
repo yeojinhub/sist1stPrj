@@ -84,7 +84,7 @@ public class AdminBoardDAO {
 
 
     // 댓글 등록 (답변 등록)
-    public boolean insertComment(int boardNum, String commContent, Date commDate, String admId) throws SQLException {
+    public boolean insertComment(int boardNum, String commContent, Date commDate, String admID) throws SQLException {
         Connection con = null;
         PreparedStatement pstmt = null;
         boolean result = false;
@@ -99,7 +99,7 @@ public class AdminBoardDAO {
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, commContent);
             pstmt.setDate(2, commDate);
-            pstmt.setString(3, admId ); // 하드코딩된 admin_Id
+            pstmt.setString(3, admID); // 하드코딩된 admin_Id
             pstmt.setString(4, "관리자");
             pstmt.setInt(5, boardNum);
 

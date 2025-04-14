@@ -112,7 +112,7 @@ public class AdminMainView extends JFrame{
 		
 		//1:1문의 View 추기
 		JPanel boardViewPanel = new JPanel();
-		AdminBoardView boardView = new AdminBoardView();
+		AdminBoardView boardView = new AdminBoardView(this);
 		boardViewPanel.add(boardView.getContentPane());
 		boardViewPanel.setBackground(white);
 		
