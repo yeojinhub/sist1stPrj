@@ -5,15 +5,16 @@ import javax.swing.JLabel;
 
 public class AdminMainEvt {
 
+	@SuppressWarnings("unused")
 	private AdminMainView mainView;
 	
 	private JLabel adminAccountNameTextSet;
 	
-	@SuppressWarnings("null")
-	public AdminMainEvt() {
+	public AdminMainEvt(AdminMainView mainView) {
+		this.mainView=mainView;
 		this.adminAccountNameTextSet=mainView.getAdminAccountNameTextSet();
 		
-		AdminLoginVO loginVO = null;
+		AdminLoginVO loginVO = new AdminLoginVO();
 		adminAccountNameTextSet.setText(loginVO.getAdmName().toString());
 	} //AdminMainEvt
 	
