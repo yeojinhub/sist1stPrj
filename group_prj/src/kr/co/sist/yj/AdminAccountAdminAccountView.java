@@ -20,11 +20,11 @@ import javax.swing.table.TableColumnModel;
 @SuppressWarnings("serial")
 public class AdminAccountAdminAccountView extends JPanel {
 
-	private DefaultTableModel dftmAdminTableModel;
-	private JTable jtAdminAccountAdminAccountTable;
+	private DefaultTableModel admTableModel;
+	private JTable admInfoTable;
 	
-	private JButton jbtnAdminAccountAdminAccountCreate;
-	private JButton jbtnAdminAccountAdminAccountModify;
+	private JButton admCreateViewButton;
+	private JButton admModifyViewButton;
 
 	public AdminAccountAdminAccountView() {
 
@@ -40,18 +40,18 @@ public class AdminAccountAdminAccountView extends JPanel {
 		Dimension buttonSize = new Dimension(120, 40);
 
 		// Table 타이틀 생성
-		String strAdminAccountAdminAccountTitle[] = { "사번", "이름", "생년월일", "전화번호", "주소" };
+		String admTableTitle[] = { "사번", "이름", "생년월일", "전화번호", "주소" };
 
 		// Table Component 생성
-		dftmAdminTableModel = new DefaultTableModel(strAdminAccountAdminAccountTitle, 0);
-		jtAdminAccountAdminAccountTable = new JTable(dftmAdminTableModel);
+		admTableModel = new DefaultTableModel(admTableTitle, 0);
+		admInfoTable = new JTable(admTableModel);
 
 		// Table 열 정렬 설정
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 
 		// Table 열 너비 설정
-		TableColumnModel columnModel = jtAdminAccountAdminAccountTable.getColumnModel();
+		TableColumnModel columnModel = admInfoTable.getColumnModel();
 		for (int i = 0; i < columnModel.getColumnCount(); i++) {
 			switch (i) {
 			case 3:
@@ -70,68 +70,71 @@ public class AdminAccountAdminAccountView extends JPanel {
 		} // end for
 
 		// Table 디자인, 수정 불가능 설정
-		jtAdminAccountAdminAccountTable.setDefaultEditor(Object.class, null);
-		jtAdminAccountAdminAccountTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		jtAdminAccountAdminAccountTable.setRowHeight(25);
-		jtAdminAccountAdminAccountTable.setFont(tableFont);
+		admInfoTable.setDefaultEditor(Object.class, null);
+		admInfoTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		admInfoTable.setRowHeight(25);
+		admInfoTable.setFont(tableFont);
 
 		// Table Component 배치
-		JScrollPane spAdminAccountAdminAccountViewScroll = new JScrollPane(jtAdminAccountAdminAccountTable);
-		spAdminAccountAdminAccountViewScroll.getViewport().setBackground(white);
-		spAdminAccountAdminAccountViewScroll.setPreferredSize(scrollSize);
-		JPanel jpAdminAccountAdminAccountViewTablePanel = new JPanel(new BorderLayout());
-		jpAdminAccountAdminAccountViewTablePanel.add(spAdminAccountAdminAccountViewScroll, BorderLayout.CENTER);
+		JScrollPane admViewScroll = new JScrollPane(admInfoTable);
+		admViewScroll.getViewport().setBackground(white);
+		admViewScroll.setPreferredSize(scrollSize);
+		JPanel admViewTablePanel = new JPanel(new BorderLayout());
+		admViewTablePanel.add(admViewScroll, BorderLayout.CENTER);
 
 		// Component 생성
 		// Button 생성
-		JPanel jpAdminAccountAdminAccountViewButtonPanel = new JPanel();
-		jpAdminAccountAdminAccountViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		jpAdminAccountAdminAccountViewButtonPanel.setBackground(white);
-		jpAdminAccountAdminAccountViewButtonPanel.setBorder(new TitledBorder(""));
-		jpAdminAccountAdminAccountViewButtonPanel.setPreferredSize(panelSize);
-		jbtnAdminAccountAdminAccountCreate = new JButton("생성");
-		jbtnAdminAccountAdminAccountCreate.setBackground(lightblue);
-		jbtnAdminAccountAdminAccountCreate.setSize(buttonSize);
-		jbtnAdminAccountAdminAccountCreate.setFont(buttonFont);
-		jbtnAdminAccountAdminAccountModify = new JButton("수정");
-		jbtnAdminAccountAdminAccountModify.setBackground(lightblue);
-		jbtnAdminAccountAdminAccountModify.setSize(buttonSize);
-		jbtnAdminAccountAdminAccountModify.setFont(buttonFont);
+		JPanel admViewButtonPanel = new JPanel();
+		admViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		admViewButtonPanel.setBackground(white);
+		admViewButtonPanel.setBorder(new TitledBorder(""));
+		admViewButtonPanel.setPreferredSize(panelSize);
+		admCreateViewButton = new JButton("생성");
+		admCreateViewButton.setBackground(lightblue);
+		admCreateViewButton.setSize(buttonSize);
+		admCreateViewButton.setFont(buttonFont);
+		admModifyViewButton = new JButton("수정");
+		admModifyViewButton.setBackground(lightblue);
+		admModifyViewButton.setSize(buttonSize);
+		admModifyViewButton.setFont(buttonFont);
 
 		// Component 배치
-		jpAdminAccountAdminAccountViewButtonPanel.add(jbtnAdminAccountAdminAccountCreate);
-		jpAdminAccountAdminAccountViewButtonPanel.add(jbtnAdminAccountAdminAccountModify);
+		admViewButtonPanel.add(admCreateViewButton);
+		admViewButtonPanel.add(admModifyViewButton);
 
 		// Panel 배치
 		setLayout(new BorderLayout());
-		add(jpAdminAccountAdminAccountViewTablePanel, BorderLayout.CENTER);
-		add(jpAdminAccountAdminAccountViewButtonPanel, BorderLayout.SOUTH);
+		add(admViewTablePanel, BorderLayout.CENTER);
+		add(admViewButtonPanel, BorderLayout.SOUTH);
 
 		// Button 이벤트 생성
-		AdminAccountAdminAccountEvt aaaaEvt = new AdminAccountAdminAccountEvt(this);
-		jbtnAdminAccountAdminAccountCreate.addActionListener(aaaaEvt);
-		jbtnAdminAccountAdminAccountModify.addActionListener(aaaaEvt);
+		AdminAccountAdminAccountEvt admEvt = new AdminAccountAdminAccountEvt(this);
+		admCreateViewButton.addActionListener(admEvt);
+		admModifyViewButton.addActionListener(admEvt);
 
 		// Table 이벤트 생성
-		aaaaEvt.loadAdminInfoTableList();
+		admEvt.loadAdminInfoTableList();
+		
+		// Mouse 이벤트 생성
+		admInfoTable.addMouseListener(admEvt);
 		
 	} // AdminAccountAdminAccountView
 
 	// getter method
-	public DefaultTableModel getDftmAdminTableModel() {
-		return dftmAdminTableModel;
-	}
-	
-	public JTable getJtAdminAccountAdminAccountTable() {
-		return jtAdminAccountAdminAccountTable;
+	public JTable getAdmInfoTable() {
+		return admInfoTable;
 	}
 
-	public JButton getJbtnAdminAccountAdminAccountCreate() {
-		return jbtnAdminAccountAdminAccountCreate;
-	} // getJbtnAdminAccountAdminAccountCreate
+	public DefaultTableModel getAdmTableModel() {
+		return admTableModel;
+	}
 
-	public JButton getJbtnAdminAccountAdminAccountModify() {
-		return jbtnAdminAccountAdminAccountModify;
-	} // getJbtnAdminAccountAdminAccountModify
+	public JButton getAdmCreateViewButton() {
+		return admCreateViewButton;
+	}
+
+	public JButton getAdmModifyViewButton() {
+		return admModifyViewButton;
+	}
 
 } // class

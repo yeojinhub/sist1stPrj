@@ -22,9 +22,9 @@ public class AdminAccountView extends JFrame {
 	private JPanel jpAdminAccountViewCardPanel;
 	private CardLayout clAdminAccountViewCard;
 
-	private JButton jbtnAdminAccountStudentAccount;
-	private JButton jbtnAdminAccountInstructorAccount;
-	private JButton jbtnAdminAccountAdminAccount;
+	private JButton studentAccountViewButton;
+	private JButton instructorAccountViewButton;
+	private JButton adminAccountViewButton;
 
 	public AdminAccountView() {
 
@@ -65,23 +65,25 @@ public class AdminAccountView extends JFrame {
 		jpAdminAccountViewButtonPanel.setBackground(white);
 		jpAdminAccountViewButtonPanel.setBorder(new TitledBorder(""));
 		jpAdminAccountViewButtonPanel.setPreferredSize(panelSize);
-		jbtnAdminAccountStudentAccount = new JButton("수강생\r\n계정관리");
-		jbtnAdminAccountStudentAccount.setBackground(lightblue);
-		jbtnAdminAccountStudentAccount.setSize(buttonSize);
-		jbtnAdminAccountStudentAccount.setFont(buttonFont);
-		jbtnAdminAccountInstructorAccount = new JButton("강사\r\n계정관리");
-		jbtnAdminAccountInstructorAccount.setBackground(lightblue);
-		jbtnAdminAccountInstructorAccount.setSize(buttonSize);
-		jbtnAdminAccountInstructorAccount.setFont(buttonFont);
-		jbtnAdminAccountAdminAccount = new JButton("관리자\r\n계정관리");
-		jbtnAdminAccountAdminAccount.setBackground(lightblue);
-		jbtnAdminAccountAdminAccount.setSize(buttonSize);
-		jbtnAdminAccountAdminAccount.setFont(buttonFont);
+		studentAccountViewButton = new JButton("수강생\r\n계정관리");
+		studentAccountViewButton.setBackground(lightblue);
+		studentAccountViewButton.setSize(buttonSize);
+		studentAccountViewButton.setFont(buttonFont);
+		
+		instructorAccountViewButton = new JButton("강사\r\n계정관리");
+		instructorAccountViewButton.setBackground(lightblue);
+		instructorAccountViewButton.setSize(buttonSize);
+		instructorAccountViewButton.setFont(buttonFont);
+		
+		adminAccountViewButton = new JButton("관리자\r\n계정관리");
+		adminAccountViewButton.setBackground(lightblue);
+		adminAccountViewButton.setSize(buttonSize);
+		adminAccountViewButton.setFont(buttonFont);
 
 		// Button 배치
-		jpAdminAccountViewButtonPanel.add(jbtnAdminAccountStudentAccount);
-		jpAdminAccountViewButtonPanel.add(jbtnAdminAccountInstructorAccount);
-		jpAdminAccountViewButtonPanel.add(jbtnAdminAccountAdminAccount);
+		jpAdminAccountViewButtonPanel.add(studentAccountViewButton);
+		jpAdminAccountViewButtonPanel.add(instructorAccountViewButton);
+		jpAdminAccountViewButtonPanel.add(adminAccountViewButton);
 
 		jpAdminAccountViewCardPanel = new JPanel();
 		clAdminAccountViewCard = new CardLayout();
@@ -101,24 +103,24 @@ public class AdminAccountView extends JFrame {
 
 		// Button 이벤트 생성
 		AdminAccountEvt aae = new AdminAccountEvt(this);
-		jbtnAdminAccountStudentAccount.addActionListener(aae);
-		jbtnAdminAccountInstructorAccount.addActionListener(aae);
-		jbtnAdminAccountAdminAccount.addActionListener(aae);
+		studentAccountViewButton.addActionListener(aae);
+		instructorAccountViewButton.addActionListener(aae);
+		adminAccountViewButton.addActionListener(aae);
 
 	} // AdminAccountView
 
 	// getter method
-	public JButton getJbtnAdminAccountStudentAccount() {
-		return jbtnAdminAccountStudentAccount;
-	} // getJbtnAdminAccountStudentAccount
+	public JButton getStudentAccountViewButton() {
+		return studentAccountViewButton;
+	}
 
-	public JButton getJbtnAdminAccountInstructorAccount() {
-		return jbtnAdminAccountInstructorAccount;
-	} // getJbtnAdminAccountInstructorAccount
+	public JButton getInstructorAccountViewButton() {
+		return instructorAccountViewButton;
+	}
 
-	public JButton getJbtnAdminAccountAdminAccount() {
-		return jbtnAdminAccountAdminAccount;
-	} // getJbtnAdminAccountAdminAccount
+	public JButton getAdminAccountViewButton() {
+		return adminAccountViewButton;
+	}
 
 	public JPanel getJpAdminAccountViewCardPanel() {
 		return jpAdminAccountViewCardPanel;

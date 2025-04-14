@@ -1,81 +1,93 @@
 package kr.co.sist.yj;
 
+import java.sql.Date;
+
 public class AdminLoginVO {
 
-	private int adm_num;
-	private String adm_pass;
-	private String adm_name;
-	private String adm_birth;
-	private String adm_tel;
-	private String adm_add;
+	private String admNum;
+	private String admID;
+	private String admPass;
+	private String admName;
+	private Date admBirth;
+	private String admTel ;
+	private String admAdd;
 
 	public AdminLoginVO() {
 		super();
 	} // AdminLoginVO
 
-	public AdminLoginVO(int adm_num, String adm_pass, String adm_name, String adm_birth, String adm_tel,
-			String adm_add) {
+	public AdminLoginVO(String admNum, String admID, String admPass, String admName, Date admBirth, String admTel,
+			String admAdd) {
 		super();
-		this.adm_num = adm_num;
-		this.adm_pass = adm_pass;
-		this.adm_name = adm_name;
-		this.adm_birth = adm_birth;
-		this.adm_tel = adm_tel;
-		this.adm_add = adm_add;
+		this.admNum = admNum;
+		this.admID = admID;
+		this.admPass = admPass;
+		this.admName = admName;
+		this.admBirth = admBirth;
+		this.admTel = admTel;
+		this.admAdd = admAdd;
 	}
 
-	public int getAdm_num() {
-		return adm_num;
+	public String getAdmNum() {
+		return admNum;
 	}
 
-	public void setAdm_num(int adm_num) {
-		this.adm_num = adm_num;
+	public void setAdmNum(String admNum) {
+		this.admNum = admNum;
 	}
 
-	public String getAdm_pass() {
-		return adm_pass;
+	public String getAdmID() {
+		return admID;
 	}
 
-	public void setAdm_pass(String adm_pass) {
-		this.adm_pass = adm_pass;
+	public void setAdmID(String admID) {
+		this.admID = admID;
 	}
 
-	public String getAdm_name() {
-		return adm_name;
+	public String getAdmPass() {
+		return admPass;
 	}
 
-	public void setAdm_name(String adm_name) {
-		this.adm_name = adm_name;
+	public void setAdmPass(String admPass) {
+		this.admPass = admPass;
 	}
 
-	public String getAdm_birth() {
-		return adm_birth;
+	public String getAdmName() {
+		return admName;
 	}
 
-	public void setAdm_birth(String adm_birth) {
-		this.adm_birth = adm_birth;
+	public void setAdmName(String admName) {
+		this.admName = admName;
 	}
 
-	public String getAdm_tel() {
-		return adm_tel;
+	public Date getAdmBirth() {
+		return admBirth;
 	}
 
-	public void setAdm_tel(String adm_tel) {
-		this.adm_tel = adm_tel;
+	public void setAdmBirth(Date admBirth) {
+		this.admBirth = admBirth;
 	}
 
-	public String getAdm_add() {
-		return adm_add;
+	public String getAdmTel() {
+		return admTel;
 	}
 
-	public void setAdm_add(String adm_add) {
-		this.adm_add = adm_add;
+	public void setAdmTel(String admTel) {
+		this.admTel = admTel;
+	}
+
+	public String getAdmAdd() {
+		return admAdd;
+	}
+
+	public void setAdmAdd(String admAdd) {
+		this.admAdd = admAdd;
 	}
 
 	@Override
 	public String toString() {
-		return "AdminLoginVO [adm_num=" + adm_num + ", adm_pass=" + adm_pass + ", adm_name=" + adm_name + ", adm_birth="
-				+ adm_birth + ", adm_tel=" + adm_tel + ", adm_add=" + adm_add + "]";
-	} // toString
+		return "AdminLoginVO [admNum=" + admNum + ", admID=" + admID + ", admPass=" + admPass + ", admName=" + admName
+				+ ", admBirth=" + admBirth + ", admTel=" + admTel + ", admAdd=" + admAdd + "]";
+	} //toString
 
-} // clss
+} // class

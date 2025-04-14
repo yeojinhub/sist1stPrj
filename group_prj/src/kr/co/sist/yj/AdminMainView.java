@@ -5,7 +5,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.net.MalformedURLException;
+import java.net.URL;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,6 +17,8 @@ import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class AdminMainView extends JFrame{
+	
+	private JLabel adminAccountNameTextSet;
 	
 	public AdminMainView() {
 		super("관리자 메인");
@@ -47,20 +52,28 @@ public class AdminMainView extends JFrame{
 		jlblAdminAccountAdminAccountNameTitle.setFont(logoFont);
 		jlblAdminAccountAdminAccountNameTitle.setBounds(320, 30, 100, 20);
 		
-		JLabel jtfAdminAccountAdminAccountNameText = new JLabel("정난영");
-		jtfAdminAccountAdminAccountNameText.setHorizontalAlignment(SwingConstants.CENTER);
-		jtfAdminAccountAdminAccountNameText.setFont(logoFont);
-		jtfAdminAccountAdminAccountNameText.setBounds(460, 30, 70, 20);
-//		JLabel jlblTitleImage = new JLabel("");
-//		jlblTitleImage.setIcon(new ImageIcon("C:\\Users\\user\\Desktop\\image\\logo.png"));
-//		jlblTitleImage.setBounds(10, 10, 70, 70);
-//		contentPane.add(jlblTitleImage);
+		adminAccountNameTextSet = new JLabel("정난영");
+		adminAccountNameTextSet.setHorizontalAlignment(SwingConstants.CENTER);
+		adminAccountNameTextSet.setFont(logoFont);
+		adminAccountNameTextSet.setBounds(460, 30, 70, 20);
+		
+		JLabel jlblTitleImage = new JLabel("");
+		jlblTitleImage.setBounds(10, 10, 70, 70);
+		adminMainViewLogoPanel.add(jlblTitleImage);
+
+		// #. 로고이미지 URL로 가져다쓰기
+		try {
+			URL imageURL = new URL("https://raw.githubusercontent.com/yeojinhub/sistFstPjr/refs/heads/main/group_prj/src/kr/co/sist/kti/logo.png");
+			jlblTitleImage.setIcon(new ImageIcon(imageURL));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}// end try-catch
 
 		//Component 배치
 		//로고 배치
 		adminMainViewLogoPanel.add(jlblProgramTitle);
 		adminMainViewLogoPanel.add(jlblAdminAccountAdminAccountNameTitle);
-		adminMainViewLogoPanel.add(jtfAdminAccountAdminAccountNameText);
+		adminMainViewLogoPanel.add(adminAccountNameTextSet);
 		
 		//JTabbedPane 생성
 		JTabbedPane jtpAdminMainViewTab = new JTabbedPane();
@@ -109,5 +122,10 @@ public class AdminMainView extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 	} //AdminMainView
+
+	//getter method
+	public JLabel getAdminAccountNameTextSet() {
+		return adminAccountNameTextSet;
+	}
 	
 } //class

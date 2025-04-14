@@ -45,15 +45,15 @@ public class AdminAccountInstructorAccountInfoDAO {
 			con = dbConn.getConn();
 			
 			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
-			StringBuilder strInsertInstructorAccountQuery = new StringBuilder();
-			strInsertInstructorAccountQuery
+			StringBuilder strInsertQuery = new StringBuilder();
+			strInsertQuery
 			.append("	insert into instructor	")
 			.append("	(inst_num,inst_pass,inst_name,inst_birth,inst_tel,inst_add)	")
 			.append("	values	")
 			.append("	(to_char(sysdate,'yyyy_')||trim(to_char(seq_inst_num.nextval,'0000')),?,?,?,?,?)	")
 			;
 			
-			pstmt=con.prepareStatement(strInsertInstructorAccountQuery.toString());
+			pstmt=con.prepareStatement(strInsertQuery.toString());
 			
 			// 4. bind 변수에 값 할당
 			int bindInd = 0;
@@ -95,13 +95,13 @@ public class AdminAccountInstructorAccountInfoDAO {
 			con = dbConn.getConn();
 			
 			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
-			StringBuilder strUpdateInstructorAccountQuery = new StringBuilder();
-			strUpdateInstructorAccountQuery
+			StringBuilder strUpdateQuery = new StringBuilder();
+			strUpdateQuery
 			.append("	update instructor	")
 			.append("	set	inst_tel=?,inst_add=?	")
 			.append("	where inst_num=?	")
 			;
-			pstmt=con.prepareStatement(strUpdateInstructorAccountQuery.toString());
+			pstmt=con.prepareStatement(strUpdateQuery.toString());
 			
 			// 4. bind 변수 값 설정
 			pstmt.setString(1, instVO.getInstTel());
@@ -110,6 +110,7 @@ public class AdminAccountInstructorAccountInfoDAO {
 			
 			// 5. 쿼리문 수행 후 결과 얻기
 			rowCnt=pstmt.executeUpdate();
+			System.out.println("강사 계정 업데이트 된 행수 : "+rowCnt);
 			
 		} finally {
 			// 6. 연결 끊기
@@ -139,12 +140,12 @@ public class AdminAccountInstructorAccountInfoDAO {
 			con = dbConn.getConn();
 			
 			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
-			StringBuilder strDeleteInstructorAccountQuery = new StringBuilder();
-			strDeleteInstructorAccountQuery
+			StringBuilder strDeleteQuery = new StringBuilder();
+			strDeleteQuery
 			.append("	delete from	instructor	")
 			.append("	where inst_num=?	")
 			;
-			pstmt = con.prepareStatement(strDeleteInstructorAccountQuery.toString());
+			pstmt = con.prepareStatement(strDeleteQuery.toString());
 			
 			// 4. bind 변수에 값 할당
 			pstmt.setString(1, instNum);
@@ -162,7 +163,7 @@ public class AdminAccountInstructorAccountInfoDAO {
 	
 	/**
 	 * 전체 강사 계정 조회
-	 * @return instructorList
+	 * @return instructorList 전체 강사 계정 리스트
 	 * @throws SQLException 예외처리
 	 */
 	public List<AdminAccountInstructorAccountInfoVO> selectAllInstructorAccountMember() throws SQLException {
@@ -180,13 +181,13 @@ public class AdminAccountInstructorAccountInfoDAO {
 			con=dbConn.getConn();
 			
 			// 3. 쿼리문 객체 생성
-			StringBuilder strSelectAllInstructorAccountQuery = new StringBuilder();
-			strSelectAllInstructorAccountQuery
+			StringBuilder strSelectAllQuery = new StringBuilder();
+			strSelectAllQuery
 			.append("	select 	inst_num,inst_name,inst_birth,inst_tel,inst_add	")
 			.append("	from	instructor	")
 			.append("	order by	inst_num	")
 			;
-			pstmt=con.prepareStatement(strSelectAllInstructorAccountQuery.toString());
+			pstmt=con.prepareStatement(strSelectAllQuery.toString());
 			
 			// 4. bind 변수 값 할당
 			// 5. 쿼리문 수행 후 결과 얻기
@@ -234,14 +235,14 @@ public class AdminAccountInstructorAccountInfoDAO {
 			con=dbConn.getConn();
 			
 			// 3. 쿼리문 객체 생성
-			StringBuilder strSelectOneInstructorAccountQuery = new StringBuilder();
-			strSelectOneInstructorAccountQuery
+			StringBuilder strSelectOneQuery = new StringBuilder();
+			strSelectOneQuery
 			.append("	select inst_name,inst_num,inst_pass,inst_birth,inst_tel,inst_add	")
 			.append("	from instructor	")
 			.append("	where inst_num=?	")
 			;
 			
-			pstmt=con.prepareStatement(strSelectOneInstructorAccountQuery.toString());
+			pstmt=con.prepareStatement(strSelectOneQuery.toString());
 			
 			// 4. bind 변수 값 할당
 			pstmt.setString(1, instNum);

@@ -19,11 +19,21 @@ import javax.swing.border.EmptyBorder;
 @SuppressWarnings("serial")
 public class AdminAccountAdminAccountModifyView extends JPanel {
 
-	private JButton jbtnAdminAccountAdminAccountModify;
-	private JButton jbtnAdminAccountAdmintAccountDelete;
-	private JButton jbtnAdminAccountAdmintAccountClose;
+	private JTextField admNameTextSet;
+	private JTextField admIDTextSet;
+	private JPasswordField admPassTextSet;
+	private JTextField admBirthTextSet;
+	private JTextField admTelTextSet;
+	private JTextField admAddTextSet;
+	
+	private JButton admModifyButton;
+	private JButton admDeleteButton;
+	private JButton admCloseButton;
 
-	public AdminAccountAdminAccountModifyView() {
+	private String strAdmNum;
+	
+	public AdminAccountAdminAccountModifyView(String strAdmNum) {
+		this.strAdmNum=strAdmNum;
 
 		// 디자인(색깔,글씨) 설정
 		Color white = new Color(255, 255, 255);
@@ -36,10 +46,10 @@ public class AdminAccountAdminAccountModifyView extends JPanel {
 		setLayout(new BorderLayout());
 
 		// ---------- 왼쪽 입력 패널 ----------
-		JPanel jpAdminAccountAdminAccountModifyViewPanel = new JPanel(new GridBagLayout());
-		jpAdminAccountAdminAccountModifyViewPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
-		jpAdminAccountAdminAccountModifyViewPanel.setMinimumSize(new Dimension(350, 400));
-		jpAdminAccountAdminAccountModifyViewPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
+		JPanel admModifyViewPanel = new JPanel(new GridBagLayout());
+		admModifyViewPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+		admModifyViewPanel.setMinimumSize(new Dimension(350, 400));
+		admModifyViewPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
 
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(8, 4, 8, 4);
@@ -51,137 +61,167 @@ public class AdminAccountAdminAccountModifyView extends JPanel {
 
 		// Component 생성
 		// 이름 Component 생성
-		JLabel jlblAdminAccountAdminAccountNameTitle = new JLabel("이름");
-		JTextField jtfAdminAccountAdminAccountNameText = new JTextField();
-		jlblAdminAccountAdminAccountNameTitle.setPreferredSize(labelSize);
-		jtfAdminAccountAdminAccountNameText.setPreferredSize(fieldSize);
-		jtfAdminAccountAdminAccountNameText.setEditable(false);
+		JLabel admNameTitleLabel = new JLabel("이름");
+		admNameTitleLabel.setPreferredSize(labelSize);
+		admNameTextSet = new JTextField();
+		admNameTextSet.setPreferredSize(fieldSize);
+		admNameTextSet.setEditable(false);
 
 		// 사번 Component 생성
-		JLabel jlblAdminAccountAdminAccountIDTitle = new JLabel("사번");
-		JTextField jtfAdminAccountAdminAccountIDText = new JTextField();
-		jlblAdminAccountAdminAccountIDTitle.setPreferredSize(labelSize);
-		jtfAdminAccountAdminAccountIDText.setPreferredSize(fieldSize);
-		jtfAdminAccountAdminAccountIDText.setEditable(false);
+		JLabel admIDTitleLabel = new JLabel("아이디");
+		admIDTitleLabel.setPreferredSize(labelSize);
+		admIDTextSet = new JTextField();
+		admIDTextSet.setPreferredSize(fieldSize);
+		admIDTextSet.setEditable(false);
 
 		// 비밀번호 Component 생성
-		JLabel jlblAdminAccountAdminAccountPassTitle = new JLabel("비밀번호");
-		JPasswordField jpfAdminAccountAdminAccountPassText = new JPasswordField();
-		jlblAdminAccountAdminAccountPassTitle.setPreferredSize(labelSize);
-		jpfAdminAccountAdminAccountPassText.setPreferredSize(fieldSize);
+		JLabel admiPassTitleLabel = new JLabel("비밀번호");
+		admiPassTitleLabel.setPreferredSize(labelSize);
+		admPassTextSet = new JPasswordField();
+		admPassTextSet.setPreferredSize(fieldSize);
 
 		// 생년월일 Component 생성
-		JLabel jlblAdminAccountAdminAccountBirthTitle = new JLabel("생년월일");
-		JTextField jtfAdminAccountAdminAccountBirthText = new JTextField();
-		jlblAdminAccountAdminAccountBirthTitle.setPreferredSize(labelSize);
-		jtfAdminAccountAdminAccountBirthText.setPreferredSize(fieldSize);
-		jtfAdminAccountAdminAccountBirthText.setEditable(false);
+		JLabel admBirthTitleLabel = new JLabel("생년월일");
+		admBirthTitleLabel.setPreferredSize(labelSize);
+		admBirthTextSet = new JTextField();
+		admBirthTextSet.setPreferredSize(fieldSize);
+		admBirthTextSet.setEditable(false);
 
 		// 전화번호 Component 생성
-		JLabel jlblAdminAccountAdminAccountTelTitle = new JLabel("전화번호");
-		JTextField jtfAdminAccountAdminAccountTelText = new JTextField();
-		jlblAdminAccountAdminAccountTelTitle.setPreferredSize(labelSize);
-		jtfAdminAccountAdminAccountTelText.setPreferredSize(fieldSize);
+		JLabel adminTelTitleLabel = new JLabel("전화번호");
+		adminTelTitleLabel.setPreferredSize(labelSize);
+		admTelTextSet = new JTextField();
+		admTelTextSet.setPreferredSize(fieldSize);
 
 		// 주소 Component 생성
-		JLabel jlblAdminAccountAdminAccountAddressTitle = new JLabel("주소");
-		JTextField jtfAdminAccountAdminAccountAddressText = new JTextField();
-		jlblAdminAccountAdminAccountAddressTitle.setPreferredSize(labelSize);
-		jtfAdminAccountAdminAccountAddressText.setPreferredSize(fieldSize);
+		JLabel adminAddTitleLabel = new JLabel("주소");
+		adminAddTitleLabel.setPreferredSize(labelSize);
+		admAddTextSet = new JTextField();
+		admAddTextSet.setPreferredSize(fieldSize);
 
 		// Button 생성
-		JPanel jpAdminAccountAdminAccountModifyViewButtonPanel = new JPanel();
-		jpAdminAccountAdminAccountModifyViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		jpAdminAccountAdminAccountModifyViewButtonPanel.setBackground(white);
-		jbtnAdminAccountAdminAccountModify = new JButton("수정");
-		jbtnAdminAccountAdminAccountModify.setBackground(lightblue);
-		jbtnAdminAccountAdminAccountModify.setSize(buttonSize);
-		jbtnAdminAccountAdminAccountModify.setFont(buttonFont);
-		jbtnAdminAccountAdmintAccountDelete = new JButton("삭제");
-		jbtnAdminAccountAdmintAccountDelete.setBackground(lightblue);
-		jbtnAdminAccountAdmintAccountDelete.setSize(buttonSize);
-		jbtnAdminAccountAdmintAccountDelete.setFont(buttonFont);
-		jbtnAdminAccountAdmintAccountClose = new JButton("닫기");
-		jbtnAdminAccountAdmintAccountClose.setBackground(lightblue);
-		jbtnAdminAccountAdmintAccountClose.setSize(buttonSize);
-		jbtnAdminAccountAdmintAccountClose.setFont(buttonFont);
+		JPanel admModifyViewButtonPanel = new JPanel();
+		admModifyViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		admModifyViewButtonPanel.setBackground(white);
+		admModifyButton = new JButton("수정");
+		admModifyButton.setBackground(lightblue);
+		admModifyButton.setSize(buttonSize);
+		admModifyButton.setFont(buttonFont);
+		
+		admDeleteButton = new JButton("삭제");
+		admDeleteButton.setBackground(lightblue);
+		admDeleteButton.setSize(buttonSize);
+		admDeleteButton.setFont(buttonFont);
+		
+		admCloseButton = new JButton("닫기");
+		admCloseButton.setBackground(lightblue);
+		admCloseButton.setSize(buttonSize);
+		admCloseButton.setFont(buttonFont);
 
-		jpAdminAccountAdminAccountModifyViewButtonPanel.add(jbtnAdminAccountAdminAccountModify);
-		jpAdminAccountAdminAccountModifyViewButtonPanel.add(jbtnAdminAccountAdmintAccountDelete);
-		jpAdminAccountAdminAccountModifyViewButtonPanel.add(jbtnAdminAccountAdmintAccountClose);
+		admModifyViewButtonPanel.add(admModifyButton);
+		admModifyViewButtonPanel.add(admDeleteButton);
+		admModifyViewButtonPanel.add(admCloseButton);
 
 		// Component 배치
 		// 이름 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		jpAdminAccountAdminAccountModifyViewPanel.add(jlblAdminAccountAdminAccountNameTitle, gbc);
+		admModifyViewPanel.add(admNameTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountAdminAccountModifyViewPanel.add(jtfAdminAccountAdminAccountNameText, gbc);
+		admModifyViewPanel.add(admNameTextSet, gbc);
 
 		// 사번 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-		jpAdminAccountAdminAccountModifyViewPanel.add(jlblAdminAccountAdminAccountIDTitle, gbc);
+		admModifyViewPanel.add(admIDTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountAdminAccountModifyViewPanel.add(jtfAdminAccountAdminAccountIDText, gbc);
+		admModifyViewPanel.add(admIDTextSet, gbc);
 
 		// 비밀번호 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 2;
-		jpAdminAccountAdminAccountModifyViewPanel.add(jlblAdminAccountAdminAccountPassTitle, gbc);
+		admModifyViewPanel.add(admiPassTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountAdminAccountModifyViewPanel.add(jpfAdminAccountAdminAccountPassText, gbc);
+		admModifyViewPanel.add(admPassTextSet, gbc);
 
 		// 생년월일 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 3;
-		jpAdminAccountAdminAccountModifyViewPanel.add(jlblAdminAccountAdminAccountBirthTitle, gbc);
+		admModifyViewPanel.add(admBirthTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountAdminAccountModifyViewPanel.add(jtfAdminAccountAdminAccountBirthText, gbc);
+		admModifyViewPanel.add(admBirthTextSet, gbc);
 
 		// 전화번호 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 4;
-		jpAdminAccountAdminAccountModifyViewPanel.add(jlblAdminAccountAdminAccountTelTitle, gbc);
+		admModifyViewPanel.add(adminTelTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountAdminAccountModifyViewPanel.add(jtfAdminAccountAdminAccountTelText, gbc);
+		admModifyViewPanel.add(admTelTextSet, gbc);
 
 		// 주소 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 5;
-		jpAdminAccountAdminAccountModifyViewPanel.add(jlblAdminAccountAdminAccountAddressTitle, gbc);
+		admModifyViewPanel.add(adminAddTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountAdminAccountModifyViewPanel.add(jtfAdminAccountAdminAccountAddressText, gbc);
+		admModifyViewPanel.add(admAddTextSet, gbc);
 
 		// 버튼 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 6;
 		gbc.gridwidth = 3; // 세 열을 합쳐서 버튼들을 가운데로 배치
 		gbc.anchor = GridBagConstraints.CENTER;
-		jpAdminAccountAdminAccountModifyViewPanel.add(jpAdminAccountAdminAccountModifyViewButtonPanel, gbc);
+		admModifyViewPanel.add(admModifyViewButtonPanel, gbc);
 
 		// Panel 배치
-		add(jpAdminAccountAdminAccountModifyViewPanel);
+		add(admModifyViewPanel);
 
 		// Button 이벤트 생성
-		AdminAccountAdminAccountModifyEvt aaaamEvt = new AdminAccountAdminAccountModifyEvt(this);
-		jbtnAdminAccountAdminAccountModify.addActionListener(aaaamEvt);
-		jbtnAdminAccountAdmintAccountDelete.addActionListener(aaaamEvt);
-		jbtnAdminAccountAdmintAccountClose.addActionListener(aaaamEvt);
+		AdminAccountAdminAccountModifyEvt admModifyEvt = new AdminAccountAdminAccountModifyEvt(this);
+		admModifyButton.addActionListener(admModifyEvt);
+		admDeleteButton.addActionListener(admModifyEvt);
+		admCloseButton.addActionListener(admModifyEvt);
 
 	} // AdminAccountAdminAccountModifyView
 
 	// getter method
-	public JButton getJbtnAdminAccountAdminAccountModify() {
-		return jbtnAdminAccountAdminAccountModify;
-	} // getJbtnAdminAccountAdminAccountModify
-
-	public JButton getJbtnAdminAccountAdmintAccountDelete() {
-		return jbtnAdminAccountAdmintAccountDelete;
+	public JTextField getAdmNameTextSet() {
+		return admNameTextSet;
 	}
 
-	public JButton getJbtnAdminAccountAdmintAccountClose() {
-		return jbtnAdminAccountAdmintAccountClose;
-	} // getJbtnAdminAccountAdmintAccountClose
+	public JTextField getAdmIDTextSet() {
+		return admIDTextSet;
+	}
 
+	public JPasswordField getAdmPassTextSet() {
+		return admPassTextSet;
+	}
+
+	public JTextField getAdmBirthTextSet() {
+		return admBirthTextSet;
+	}
+
+	public JTextField getAdmTelTextSet() {
+		return admTelTextSet;
+	}
+
+	public JTextField getAdmAddTextSet() {
+		return admAddTextSet;
+	}
+	
+	public JButton getAdmModifyButton() {
+		return admModifyButton;
+	}
+
+	public JButton getAdmDeleteButton() {
+		return admDeleteButton;
+	}
+
+	public JButton getAdmCloseButton() {
+		return admCloseButton;
+	}
+
+	public String getStrAdmNum() {
+		return strAdmNum;
+	}
+	
 } // class

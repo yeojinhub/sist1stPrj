@@ -17,50 +17,50 @@ import javax.swing.border.EmptyBorder;
 @SuppressWarnings("serial")
 public class AdminLoginView extends JFrame{
 	
-	private JTextField jtfAdminLoginID;
-	private JPasswordField jpfAdminLoginPass;
-	private JButton jbtnAdminLogin;
+	private JTextField loginIDTextSet;
+	private JPasswordField loginPassTextSet;
+	private JButton loginButton;
 	
 	 public AdminLoginView () {
 		super("관리자 로그인");
 		
 		//JPanel 생성
-		JPanel jpAdminLoginViewNorth = new JPanel();
-		jpAdminLoginViewNorth.setLayout(new GridLayout(0,1));
+		JPanel adminLoginViewNorthPanel = new JPanel();
+		adminLoginViewNorthPanel.setLayout(new GridLayout(0,1));
 		
-		JLabel jlbAdminLoginTitle = new JLabel("베스트 캠퍼스", JLabel.CENTER);
-		jpAdminLoginViewNorth.add(jlbAdminLoginTitle);
+		JLabel loginTitleLabel = new JLabel("베스트 캠퍼스", JLabel.CENTER);
+		adminLoginViewNorthPanel.add(loginTitleLabel);
 		
 		JPanel jpAdminLoginViewSouth = new JPanel();
 		jpAdminLoginViewSouth.setLayout(new GridLayout(3, 2));
 		
 		//Component 생성
-		JLabel jlbAdminLoginIDTitle = new JLabel("아이디");
-		jtfAdminLoginID = new JTextField(20);
+		JLabel loginIDTitleLabel = new JLabel("아이디");
+		loginIDTextSet = new JTextField(20);
 		
-		JLabel jlbAdminLoginPassTitle = new JLabel("비밀번호");
-		jpfAdminLoginPass = new JPasswordField(20);
+		JLabel loginPassTitleLabel = new JLabel("비밀번호");
+		loginPassTextSet = new JPasswordField(20);
 		
-		jbtnAdminLogin = new JButton("로그인");
+		loginButton = new JButton("로그인");
 		
 		//Component 배치
-		jpAdminLoginViewSouth.add(jlbAdminLoginIDTitle);
-		jpAdminLoginViewSouth.add(jtfAdminLoginID);
-		jpAdminLoginViewSouth.add(jlbAdminLoginPassTitle);
-		jpAdminLoginViewSouth.add(jpfAdminLoginPass);
+		jpAdminLoginViewSouth.add(loginIDTitleLabel);
+		jpAdminLoginViewSouth.add(loginIDTextSet);
+		jpAdminLoginViewSouth.add(loginPassTitleLabel);
+		jpAdminLoginViewSouth.add(loginPassTextSet);
 		jpAdminLoginViewSouth.add(new JLabel(""));
-		jpAdminLoginViewSouth.add(jbtnAdminLogin);
+		jpAdminLoginViewSouth.add(loginButton);
 
 		//Layout 크기 설정
-		jpAdminLoginViewNorth.setBorder(new EmptyBorder(20, 0, 10, 0));
+		adminLoginViewNorthPanel.setBorder(new EmptyBorder(20, 0, 10, 0));
 		jpAdminLoginViewSouth.setBorder(new EmptyBorder(0, 20, 20, 20));
 		
-		add(jpAdminLoginViewNorth, BorderLayout.NORTH);
+		add(adminLoginViewNorthPanel, BorderLayout.NORTH);
 		add(jpAdminLoginViewSouth, BorderLayout.SOUTH );
 		
 		//Button 이벤트 생성
-		AdminLoginEvt ale = new AdminLoginEvt(this);
-		jbtnAdminLogin.addActionListener(ale);
+		AdminLoginEvt loginEvt = new AdminLoginEvt(this);
+		loginButton.addActionListener(loginEvt);
 		
 		//Window 크기 설정
 		setBounds(100,100,400,200);
@@ -70,16 +70,16 @@ public class AdminLoginView extends JFrame{
 	} //AdminLoginView
 
 	//getter method
-	public JTextField getJtfAdminLoginID() {
-		return jtfAdminLoginID;
-	} //getJtfAdminLoginID
+	 public JTextField getLoginIDTextSet() {
+		 return loginIDTextSet;
+	 }
 
-	public JPasswordField getJpfAdminLoginPass() {
-		return jpfAdminLoginPass;
-	} //getJpfAdminLoginPass
+	public JPasswordField getLoginPassTextSet() {
+		return loginPassTextSet;
+	}
 
-	public JButton getJbtnAdminLogin() {
-		return jbtnAdminLogin;
-	} //getJbtnAdminLogin
+	public JButton getLoginButton() {
+		return loginButton;
+	}
 	
 } //class

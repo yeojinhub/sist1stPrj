@@ -1,22 +1,25 @@
 package kr.co.sist.yj;
 
-import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class AdminLoginService {
 
-	public AdminLoginVO searchMember(int num) {
-		AdminLoginVO alVO = null;
-
+	/**
+	 * 전체 관리자 계정 조회
+	 * @return loginList 전체 관리자 계정 VO 객체들의 리스트
+	 */
+	public List<AdminLoginVO> searchAllAdminAccountLogin() {
+		List<AdminLoginVO> loginList= null;
+		AdminLoginDAO loginDAO = AdminLoginDAO.getInstance();
+		
 		try {
-			alVO = AdminLoginDAO.getInstance().selectAdminLogin(num);
+			loginList = loginDAO.selectAllAdminAccountLogin();
 		} catch (SQLException se) {
 			se.printStackTrace();
-		} catch (IOException ie) {
-			ie.printStackTrace();
-		} // end try catch
-
-		return alVO;
-	} // searchMember
+		} //end try catch
+		
+		return loginList;
+	} // searchAllAdminAccountLogin
 
 } // class

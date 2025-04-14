@@ -1,17 +1,20 @@
 //package kr.co.sist.evt;
 package kr.co.sist.yj;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.JLabel;
 
-public class AdminMainEvt implements ActionListener{
+public class AdminMainEvt {
 
-	public AdminMainEvt() {
-		System.out.println("필요 없는 클래스입니다.");
-	} //AdminMainEvt
+	private AdminMainView mainView;
 	
-	@Override
-	public void actionPerformed(ActionEvent ae) {
-	} //actionPerformed
+	private JLabel adminAccountNameTextSet;
+	
+	@SuppressWarnings("null")
+	public AdminMainEvt() {
+		this.adminAccountNameTextSet=mainView.getAdminAccountNameTextSet();
+		
+		AdminLoginVO loginVO = null;
+		adminAccountNameTextSet.setText(loginVO.getAdmName().toString());
+	} //AdminMainEvt
 	
 } //class

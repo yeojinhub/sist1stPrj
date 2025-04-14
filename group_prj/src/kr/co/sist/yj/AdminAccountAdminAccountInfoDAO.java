@@ -45,15 +45,15 @@ public class AdminAccountAdminAccountInfoDAO {
 			con = dbConn.getConn();
 			
 			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
-			StringBuilder strInsertAdminAccountQuery = new StringBuilder();
-			strInsertAdminAccountQuery
+			StringBuilder strInsertQuery = new StringBuilder();
+			strInsertQuery
 			.append("	insert into admin	")
-			.append("	(adm_num,adm_pass,adm_name,adm_birth,adm_tel,adm_add)	")
+			.append("	(adm_id,adm_pass,adm_name,adm_birth,adm_tel,adm_add)	")
 			.append("	values	")
-			.append("	('seq_adm_num',?,?,?,?,?)	")
+			.append("	((to_char(admin)||trim(to_char(seq_adm_id.nextval,'00')),?,?,?,?,?)	")
 			;
 			
-			pstmt=con.prepareStatement(strInsertAdminAccountQuery.toString());
+			pstmt=con.prepareStatement(strInsertQuery.toString());
 			
 			// 4. bind 변수에 값 할당
 			int bindInd = 0;
@@ -95,18 +95,18 @@ public class AdminAccountAdminAccountInfoDAO {
 			con = dbConn.getConn();
 			
 			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
-			StringBuilder strUpdateAdminAccountQuery = new StringBuilder();
-			strUpdateAdminAccountQuery
+			StringBuilder strUpdateQuery = new StringBuilder();
+			strUpdateQuery
 			.append("	update admin	")
 			.append("	set adm_tel=?,adm_add=?	")
-			.append("	where adm_num=?	")
+			.append("	where adm_id=?	")
 			;
-			pstmt = con.prepareStatement(strUpdateAdminAccountQuery.toString());
+			pstmt = con.prepareStatement(strUpdateQuery.toString());
 			
 			// 4. bind 변수 값 설정
 			pstmt.setString(1, admVO.getAdmTel());
 			pstmt.setString(2, admVO.getAdmAdd());
-			pstmt.setString(3, admVO.getAdmNum());
+			pstmt.setString(3, admVO.getAdmID());
 			
 			// 5. 쿼리문 수행 후 결과 얻기
 			rowCnt=pstmt.executeUpdate();
@@ -125,7 +125,7 @@ public class AdminAccountAdminAccountInfoDAO {
 	 * @return rowCnt
 	 * @throws SQLException 예외처리
 	 */
-	public int deleteAdminAccountMember(String admNum) throws SQLException {
+	public int deleteAdminAccountMember(String admID) throws SQLException {
 		int rowCnt=0;
 		
 		// 1. Driver 로딩
@@ -139,15 +139,15 @@ public class AdminAccountAdminAccountInfoDAO {
 			con = dbConn.getConn();
 			
 			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
-			StringBuilder strDeleteAdminAccountQuery = new StringBuilder();
-			strDeleteAdminAccountQuery
+			StringBuilder strDeleteQuery = new StringBuilder();
+			strDeleteQuery
 			.append("	delete from	admin	")
-			.append("	where adm_num=?	")
+			.append("	where adm_id=?	")
 			;
-			pstmt = con.prepareStatement(strDeleteAdminAccountQuery.toString());
+			pstmt = con.prepareStatement(strDeleteQuery.toString());
 			
 			// 4. bind 변수에 값 할당
-			pstmt.setString(1, admNum);
+			pstmt.setString(1, admID);
 			
 			// 5. 쿼리문 수행 후 결과 얻기
 			rowCnt=pstmt.executeUpdate();
@@ -180,13 +180,13 @@ public class AdminAccountAdminAccountInfoDAO {
 			con = dbConn.getConn();
 			
 			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
-			StringBuilder strSelectAllAdminAccountQuery = new StringBuilder();
-			strSelectAllAdminAccountQuery
-			.append("	select adm_num,adm_name,adm_birth,adm_tel,adm_add	")
+			StringBuilder strSelectAllQuery = new StringBuilder();
+			strSelectAllQuery
+			.append("	select adm_id,adm_name,adm_birth,adm_tel,adm_add	")
 			.append("	from	admin	")
-			.append("	order by	adm_num")
+			.append("	order by	adm_id")
 			;
-			pstmt=con.prepareStatement(strSelectAllAdminAccountQuery.toString());
+			pstmt=con.prepareStatement(strSelectAllQuery.toString());
 			
 			// 4. bind 변수 값 할당
 			// 5. 쿼리문 수행 후 결과 얻기
@@ -197,7 +197,7 @@ public class AdminAccountAdminAccountInfoDAO {
 			while( rs.next() ) {
 				admVO = new AdminAccountAdminAccountInfoVO();
 				
-				admVO.setAdmNum(rs.getString("adm_num"));
+				admVO.setAdmID(rs.getString("adm_id"));
 				admVO.setAdmName(rs.getString("adm_name"));
 				admVO.setAdmBirth(rs.getDate("adm_birth"));
 				admVO.setAdmTel(rs.getString("adm_tel"));
@@ -220,7 +220,7 @@ public class AdminAccountAdminAccountInfoDAO {
 	 * @return admVO
 	 * @throws SQLException 예외처리
 	 */
-	public AdminAccountAdminAccountInfoVO selectOneAdminAccountMember(String admNum) throws SQLException {
+	public AdminAccountAdminAccountInfoVO selectOneAdminAccountMember(String admID) throws SQLException {
 		AdminAccountAdminAccountInfoVO admVO = null;
 		
 		// 1. Driver 로딩
@@ -235,16 +235,16 @@ public class AdminAccountAdminAccountInfoDAO {
 			con=dbConn.getConn();
 			
 			// 3. 쿼리문 객체 생성
-			StringBuilder strSelectOneAdminAccountQuery = new StringBuilder();
-			strSelectOneAdminAccountQuery
-			.append("	select adm_name,adm_num,adm_pass,adm_birth,adm_tel,adm_add	")
+			StringBuilder strSelectOneQuery = new StringBuilder();
+			strSelectOneQuery
+			.append("	select adm_name,adm_id,adm_pass,adm_birth,adm_tel,adm_add	")
 			.append("	from admin	")
-			.append("	where adm_num=?	")
+			.append("	where adm_id=?	")
 			;
-			pstmt=con.prepareStatement(strSelectOneAdminAccountQuery.toString());
+			pstmt=con.prepareStatement(strSelectOneQuery.toString());
 			
 			// 4. bind 변수 값 할당
-			pstmt.setString(1, admNum);
+			pstmt.setString(1, admID);
 			
 			// 5. 쿼리문 수행 후 결과 얻기
 			rs=pstmt.executeQuery();
@@ -254,7 +254,7 @@ public class AdminAccountAdminAccountInfoDAO {
 				admVO = new AdminAccountAdminAccountInfoVO();
 				// 값을 VO 객체에 저장
 				admVO.setAdmName(rs.getString("adm_name"));
-				admVO.setAdmNum(rs.getString("adm_num"));
+				admVO.setAdmID(rs.getString("adm_id"));
 				admVO.setAdmPass(rs.getString("adm_pass"));
 				admVO.setAdmBirth(rs.getDate("adm_birth"));
 				admVO.setAdmTel(rs.getString("adm_tel"));

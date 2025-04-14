@@ -17,24 +17,24 @@ import javax.swing.border.EmptyBorder;
 @SuppressWarnings("serial")
 public class AdminAccountInstructorAccountCreateView extends JPanel{
 
-	private JTextField jtfAdminAccountInstructorAccountNameSet;
-	private JPasswordField jpfAdminAccountInstructorAccountPassSet;
-	private JTextField jtfAdminAccountInstructorAccountBirthSet;
-	private JTextField jtfAdminAccountInstructorAccountTelSet;
-	private JTextField jtfAdminAccountInstructorAccountAddressSet;
+	private JTextField instNameTextSet;
+	private JPasswordField instPassTextSet;
+	private JTextField instBirthTextSet;
+	private JTextField instTelTextSet;
+	private JTextField instAddTextSet;
 	
-	private JButton jbtnAdminAccountInstructorAccountCreate;
-	private JButton jbtnAdminAccountInstructorAccountClose;
+	private JButton instCreateButton;
+	private JButton instCloseButton;
 	
 	public AdminAccountInstructorAccountCreateView() {
 		
 		setLayout(new BorderLayout());
 		
 		// ---------- 왼쪽 입력 패널 ----------
-		JPanel jpAdminAccountInstructorAccountCreateViewPanel = new JPanel(new GridBagLayout());
-		jpAdminAccountInstructorAccountCreateViewPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
-		jpAdminAccountInstructorAccountCreateViewPanel.setMinimumSize(new Dimension(350, 400));
-		jpAdminAccountInstructorAccountCreateViewPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
+		JPanel instCreateViewPanel = new JPanel(new GridBagLayout());
+		instCreateViewPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+		instCreateViewPanel.setMinimumSize(new Dimension(350, 400));
+		instCreateViewPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(8, 4, 8, 4);
@@ -46,118 +46,118 @@ public class AdminAccountInstructorAccountCreateView extends JPanel{
 		
 		//Component 생성
 		//이름 Component 생성
-		JLabel jlblAdminAccountInstructorAccountNameTitle = new JLabel("이름");
-		jlblAdminAccountInstructorAccountNameTitle.setPreferredSize(labelSize);
-		jtfAdminAccountInstructorAccountNameSet = new JTextField();
-		jtfAdminAccountInstructorAccountNameSet.setPreferredSize(fieldSize);
+		JLabel instNameTitleLabel = new JLabel("이름");
+		instNameTitleLabel.setPreferredSize(labelSize);
+		instNameTextSet = new JTextField();
+		instNameTextSet.setPreferredSize(fieldSize);
 		
 		//비밀번호 Component 생성
-		JLabel jlblAdminAccountInstructorAccountPassTitle = new JLabel("비밀번호");
-		jlblAdminAccountInstructorAccountPassTitle.setPreferredSize(labelSize);
-		jpfAdminAccountInstructorAccountPassSet = new JPasswordField();
-		jpfAdminAccountInstructorAccountPassSet.setPreferredSize(fieldSize);
+		JLabel instPassTitleLabel = new JLabel("비밀번호");
+		instPassTitleLabel.setPreferredSize(labelSize);
+		instPassTextSet = new JPasswordField();
+		instPassTextSet.setPreferredSize(fieldSize);
 		
 		//생년월일 Component 생성
-		JLabel jlblAdminAccountInstructorAccountBirthTitle = new JLabel("생년월일");
-		jlblAdminAccountInstructorAccountBirthTitle.setPreferredSize(labelSize);
-		jtfAdminAccountInstructorAccountBirthSet = new JTextField();
-		jtfAdminAccountInstructorAccountBirthSet.setPreferredSize(fieldSize);
+		JLabel instBirthTitleLabel = new JLabel("생년월일");
+		instBirthTitleLabel.setPreferredSize(labelSize);
+		instBirthTextSet = new JTextField();
+		instBirthTextSet.setPreferredSize(fieldSize);
 		
 		//전화번호 Component 생성
-		JLabel jlblAdminAccountInstructorAccountTelTitle = new JLabel("전화번호");
-		jlblAdminAccountInstructorAccountTelTitle.setPreferredSize(labelSize);
-		jtfAdminAccountInstructorAccountTelSet = new JTextField();
-		jtfAdminAccountInstructorAccountTelSet.setPreferredSize(fieldSize);
+		JLabel instTelTitleLabel = new JLabel("전화번호");
+		instTelTitleLabel.setPreferredSize(labelSize);
+		instTelTextSet = new JTextField();
+		instTelTextSet.setPreferredSize(fieldSize);
 		
 		//주소 Component 생성
-		JLabel jlblAdminAccountInstructorAccountAddressTitle = new JLabel("주소");
-		jlblAdminAccountInstructorAccountAddressTitle.setPreferredSize(labelSize);
-		jtfAdminAccountInstructorAccountAddressSet = new JTextField();
-		jtfAdminAccountInstructorAccountAddressSet.setPreferredSize(fieldSize);
+		JLabel instAddTitleLabel = new JLabel("주소");
+		instAddTitleLabel.setPreferredSize(labelSize);
+		instAddTextSet = new JTextField();
+		instAddTextSet.setPreferredSize(fieldSize);
 		
 		//Button 생성
-		JPanel jpAdminAccountInstructorAccountCreateViewButtonPanel = new JPanel();
-		jpAdminAccountInstructorAccountCreateViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		jbtnAdminAccountInstructorAccountCreate = new JButton("생성");
-		jbtnAdminAccountInstructorAccountClose = new JButton("닫기");
+		JPanel instCreateViewButtonPanel = new JPanel();
+		instCreateViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		instCreateButton = new JButton("생성");
+		instCloseButton = new JButton("닫기");
 		
-		jpAdminAccountInstructorAccountCreateViewButtonPanel.add(jbtnAdminAccountInstructorAccountCreate);
-		jpAdminAccountInstructorAccountCreateViewButtonPanel.add(jbtnAdminAccountInstructorAccountClose);
+		instCreateViewButtonPanel.add(instCreateButton);
+		instCreateViewButtonPanel.add(instCloseButton);
 		
 		//Component 배치
 		//이름 Component 배치
 		gbc.gridx = 0; gbc.gridy = 0;
-		jpAdminAccountInstructorAccountCreateViewPanel.add(jlblAdminAccountInstructorAccountNameTitle, gbc);
+		instCreateViewPanel.add(instNameTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountInstructorAccountCreateViewPanel.add(jtfAdminAccountInstructorAccountNameSet, gbc);
+		instCreateViewPanel.add(instNameTextSet, gbc);
 		
 		//비밀번호 Component 배치
 		gbc.gridx = 0; gbc.gridy = 1;
-		jpAdminAccountInstructorAccountCreateViewPanel.add(jlblAdminAccountInstructorAccountPassTitle, gbc);
+		instCreateViewPanel.add(instPassTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountInstructorAccountCreateViewPanel.add(jpfAdminAccountInstructorAccountPassSet, gbc);
+		instCreateViewPanel.add(instPassTextSet, gbc);
 		
 		//생년월일 Component 배치
 		gbc.gridx = 0; gbc.gridy = 2;
-		jpAdminAccountInstructorAccountCreateViewPanel.add(jlblAdminAccountInstructorAccountBirthTitle, gbc);
+		instCreateViewPanel.add(instBirthTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountInstructorAccountCreateViewPanel.add(jtfAdminAccountInstructorAccountBirthSet, gbc);
+		instCreateViewPanel.add(instBirthTextSet, gbc);
 		
 		//전화번호 Component 배치
 		gbc.gridx = 0; gbc.gridy = 3;
-		jpAdminAccountInstructorAccountCreateViewPanel.add(jlblAdminAccountInstructorAccountTelTitle, gbc);
+		instCreateViewPanel.add(instTelTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountInstructorAccountCreateViewPanel.add(jtfAdminAccountInstructorAccountTelSet, gbc);
+		instCreateViewPanel.add(instTelTextSet, gbc);
 		
 		//주소 Component 배치
 		gbc.gridx = 0; gbc.gridy = 4;
-		jpAdminAccountInstructorAccountCreateViewPanel.add(jlblAdminAccountInstructorAccountAddressTitle, gbc);
+		instCreateViewPanel.add(instAddTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountInstructorAccountCreateViewPanel.add(jtfAdminAccountInstructorAccountAddressSet, gbc);
+		instCreateViewPanel.add(instAddTextSet, gbc);
 		
 		//버튼 Component 배치
 		gbc.gridx = 0; gbc.gridy = 5;
 		gbc.gridwidth = 2;  // 두 열을 합쳐서 버튼들을 가운데로 배치
 		gbc.anchor = GridBagConstraints.CENTER;
-		jpAdminAccountInstructorAccountCreateViewPanel.add(jpAdminAccountInstructorAccountCreateViewButtonPanel, gbc);
+		instCreateViewPanel.add(instCreateViewButtonPanel, gbc);
 		
 		//Panel 배치
-		add(jpAdminAccountInstructorAccountCreateViewPanel);
+		add(instCreateViewPanel);
 		
 		//Button 이벤트 생성
-		AdminAccountInstructorAccountCreateEvt aaiace = new AdminAccountInstructorAccountCreateEvt(this);
-		jbtnAdminAccountInstructorAccountCreate.addActionListener(aaiace);
-		jbtnAdminAccountInstructorAccountClose.addActionListener(aaiace);
+		AdminAccountInstructorAccountCreateEvt instCreateEvt = new AdminAccountInstructorAccountCreateEvt(this);
+		instCreateButton.addActionListener(instCreateEvt);
+		instCloseButton.addActionListener(instCreateEvt);
 		
 	} //AdminAccountInstructorAccountCreateView
 
 	//getter method
-	public JTextField getJtfAdminAccountInstructorAccountNameSet() {
-		return jtfAdminAccountInstructorAccountNameSet;
+	public JTextField getInstNameTextSet() {
+		return instNameTextSet;
 	}
 
-	public JPasswordField getJpfAdminAccountInstructorAccountPassSet() {
-		return jpfAdminAccountInstructorAccountPassSet;
+	public JPasswordField getInstPassTextSet() {
+		return instPassTextSet;
 	}
 
-	public JTextField getJtfAdminAccountInstructorAccountBirthSet() {
-		return jtfAdminAccountInstructorAccountBirthSet;
+	public JTextField getInstBirthTextSet() {
+		return instBirthTextSet;
 	}
 
-	public JTextField getJtfAdminAccountInstructorAccountTelSet() {
-		return jtfAdminAccountInstructorAccountTelSet;
+	public JTextField getInstTelTextSet() {
+		return instTelTextSet;
 	}
 
-	public JTextField getJtfAdminAccountInstructorAccountAddressSet() {
-		return jtfAdminAccountInstructorAccountAddressSet;
+	public JTextField getInstAddTextSet() {
+		return instAddTextSet;
 	}
-	
-	public JButton getJbtnAdminAccountInstructorAccountCreate() {
-		return jbtnAdminAccountInstructorAccountCreate;
-	} //getJbtnAdminAccountInstructorAccountCreate
 
-	public JButton getJbtnAdminAccountInstructorAccountClose() {
-		return jbtnAdminAccountInstructorAccountClose;
-	} //getJbtnAdminAccountInstructorAccountClose
+	public JButton getInstCreateButton() {
+		return instCreateButton;
+	}
+
+	public JButton getInstCloseButton() {
+		return instCloseButton;
+	}
 	
 } //class

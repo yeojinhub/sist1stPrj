@@ -14,40 +14,40 @@ import javax.swing.SwingUtilities;
 
 public class AdminAccountInstructorAccountCreateEvt implements ActionListener {
 
-	private AdminAccountInstructorAccountCreateView aaiacView;
+	private AdminAccountInstructorAccountCreateView instCreateView;
 	
-	private JButton jbtnAdminAccountInstructorAccountCreate;
-	private JButton jbtnAdminAccountInstructorAccountClose;
+	private JButton instCreateButton;
+	private JButton instCloseButton;
 	
-	public AdminAccountInstructorAccountCreateEvt(AdminAccountInstructorAccountCreateView aaiacView) {
-		this.aaiacView=aaiacView;
-		this.jbtnAdminAccountInstructorAccountCreate=aaiacView.getJbtnAdminAccountInstructorAccountCreate();
-		this.jbtnAdminAccountInstructorAccountClose=aaiacView.getJbtnAdminAccountInstructorAccountClose();
+	public AdminAccountInstructorAccountCreateEvt(AdminAccountInstructorAccountCreateView instCreateView) {
+		this.instCreateView=instCreateView;
+		this.instCreateButton=instCreateView.getInstCreateButton();
+		this.instCloseButton=instCreateView.getInstCloseButton();
 	} //AdminAccountInstructorAccountCreateEvt
 	
 	private void inputFieldReset() {
 		
 		//입력 field 초기화
-		aaiacView.getJtfAdminAccountInstructorAccountNameSet().setText("");
-		aaiacView.getJpfAdminAccountInstructorAccountPassSet().setText("");
-		aaiacView.getJtfAdminAccountInstructorAccountBirthSet().setText("");
-		aaiacView.getJtfAdminAccountInstructorAccountTelSet().setText("");
-		aaiacView.getJtfAdminAccountInstructorAccountAddressSet().setText("");
+		instCreateView.getInstNameTextSet().setText("");
+		instCreateView.getInstPassTextSet().setText("");
+		instCreateView.getInstBirthTextSet().setText("");
+		instCreateView.getInstTelTextSet().setText("");
+		instCreateView.getInstAddTextSet().setText("");
 		
 		//field focus
-		aaiacView.getJtfAdminAccountInstructorAccountNameSet().requestFocus();
+		instCreateView.getInstNameTextSet().requestFocus();
 		
 	} //inputFieldReset
 	
-	public void addMember() {
+	private void addMember() {
 		
 		//VO에 입력 값 저장
-		AdminAccountInstructorAccountInfoVO aaiaiVO = new AdminAccountInstructorAccountInfoVO();
-		aaiaiVO.setInstName( aaiacView.getJtfAdminAccountInstructorAccountNameSet().getText().trim() );
-		char[] instructorPasswordArray = aaiacView.getJpfAdminAccountInstructorAccountPassSet().getPassword();
+		AdminAccountInstructorAccountInfoVO instVO = new AdminAccountInstructorAccountInfoVO();
+		instVO.setInstName( instCreateView.getInstNameTextSet().getText().trim() );
+		char[] instructorPasswordArray = instCreateView.getInstPassTextSet().getPassword();
 		String strStudentPassword = new String(instructorPasswordArray).trim();
-		aaiaiVO.setInstPass( strStudentPassword );
-		String strInstructorBirth = new String( aaiacView.getJtfAdminAccountInstructorAccountBirthSet().getText().trim() );
+		instVO.setInstPass( strStudentPassword );
+		String strInstructorBirth = new String( instCreateView.getInstBirthTextSet().getText().trim() );
 
 		if( !strInstructorBirth.isEmpty() ) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -55,36 +55,63 @@ public class AdminAccountInstructorAccountCreateEvt implements ActionListener {
 			try {
 				parsedDate = sdf.parse(strInstructorBirth);
 				Date instructorBirthDate = new Date(parsedDate.getTime());
-				aaiaiVO.setInstBirth(instructorBirthDate);
+				instVO.setInstBirth(instructorBirthDate);
 			} catch (ParseException pe) {
 				pe.printStackTrace();
 			} //end try catch
 		} else {
-			aaiaiVO.setInstBirth( null );
+			instVO.setInstBirth( null );
 		} //end if else
-		aaiaiVO.setInstTel( aaiacView.getJtfAdminAccountInstructorAccountTelSet().getText().trim() );
-		aaiaiVO.setInstAdd( aaiacView.getJtfAdminAccountInstructorAccountAddressSet().getText().trim() );
+		instVO.setInstTel( instCreateView.getInstTelTextSet().getText().trim() );
+		instVO.setInstAdd( instCreateView.getInstAddTextSet().getText().trim() );
 		
-		//메세지 생성
-		AdminAccountInstructorAccountInfoService aaiaiService = new AdminAccountInstructorAccountInfoService();
-		String outMsg="강사 계정이 생성되지 않았습니다.";
-		if( aaiaiService.addInstructorAccountMember(aaiaiVO) ) {
-			outMsg="강사 계정이 생성되었습니다.";
-		} //end if
+		String[] options = {"생성", "취소"};
+	    int result = JOptionPane.showOptionDialog(
+	    	instCreateView,
+	        "강사 계정을 생성 하시겠습니까?",
+	        "생성 확인",
+	        JOptionPane.DEFAULT_OPTION,
+	        JOptionPane.WARNING_MESSAGE,
+	        null,
+	        options,
+	        options[1]
+	    );
 		
-		//입력 field 초기화
-		inputFieldReset();
+		// JOptionPane 메세지 생성
+		if (result == 0) {
+			AdminAccountInstructorAccountInfoService instService = new AdminAccountInstructorAccountInfoService();
+			boolean flag = instService.addInstructorAccountMember(instVO);
+			if(flag) {
+				// 생성 버튼을 눌렀을 때
+				System.out.println("생성 버튼 실행");
+				JOptionPane.showMessageDialog(instCreateView, "강사 계정이 생성되었습니다.");
+				// 입력 field 초기화
+				inputFieldReset();
+				closeCreateJDialog();
+			} else {
+				// 생성 오류가 났을 때
+				JOptionPane.showMessageDialog(instCreateView, "강사 계정 생성에 실패했습니다.");
+				// 입력 field 초기화
+				inputFieldReset();
+			} //end if else
+		}  else if (result == 1) {
+	    	// 취소 버튼을 눌렀을 때
+	    	System.out.println("생성 취소 버튼 실행");
+	        JOptionPane.showMessageDialog(instCreateView, "강사 계정 생성을 취소하였습니다.");
+	    } else if (result == -1) {
+	    	// 창 닫기 버튼을 눌렀을 때
+	    	System.out.println("생성 취소 창 닫기");
+	        JOptionPane.showMessageDialog(instCreateView, "강사 계정 생성 창을 닫았습니다.");
+	    } //end if else
 		
-		//메세지 출력
-		JOptionPane.showMessageDialog(aaiacView, outMsg);
 		
 	} //addMember
 	
 	private void closeCreateJDialog() {
 		
-		Window adminAccountInstructorAccountCreateWindow = SwingUtilities.getWindowAncestor(aaiacView);
-		if(adminAccountInstructorAccountCreateWindow instanceof JDialog) {
-			((JDialog) adminAccountInstructorAccountCreateWindow).dispose();
+		Window closeInstCreateWindow = SwingUtilities.getWindowAncestor(instCreateView);
+		if(closeInstCreateWindow instanceof JDialog) {
+			((JDialog) closeInstCreateWindow).dispose();
 		} //end if
 		
 	} //closeModifyJDialog
@@ -93,12 +120,12 @@ public class AdminAccountInstructorAccountCreateEvt implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		Object source = ae.getSource();
 		
-		if( source == jbtnAdminAccountInstructorAccountCreate ) {
+		if( source == instCreateButton ) {
 			System.out.println("생성 버튼 실행");
 			addMember();
 		} //end if
 		
-		if( source == jbtnAdminAccountInstructorAccountClose ) {
+		if( source == instCloseButton ) {
 			System.out.println("닫기 버튼 실행");
 			closeCreateJDialog();
 		} //end if

@@ -21,11 +21,11 @@ import javax.swing.table.TableColumnModel;
 @SuppressWarnings("serial")
 public class AdminAccountInstructorAccountView extends JPanel {
 
-	private DefaultTableModel dftmInstructorTableModel;
-	private JTable jtAdminAccountInstructorAccountTable;
+	private DefaultTableModel instInfoTableModel;
+	private JTable instInfoTable;
 	
-	private JButton jbtnAdminAccountInstructorAccountCreate;
-	private JButton jbtnAdminAccountInstructorAccountModify;
+	private JButton instCreateViewButton;
+	private JButton instModifyViewButton;
 
 	public AdminAccountInstructorAccountView() {
 
@@ -41,18 +41,18 @@ public class AdminAccountInstructorAccountView extends JPanel {
 		Dimension buttonSize = new Dimension(120, 40);
 
 		// Table 타이틀 생성
-		String strAdminAccountInstructorAccountTitle[] = { "사번", "이름", "생년월일", "전화번호", "주소" };
+		String instTableTitle[] = { "사번", "이름", "생년월일", "전화번호", "주소" };
 
 		// Table Component 생성
-		dftmInstructorTableModel = new DefaultTableModel(strAdminAccountInstructorAccountTitle, 0);
-		jtAdminAccountInstructorAccountTable = new JTable(dftmInstructorTableModel);
+		instInfoTableModel = new DefaultTableModel(instTableTitle, 0);
+		instInfoTable = new JTable(instInfoTableModel);
 
 		// Table 열 정렬 설정
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 
 		// Table 열 너비 설정
-		TableColumnModel columnModel = jtAdminAccountInstructorAccountTable.getColumnModel();
+		TableColumnModel columnModel = instInfoTable.getColumnModel();
 		for (int i = 0; i < columnModel.getColumnCount(); i++) {
 			switch (i) {
 			case 3:
@@ -71,72 +71,72 @@ public class AdminAccountInstructorAccountView extends JPanel {
 		} // end for
 
 		// Table 디자인, 수정 불가능 설정
-		jtAdminAccountInstructorAccountTable.setDefaultEditor(Object.class, null);
-		jtAdminAccountInstructorAccountTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		jtAdminAccountInstructorAccountTable.setRowHeight(25);
-		jtAdminAccountInstructorAccountTable.setFont(tableFont);
+		instInfoTable.setDefaultEditor(Object.class, null);
+		instInfoTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		instInfoTable.setRowHeight(25);
+		instInfoTable.setFont(tableFont);
 
 		// Table Component 배치
-		JScrollPane spAdminAccountInstructorAccountViewScroll = new JScrollPane(jtAdminAccountInstructorAccountTable);
-		spAdminAccountInstructorAccountViewScroll.getViewport().setBackground(white);
-		spAdminAccountInstructorAccountViewScroll.setPreferredSize(scrollSize);
-		JPanel jpAdminAccountInstructorAccountViewTablePanel = new JPanel(new BorderLayout());
-		jpAdminAccountInstructorAccountViewTablePanel.add(spAdminAccountInstructorAccountViewScroll,
-				BorderLayout.CENTER);
-		jpAdminAccountInstructorAccountViewTablePanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		JScrollPane instViewScroll = new JScrollPane(instInfoTable);
+		instViewScroll.getViewport().setBackground(white);
+		instViewScroll.setPreferredSize(scrollSize);
+		JPanel instViewTablePanel = new JPanel(new BorderLayout());
+		instViewTablePanel.add(instViewScroll, BorderLayout.CENTER);
+		instViewTablePanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
 		// Component 생성
 		// Button 생성
-		JPanel jpAdminAccountInstructorAccountViewButtonPanel = new JPanel();
-		jpAdminAccountInstructorAccountViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		jpAdminAccountInstructorAccountViewButtonPanel.setBackground(white);
-		jpAdminAccountInstructorAccountViewButtonPanel.setBorder(new TitledBorder(""));
-		jpAdminAccountInstructorAccountViewButtonPanel.setPreferredSize(panelSize);
-		jbtnAdminAccountInstructorAccountCreate = new JButton("생성");
-		jbtnAdminAccountInstructorAccountCreate.setBackground(lightblue);
-		jbtnAdminAccountInstructorAccountCreate.setSize(buttonSize);
-		jbtnAdminAccountInstructorAccountCreate.setFont(buttonFont);
-		jbtnAdminAccountInstructorAccountModify = new JButton("수정");
-		jbtnAdminAccountInstructorAccountModify.setBackground(lightblue);
-		jbtnAdminAccountInstructorAccountModify.setSize(buttonSize);
-		jbtnAdminAccountInstructorAccountModify.setFont(buttonFont);
+		JPanel instViewButtonPanel = new JPanel();
+		instViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		instViewButtonPanel.setBackground(white);
+		instViewButtonPanel.setBorder(new TitledBorder(""));
+		instViewButtonPanel.setPreferredSize(panelSize);
+		instCreateViewButton = new JButton("생성");
+		instCreateViewButton.setBackground(lightblue);
+		instCreateViewButton.setSize(buttonSize);
+		instCreateViewButton.setFont(buttonFont);
+		instModifyViewButton = new JButton("수정");
+		instModifyViewButton.setBackground(lightblue);
+		instModifyViewButton.setSize(buttonSize);
+		instModifyViewButton.setFont(buttonFont);
 
 		// Component 배치
-		jpAdminAccountInstructorAccountViewButtonPanel.add(jbtnAdminAccountInstructorAccountCreate);
-		jpAdminAccountInstructorAccountViewButtonPanel.add(jbtnAdminAccountInstructorAccountModify);
+		instViewButtonPanel.add(instCreateViewButton);
+		instViewButtonPanel.add(instModifyViewButton);
 
 		// Panel 배치
 		setLayout(new BorderLayout());
-		add(jpAdminAccountInstructorAccountViewTablePanel, BorderLayout.CENTER);
-		add(jpAdminAccountInstructorAccountViewButtonPanel, BorderLayout.SOUTH);
+		add(instViewTablePanel, BorderLayout.CENTER);
+		add(instViewButtonPanel, BorderLayout.SOUTH);
 
 		// Button 이벤트 생성
-		AdminAccountInstructorAccountEvt aaiaEvt = new AdminAccountInstructorAccountEvt(this);
-		jbtnAdminAccountInstructorAccountCreate.addActionListener(aaiaEvt);
-		jbtnAdminAccountInstructorAccountModify.addActionListener(aaiaEvt);
+		AdminAccountInstructorAccountEvt instEvt = new AdminAccountInstructorAccountEvt(this);
+		instCreateViewButton.addActionListener(instEvt);
+		instModifyViewButton.addActionListener(instEvt);
 
 		// Table 이벤트 생성
-		aaiaEvt.loadInstructorInfoTableList();
+		instEvt.loadInstructorInfoTableList();
 		
-		jtAdminAccountInstructorAccountTable.addMouseListener(aaiaEvt);
+		// Mouse 이벤트 생성
+		instInfoTable.addMouseListener(instEvt);
 		
 	} // AdminAccountInstructorAccountView
 
 	// getter method
-	public DefaultTableModel getDftmInstructorTableModel() {
-		return dftmInstructorTableModel;
-	}
-
-	public JTable getJtAdminAccountInstructorAccountTable() {
-		return jtAdminAccountInstructorAccountTable;
+	public DefaultTableModel getInstInfoTableModel() {
+		return instInfoTableModel;
 	}
 	
-	public JButton getJbtnAdminAccountInstructorAccountCreate() {
-		return jbtnAdminAccountInstructorAccountCreate;
-	} // getJbtnAdminAccountInstructorAccountCreate
+	public JTable getInstInfoTable() {
+		return instInfoTable;
+	}
 
-	public JButton getJbtnAdminAccountInstructorAccountModify() {
-		return jbtnAdminAccountInstructorAccountModify;
-	} // getJbtnAdminAccountInstructorAccountModify
+	public JButton getInstCreateViewButton() {
+		return instCreateViewButton;
+	}
+
+	public JButton getInstModifyViewButton() {
+		return instModifyViewButton;
+	}
 
 } // class
