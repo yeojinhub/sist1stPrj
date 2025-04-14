@@ -18,10 +18,12 @@ import javax.swing.SwingConstants;
 @SuppressWarnings("serial")
 public class AdminMainView extends JFrame{
 	
+	private AdminLoginVO loginVO;
+	
 	private JLabel adminAccountNameTextSet;
 	
-	public AdminMainView() {
-		super("관리자 메인");
+	public AdminMainView(AdminLoginVO loginVO) {
+		this.loginVO=loginVO;
 		
 		//디자인(색깔,글씨) 설정
 		Color white = new Color(255,255,255);
@@ -128,6 +130,10 @@ public class AdminMainView extends JFrame{
 	} //AdminMainView
 
 	//getter method
+	public AdminLoginVO getLoginVO() {
+		return loginVO;
+	}
+	
 	public JLabel getAdminAccountNameTextSet() {
 		return adminAccountNameTextSet;
 	}
