@@ -29,7 +29,6 @@ public class AdminExamView extends JFrame {
 	private JTable jtAdminExamTable;
 	
 	private JButton jbtnAdminExamCreate;
-	private JButton jbtnAdminExamModify;
 	private JButton jbtnAdminExamDelete;
 	
 	@SuppressWarnings("unused")
@@ -69,7 +68,7 @@ public class AdminExamView extends JFrame {
 		// Table 타이틀 생성
         // 실제 컬럼명은 DB에서 가져온 데이터를 기준으로 합니다.
         String[] strAdminExamTableTitle = {
-            "시험과목명", "과정명", "담당강사", "시험응시날짜"
+        		"시험번호", "시험과목명", "과정명", "담당강사", "시험응시날짜"
         };
 		
 		// DB에서 실제 데이터를 불러와서 DefaultTableModel 생성
@@ -82,15 +81,24 @@ public class AdminExamView extends JFrame {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         
+	
+		
         // Table 열 너비 설정
         TableColumnModel columnModel = jtAdminExamTable.getColumnModel();
         for (int i = 0; i < columnModel.getColumnCount(); i++) {
         	switch(i) {
+        	case 0:
+//        		columnModel.getColumn(i).setPreferredWidth(0);
+//        		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
+        		columnModel.getColumn(i).setMinWidth(0);
+        		columnModel.getColumn(i).setMaxWidth(0);
+        		columnModel.getColumn(i).setPreferredWidth(0); break;
+        	
         	case 1:
-        		columnModel.getColumn(i).setPreferredWidth(330);
+        		columnModel.getColumn(i).setPreferredWidth(110);
         		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
         	case 2:
-        		columnModel.getColumn(i).setPreferredWidth(110);
+        		columnModel.getColumn(i).setPreferredWidth(330);
         		columnModel.getColumn(i).setCellRenderer(centerRenderer); break;
         	default:
         		columnModel.getColumn(i).setPreferredWidth(130);
@@ -121,17 +129,12 @@ public class AdminExamView extends JFrame {
         jbtnAdminExamCreate.setBackground(lightblue);
         jbtnAdminExamCreate.setSize(buttonSize);
         jbtnAdminExamCreate.setFont(buttonFont);
-        jbtnAdminExamModify = new JButton("수정");
-        jbtnAdminExamModify.setBackground(lightblue);
-        jbtnAdminExamModify.setSize(buttonSize);
-        jbtnAdminExamModify.setFont(buttonFont);
         jbtnAdminExamDelete = new JButton("삭제");
         jbtnAdminExamDelete.setBackground(lightblue);
         jbtnAdminExamDelete.setSize(buttonSize);
         jbtnAdminExamDelete.setFont(buttonFont);
         
         jpAdminExamViewButtonPanel.add(jbtnAdminExamCreate);
-        jpAdminExamViewButtonPanel.add(jbtnAdminExamModify);
         jpAdminExamViewButtonPanel.add(jbtnAdminExamDelete);
         
         // Panel 배치
@@ -143,7 +146,6 @@ public class AdminExamView extends JFrame {
         // Button 이벤트 생성
         AdminExamEvt aee = new AdminExamEvt(amv, this);
         jbtnAdminExamCreate.addActionListener(aee);
-        jbtnAdminExamModify.addActionListener(aee);
         jbtnAdminExamDelete.addActionListener(aee);
         
         // 테이블 이벤트 생성
@@ -165,9 +167,6 @@ public class AdminExamView extends JFrame {
 		return jbtnAdminExamCreate;
 	}
 
-	public JButton getJbtnAdminExamModify() {
-		return jbtnAdminExamModify;
-	}
 	
 	public JButton getJbtnAdminExamDelete() {
 		return jbtnAdminExamDelete;

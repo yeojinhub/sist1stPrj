@@ -5,6 +5,9 @@ import java.util.List;
 
 public class AdminExamService {
 	
+	
+	
+	
 	public List<AdminExamVO> searchAllExamMember() {
 		List<AdminExamVO> examList = null;
 		AdminExamDAO examDAO = AdminExamDAO.getInstance();
@@ -18,4 +21,18 @@ public class AdminExamService {
 		return examList;
 	} //searchAllInstructorAccountMember
 
+	private AdminExamDAO dao = AdminExamDAO.getInstance();
+    
+    public boolean deleteExam(int examNum) {
+        boolean flag = false;
+        try {
+            flag = dao.deleteExam(examNum);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+	
+	
+	
 } //class
