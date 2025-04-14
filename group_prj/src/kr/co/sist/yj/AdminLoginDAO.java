@@ -63,7 +63,6 @@ public class AdminLoginDAO {
 			while( rs.next() ) {
 				loginVO = new AdminLoginVO();
 				
-				loginVO.setAdmNum(rs.getString("adm_num"));
 				loginVO.setAdmID(rs.getString("adm_id"));
 				loginVO.setAdmPass(rs.getString("adm_pass"));
 				loginVO.setAdmName(rs.getString("adm_name"));

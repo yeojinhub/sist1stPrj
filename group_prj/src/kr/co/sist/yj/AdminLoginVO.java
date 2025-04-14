@@ -4,7 +4,6 @@ import java.sql.Date;
 
 public class AdminLoginVO {
 
-	private String admNum;
 	private String admID;
 	private String admPass;
 	private String admName;
@@ -16,24 +15,14 @@ public class AdminLoginVO {
 		super();
 	} // AdminLoginVO
 
-	public AdminLoginVO(String admNum, String admID, String admPass, String admName, Date admBirth, String admTel,
-			String admAdd) {
+	public AdminLoginVO(String admID, String admPass, String admName, Date admBirth, String admTel, String admAdd) {
 		super();
-		this.admNum = admNum;
 		this.admID = admID;
 		this.admPass = admPass;
 		this.admName = admName;
 		this.admBirth = admBirth;
 		this.admTel = admTel;
 		this.admAdd = admAdd;
-	}
-
-	public String getAdmNum() {
-		return admNum;
-	}
-
-	public void setAdmNum(String admNum) {
-		this.admNum = admNum;
 	}
 
 	public String getAdmID() {
@@ -86,8 +75,8 @@ public class AdminLoginVO {
 
 	@Override
 	public String toString() {
-		return "AdminLoginVO [admNum=" + admNum + ", admID=" + admID + ", admPass=" + admPass + ", admName=" + admName
-				+ ", admBirth=" + admBirth + ", admTel=" + admTel + ", admAdd=" + admAdd + "]";
+		return "AdminLoginVO [admID=" + admID + ", admPass=" + admPass + ", admName=" + admName + ", admBirth="
+				+ admBirth + ", admTel=" + admTel + ", admAdd=" + admAdd + "]";
 	} //toString
 
 } // class
