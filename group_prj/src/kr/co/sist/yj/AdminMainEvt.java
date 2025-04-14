@@ -18,6 +18,7 @@ public class AdminMainEvt {
 		this.loginVO=mainView.getLoginVO();
 		
 		String admName = loginVO.getAdmName();
+		System.out.println("로그인된 관리자명 : "+admName);
 		
 		// null 예외처리
 		if(admName == null) {

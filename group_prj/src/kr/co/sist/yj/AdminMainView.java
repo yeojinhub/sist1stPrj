@@ -54,12 +54,13 @@ public class AdminMainView extends JFrame{
 			e.printStackTrace();
 		}// end try-catch
 		
-		//관리자명 생성
+		//관리자명 타이틀 생성
 		JLabel jlblAdminAccountAdminAccountNameTitle = new JLabel("관리자명 : ");
 		jlblAdminAccountAdminAccountNameTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblAdminAccountAdminAccountNameTitle.setFont(logoFont);
 		jlblAdminAccountAdminAccountNameTitle.setBounds(320, 30, 100, 20);
 		
+		//관리자명 텍스트 생성
 		adminAccountNameTextSet = new JLabel("");
 		adminAccountNameTextSet.setHorizontalAlignment(SwingConstants.CENTER);
 		adminAccountNameTextSet.setFont(logoFont);
@@ -85,37 +86,42 @@ public class AdminMainView extends JFrame{
 		JTabbedPane jtpAdminMainViewTab = new JTabbedPane();
 		jtpAdminMainViewTab.setBackground(white);
 		
-		JPanel jpAdminAccountViewWindow = new JPanel();
-		AdminAccountView aav = new AdminAccountView();
-		jpAdminAccountViewWindow.add(aav.getContentPane());
-		jpAdminAccountViewWindow.setBackground(white);
+		//계정관리 View 추가
+		JPanel accountViewPanel = new JPanel();
+		AdminAccountView accountView = new AdminAccountView();
+		accountViewPanel.add(accountView.getContentPane());
+		accountViewPanel.setBackground(white);
 		
-		JPanel jpAdminCourseViewWindow = new JPanel();
-		AdminCourseView acv = new AdminCourseView(this);
-		jpAdminCourseViewWindow.add(acv.getContentPane());
-		jpAdminCourseViewWindow.setBackground(white);
+		//과정조회 View 추가
+		JPanel courseViewPanel = new JPanel();
+		AdminCourseView courseView = new AdminCourseView(this);
+		courseViewPanel.add(courseView.getContentPane());
+		courseViewPanel.setBackground(white);
 		
-		JPanel jpAdminExamViewWindow = new JPanel();
-		AdminExamView aev = new AdminExamView(this);
-		jpAdminExamViewWindow.add(aev.getContentPane());
-		jpAdminExamViewWindow.setBackground(white);
+		//시험관리 View 추가
+		JPanel examViewPanel = new JPanel();
+		AdminExamView examView = new AdminExamView(this);
+		examViewPanel.add(examView.getContentPane());
+		examViewPanel.setBackground(white);
 		
-		JPanel jpAdminGradeViewWindow = new JPanel();
-		AdminGradeView agv = new AdminGradeView();
-		jpAdminGradeViewWindow.add(agv.getContentPane());
-		jpAdminGradeViewWindow.setBackground(white);
+		//성적조회 View 추가
+		JPanel gradeViewPanel = new JPanel();
+		AdminGradeView gradeView = new AdminGradeView();
+		gradeViewPanel.add(gradeView.getContentPane());
+		gradeViewPanel.setBackground(white);
 		
-		JPanel jpAdminBoardViewWindow = new JPanel();
-		AdminBoardView abv = new AdminBoardView();
-		jpAdminBoardViewWindow.add(abv.getContentPane());
-		jpAdminBoardViewWindow.setBackground(white);
+		//1:1문의 View 추기
+		JPanel boardViewPanel = new JPanel();
+		AdminBoardView boardView = new AdminBoardView();
+		boardViewPanel.add(boardView.getContentPane());
+		boardViewPanel.setBackground(white);
 		
 		//JTabbedPane 배치
-		jtpAdminMainViewTab.addTab("계정 관리", jpAdminAccountViewWindow);
-		jtpAdminMainViewTab.addTab("과정 관리", jpAdminCourseViewWindow);
-		jtpAdminMainViewTab.addTab("시험지 관리", jpAdminExamViewWindow);
-		jtpAdminMainViewTab.addTab("성적 조회", jpAdminGradeViewWindow);
-		jtpAdminMainViewTab.addTab("1:1 문의", jpAdminBoardViewWindow);
+		jtpAdminMainViewTab.addTab("계정 관리", accountViewPanel);
+		jtpAdminMainViewTab.addTab("과정 관리", courseViewPanel);
+		jtpAdminMainViewTab.addTab("시험 관리", examViewPanel);
+		jtpAdminMainViewTab.addTab("성적 조회", gradeViewPanel);
+		jtpAdminMainViewTab.addTab("1:1 문의", boardViewPanel);
 		
 		//Panel 배치
 		adminMainViewPanel.add(adminMainViewLogoPanel, BorderLayout.NORTH);
