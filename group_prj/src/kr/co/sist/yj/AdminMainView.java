@@ -52,7 +52,7 @@ public class AdminMainView extends JFrame{
 		jlblAdminAccountAdminAccountNameTitle.setFont(logoFont);
 		jlblAdminAccountAdminAccountNameTitle.setBounds(320, 30, 100, 20);
 		
-		adminAccountNameTextSet = new JLabel("");
+		adminAccountNameTextSet = new JLabel(" ");
 		adminAccountNameTextSet.setHorizontalAlignment(SwingConstants.CENTER);
 		adminAccountNameTextSet.setFont(logoFont);
 		adminAccountNameTextSet.setBounds(460, 30, 70, 20);
