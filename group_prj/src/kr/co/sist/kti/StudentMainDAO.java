@@ -115,7 +115,7 @@ public class StudentMainDAO {
 				sbvo.setBoardCommDate(rs.getDate("BOARD_COMM_DATE"));
 				sbvo.setStuNum(rs.getString("STU_NUM"));
 				sbvo.setInstNum(rs.getString("INST_NUM"));
-				sbvo.setAdmNum(rs.getInt("ADM_NUM"));
+				sbvo.setadmId(rs.getString("ADM_ID"));
 				sbvo.setStuName(rs.getString("STU_NAME"));
 				sbvo.setInstName(rs.getString("INST_NAME"));
 				boardList.add(sbvo);

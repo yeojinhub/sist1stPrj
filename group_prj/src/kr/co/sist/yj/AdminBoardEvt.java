@@ -86,19 +86,19 @@ public class AdminBoardEvt implements ActionListener {
             return;
         }
 
-        boolean result = new AdminBoardService().registerReply(
-            dialog.getSelectedBoardNum(),
-            comment,
-            new Date(System.currentTimeMillis())
-        );
+//        boolean result = new AdminBoardService().registerReply(
+//            dialog.getSelectedBoardNum(),
+//            comment,
+//            new Date(System.currentTimeMillis())
+//        );
 
-        if (result) {
-            JOptionPane.showMessageDialog(dialog, "댓글이 등록되었습니다.");
-            refreshBoardList();
-            dialog.dispose();
-        } else {
-            JOptionPane.showMessageDialog(dialog, "댓글 등록에 실패했습니다.");
-        }
+//        if (result) {
+//            JOptionPane.showMessageDialog(dialog, "댓글이 등록되었습니다.");
+//            refreshBoardList();
+//            dialog.dispose();
+//        } else {
+//            JOptionPane.showMessageDialog(dialog, "댓글 등록에 실패했습니다.");
+//        }
     }
 
     public void refreshBoardList() {

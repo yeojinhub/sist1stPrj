@@ -49,7 +49,7 @@ public class AdminBoardDAO {
 
 	    String sql = "SELECT " +
 	    	    "B.BOARD_NUM, B.BOARD_TITLE, B.BOARD_CONTENT, B.BOARD_DATE, B.BOARD_STATUS, " +
-	    	    "B.BOARD_COMM_CONTENT, B.BOARD_COMM_DATE, B.BOARD_TYPE, B.STU_NUM, B.ADM_NUM, " +
+	    	    "B.BOARD_COMM_CONTENT, B.BOARD_COMM_DATE, B.BOARD_TYPE, B.STU_NUM, B.ADM_ID, " +
 	    	    "S.STU_NAME " +
 	    	    "FROM BOARD B " +
 	    	    "JOIN STUDENT S ON B.STU_NUM = S.STU_NUM " + // ← LEFT JOIN으로 변경!
@@ -73,7 +73,7 @@ public class AdminBoardDAO {
 	            vo.setBoardType(rs.getString("BOARD_TYPE"));
 	            vo.setStuNum(rs.getString("STU_NUM"));
 	            vo.setStuName(rs.getString("STU_NAME"));
-	            vo.setAdmNum(rs.getInt("ADM_NUM"));
+	            vo.setAdmId(rs.getString("ADM_ID"));
 	        }
 	    } finally {
 	        DBConnection.getInstance().closeDB(rs, pstmt, con);
@@ -84,13 +84,13 @@ public class AdminBoardDAO {
 
 
     // 댓글 등록 (답변 등록)
-    public boolean insertComment(int boardNum, String commContent, Date commDate) throws SQLException {
+    public boolean insertComment(int boardNum, String commContent, Date commDate, String admId) throws SQLException {
         Connection con = null;
         PreparedStatement pstmt = null;
         boolean result = false;
 
         String sql = "UPDATE BOARD SET BOARD_COMM_CONTENT = ?, BOARD_COMM_DATE = ?, "
-        		+ "ADM_NUM = ?, BOARD_TYPE = ?, BOARD_STATUS = '답변완료' " +
+        		+ "ADM_ID = ?, BOARD_TYPE = ?, BOARD_STATUS = '답변완료' " +
                 "WHERE BOARD_NUM = ?";
 
 
@@ -99,7 +99,7 @@ public class AdminBoardDAO {
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, commContent);
             pstmt.setDate(2, commDate);
-            pstmt.setInt(3, 1); // 하드코딩된 admin_num
+            pstmt.setString(3, admId ); // 하드코딩된 admin_Id
             pstmt.setString(4, "관리자");
             pstmt.setInt(5, boardNum);
 
