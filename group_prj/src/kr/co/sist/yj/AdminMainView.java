@@ -39,12 +39,18 @@ public class AdminMainView extends JFrame{
 		adminMainViewLogoPanel.setPreferredSize(new Dimension(800, 80));
 		
 		//Component 생성
-		//로고 생성
-		JLabel jlblProgramTitle = new JLabel("Best Campus");
-		jlblProgramTitle.setBackground(white);
-		jlblProgramTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		jlblProgramTitle.setFont(new Font("Consolas", Font.BOLD, 28));
-		jlblProgramTitle.setBounds(90, 30, 170, 30);
+		//로고 이미지 생성
+		JLabel jlblTitleImage = new JLabel("");
+		jlblTitleImage.setBounds(10, 10, 70, 70);
+		adminMainViewLogoPanel.add(jlblTitleImage);
+		
+		//로고 이미지 삽입
+		try {
+			URL imageURL = new URL("https://raw.githubusercontent.com/yeojinhub/sistFstPjr/refs/heads/main/group_prj/src/kr/co/sist/kti/logo.png");
+			jlblTitleImage.setIcon(new ImageIcon(imageURL));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}// end try-catch
 		
 		//관리자명 생성
 		JLabel jlblAdminAccountAdminAccountNameTitle = new JLabel("관리자명 : ");
@@ -57,17 +63,15 @@ public class AdminMainView extends JFrame{
 		adminAccountNameTextSet.setFont(logoFont);
 		adminAccountNameTextSet.setBounds(460, 30, 70, 20);
 		
-		JLabel jlblTitleImage = new JLabel("");
-		jlblTitleImage.setBounds(10, 10, 70, 70);
-		adminMainViewLogoPanel.add(jlblTitleImage);
-
-		// #. 로고이미지 URL로 가져다쓰기
-		try {
-			URL imageURL = new URL("https://raw.githubusercontent.com/yeojinhub/sistFstPjr/refs/heads/main/group_prj/src/kr/co/sist/kti/logo.png");
-			jlblTitleImage.setIcon(new ImageIcon(imageURL));
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}// end try-catch
+		//관리자명 이벤트 생성
+		new AdminMainEvt(this);
+		
+		//로고 타이틀 생성
+		JLabel jlblProgramTitle = new JLabel("Best Campus");
+		jlblProgramTitle.setBackground(white);
+		jlblProgramTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		jlblProgramTitle.setFont(new Font("Consolas", Font.BOLD, 28));
+		jlblProgramTitle.setBounds(90, 30, 170, 30);
 
 		//Component 배치
 		//로고 배치
