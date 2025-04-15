@@ -42,7 +42,7 @@ public class AdminCourseCreateView extends JPanel {
 	@SuppressWarnings("unused")
 	private AdminCourseView acv;
 
-	public AdminCourseCreateView(AdminMainView amv, AdminCourseView acv) {
+	public AdminCourseCreateView(AdminMainView amv, AdminCourseView acv, JDialog jdCourseCreateDialog) {
 		this.amv = amv;
 		this.acv = acv;
 		this.courseList = courseList;
@@ -96,6 +96,11 @@ public class AdminCourseCreateView extends JPanel {
 //		for (String str : amv.getInstructorNameNotSame()) {
 //			jcbAdminCourseInstructorNameBox.addItem(str);
 //		} // end for
+		
+		List<AdminCourseInstVO> instList = new AdminCourseService().searchAllInstructorInfo();
+		for (AdminCourseInstVO instVO : instList) {
+		    jcbAdminCourseInstructorNameBox.addItem(instVO.getInstName());
+		}
 		
 		// 시작일, 종료일 TextField를 ####-##-##로 고정
 		MaskFormatter dateFormatter = null;

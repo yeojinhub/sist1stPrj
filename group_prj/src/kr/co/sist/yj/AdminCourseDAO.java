@@ -229,6 +229,7 @@ public class AdminCourseDAO {
 				courVO.setCourStartdate(rs.getString("COUR_STARTDATE"));
 				courVO.setCourEnddate(rs.getString("COUR_ENDDATE"));
 				courVO.setInstNum(rs.getString("INST_NUM"));
+				courVO.setInstName(rs.getString("INST_NAME"));
 				
 				courselist.add(courVO);
 			} // end while

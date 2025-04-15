@@ -59,7 +59,7 @@ public class AdminCourseEvt extends MouseAdapter implements ActionListener {
 	
 	public void showCreateDialog() {
 		JDialog jdCourseCreateDialog = new JDialog((JFrame) null, "과정 등록", true);
-		jdCourseCreateDialog.getContentPane().add(new AdminCourseCreateView(mainView, courView));
+		jdCourseCreateDialog.getContentPane().add(new AdminCourseCreateView(mainView, courView,jdCourseCreateDialog));
 		jdCourseCreateDialog.pack();
 		jdCourseCreateDialog.setLocationRelativeTo(mainView);
 		jdCourseCreateDialog.setVisible(true);
