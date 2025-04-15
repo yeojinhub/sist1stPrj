@@ -42,7 +42,7 @@ public class AdminCourseCreateView extends JPanel {
 	@SuppressWarnings("unused")
 	private AdminCourseView acv;
 
-	public AdminCourseCreateView(List<AdminCourseVO> courseList, JDialog jdCourseCreateDialog, AdminMainView amv, AdminCourseView acv) {
+	public AdminCourseCreateView(AdminMainView amv, AdminCourseView acv) {
 		this.amv = amv;
 		this.acv = acv;
 		this.courseList = courseList;

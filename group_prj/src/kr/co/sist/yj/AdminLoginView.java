@@ -2,6 +2,7 @@
 package kr.co.sist.yj;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
