@@ -1,18 +1,25 @@
 package kr.co.sist.yj;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.text.ParseException;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 
 @SuppressWarnings("serial")
 public class AdminCourseCreateView extends JPanel {
@@ -20,13 +27,28 @@ public class AdminCourseCreateView extends JPanel {
 	private JTextField jtfAdminCourseCardinalSet;
 	private JTextField jtfAdminCourseNameSet;
 	private JTextField jtfAdminCourseStatusSet;
-	private JTextField jtfAdminCourseStartdateSet;
-	private JTextField jtfAdminCourseEnddateSet;
+	private JFormattedTextField jtfAdminCourseStartdateSet;
+	private JFormattedTextField jtfAdminCourseEnddateSet;
+
+	private JComboBox<String> jcbAdminCourseInstructorNameBox;
 
 	private JButton jbtnAdminCourseCreate;
 	private JButton jbtnAdminCourseClose;
 
-	public AdminCourseCreateView() {
+	private List<AdminCourseVO> courseList;
+	
+	private JDialog jdCourseCreateDialog;
+	private AdminMainView amv;
+	@SuppressWarnings("unused")
+	private AdminCourseView acv;
+
+	public AdminCourseCreateView(List<AdminCourseVO> courseList, JDialog jdCourseCreateDialog, AdminMainView amv, AdminCourseView acv) {
+		this.amv = amv;
+		this.acv = acv;
+		this.courseList = courseList;
+		this.jdCourseCreateDialog = jdCourseCreateDialog;
+		Color lightblue = new Color(235, 235, 255);
+		Font buttonFont = new Font("맑은 고딕", Font.BOLD, 18);
 
 		setLayout(new BorderLayout());
 
@@ -35,6 +57,7 @@ public class AdminCourseCreateView extends JPanel {
 		jpAdminCourseCreateViewPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
 		jpAdminCourseCreateViewPanel.setMinimumSize(new Dimension(350, 400));
 		jpAdminCourseCreateViewPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
+		jpAdminCourseCreateViewPanel.setBackground(new Color(255, 255, 255));
 
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(8, 4, 8, 4);
@@ -65,28 +88,50 @@ public class AdminCourseCreateView extends JPanel {
 
 		// 담당강사 Component 생성
 		JLabel jlblAdminCourseInstructorNameTitle = new JLabel("담당강사");
-		String[] strAdminCourseInstructorNameTitle = { "곽우신", "곽우심", "박우신", "강우신" };
-		JComboBox<String> jcbAdminCourseInstructorNameBox = new JComboBox<String>(strAdminCourseInstructorNameTitle);
+		jcbAdminCourseInstructorNameBox = new JComboBox<String>();
 		jlblAdminCourseInstructorNameTitle.setPreferredSize(labelSize);
 		jcbAdminCourseInstructorNameBox.setPreferredSize(fieldSize);
+
+		// Foreach로 선생님 성함을 JComboBox에 담아보자~
+//		for (String str : amv.getInstructorNameNotSame()) {
+//			jcbAdminCourseInstructorNameBox.addItem(str);
+//		} // end for
+		
+		// 시작일, 종료일 TextField를 ####-##-##로 고정
+		MaskFormatter dateFormatter = null;
+		try {
+			dateFormatter = new MaskFormatter("####-##-##");
+			dateFormatter.setPlaceholderCharacter('_');
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		// 시작일 Component 생성
 		JLabel jlblAdminCourseStartdateTitle = new JLabel("시작일");
 		jlblAdminCourseStartdateTitle.setPreferredSize(labelSize);
-		jtfAdminCourseStartdateSet = new JTextField();
+		jtfAdminCourseStartdateSet = new JFormattedTextField(dateFormatter);
 		jtfAdminCourseStartdateSet.setPreferredSize(fieldSize);
 
 		// 종료일 Component 생성
 		JLabel jlblAdminCourseEnddateTitle = new JLabel("종료일");
 		jlblAdminCourseEnddateTitle.setPreferredSize(labelSize);
-		jtfAdminCourseEnddateSet = new JTextField();
+		jtfAdminCourseEnddateSet = new JFormattedTextField(dateFormatter);
 		jtfAdminCourseEnddateSet.setPreferredSize(fieldSize);
 
 		// Button 생성
 		JPanel jpAdminCourseCreateViewButtonPanel = new JPanel();
 		jpAdminCourseCreateViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		jpAdminCourseCreateViewButtonPanel.setBackground(new Color(255, 255, 255));
 		jbtnAdminCourseCreate = new JButton("등록");
 		jbtnAdminCourseClose = new JButton("닫기");
+
+		jbtnAdminCourseCreate.setBackground(lightblue);
+		jbtnAdminCourseCreate.setFont(buttonFont);
+		jbtnAdminCourseCreate.setFocusPainted(false);
+
+		jbtnAdminCourseClose.setBackground(lightblue);
+		jbtnAdminCourseClose.setFont(buttonFont);
+		jbtnAdminCourseClose.setFocusPainted(false);
 
 		jpAdminCourseCreateViewButtonPanel.add(jbtnAdminCourseCreate);
 		jpAdminCourseCreateViewButtonPanel.add(jbtnAdminCourseClose);
@@ -138,7 +183,6 @@ public class AdminCourseCreateView extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = 6;
 		gbc.gridwidth = 2; // 두 열을 합쳐서 버튼들을 가운데로 배치
-		gbc.anchor = GridBagConstraints.CENTER;
 		jpAdminCourseCreateViewPanel.add(jpAdminCourseCreateViewButtonPanel, gbc);
 
 		// Panel 배치
@@ -146,9 +190,11 @@ public class AdminCourseCreateView extends JPanel {
 		add(jpAdminCourseCreateViewPanel, BorderLayout.WEST);
 
 		// Button 이벤트 생성
-		AdminCourseCreateEvt acce = new AdminCourseCreateEvt(this);
+		AdminCourseCreateEvt acce = new AdminCourseCreateEvt(this,acv);
 		jbtnAdminCourseCreate.addActionListener(acce);
 		jbtnAdminCourseClose.addActionListener(acce);
+
+		// WindowListener 이벤트 생성
 
 	} // AdminCourseCreateView
 
@@ -165,11 +211,11 @@ public class AdminCourseCreateView extends JPanel {
 		return jtfAdminCourseStatusSet;
 	}
 
-	public JTextField getJtfAdminCourseStartdateSet() {
+	public JFormattedTextField getJtfAdminCourseStartdateSet() {
 		return jtfAdminCourseStartdateSet;
 	}
 
-	public JTextField getJtfAdminCourseEnddateSet() {
+	public JFormattedTextField getJtfAdminCourseEnddateSet() {
 		return jtfAdminCourseEnddateSet;
 	}
 
@@ -180,5 +226,23 @@ public class AdminCourseCreateView extends JPanel {
 	public JButton getJbtnAdminCourseClose() {
 		return jbtnAdminCourseClose;
 	} // getJbtnAdminCourseClose
+
+	public List<AdminCourseVO> getCourseList() {
+		return courseList;
+	}
+
+	public JComboBox<String> getJcbAdminCourseInstructorNameBox() {
+		return jcbAdminCourseInstructorNameBox;
+	}
+
+	public JDialog getJdCourseCreateDialog() {
+		return jdCourseCreateDialog;
+	}
+
+	public AdminMainView getAmv() {
+		return amv;
+	}
+	
+	
 
 } // class
