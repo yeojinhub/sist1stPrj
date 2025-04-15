@@ -242,7 +242,7 @@ public class AdminAccountStudentAccountInfoDAO {
 			strSelectOne
 			.append("	select	")
 			.append("	stu.stu_name, stu.stu_num, stu.stu_pass,	")
-			.append("  stu.stu_tel, stu.stu_add, ")
+			.append("  stu.stu_tel, stu.stu_add, stu.stu_birth, ")
 			.append("  cour.cour_name, cour.cour_cardinal, ")
 			.append("  stu.stu_status	")
 			.append("	from student stu ")
@@ -259,6 +259,7 @@ public class AdminAccountStudentAccountInfoDAO {
 				stuVO.setStuName(      rs.getString("stu_name"));
 				stuVO.setStuNum(       rs.getString("stu_num"));
 				stuVO.setStuPass(      rs.getString("stu_pass"));
+				stuVO.setStuBirth(       rs.getDate("stu_birth"));
 				stuVO.setStuTel(       rs.getString("stu_tel"));
 				stuVO.setStuAdd(       rs.getString("stu_add"));
 				stuVO.setCourName(     rs.getString("cour_name"));
