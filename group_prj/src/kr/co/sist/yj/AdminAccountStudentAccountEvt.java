@@ -3,8 +3,8 @@ package kr.co.sist.yj;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -16,21 +16,24 @@ import javax.swing.table.DefaultTableModel;
 //import kr.co.sist.view.AdminAccountStudentAccountModifyView;
 //import kr.co.sist.view.AdminAccountStudentAccountView;
 
-public class AdminAccountStudentAccountEvt implements MouseListener, ActionListener {
+public class AdminAccountStudentAccountEvt extends MouseAdapter implements ActionListener {
 
 	private AdminAccountStudentAccountView stuView;
 
-	private JButton jbtnAdminAccountStudentAccountCreate;
-	private JButton jbtnAdminAccountStudentAccountModify;
+	private JButton stuCreateViewButton;
+	private JButton stuModifyViewButton;
 
-	private int selectedNum;
+	private int selectedRow;
+	private String strStuNum;
 
-	public AdminAccountStudentAccountEvt(AdminAccountStudentAccountView aasaView) {
-		selectedNum = -1;
+	public AdminAccountStudentAccountEvt(AdminAccountStudentAccountView stuView) {
+		selectedRow = -1;
 
-		this.stuView = aasaView;
-		this.jbtnAdminAccountStudentAccountCreate = aasaView.getJbtnAdminAccountStudentAccountCreate();
-		this.jbtnAdminAccountStudentAccountModify = aasaView.getJbtnAdminAccountStudentAccountModify();
+		this.stuView = stuView;
+		this.stuCreateViewButton = stuView.getJbtnAdminAccountStudentAccountCreate();
+		this.stuModifyViewButton = stuView.getJbtnAdminAccountStudentAccountModify();
+		
+		loadStudentInfo();
 	} // AdminAccountStudentAccountEvt
 	
 	public void loadStudentInfo() {
@@ -54,53 +57,49 @@ public class AdminAccountStudentAccountEvt implements MouseListener, ActionListe
 	    
 	} //loadStudentInfo
 	
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		System.out.println("테이블 클릭");
-//		boolean flag = false;
-//		selectedNum=Integer.parseInt( aasaView.getJtAdminAccountStudentAccountTable().getSelectedColumn().split(",")[0] );
-	}
+	public void showCreateDialog() {
+		JDialog stuCreateDialog = new JDialog((JFrame) null, "학생 계정 생성", true);
+		stuCreateDialog.getContentPane().add(new AdminAccountStudentAccountCreateView());
+		stuCreateDialog.pack();
+		stuCreateDialog.setLocationRelativeTo(stuView);
+		stuCreateDialog.setVisible(true);
+		stuCreateDialog.setResizable(false);
+	} //showCreateDialog
 	
-	@Override
-	public void mousePressed(MouseEvent e) {
-	}
-	
-	@Override
-	public void mouseReleased(MouseEvent e) {
-	}
-	
-	@Override
-	public void mouseEntered(MouseEvent e) {
-	}
-	
-	@Override
-	public void mouseExited(MouseEvent e) {
-	}
+	public void showModifyDialog() {
+		JDialog stuModifyDialog = new JDialog((JFrame) null, "학생 계정 수정", true);
+		stuModifyDialog.getContentPane().add(new AdminAccountStudentAccountModifyView(strStuNum));
+		stuModifyDialog.pack();
+		stuModifyDialog.setLocationRelativeTo(stuView);
+		stuModifyDialog.setVisible(true);
+		stuModifyDialog.setResizable(false);
+	} //showModifyDialog
 	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		Object source = ae.getSource();
 		
-		if (source == jbtnAdminAccountStudentAccountCreate) {
+		if (source == stuCreateViewButton) {
 			System.out.println("생성 버튼 실행");
-			JDialog stuCreateDialog = new JDialog((JFrame) null, "학생 계정 생성", true);
-			stuCreateDialog.getContentPane().add(new AdminAccountStudentAccountCreateView());
-			stuCreateDialog.pack();
-			stuCreateDialog.setLocationRelativeTo(stuView);
-			stuCreateDialog.setVisible(true);
-			stuCreateDialog.setResizable(false);
+			showCreateDialog();
+			loadStudentInfo();
 		} // end if
 		
-		if (source == jbtnAdminAccountStudentAccountModify) {
+		if (source == stuModifyViewButton) {
 			System.out.println("수정 버튼 실행");
-			JDialog stuModifyDialog = new JDialog((JFrame) null, "학생 계정 수정", true);
-			stuModifyDialog.getContentPane().add(new AdminAccountStudentAccountModifyView());
-			stuModifyDialog.pack();
-			stuModifyDialog.setLocationRelativeTo(stuView);
-			stuModifyDialog.setVisible(true);
-			stuModifyDialog.setResizable(false);
+			showModifyDialog();
+			loadStudentInfo();
 		} // end if
 		
 	} // actionPerformed
 
+	@Override
+	public void mouseClicked(MouseEvent me) {
+		selectedRow = stuView.getStuInfoTable().getSelectedRow();
+		strStuNum = stuView.getStuInfoTable()
+				.getValueAt(selectedRow, 0).toString();
+		System.out.println("선택된 학생 학번: " + strStuNum);
+		System.out.println("클릭한 행의 수 : " + selectedRow);
+	} //mouseClicked
+	
 } // class

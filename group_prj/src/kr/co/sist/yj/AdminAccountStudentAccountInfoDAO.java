@@ -50,7 +50,7 @@ public class AdminAccountStudentAccountInfoDAO {
 			.append("	insert into	student	")
 			.append("	(stu_num,stu_pass,stu_name,stu_birth,stu_tel,stu_add,stu_status)	")
 			.append("	values	")
-			.append("	(seq_stu_num,?,?,?,?,?,?)	")
+			.append("	TO_CHAR(SYSDATE,'YYYY_')||TRIM(TO_CHAR(SEQ_STU_NUM.NEXTVAL,'0000')),?,?,?,?,?,?)	")
 			;
 			pstmt = con.prepareStatement(strAddStudentAccountQuery.toString());
 			
@@ -238,34 +238,32 @@ public class AdminAccountStudentAccountInfoDAO {
 			con=dbConn.getConn();
 			
 			// 3. 쿼리문 객체 생성
-			StringBuilder strSelectOneStudentAccountQuery = new StringBuilder();
-			strSelectOneStudentAccountQuery
-			.append("	select stu.stu_name,stu.stu_num,stu.stu_pass,stu.stu_tel,stu.stu_add,,cour.cour_name,stu.stu_status,cour.cour_cardinal	")
-			.append("	from student stu, apply_steps apply, course cour	")
-			.append("	where stu.stu_num=apply.stu_num	")
-			.append("	and (apply.cour_num=cour.cour_num)	")
-			.append("	where stu_num=?	")
-			;
-			pstmt=con.prepareStatement(strSelectOneStudentAccountQuery.toString());
+			StringBuilder strSelectOne = new StringBuilder();
+			strSelectOne
+			.append("	select	")
+			.append("	stu.stu_name, stu.stu_num, stu.stu_pass,	")
+			.append("  stu.stu_tel, stu.stu_add, ")
+			.append("  cour.cour_name, cour.cour_cardinal, ")
+			.append("  stu.stu_status	")
+			.append("	from student stu ")
+			.append("	join apply_steps aps ON stu.stu_num = aps.stu_nu	")
+			.append("	join course cour    ON aps.cour_num = cour.cour_num ")
+			.append("	where stu.stu_num = ?");      // 중복 WHERE, 콤마 오류 수정
 			
-			// 4. bind 변수 값 할당
+			pstmt = con.prepareStatement(strSelectOne.toString());
 			pstmt.setString(1, stuNum);
+			rs = pstmt.executeQuery();
 			
-			// 5. 쿼리문 수행 후 결과 얻기
-			rs=pstmt.executeQuery();
-			
-			// 레코드 존재여부 확인
-			if( rs.next() ) {
+			if (rs.next()) {
 				stuVO = new AdminAccountStudentAccountInfoVO();
-				// 값을 VO 객체에 저장
-				stuVO.setStuName(rs.getString("stu_name"));
-				stuVO.setStuNum(rs.getString("stu_num"));
-				stuVO.setStuPass(rs.getString("stu_pass"));
-				stuVO.setStuTel(rs.getString("stu_tel"));
-				stuVO.setStuAdd(rs.getString("stu_add"));
-				stuVO.setCourName(rs.getString("cour_name"));
-				stuVO.setStuStatus(rs.getString("stu_status"));
-				stuVO.setCourCardinal(rs.getString("cour_cardinal"));
+				stuVO.setStuName(      rs.getString("stu_name"));
+				stuVO.setStuNum(       rs.getString("stu_num"));
+				stuVO.setStuPass(      rs.getString("stu_pass"));
+				stuVO.setStuTel(       rs.getString("stu_tel"));
+				stuVO.setStuAdd(       rs.getString("stu_add"));
+				stuVO.setCourName(     rs.getString("cour_name"));
+				stuVO.setCourCardinal( rs.getString("cour_cardinal"));
+				stuVO.setStuStatus(    rs.getString("stu_status"));
 			} //end if
 			
 		} finally {

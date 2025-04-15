@@ -19,24 +19,31 @@ import javax.swing.border.EmptyBorder;
 @SuppressWarnings("serial")
 public class AdminAccountStudentAccountCreateView extends JPanel {
 
-	private JTextField jtfAdminAccountStudentAccountNameSet;
-	private JPasswordField jpfAdminAccountStudentAccountPassSet;
-	private JTextField jtfAdminAccountStudentAccountBirthSet;
-	private JTextField jtfAdminAccountStudentAccountTelSet;
-	private JTextField jtfAdminAccountStudentAccountAddressSet;
-	private JTextField jtfAdminAccountStudentAccountStatusSet;
+	private JTextField stuNameTextSet;
+	private JPasswordField stuPassTextSet;
+	private JTextField stuBirthTextSet;
+	private JTextField stuTelTextSet;
+	private JTextField stuAddTextSet;
+	private JTextField stuStatusTextSet;
+	
+	private JTextField instNameTextSet;
+	
+	private JTextField courseDateTextSet;
+	private JTextField courCardinalTextSet;
+	
+	private JComboBox<String> courseNameBox;
 
-	private JButton jbtnAdminAccountStudentAccountCreate;
-	private JButton jbtnAdminAccountStudentAccountClose;
+	private JButton stuCreateButton;
+	private JButton stuCloseButton;
 
 	public AdminAccountStudentAccountCreateView() {
 		setLayout(new BorderLayout());
 
 		// ---------- 왼쪽 입력 패널 ----------
-		JPanel jpAdminAccountStudentAccountCreateViewPanel = new JPanel(new GridBagLayout());
-		jpAdminAccountStudentAccountCreateViewPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
-		jpAdminAccountStudentAccountCreateViewPanel.setMinimumSize(new Dimension(350, 400));
-		jpAdminAccountStudentAccountCreateViewPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
+		JPanel stuCreateViewPanel = new JPanel(new GridBagLayout());
+		stuCreateViewPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+		stuCreateViewPanel.setMinimumSize(new Dimension(350, 400));
+		stuCreateViewPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
 
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(8, 4, 8, 4);
@@ -48,195 +55,207 @@ public class AdminAccountStudentAccountCreateView extends JPanel {
 
 		// Component 생성
 		// 이름 Component 생성
-		JLabel jlblAdminAccountStudentAccountNameTitle = new JLabel("이름");
-		jtfAdminAccountStudentAccountNameSet = new JTextField();
-		jlblAdminAccountStudentAccountNameTitle.setPreferredSize(labelSize);
-		jtfAdminAccountStudentAccountNameSet.setPreferredSize(fieldSize);
+		JLabel stuNameTitleLabel = new JLabel("이름");
+		stuNameTitleLabel.setPreferredSize(labelSize);
+		stuNameTextSet = new JTextField();
+		stuNameTextSet.setPreferredSize(fieldSize);
 
 		// 비밀번호 Component 생성
-		JLabel jlblAdminAccountStudentAccountPassTitle = new JLabel("비밀번호");
-		jpfAdminAccountStudentAccountPassSet = new JPasswordField();
-		jlblAdminAccountStudentAccountPassTitle.setPreferredSize(labelSize);
-		jpfAdminAccountStudentAccountPassSet.setPreferredSize(fieldSize);
+		JLabel stuPassTitleLabel = new JLabel("비밀번호");
+		stuPassTitleLabel.setPreferredSize(labelSize);
+		stuPassTextSet = new JPasswordField();
+		stuPassTextSet.setPreferredSize(fieldSize);
 
 		// 생년월일 Component 생성
-		JLabel jlblAdminAccountStudentAccountBirthTitle = new JLabel("생년월일");
-		jtfAdminAccountStudentAccountBirthSet = new JTextField();
-		jlblAdminAccountStudentAccountBirthTitle.setPreferredSize(labelSize);
-		jtfAdminAccountStudentAccountBirthSet.setPreferredSize(fieldSize);
+		JLabel stuBirthTitleLabel = new JLabel("생년월일");
+		stuBirthTitleLabel.setPreferredSize(labelSize);
+		stuBirthTextSet = new JTextField();
+		stuBirthTextSet.setPreferredSize(fieldSize);
 
 		// 전화번호 Component 생성
-		JLabel jlblAdminAccountStudentAccountTelTitle = new JLabel("전화번호");
-		jtfAdminAccountStudentAccountTelSet = new JTextField();
-		jlblAdminAccountStudentAccountTelTitle.setPreferredSize(labelSize);
-		jtfAdminAccountStudentAccountTelSet.setPreferredSize(fieldSize);
+		JLabel stuTelTitleLabel = new JLabel("전화번호");
+		stuTelTitleLabel.setPreferredSize(labelSize);
+		stuTelTextSet = new JTextField();
+		stuTelTextSet.setPreferredSize(fieldSize);
 
 		// 주소 Component 생성
-		JLabel jlblAdminAccountStudentAccountAddressTitle = new JLabel("주소");
-		jtfAdminAccountStudentAccountAddressSet = new JTextField();
-		jlblAdminAccountStudentAccountAddressTitle.setPreferredSize(labelSize);
-		jtfAdminAccountStudentAccountAddressSet.setPreferredSize(fieldSize);
+		JLabel stuAddTitleLabel = new JLabel("주소");
+		stuAddTitleLabel.setPreferredSize(labelSize);
+		stuAddTextSet = new JTextField();
+		stuAddTextSet.setPreferredSize(fieldSize);
 
 		// 과정명 Component 생성
-		JLabel jlblAdminAccountStudentAccountCourseNameTitle = new JLabel("과정명");
-		jlblAdminAccountStudentAccountCourseNameTitle.setPreferredSize(labelSize);
-		String[] strAdminAccountStudentAccountCourseNameTitle = { " AWS와 Docker & Kubernetes", "Flutter Framework" };
-		JComboBox<String> jcbAdminAccountStudentAccountCourseNameBox = new JComboBox<String>(
-				strAdminAccountStudentAccountCourseNameTitle);
-		jcbAdminAccountStudentAccountCourseNameBox.setPreferredSize(fieldSize);
+		JLabel courseNameTitle = new JLabel("과정명");
+		courseNameTitle.setPreferredSize(labelSize);
+//		String[] strAdminAccountStudentAccountCourseNameTitle = { " AWS와 Docker & Kubernetes", "Flutter Framework" };
+		courseNameBox = new JComboBox<String>();
+		courseNameBox.setPreferredSize(fieldSize);
 
 		// 강사 Component 생성
-		JLabel jlblAdminAccountStudentAccountInstructorNameTitle = new JLabel("담당 강사");
-		JTextField jtfAdminAccountStudentAccountInstructorNameText = new JTextField();
-		jlblAdminAccountStudentAccountInstructorNameTitle.setPreferredSize(labelSize);
-		jtfAdminAccountStudentAccountInstructorNameText.setPreferredSize(fieldSize);
+		JLabel instNameTitleLabel = new JLabel("담당 강사");
+		instNameTextSet = new JTextField();
+		instNameTitleLabel.setPreferredSize(labelSize);
+		instNameTextSet.setPreferredSize(fieldSize);
 
 		// 상태 Component 생성
-		JLabel jlblAdminAccountStudentAccountStatusTitle = new JLabel("상태");
-		jtfAdminAccountStudentAccountStatusSet = new JTextField();
-		jlblAdminAccountStudentAccountStatusTitle.setPreferredSize(labelSize);
-		jtfAdminAccountStudentAccountStatusSet.setPreferredSize(fieldSize);
+		JLabel stuStatusTitleLabel = new JLabel("상태");
+		stuStatusTitleLabel.setPreferredSize(labelSize);
+		stuStatusTextSet = new JTextField();
+		stuStatusTextSet.setPreferredSize(fieldSize);
 
 		// 교육기간 Component 생성
-		JLabel jlblAdminAccountStudentAccountCourseDateTitle = new JLabel("교육 기간");
-		JTextField jtfAdminAccountStudentAccountCourseDateText = new JTextField();
-		jlblAdminAccountStudentAccountCourseDateTitle.setPreferredSize(labelSize);
-		jtfAdminAccountStudentAccountCourseDateText.setPreferredSize(fieldSize);
+		JLabel courDateTitleLabel = new JLabel("교육 기간");
+		courDateTitleLabel.setPreferredSize(labelSize);
+		courseDateTextSet = new JTextField();
+		courseDateTextSet.setPreferredSize(fieldSize);
 
 		// 기수 Component 생성
-		JLabel jlblAdminAccountStudentAccountCardinalTitle = new JLabel("기수");
-		JTextField jtfAdminAccountStudentAccountCardinalText = new JTextField();
-		jlblAdminAccountStudentAccountCardinalTitle.setPreferredSize(labelSize);
-		jtfAdminAccountStudentAccountCardinalText.setPreferredSize(fieldSize);
+		JLabel courCardinalTitleLabel = new JLabel("기수");
+		courCardinalTitleLabel.setPreferredSize(labelSize);
+		courCardinalTextSet = new JTextField();
+		courCardinalTextSet.setPreferredSize(fieldSize);
 
 		// Button 생성
-		JPanel jpAdminAccountStudentAccountCreateViewButtonPanel = new JPanel();
-		jpAdminAccountStudentAccountCreateViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		jbtnAdminAccountStudentAccountCreate = new JButton("생성");
-		jbtnAdminAccountStudentAccountClose = new JButton("닫기");
+		JPanel stuCreateViewButtonPanel = new JPanel();
+		stuCreateViewButtonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		stuCreateButton = new JButton("생성");
+		stuCloseButton = new JButton("닫기");
 
-		jpAdminAccountStudentAccountCreateViewButtonPanel.add(jbtnAdminAccountStudentAccountCreate);
-		jpAdminAccountStudentAccountCreateViewButtonPanel.add(jbtnAdminAccountStudentAccountClose);
+		stuCreateViewButtonPanel.add(stuCreateButton);
+		stuCreateViewButtonPanel.add(stuCloseButton);
 
 		// Component 배치
 		// 이름 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jlblAdminAccountStudentAccountNameTitle, gbc);
+		stuCreateViewPanel.add(stuNameTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountNameSet, gbc);
+		stuCreateViewPanel.add(stuNameTextSet, gbc);
 
 		// 비밀번호 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jlblAdminAccountStudentAccountPassTitle, gbc);
+		stuCreateViewPanel.add(stuPassTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jpfAdminAccountStudentAccountPassSet, gbc);
+		stuCreateViewPanel.add(stuPassTextSet, gbc);
 
 		// 생년월일 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 2;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jlblAdminAccountStudentAccountBirthTitle, gbc);
+		stuCreateViewPanel.add(stuBirthTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountBirthSet, gbc);
+		stuCreateViewPanel.add(stuBirthTextSet, gbc);
 
 		// 전화번호 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 3;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jlblAdminAccountStudentAccountTelTitle, gbc);
+		stuCreateViewPanel.add(stuTelTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountTelSet, gbc);
+		stuCreateViewPanel.add(stuTelTextSet, gbc);
 
 		// 주소 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 4;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jlblAdminAccountStudentAccountAddressTitle, gbc);
+		stuCreateViewPanel.add(stuAddTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountAddressSet, gbc);
+		stuCreateViewPanel.add(stuAddTextSet, gbc);
 
 		// 과정명 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 5;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jlblAdminAccountStudentAccountCourseNameTitle, gbc);
+		stuCreateViewPanel.add(courseNameTitle, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jcbAdminAccountStudentAccountCourseNameBox, gbc);
+		stuCreateViewPanel.add(courseNameBox, gbc);
 
 		// 담당강사 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 6;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jlblAdminAccountStudentAccountInstructorNameTitle, gbc);
+		stuCreateViewPanel.add(instNameTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountInstructorNameText, gbc);
+		stuCreateViewPanel.add(instNameTextSet, gbc);
 
 		// 교육기간 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 7;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jlblAdminAccountStudentAccountCourseDateTitle, gbc);
+		stuCreateViewPanel.add(courDateTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountCourseDateText, gbc);
+		stuCreateViewPanel.add(courseDateTextSet, gbc);
 
 		// 상태 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 8;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jlblAdminAccountStudentAccountStatusTitle, gbc);
+		stuCreateViewPanel.add(stuStatusTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountStatusSet, gbc);
+		stuCreateViewPanel.add(stuStatusTextSet, gbc);
 
 		// 기수 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 9;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jlblAdminAccountStudentAccountCardinalTitle, gbc);
+		stuCreateViewPanel.add(courCardinalTitleLabel, gbc);
 		gbc.gridx = 1;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jtfAdminAccountStudentAccountCardinalText, gbc);
+		stuCreateViewPanel.add(courCardinalTextSet, gbc);
 
 		// 버튼 Component 배치
 		gbc.gridx = 0;
 		gbc.gridy = 10;
 		gbc.gridwidth = 2; // 두 열을 합쳐서 버튼들을 가운데로 배치
 		gbc.anchor = GridBagConstraints.CENTER;
-		jpAdminAccountStudentAccountCreateViewPanel.add(jpAdminAccountStudentAccountCreateViewButtonPanel, gbc);
+		stuCreateViewPanel.add(stuCreateViewButtonPanel, gbc);
 
 		// Panel 배치
-		add(jpAdminAccountStudentAccountCreateViewPanel);
+		add(stuCreateViewPanel);
 
 		// Button 이벤트 생성
 		AdminAccountStudentAccountCreateEvt aasace = new AdminAccountStudentAccountCreateEvt(this);
-		jbtnAdminAccountStudentAccountCreate.addActionListener(aasace);
-		jbtnAdminAccountStudentAccountClose.addActionListener(aasace);
+		stuCreateButton.addActionListener(aasace);
+		stuCloseButton.addActionListener(aasace);
 
 	} // AdminAccountStudentAccountView
 
 	// getter method
-	public JTextField getJtfAdminAccountStudentAccountNameSet() {
-		return jtfAdminAccountStudentAccountNameSet;
+	public JTextField getStuNameTextSet() {
+		return stuNameTextSet;
 	}
 
-	public JPasswordField getJpfAdminAccountStudentAccountPassSet() {
-		return jpfAdminAccountStudentAccountPassSet;
+	public JPasswordField getStuPassTextSet() {
+		return stuPassTextSet;
 	}
 
-	public JTextField getJtfAdminAccountStudentAccountBirthSet() {
-		return jtfAdminAccountStudentAccountBirthSet;
+	public JTextField getStuBirthTextSet() {
+		return stuBirthTextSet;
 	}
 
-	public JTextField getJtfAdminAccountStudentAccountTelSet() {
-		return jtfAdminAccountStudentAccountTelSet;
+	public JTextField getStuTelTextSet() {
+		return stuTelTextSet;
 	}
 
-	public JTextField getJtfAdminAccountStudentAccountAddressSet() {
-		return jtfAdminAccountStudentAccountAddressSet;
+	public JTextField getStuAddTextSet() {
+		return stuAddTextSet;
 	}
 
-	public JTextField getJtfAdminAccountStudentAccountStatusSet() {
-		return jtfAdminAccountStudentAccountStatusSet;
+	public JTextField getStuStatusTextSet() {
+		return stuStatusTextSet;
 	}
 
-	public JButton getJbtnAdminAccountStudentAccountCreate() {
-		return jbtnAdminAccountStudentAccountCreate;
-	} // getJbtnAdminAccountStudentAccountCreate
+	public JTextField getInstNameTextSet() {
+		return instNameTextSet;
+	}
 
-	public JButton getJbtnAdminAccountStudentAccountClose() {
-		return jbtnAdminAccountStudentAccountClose;
-	} // getJbtnAdminAccountStudentAccountClose
+	public JTextField getCourseDateTextSet() {
+		return courseDateTextSet;
+	}
+
+	public JTextField getCourCardinalTextSet() {
+		return courCardinalTextSet;
+	}
+
+	public JButton getStuCreateButton() {
+		return stuCreateButton;
+	}
+
+	public JButton getStuCloseButton() {
+		return stuCloseButton;
+	}
+
 
 } // class

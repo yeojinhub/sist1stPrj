@@ -26,7 +26,7 @@ import javax.swing.table.TableModel;
 public class AdminAccountStudentAccountView extends JPanel {
 	
 	private DefaultTableModel dftmStudentTableModel;
-	private JTable jtAdminAccountStudentAccountTable;
+	private JTable stuInfoTable;
 	
 	private JButton jbtnAdminAccountStudentAccountCreate;
     private JButton jbtnAdminAccountStudentAccountModify;
@@ -62,14 +62,14 @@ public class AdminAccountStudentAccountView extends JPanel {
         //Table Component 생성
         dftmStudentTableModel = new DefaultTableModel(strAdminAccountStudentAccountTableTitle, 0);
 //        dftmStudentTableModel = new DefaultTableModel(strAdminAccountStudentAccountTableData, strAdminAccountStudentAccountTableTitle);
-        jtAdminAccountStudentAccountTable = new JTable(dftmStudentTableModel);
+        stuInfoTable = new JTable(dftmStudentTableModel);
 
         //Table 열 정렬 설정
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         
         //Table 열 너비 설정
-        TableColumnModel columnModel = jtAdminAccountStudentAccountTable.getColumnModel();
+        TableColumnModel columnModel = stuInfoTable.getColumnModel();
         for (int i = 0; i < columnModel.getColumnCount(); i++) {
         	switch(i) {
         	case 2:
@@ -88,13 +88,13 @@ public class AdminAccountStudentAccountView extends JPanel {
         } //end for
         
         //Table 디자인, 수정 불가능 설정
-        jtAdminAccountStudentAccountTable.setDefaultEditor(Object.class, null);
-        jtAdminAccountStudentAccountTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        jtAdminAccountStudentAccountTable.setRowHeight(25);
-        jtAdminAccountStudentAccountTable.setFont(tableFont);
+        stuInfoTable.setDefaultEditor(Object.class, null);
+        stuInfoTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        stuInfoTable.setRowHeight(25);
+        stuInfoTable.setFont(tableFont);
 
         //Table Component 배치
-        JScrollPane spAdminAccountStudentAccountViewScroll = new JScrollPane(jtAdminAccountStudentAccountTable);
+        JScrollPane spAdminAccountStudentAccountViewScroll = new JScrollPane(stuInfoTable);
         spAdminAccountStudentAccountViewScroll.getViewport().setBackground(white);
         spAdminAccountStudentAccountViewScroll.setPreferredSize(scrollSize);
         JPanel jpAdminAccountStudentAccountViewTablePanel = new JPanel(new BorderLayout());
@@ -132,8 +132,7 @@ public class AdminAccountStudentAccountView extends JPanel {
         jbtnAdminAccountStudentAccountModify.addActionListener(aasaEvt);
         
         //Mouse 이벤트 생성
-        aasaEvt.loadStudentInfo();
-        jtAdminAccountStudentAccountTable.addMouseListener(aasaEvt);
+        stuInfoTable.addMouseListener(aasaEvt);
         
     } //AdminAccountStudentAccountView
 
@@ -142,10 +141,10 @@ public class AdminAccountStudentAccountView extends JPanel {
 		return dftmStudentTableModel;
 	}
 
-	public JTable getJtAdminAccountStudentAccountTable() {
-		return jtAdminAccountStudentAccountTable;
+	public JTable getStuInfoTable() {
+		return stuInfoTable;
 	}
-	
+
 	public JButton getJbtnAdminAccountStudentAccountCreate() {
 		return jbtnAdminAccountStudentAccountCreate;
 	} //getJbtnAdminAccountStudentAccountCreate

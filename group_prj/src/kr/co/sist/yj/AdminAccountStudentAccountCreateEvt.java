@@ -16,28 +16,28 @@ public class AdminAccountStudentAccountCreateEvt implements ActionListener {
 	
 	private AdminAccountStudentAccountCreateView stuCreateView;
 	
-	private JButton jbtnAdminAccountStudentAccountCreate;
-    private JButton jbtnAdminAccountStudentAccountClose;
+	private JButton stuCreateButton;
+    private JButton stuCloseButton;
     
     public AdminAccountStudentAccountCreateEvt(AdminAccountStudentAccountCreateView stuCreateView) {
     	
     	this.stuCreateView=stuCreateView;
-    	this.jbtnAdminAccountStudentAccountCreate=stuCreateView.getJbtnAdminAccountStudentAccountCreate();
-    	this.jbtnAdminAccountStudentAccountClose=stuCreateView.getJbtnAdminAccountStudentAccountClose();
+    	this.stuCreateButton=stuCreateView.getStuCreateButton();
+    	this.stuCloseButton=stuCreateView.getStuCloseButton();
     	
     } //AdminAccountStudentAccountCreateEvt
 
 	private void inputFieldReset() {
 		
 		//입력 field 초기화
-		stuCreateView.getJtfAdminAccountStudentAccountNameSet().setText("");
-		stuCreateView.getJpfAdminAccountStudentAccountPassSet().setText("");
-		stuCreateView.getJtfAdminAccountStudentAccountBirthSet().setText("");
-		stuCreateView.getJtfAdminAccountStudentAccountTelSet().setText("");
-		stuCreateView.getJtfAdminAccountStudentAccountStatusSet().setText("");
+		stuCreateView.getStuNameTextSet().setText("");
+		stuCreateView.getStuPassTextSet().setText("");
+		stuCreateView.getStuBirthTextSet().setText("");
+		stuCreateView.getStuTelTextSet().setText("");
+		stuCreateView.getStuStatusTextSet().setText("");
 		
 		//field focus
-		stuCreateView.getJtfAdminAccountStudentAccountNameSet().requestFocus();
+		stuCreateView.getStuNameTextSet().requestFocus();
 		
 	} //inputFieldReset
 	
@@ -45,11 +45,11 @@ public class AdminAccountStudentAccountCreateEvt implements ActionListener {
 		
 		//VO에 입력 값 저장
 		AdminAccountStudentAccountInfoVO stuVO = new AdminAccountStudentAccountInfoVO();
-		stuVO.setStuName( stuCreateView.getJtfAdminAccountStudentAccountNameSet().getText().trim() );
-		char[] studentPasswordArray = stuCreateView.getJpfAdminAccountStudentAccountPassSet().getPassword();
+		stuVO.setStuName( stuCreateView.getStuNameTextSet().getText().trim() );
+		char[] studentPasswordArray = stuCreateView.getStuPassTextSet().getPassword();
 		String strStudentPassword = new String(studentPasswordArray).trim();
 		stuVO.setStuPass( strStudentPassword );
-		String strStudentBirth = new String( stuCreateView.getJtfAdminAccountStudentAccountBirthSet().getText().trim() );
+		String strStudentBirth = new String( stuCreateView.getStuBirthTextSet().getText().trim() );
 
 		if( !strStudentBirth.isEmpty() ) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -64,9 +64,9 @@ public class AdminAccountStudentAccountCreateEvt implements ActionListener {
 		} else {
 			stuVO.setStuBirth( null );
 		} //end if else
-		stuVO.setStuTel( stuCreateView.getJtfAdminAccountStudentAccountTelSet().getText().trim() );
-		stuVO.setStuAdd( stuCreateView.getJtfAdminAccountStudentAccountAddressSet().getText().trim() );
-		stuVO.setStuStatus( stuCreateView.getJtfAdminAccountStudentAccountStatusSet().getText().trim() );
+		stuVO.setStuTel( stuCreateView.getStuTelTextSet().getText().trim() );
+		stuVO.setStuAdd( stuCreateView.getStuAddTextSet().getText().trim() );
+		stuVO.setStuStatus( stuCreateView.getStuStatusTextSet().getText().trim() );
 		
 		//메세지 생성
 		boolean flag = false;
@@ -101,12 +101,12 @@ public class AdminAccountStudentAccountCreateEvt implements ActionListener {
 	public void actionPerformed(ActionEvent ae) {
 		Object source=ae.getSource();
 		
-		if( source == jbtnAdminAccountStudentAccountCreate ) {
+		if( source == stuCreateButton ) {
 			System.out.println("생성 버튼 실행");
 			addMember();
 		} //end if
 		
-		if( source == jbtnAdminAccountStudentAccountClose ) {
+		if( source == stuCloseButton ) {
 			System.out.println("닫기 버튼 실행");
 			closeCreateJDialog();
 		} //end if
