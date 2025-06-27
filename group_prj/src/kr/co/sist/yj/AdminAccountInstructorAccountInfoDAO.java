@@ -139,6 +139,125 @@ public class AdminAccountInstructorAccountInfoDAO {
 		try {
 			con = dbConn.getConn();
 			
+			/*
+			 * 신청과정(과정-학생) 자식레코드 삭제
+			 */
+			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
+			StringBuilder strDeleteApplyQuery = new StringBuilder();
+			strDeleteApplyQuery
+			.append("	delete from apply_steps	")
+			.append("	where cour_num=(	")
+			.append("	select cour_num from course where inst_num=?)	")
+			;
+			pstmt = con.prepareStatement(strDeleteApplyQuery.toString());
+			
+			// 4. bind 변수에 값 할당
+			pstmt.setString(1, instNum);
+			
+			// 5. 쿼리문 수행 후 결과 얻기
+			rowCnt=pstmt.executeUpdate();
+			
+			/*
+			 * 시험문제 자식레코드 삭제
+			 */
+			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
+			StringBuilder strDeleteQuestionQuery = new StringBuilder();
+			strDeleteQuestionQuery
+			.append("	delete from exam_question	")
+			.append("	where exam_num in (	")
+			.append("	select e.exam_num	")
+			.append("	from exam e	")
+			.append("	join course c ON e.cour_num = c.cour_num	")
+			.append("	where c.inst_num = ?)	")
+			;
+			pstmt = con.prepareStatement(strDeleteQuestionQuery.toString());
+			
+			// 4. bind 변수에 값 할당
+			pstmt.setString(1, instNum);
+			
+			// 5. 쿼리문 수행 후 결과 얻기
+			rowCnt=pstmt.executeUpdate();
+			
+			/*
+			 * 성적 자식레코드 삭제
+			 */
+			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
+			StringBuilder strDeleteGradeQuery = new StringBuilder();
+			strDeleteGradeQuery
+			.append("	delete from grade	")
+			.append("	where exam_num in (	")
+			.append("	select e.exam_num	")
+			.append("	from exam e	")
+			.append("	join course c ON e.cour_num = c.cour_num	")
+			.append("	where c.inst_num = ?)	")
+			;
+			pstmt = con.prepareStatement(strDeleteGradeQuery.toString());
+
+			// 4. bind 변수에 값 할당
+			pstmt.setString(1, instNum);
+			
+			// 5. 쿼리문 수행 후 결과 얻기
+			rowCnt=pstmt.executeUpdate();
+			
+			/*
+			 * 시험 자식레코드 삭제
+			 */
+			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
+			StringBuilder strDeleteExamQuery = new StringBuilder();
+			strDeleteExamQuery
+			.append("	delete from exam	")
+			.append("	where exam_num in (	")
+			.append("	select e.exam_num	")
+			.append("	from exam e	")
+			.append("	join course c ON e.cour_num = c.cour_num	")
+			.append("	where c.inst_num = ?)	")
+			;
+			pstmt = con.prepareStatement(strDeleteExamQuery.toString());
+			
+			// 4. bind 변수에 값 할당
+			pstmt.setString(1, instNum);
+			
+			// 5. 쿼리문 수행 후 결과 얻기
+			rowCnt=pstmt.executeUpdate();
+			
+			/*
+			 * 과정 자식레코드 삭제
+			 */
+			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
+			StringBuilder strDeleteCourseQuery = new StringBuilder();
+			strDeleteCourseQuery
+			.append("	delete from	course	")
+			.append("	where inst_num=?	")
+			;
+			pstmt = con.prepareStatement(strDeleteCourseQuery.toString());
+			
+			// 4. bind 변수에 값 할당
+			pstmt.setString(1, instNum);
+			
+			// 5. 쿼리문 수행 후 결과 얻기
+			rowCnt=pstmt.executeUpdate();
+			
+			/*
+			 * 1:1문의 자식레코드 삭제
+			 */
+			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
+			StringBuilder strDeleteBoardQuery = new StringBuilder();
+			strDeleteBoardQuery
+			.append("	delete from board	")
+			.append("	where inst_num in (	")
+			.append("	select i.inst_num	")
+			.append("	from instructor i	")
+			.append("	join board b ON b.inst_num = i.inst_num	")
+			.append("	where b.inst_num = ?)	")
+			;
+			pstmt = con.prepareStatement(strDeleteBoardQuery.toString());
+			
+			// 4. bind 변수에 값 할당
+			pstmt.setString(1, instNum);
+			
+			// 5. 쿼리문 수행 후 결과 얻기
+			rowCnt=pstmt.executeUpdate();
+			
 			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
 			StringBuilder strDeleteQuery = new StringBuilder();
 			strDeleteQuery

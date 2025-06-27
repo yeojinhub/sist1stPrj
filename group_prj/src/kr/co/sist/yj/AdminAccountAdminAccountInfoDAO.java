@@ -48,9 +48,10 @@ public class AdminAccountAdminAccountInfoDAO {
 			StringBuilder strInsertQuery = new StringBuilder();
 			strInsertQuery
 			.append("	insert into admin	")
-			.append("	(adm_id,adm_pass,adm_name,adm_birth,adm_tel,adm_add)	")
-			.append("	values	")
-			.append("	((to_char(admin)||trim(to_char(seq_adm_id.nextval,'00')),?,?,?,?,?)	")
+			.append("	(adm_id,   adm_pass, adm_name, adm_birth,  adm_tel, adm_add)	")
+			.append("	values(	")
+			.append("	'admin'||lpad(seq_adm_id.nextval,2,'0'),	")
+			.append("?,?,?,?,?) ")
 			;
 			
 			pstmt=con.prepareStatement(strInsertQuery.toString());
@@ -138,6 +139,25 @@ public class AdminAccountAdminAccountInfoDAO {
 		try {
 			con = dbConn.getConn();
 			
+			// 게시판 자식레코드 삭제
+			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
+			StringBuilder strDeleteBoardQuery = new StringBuilder();
+			strDeleteBoardQuery
+			.append("	delete from board	")
+			.append("	where adm_id IN(	")
+			.append("	select a.adm_id	")
+			.append("	from admin a	")
+			.append("	join board b on b.adm_id = a.adm_id	")
+			.append("	where b.adm_id=?)	")
+			;
+			pstmt = con.prepareStatement(strDeleteBoardQuery.toString());
+			
+			// 4. bind 변수에 값 할당
+			pstmt.setString(1, admID);
+			
+			// 5. 쿼리문 수행 후 결과 얻기
+			rowCnt=pstmt.executeUpdate();
+
 			// 3. 쿼리문을 넣어서 쿼리문 생성객체 얻기
 			StringBuilder strDeleteQuery = new StringBuilder();
 			strDeleteQuery
