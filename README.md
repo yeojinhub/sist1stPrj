@@ -1,18 +1,24 @@
 # sist1stPjr
 sist 쌍용교육센터 1차 프로젝트
+<br>
 학원 통합 관리 프로그램 사이트
-패스트캠퍼스(3/17~4/14)
+<br>
+베스트캠퍼스(3/17~4/14)
+
+<p>
+<img width="100%" src="https://github.com/user-attachments/assets/0bf34c8e-783b-4661-a3b9-045cf49825f6">
+</p>
 
 ## 📌 목차
-1. [개요](#개요)
-2. [개발기간](#개발기간)
-3. [멤버구성](#멤버구성)
-4. [기술스택](#Stacks)
-5. [시연영상](#시연영상)
-6. [ERD Diagram](#ERDDiagram)
+1. [개요](#-개요-)
+2. [개발기간](#-개발기간-)
+3. [멤버구성](#-멤버구성)
+4. [기술스택](#-Stacks-)
+5. [사용자 시연 영상](#-사용자-시연-영상)
+6. [ERD Diagram](#ERD-Diagram)
 
 ## 🖥️ 개요
-> 프로젝트 이름: 패스트캠퍼스
+> 프로젝트 이름: 베스트캠퍼스
 > 
 > 본 프로젝트는 학원 관리 시스템 구축을 목적으로 하며, 학생, 강사, 관리자를 위한 3가지 프로그램을 개발하는 것이 목표입니다.
 > 
@@ -70,7 +76,13 @@ sist 쌍용교육센터 1차 프로젝트
 > ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 >
 
-## ERD
+## 사용자 시연 영상
+
+<p>
+<img width="100%" src="https://github.com/user-attachments/assets/5c3c5bb6-9267-4c4b-8e09-3e5e6b0da3f3">
+</p>
+
+## ERD Diagram
 > 
 <p align="center">
 <img width="70%" src="https://github.com/user-attachments/assets/16c1268d-3dd8-447a-bd96-1cbfe45676b2">
